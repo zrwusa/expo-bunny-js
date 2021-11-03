@@ -1,8 +1,7 @@
 import * as React from 'react';
 import {getStyles} from './styles';
 import {Text, View} from '../../../components/UI';
-import {useSizeLabor} from '../../../providers/size-labor';
-import {useThemeLabor} from '../../../providers/theme-labor';
+import {useSizeLabor, useThemeLabor} from '../../../providers';
 import {Col} from '../../../containers';
 import {getSharedStyles} from '../../../helpers';
 

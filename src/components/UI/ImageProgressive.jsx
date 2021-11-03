@@ -2,7 +2,7 @@ import React from 'react';
 import {Animated, View} from 'react-native';
 import {getStyles} from './styles';
 import config from '../../config';
-import {withBunnyKit} from '../../hooks/bunny-kit';
+import {withBunnyKit} from '../../hooks';
 
 class ImageProgressive extends React.Component {
     constructor() {

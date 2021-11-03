@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {View} from '../../../components/UI';
-import {shortenTFunctionKey} from '../../../providers/i18n-labor';
+import {shortenTFunctionKey} from '../../../providers';
 import {ScrollView} from 'react-native';
 import {getContainerStyles} from '../../../containers';
 import {getSharedStyles} from '../../../helpers';
-import {useBunnyKit} from '../../../hooks/bunny-kit';
+import {useBunnyKit} from '../../../hooks';
 
 function ModalHomeScreen({route, navigation}) {
     const {sizeLabor, themeLabor, t} = useBunnyKit();

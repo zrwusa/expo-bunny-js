@@ -6,13 +6,13 @@ import {LinearGradientIcon} from '../LinearGradientIcon';
 import {Row} from '../../containers/Row';
 import * as FirebaseRecaptcha from 'expo-firebase-recaptcha';
 import {FIREBASE_CONFIG} from '../../firebase';
-import {shortenTFunctionKey} from '../../providers/i18n-labor';
+import {shortenTFunctionKey} from '../../providers';
 import {getStyles} from './styles';
 import {useAuthLabor} from '../../providers/auth-labor';
 import {useDispatch} from 'react-redux';
 import {collectBLResult} from '../../store/actions';
 import {navToReference} from '../../helpers';
-import {useBunnyKit} from '../../hooks/bunny-kit';
+import {useBunnyKit} from '../../hooks';
 
 export const FirebasePhoneLogin = ({route, navigation}) => {
     const {sizeLabor, themeLabor, t, wp} = useBunnyKit();

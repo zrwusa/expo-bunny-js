@@ -23,7 +23,7 @@ import Send from './Send';
 import Time from './Time';
 import BunnyAvatar from './BunnyAvatar';
 import {DATE_FORMAT, DEFAULT_PLACEHOLDER, MAX_COMPOSER_HEIGHT, MIN_COMPOSER_HEIGHT, TIME_FORMAT,} from './Constant';
-import {withBunnyKit} from '../../hooks/bunny-kit';
+import {withBunnyKit} from '../../hooks';
 
 dayjs.extend(localizedFormat);
 

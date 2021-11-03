@@ -2,10 +2,10 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Button, Text, View} from '../../components/UI';
 import {demoThunk} from '../../store/actions';
-import {shortenTFunctionKey} from '../../providers/i18n-labor';
+import {shortenTFunctionKey} from '../../providers';
 import {getContainerStyles} from '../../containers';
 import {getSharedStyles} from '../../helpers';
-import {withBunnyKit} from '../../hooks/bunny-kit';
+import {withBunnyKit} from '../../hooks';
 
 const mapStateToProps = (rootState) => ({...rootState.demoThunkState});
 const mapDispatchToProps = (dispatch) => ({

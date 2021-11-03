@@ -6,7 +6,7 @@ import {LinearGradientIcon} from '../LinearGradientIcon';
 import {TouchableOpacity} from 'react-native';
 import * as React from 'react';
 import {getStyles} from './styles';
-import {useBunnyKit} from '../../hooks/bunny-kit';
+import {useBunnyKit} from '../../hooks';
 
 export const InlineJump = (props) => {
     const {sizeLabor, themeLabor, wp} = useBunnyKit();

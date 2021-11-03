@@ -5,7 +5,7 @@ import {IcoMoon, Text} from '../UI';
 import {Audio} from '../../../packages/expo-av/src';
 import {ProgressBar} from 'react-native-paper';
 import {minuted} from '../../utils';
-import {useBunnyKit} from '../../hooks/bunny-kit';
+import {useBunnyKit} from '../../hooks';
 
 export function AudioPlayer(props) {
     const {sizeLabor, themeLabor, colors} = useBunnyKit();

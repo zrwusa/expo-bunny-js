@@ -2,8 +2,8 @@ import * as React from 'react';
 import {useEffect, useRef} from 'react';
 import {Text, View} from '../UI';
 import {Row} from '../../containers/Row';
-import {Col} from '../../containers/Col';
-import {useBunnyKit} from '../../hooks/bunny-kit';
+import {Col} from '../../containers';
+import {useBunnyKit} from '../../hooks';
 import {getStyles} from './styles';
 import {
     AbstractGraph,

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {useEffect, useState} from 'react';
 import {Text, View} from '../../../components/UI';
-import {shortenTFunctionKey} from '../../../providers/i18n-labor';
+import {shortenTFunctionKey} from '../../../providers';
 import {getContainerStyles} from '../../../containers';
 import {
     VictoryAxis,
@@ -19,7 +19,7 @@ import {collectBLResult, getCurrentPrice, sysError} from '../../../store/actions
 import {blError, getSharedStyles} from '../../../helpers';
 import {ScrollView} from 'react-native';
 import {Tab} from '../../../components';
-import {useBunnyKit} from '../../../hooks/bunny-kit';
+import {useBunnyKit} from '../../../hooks';
 
 let source;
 

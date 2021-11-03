@@ -4,7 +4,7 @@ import LoadEarlier from './LoadEarlier';
 import Message from './Message';
 import {warning} from './utils';
 import TypingIndicator from './TypingIndicator';
-import {withBunnyKit} from '../../hooks/bunny-kit';
+import {withBunnyKit} from '../../hooks';
 
 const getStyles = (sizeLabor, themeLabor) => {
     const {ms} = sizeLabor;

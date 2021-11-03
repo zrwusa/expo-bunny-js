@@ -3,7 +3,7 @@ import {IcoMoon, View} from '../UI';
 import MaskedView from '@react-native-community/masked-view';
 import {LinearGradient} from 'expo-linear-gradient';
 import {getStyles} from './styles';
-import {useBunnyKit} from '../../hooks/bunny-kit';
+import {useBunnyKit} from '../../hooks';
 
 export function LinearGradientIcon(props) {
     const {sizeLabor, themeLabor, wp} = useBunnyKit();

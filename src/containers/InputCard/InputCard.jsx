@@ -1,7 +1,6 @@
 import {Text, View} from '../../components/UI';
 import * as React from 'react';
-import {useSizeLabor} from '../../providers/size-labor';
-import {useThemeLabor} from '../../providers/theme-labor';
+import {useSizeLabor, useThemeLabor} from '../../providers';
 import {getContainerStyles} from '../styles';
 
 export function InputCard({title, children}) {

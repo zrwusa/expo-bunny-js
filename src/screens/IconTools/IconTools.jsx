@@ -4,10 +4,10 @@ import {ScrollView} from 'react-native';
 import {getStyles} from './styles';
 import {Card, Row} from '../../containers';
 import {useDispatch} from 'react-redux';
-import {shortenTFunctionKey} from '../../providers/i18n-labor';
+import {shortenTFunctionKey} from '../../providers';
 import {glyphIcoMoonMap} from '../../helpers';
 import {CopyableText} from '../../components/CopyableText';
-import {useBunnyKit} from '../../hooks/bunny-kit';
+import {useBunnyKit} from '../../hooks';
 
 export function IconToolsScreen() {
     const {sizeLabor, themeLabor, t} = useBunnyKit();

@@ -2,7 +2,7 @@ import React from 'react';
 import {Image} from 'react-native';
 import {getStyles} from './styles';
 import {ImageUploader} from '../ImageUploader';
-import {useBunnyKit} from '../../hooks/bunny-kit';
+import {useBunnyKit} from '../../hooks';
 
 export function Avatar(props) {
     const {sizeLabor, themeLabor, wp} = useBunnyKit();

@@ -3,7 +3,7 @@ import {createRef} from 'react';
 import {Video} from '../../../packages/expo-av/src';
 import {Button, Text, View} from '../UI';
 import {getStyles} from './styles';
-import {withBunnyKit} from '../../hooks/bunny-kit';
+import {withBunnyKit} from '../../hooks';
 
 class ShowVideoInner extends React.PureComponent {
     constructor(props) {

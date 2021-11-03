@@ -1,9 +1,9 @@
 import {IcoMoon, Text, TextButton, View} from '../UI';
 import {Row} from '../../containers/Row';
-import {Col} from '../../containers/Col';
+import {Col} from '../../containers';
 import * as React from 'react';
 import {useEffect, useState} from 'react';
-import {useBunnyKit} from '../../hooks/bunny-kit';
+import {useBunnyKit} from '../../hooks';
 import {getSharedStyles} from '../../helpers';
 import {getStyles} from './styles';
 import {FlatList, KeyboardAvoidingView, SafeAreaView} from 'react-native';

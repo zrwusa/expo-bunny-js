@@ -7,7 +7,7 @@ import {getStyles} from './styles';
 import {useFirestore, useFirestoreConnect} from 'react-redux-firebase';
 import {useDispatch, useSelector} from 'react-redux';
 import {sysError} from '../../store/actions';
-import {useBunnyKit} from '../../hooks/bunny-kit';
+import {useBunnyKit} from '../../hooks';
 
 export function UserAlbumEditor(props) {
     const {sizeLabor, themeLabor, wp, user} = useBunnyKit();

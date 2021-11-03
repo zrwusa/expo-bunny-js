@@ -2,11 +2,11 @@ import React, {useState} from 'react';
 import {Avatar, Button, List} from 'react-native-paper';
 import RNPickerSelect from 'react-native-picker-select';
 import {IconMC, View} from '../../components/UI';
-import {shortenTFunctionKey} from '../../providers/i18n-labor';
+import {shortenTFunctionKey} from '../../providers';
 import {Card, getContainerStyles, Row} from '../../containers';
 import {uuidV4} from '../../utils';
 import {getStyles} from './styles';
-import {useBunnyKit} from '../../hooks/bunny-kit';
+import {useBunnyKit} from '../../hooks';
 
 function DemoThirdPartScreen(props) {
     const {sizeLabor, themeLabor, t, wp} = useBunnyKit();

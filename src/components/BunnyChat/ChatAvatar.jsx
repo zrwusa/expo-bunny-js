@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, View,} from 'react-native';
 import BunnyAvatar from './BunnyAvatar';
 import {isSameDay, isSameUser} from './utils';
-import {withBunnyKit} from '../../hooks/bunny-kit';
+import {withBunnyKit} from '../../hooks';
 
 const getStyles = (sizeLabor, themeLabor) => {
     const {wp} = sizeLabor.designsBasedOn.iphoneX;

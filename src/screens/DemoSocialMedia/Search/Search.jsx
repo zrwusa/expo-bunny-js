@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {useEffect, useMemo, useState} from 'react';
-import {shortenTFunctionKey} from '../../../providers/i18n-labor';
+import {shortenTFunctionKey} from '../../../providers';
 import {getContainerStyles} from '../../../containers';
 import {getStyles} from './styles';
 import {Animated, Platform, SafeAreaView} from 'react-native';
@@ -10,8 +10,8 @@ import {FollowUpSearchBar} from '../../../components/FollowUpSearchBar';
 import {useSelector} from 'react-redux';
 import {isLoaded, useFirebase, useFirestoreConnect} from 'react-redux-firebase';
 import config from '../../../config';
-import {Preparing} from '../../../components/Preparing';
-import {useBunnyKit} from '../../../hooks/bunny-kit';
+import {Preparing} from '../../../components';
+import {useBunnyKit} from '../../../hooks';
 
 export function SocialMediaSearchScreen({route, navigation}) {
     const {sizeLabor, themeLabor, wp, t} = useBunnyKit();

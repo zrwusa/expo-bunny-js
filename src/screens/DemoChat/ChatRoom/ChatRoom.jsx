@@ -7,7 +7,7 @@ import {Keyboard, SafeAreaView, TouchableOpacity} from 'react-native';
 import {AudioRecorder, ImageUploader, Preparing, StickerPicker} from '../../../components';
 import {IcoMoon} from '../../../components/UI';
 import {getStyles} from './styles';
-import {useBunnyKit} from '../../../hooks/bunny-kit';
+import {useBunnyKit} from '../../../hooks';
 import {sysError} from '../../../store/actions';
 
 export function ChatRoomScreen({route, navigation}) {

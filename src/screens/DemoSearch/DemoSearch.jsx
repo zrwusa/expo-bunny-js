@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {useEffect, useState} from 'react';
 import {Text, View} from '../../components/UI';
-import {shortenTFunctionKey} from '../../providers/i18n-labor';
+import {shortenTFunctionKey} from '../../providers';
 import {getContainerStyles} from '../../containers';
 import {Animated, SafeAreaView} from 'react-native';
 import {randomText, wait} from '../../utils';
@@ -10,7 +10,7 @@ import {getStyles} from './styles';
 import {collectBLResult} from '../../store/actions';
 import {blError} from '../../helpers';
 import config from '../../config';
-import {useBunnyKit} from '../../hooks/bunny-kit';
+import {useBunnyKit} from '../../hooks';
 
 export function DemoSearchScreen({route, navigation}) {
     const {sizeLabor, themeLabor, t} = useBunnyKit();

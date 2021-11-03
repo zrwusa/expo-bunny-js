@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View,} from 'react-native';
-import {withBunnyKit} from '../../hooks/bunny-kit';
+import {withBunnyKit} from '../../hooks';
 import {connectActionSheet} from '../../../packages/react-native-action-sheet/src';
 
 const getStyles = (sizeLabor, themeLabor) => {
