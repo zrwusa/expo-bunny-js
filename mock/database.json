@@ -1,0 +1,242 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Product001",
+      "cost": 10,
+      "quantity": 1000,
+      "locationId": 1,
+      "familyId": 1
+    },
+    {
+      "id": 2,
+      "name": "Product002",
+      "cost": 20,
+      "quantity": 2000,
+      "locationId": 1,
+      "familyId": 2
+    }
+  ],
+  "locations": [
+    {
+      "id": 1,
+      "name": "Location001"
+    },
+    {
+      "id": 2,
+      "name": "Location002"
+    }
+  ],
+  "families": [
+    {
+      "id": 1,
+      "name": "FM001"
+    },
+    {
+      "id": 2,
+      "name": "FM002"
+    }
+  ],
+  "transactions": [
+    {
+      "id": 1,
+      "cost": 11,
+      "quantity": 10,
+      "productId": 1
+    },
+    {
+      "id": 2,
+      "cost": 12,
+      "quantity": 100,
+      "productId": 2
+    }
+  ],
+  "employees": [
+    {
+      "id": 1,
+      "first_name": "Sebastian",
+      "last_name": "Eschweiler",
+      "email": "sebastian@codingthesmartway.com"
+    },
+    {
+      "id": 2,
+      "first_name": "Steve",
+      "last_name": "Palmer",
+      "email": "steve@codingthesmartway.com"
+    },
+    {
+      "id": 3,
+      "first_name": "Ann",
+      "last_name": "Smith",
+      "email": "ann@codingthesmartway.com"
+    }
+  ],
+  "demo_thunks": [
+    {
+      "id": 1,
+      "name": "name1"
+    },
+    {
+      "text": "text1",
+      "id": 2
+    },
+    {
+      "text": "text1",
+      "id": 3
+    },
+    {
+      "text": "text1",
+      "id": 4
+    },
+    {
+      "text": "text1",
+      "id": 5
+    },
+    {
+      "text": "text1",
+      "id": 6
+    },
+    {
+      "text": "text1",
+      "id": 7
+    },
+    {
+      "text": "text1",
+      "id": 8
+    },
+    {
+      "text": "text1",
+      "id": 9
+    },
+    {
+      "text": "text1",
+      "id": 10
+    },
+    {
+      "text": "text1",
+      "id": 11
+    },
+    {
+      "text": "text1",
+      "id": 12
+    },
+    {
+      "text": "text1",
+      "id": 13
+    },
+    {
+      "text": "text1",
+      "id": 14
+    },
+    {
+      "text": "text1",
+      "id": 15
+    },
+    {
+      "text": "text-demo",
+      "id": 16
+    },
+    {
+      "text": "text-demo",
+      "id": 17
+    },
+    {
+      "text": "text1",
+      "id": 18
+    },
+    {
+      "text": "text1",
+      "id": 19
+    },
+    {
+      "text": "text-demo",
+      "id": 20
+    },
+    {
+      "text": "text-demo",
+      "id": 21
+    },
+    {
+      "text": "text-demo",
+      "id": 22
+    },
+    {
+      "text": "text-demo",
+      "id": 23
+    },
+    {
+      "text": "text-demo",
+      "id": 24
+    },
+    {
+      "text": "text-demo",
+      "id": 25
+    },
+    {
+      "text": "text-demo",
+      "id": 26
+    },
+    {
+      "text": "text-demo",
+      "id": 27
+    },
+    {
+      "text": "text-demo",
+      "id": 28
+    },
+    {
+      "text": "text-demo",
+      "id": 29
+    }
+  ],
+  "nearby_films": [
+    {
+      "id": 0,
+      "coordinate": {
+        "latitude": 5.465477663942769,
+        "longitude": 100.28043933880761
+      },
+      "title": "Best Place",
+      "description": "This is the best place in Portland",
+      "image": {
+        "uri": "https://i.imgur.com/sNam9iJ.jpg"
+      }
+    },
+    {
+      "id": 1,
+      "coordinate": {
+        "latitude": 5.463586808144262,
+        "longitude": 100.28481285211431
+      },
+      "title": "Second Best Place",
+      "description": "This is the second best place in Portland",
+      "image": {
+        "uri": "https://i.imgur.com/N7rlQYt.jpg"
+      }
+    },
+    {
+      "id": 2,
+      "coordinate": {
+        "latitude": 5.46658649635612,
+        "longitude": 100.28283128710403
+      },
+      "title": "Third Best Place",
+      "description": "This is the third best place in Portland",
+      "image": {
+        "uri": "https://i.imgur.com/UDrH0wm.jpg"
+      }
+    },
+    {
+      "id": 3,
+      "coordinate": {
+        "latitude": 5.467065044467615,
+        "longitude": 100.27972409936405
+      },
+      "title": "Fourth Best Place",
+      "description": "This is the fourth best place in Portland",
+      "image": {
+        "uri": "https://i.imgur.com/Ka8kNST.jpg"
+      }
+    }
+  ]
+}

@@ -5,6 +5,7 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+    "scheme": "expo-bunny",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -16,17 +17,46 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "userInterfaceStyle": "automatic",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.zrwusa.expo-react-bunny",
+      "config": {
+        "googleMapsApiKey": "AIzaSyDCdDf8m_Kaf0t6J_egFFZ8ASgwUnctUL4",
+        "googleSignIn": {
+          "reservedClientId": "com.googleusercontent.apps.885187778268-gpa16i4lra9rjllqeblif6rq33dut3av"
+        }
+      },
+      "infoPlist": {
+        "CFBundleAllowMixedLocalizations": true
+      },
+      "userInterfaceStyle": "automatic",
+      "googleServicesFile": "./GoogleService-Info.plist"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.zrwusa.exporeactbunny",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyDCdDf8m_Kaf0t6J_egFFZ8ASgwUnctUL4"
+        }
+      },
+      "userInterfaceStyle": "automatic",
+      "useNextNotificationsApi": true,
+      "googleServicesFile": "./google-services.json"
+    },
+    "locales": {
+      "en": "./src/lang/en.json",
+      "zh": "./src/lang/zh-Hans-CN.json",
+      "he": "./src/lang/he.json"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "React Native,iOS Android Web,Write once run everywhere,Typescript,Webpack 5,Redux,Mock server,JWT Auth,Eslint,Stylelint. I know you don't want a complicated project, what you want is a collection of samples based on cutting-edge technology.Your happy use is my goal！",
+    "githubUrl": "https://github.com/zrwusa/expo-react-bunny.git"
   }
 }

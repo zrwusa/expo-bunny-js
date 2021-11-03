@@ -1,0 +1,84 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Product001",
+      "cost": 10,
+      "quantity": 1000,
+      "locationId": 1,
+      "familyId": 1
+    },
+    {
+      "id": 2,
+      "name": "Product002",
+      "cost": 20,
+      "quantity": 2000,
+      "locationId": 1,
+      "familyId": 2
+    }
+  ],
+  "locations": [
+    {
+      "id": 1,
+      "name": "Location001"
+    },
+    {
+      "id": 2,
+      "name": "Location002"
+    }
+  ],
+  "families": [
+    {
+      "id": 1,
+      "name": "FM001"
+    },
+    {
+      "id": 2,
+      "name": "FM002"
+    }
+  ],
+  "transactions": [
+    {
+      "id": 1,
+      "cost": 11,
+      "quantity": 10,
+      "productId": 1
+    },
+    {
+      "id": 2,
+      "cost": 12,
+      "quantity": 100,
+      "productId": 2
+    }
+  ],
+  "employees": [
+    {
+      "id": 1,
+      "first_name": "Sebastian",
+      "last_name": "Eschweiler",
+      "email": "sebastian@codingthesmartway.com"
+    },
+    {
+      "id": 2,
+      "first_name": "Steve",
+      "last_name": "Palmer",
+      "email": "steve@codingthesmartway.com"
+    },
+    {
+      "id": 3,
+      "first_name": "Ann",
+      "last_name": "Smith",
+      "email": "ann@codingthesmartway.com"
+    }
+  ],
+  "demo_thunks": [
+    {
+      "id": 1,
+      "name": "name1"
+    },
+    {
+      "text": "text1",
+      "id": 2
+    }
+  ]
+}
