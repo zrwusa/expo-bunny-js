@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import {useSizeLabor} from '../../providers/size-labor';
-import {useThemeLabor} from '../../providers/theme-labor';
+import {useSizeLabor} from '../../providers';
+import {useThemeLabor} from '../../providers';
 import {getStyles} from './styles';
 
 export const Row = function (props) {

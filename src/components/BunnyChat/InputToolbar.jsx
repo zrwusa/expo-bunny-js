@@ -3,7 +3,7 @@ import {Keyboard, StyleSheet, View,} from 'react-native';
 import Composer from './Composer';
 import Send from './Send';
 import Actions from './Actions';
-import {withBunnyKit} from '../../hooks/bunny-kit';
+import {withBunnyKit} from '../../hooks';
 
 const getStyles = (sizeLabor, themeLabor) => {
     const {wp} = sizeLabor.designsBasedOn.iphoneX;

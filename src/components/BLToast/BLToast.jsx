@@ -4,7 +4,7 @@ import {getStyles} from './styles';
 import {Snackbar} from 'react-native-paper';
 import {Text, View} from '../UI';
 import {setBLResult} from '../../store/actions';
-import {useBunnyKit} from '../../hooks/bunny-kit';
+import {useBunnyKit} from '../../hooks';
 
 const BLToast = () => {
     const {sizeLabor, themeLabor} = useBunnyKit();

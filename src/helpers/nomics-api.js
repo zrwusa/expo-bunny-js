@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {authLaborContext} from '../providers/auth-labor';
+import {authLaborContext} from '../providers';
 import {checkNomicsAPIProtocol, getApiInstanceConfig} from './index';
 import bunnyAPI from './bunny-api';
 

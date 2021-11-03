@@ -13,10 +13,10 @@ import {
     View
 } from 'react-native';
 import {Button, Pressable, Text, TextInput, TouchableOpacity} from '../../../components/UI';
-import {shortenTFunctionKey} from '../../../providers/i18n-labor';
+import {shortenTFunctionKey} from '../../../providers';
 import {getContainerStyles, Row} from '../../../containers';
 import {getStyles} from './styles';
-import {useBunnyKit} from '../../../hooks/bunny-kit';
+import {useBunnyKit} from '../../../hooks';
 
 function RNHome() {
     const {sizeLabor, themeLabor, t} = useBunnyKit();

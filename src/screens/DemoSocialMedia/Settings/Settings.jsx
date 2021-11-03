@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {Text} from '../../../components/UI';
-import {shortenTFunctionKey} from '../../../providers/i18n-labor';
+import {shortenTFunctionKey} from '../../../providers';
 import {Card, getContainerStyles} from '../../../containers';
 import {SafeAreaView} from 'react-native';
 import {getStyles} from './styles';
-import {useBunnyKit} from '../../../hooks/bunny-kit';
+import {useBunnyKit} from '../../../hooks';
 
 export function SocialMediaSettingsScreen({route, navigation}) {
     const {sizeLabor, themeLabor, t} = useBunnyKit();

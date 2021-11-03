@@ -1,5 +1,5 @@
 // import {Button as ButtonElement, ButtonProps as ButtonElementProps, Text as TextElement, TextProps as TextElementProps} from "react-native-elements";
-import {useThemeLabor} from '../../providers/theme-labor';
+import {useThemeLabor} from '../../providers';
 import {
     Button as ButtonRN,
     Image as ImageRN,
@@ -14,12 +14,12 @@ import {useLinkProps} from '@react-navigation/native';
 import React from 'react';
 import {createIconSetFromIcoMoon, MaterialCommunityIcons} from '@expo/vector-icons';
 import selection from '../../assets/fonts/icomoon/selection.json';
-import {useSizeLabor} from '../../providers/size-labor';
+import {useSizeLabor} from '../../providers';
 import {Switch as SwitchPaper} from 'react-native-paper';
 import ReactNativePickerSelect from 'react-native-picker-select';
 import {getStyles} from './styles';
 import {LinearGradient} from 'expo-linear-gradient';
-import {useBunnyKit} from '../../hooks/bunny-kit';
+import {useBunnyKit} from '../../hooks';
 
 export const IconFromIcoMoon = createIconSetFromIcoMoon(selection, 'IcoMoon', 'icomoon.ttf');
 // The theme switch is not supported, but for future scalability,

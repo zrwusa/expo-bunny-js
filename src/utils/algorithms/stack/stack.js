@@ -1,4 +1,4 @@
-import {Stack} from '../../data-structures/stack';
+import {Stack} from '../../data-structures';
 import {DeepProxy} from '@qiwi/deep-proxy';
 import {wait} from '../../utils';
 // Matching Parenthesis problem

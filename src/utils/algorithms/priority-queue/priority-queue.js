@@ -1,4 +1,4 @@
-import {MaxPriorityQueue, MinPriorityQueue} from '../../data-structures/priority-queue';
+import {MaxPriorityQueue, MinPriorityQueue} from '../../data-structures';
 
 export const testPriorityQueue = () => {
     const minNumPQ = new MinPriorityQueue();

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {ButtonTO, InButtonText, Text, View} from '../UI';
-import {useRequest} from '../../providers/request-labor';
+import {useRequest} from '../../providers';
 import {useDispatch} from 'react-redux';
 import {saveQuickAlertSettings, sysError} from '../../store/actions';
 import bunnyAPI from '../../helpers/bunny-api';

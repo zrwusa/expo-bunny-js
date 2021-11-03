@@ -6,12 +6,12 @@ import {useDispatch} from 'react-redux';
 import {sysError} from '../../store/actions';
 import * as ImagePicker from 'expo-image-picker';
 import * as Sharing from 'expo-sharing';
-import {shortenTFunctionKey} from '../../providers/i18n-labor';
+import {shortenTFunctionKey} from '../../providers';
 import {getContainerStyles} from '../../containers';
-import {useSizeLabor} from '../../providers/size-labor';
-import {useThemeLabor} from '../../providers/theme-labor';
+import {useSizeLabor} from '../../providers';
+import {useThemeLabor} from '../../providers';
 import {getSharedStyles} from '../../helpers';
-import {useBunnyKit} from '../../hooks/bunny-kit';
+import {useBunnyKit} from '../../hooks';
 
 function DemoShareScreen() {
     const {t} = useBunnyKit();

@@ -4,7 +4,7 @@ import {getStyles} from './styles';
 import {Text} from '../../../../components/UI';
 import {Col, Row} from '../../../../containers';
 import {LinearGradientIcon} from '../../../../components/LinearGradientIcon';
-import {useBunnyKit} from '../../../../hooks/bunny-kit';
+import {useBunnyKit} from '../../../../hooks';
 
 export function BodyPartCard(props) {
     const {sizeLabor, themeLabor, colors, ms} = useBunnyKit();

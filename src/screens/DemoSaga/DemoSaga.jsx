@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {getDemoSagas} from '../../store/actions';
 import {getSharedStyles} from '../../helpers';
 import {getContainerStyles} from '../../containers';
-import {useBunnyKit} from '../../hooks/bunny-kit';
+import {useBunnyKit} from '../../hooks';
 
 function DemoSagaScreen() {
     const {sizeLabor, themeLabor} = useBunnyKit();

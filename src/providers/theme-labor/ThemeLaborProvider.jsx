@@ -7,7 +7,7 @@ import BunnyConstants, {EThemes} from '../../constants/constants';
 import {collectBLResult, sysError} from '../../store/actions';
 import {useColorScheme} from 'react-native-appearance';
 import {useDispatch} from 'react-redux';
-import {Preparing} from '../../components/Preparing';
+import {Preparing} from '../../components';
 import {Provider as PaperProvider} from 'react-native-paper';
 import {getThemes} from './theme';
 import _ from 'lodash';

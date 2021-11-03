@@ -2,7 +2,7 @@
 import * as React from 'react';
 import {useCallback, useEffect, useMemo, useState} from 'react';
 import {AuthLaborContext, authLaborContext} from './AuthLaborContext';
-import {Preparing} from '../../components/Preparing';
+import {Preparing} from '../../components';
 import {useTranslation} from 'react-i18next';
 import {shortenTFunctionKey} from '../i18n-labor';
 import {EventRegister} from 'react-native-event-listeners';

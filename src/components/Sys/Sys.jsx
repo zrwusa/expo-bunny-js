@@ -3,8 +3,8 @@ import {Text, TextButton, TextInput, View} from '../UI';
 import {useDispatch, useSelector} from 'react-redux';
 import {getStyles} from './styles';
 import {sysClearErrors} from '../../store/actions';
-import {Row} from '../../containers/Row';
-import {useBunnyKit} from '../../hooks/bunny-kit';
+import {Row} from '../../containers';
+import {useBunnyKit} from '../../hooks';
 
 const Sys = ({title}) => {
     const {sizeLabor, themeLabor} = useBunnyKit();

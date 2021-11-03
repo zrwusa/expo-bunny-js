@@ -2,19 +2,19 @@ import {InButtonText, LinearGradientButton, Text, TextInputIcon, View} from '../
 import * as React from 'react';
 import {useState} from 'react';
 import {useDispatch} from 'react-redux';
-import {shortenTFunctionKey} from '../../providers/i18n-labor';
+import {shortenTFunctionKey} from '../../providers';
 import {getContainerStyles, InputCard, Row} from '../../containers';
-import {useAuthLabor} from '../../providers/auth-labor';
+import {useAuthLabor} from '../../providers';
 import {LinearGradientIcon} from '../../components/LinearGradientIcon';
 import {Keyboard, ScrollView, TouchableOpacity} from 'react-native';
 import {collectBLResult, sysError} from '../../store/actions';
 import {getStyles} from './styles';
 import {LoginVector} from '../../components/LoginVector';
 import {FirebasePhoneLogin} from '../../components/FirebasePhoneLogin';
-import {Tab} from '../../components/Tab';
+import {Tab} from '../../components';
 import {ForgotPassword} from '../../components/ForgotPassword';
 import {navToReference} from '../../helpers';
-import {useBunnyKit} from '../../hooks/bunny-kit';
+import {useBunnyKit} from '../../hooks';
 
 export function LoginScreen({route, navigation}) {
     const {sizeLabor, themeLabor, wp, t, ms} = useBunnyKit();

@@ -4,11 +4,11 @@ import {Button, TouchableOpacity, Vibration} from 'react-native';
 import {getStyles} from './styles';
 import {useFirestoreConnect} from 'react-redux-firebase';
 import {useSelector} from 'react-redux';
-import {DraggableView} from '../../containers/DraggableView';
+import {DraggableView} from '../../containers';
 import {randomDate, uuidV4} from '../../utils';
 import {ProgressBar} from 'react-native-paper';
-import {Card} from '../../containers/Card';
-import {useBunnyKit} from '../../hooks/bunny-kit';
+import {Card} from '../../containers';
+import {useBunnyKit} from '../../hooks';
 
 export function PlaygroundScreen() {
     const {sizeLabor, themeLabor} = useBunnyKit();

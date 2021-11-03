@@ -3,7 +3,7 @@ import {View} from '../UI';
 import {useDispatch, useSelector} from 'react-redux';
 import {getStyles} from './styles';
 import {ActivityIndicator} from 'react-native';
-import {useBunnyKit} from '../../hooks/bunny-kit';
+import {useBunnyKit} from '../../hooks';
 
 const RequestLoading = () => {
     const {sizeLabor, themeLabor} = useBunnyKit();

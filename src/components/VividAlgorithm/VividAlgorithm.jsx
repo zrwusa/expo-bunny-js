@@ -1,9 +1,9 @@
 import * as React from 'react';
 import {useEffect, useRef} from 'react';
 import {Text, View} from '../UI';
-import {Row} from '../../containers/Row';
-import {Col} from '../../containers/Col';
-import {useBunnyKit} from '../../hooks/bunny-kit';
+import {Row} from '../../containers';
+import {Col} from '../../containers';
+import {useBunnyKit} from '../../hooks';
 import {getStyles} from './styles';
 import {
     AbstractGraph,
@@ -17,7 +17,7 @@ import {
     UndirectedGraph,
     uuidV4
 } from '../../utils';
-import {Card} from '../../containers/Card';
+import {Card} from '../../containers';
 import {TreeNode} from '../../types';
 import Svg, {Circle, Defs, G, Line, Marker, Path, Rect, Text as SVGText, TSpan} from 'react-native-svg';
 import {ScrollView} from 'react-native';

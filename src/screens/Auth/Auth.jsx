@@ -7,7 +7,7 @@ import {getStyles} from './styles';
 import {LoginScreen} from './Login';
 import {SignUpScreen} from './SignUp';
 import {useTranslation} from 'react-i18next';
-import {useBunnyKit} from '../../hooks/bunny-kit';
+import {useBunnyKit} from '../../hooks';
 
 export const AuthScreen = ({route, navigation}) => {
     let isLoginScreen = true;

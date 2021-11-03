@@ -1,4 +1,4 @@
-import {useThemeLabor} from '../../providers/theme-labor';
+import {useThemeLabor} from '../../providers';
 import * as React from 'react';
 import {EThemes} from '../../constants';
 import {PickerSelect} from '../UI';

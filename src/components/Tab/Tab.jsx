@@ -1,10 +1,10 @@
-import {Row} from '../../containers/Row';
+import {Row} from '../../containers';
 import {Text, View} from '../UI';
 import * as React from 'react';
-import {shortenTFunctionKey} from '../../providers/i18n-labor';
+import {shortenTFunctionKey} from '../../providers';
 import {getSharedStyles} from '../../helpers';
 import {getStyles} from './styles';
-import {useBunnyKit} from '../../hooks/bunny-kit';
+import {useBunnyKit} from '../../hooks';
 
 export const Tab = ({items, placeholder, value, onChange}) => {
     const {sizeLabor, themeLabor, t} = useBunnyKit();

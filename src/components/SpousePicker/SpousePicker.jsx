@@ -1,6 +1,6 @@
 import {ButtonTO, IcoMoon, InButtonText, Text, TextButton, View} from '../UI';
-import {Row} from '../../containers/Row';
-import {Col} from '../../containers/Col';
+import {Row} from '../../containers';
+import {Col} from '../../containers';
 import {Slider} from '../../../packages/react-native-range-slider-expo/src';
 import {Divider} from '../Divider';
 import {RadioButton} from 'react-native-paper';
@@ -9,7 +9,7 @@ import * as React from 'react';
 import {useState} from 'react';
 import _ from 'lodash';
 import BunnyConstants from '../../constants/constants';
-import {useBunnyKit} from '../../hooks/bunny-kit';
+import {useBunnyKit} from '../../hooks';
 import {getSharedStyles} from '../../helpers';
 import {getStyles} from './styles';
 

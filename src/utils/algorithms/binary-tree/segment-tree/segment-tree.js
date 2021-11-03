@@ -1,4 +1,4 @@
-import {SegmentTree} from '../../../data-structures/binary-tree';
+import {SegmentTree} from '../../../data-structures';
 import {runAlgorithm} from '../../helpers';
 import {testSegmentTreeCase1} from './cases';
 

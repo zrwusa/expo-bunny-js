@@ -3,7 +3,7 @@ import {Image, View} from 'react-native';
 import {Col, getContainerStyles, Row} from '../../../containers';
 import {getSharedStyles} from '../../../helpers';
 import {IcoMoon} from '../../../components/UI';
-import {useBunnyKit} from '../../../hooks/bunny-kit';
+import {useBunnyKit} from '../../../hooks';
 
 const CardItem = ({description, hasActions, hasVariant, image, isOnline, matches, name,}) => {
     const {sizeLabor, themeLabor, colors, wp, hp} = useBunnyKit();

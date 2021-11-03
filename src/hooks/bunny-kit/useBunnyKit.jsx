@@ -1,7 +1,7 @@
-import {useSizeLabor} from '../../providers/size-labor';
-import {useThemeLabor} from '../../providers/theme-labor';
+import {useSizeLabor} from '../../providers';
+import {useThemeLabor} from '../../providers';
 import {useTranslation} from 'react-i18next';
-import {useAuthLabor} from '../../providers/auth-labor';
+import {useAuthLabor} from '../../providers';
 
 export const useBunnyKit = () => {
     const sizeLabor = useSizeLabor();

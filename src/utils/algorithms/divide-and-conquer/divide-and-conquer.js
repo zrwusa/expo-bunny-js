@@ -10,7 +10,7 @@ import {
     countSmallerCase5,
     countSmallerCase7
 } from './cases';
-import {BinaryIndexedTree, BST} from '../../data-structures/binary-tree';
+import {BinaryIndexedTree, BST} from '../../data-structures';
 import {DeepProxy} from '@qiwi/deep-proxy';
 
 export const searchInRotatedSortedArray = function (nums, target) {

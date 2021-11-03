@@ -1,5 +1,5 @@
 import {DeepProxy} from '@qiwi/deep-proxy';
-import {BinaryTree} from '../../../data-structures/binary-tree';
+import {BinaryTree} from '../../../data-structures';
 import {wait, WaitManager} from '../../../utils';
 import {runAlgorithm} from '../../helpers';
 import {testBSTCase1} from '../bst';

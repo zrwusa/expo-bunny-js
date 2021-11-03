@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Animated, I18nManager, StyleSheet, Text, TextInput, View } from 'react-native';
 import { PanGestureHandler, State } from 'react-native-gesture-handler';
-import { useBunnyKit } from "../../../src/hooks/bunny-kit";
+import { useBunnyKit } from '../../../src/hooks';
 const SMALL_SIZE = 24;
 const MEDIUM_SIZE = 34;
 const LARGE_SIZE = 44;

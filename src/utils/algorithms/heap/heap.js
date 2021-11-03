@@ -1,7 +1,7 @@
 /* --- start heap --- */
 // 215. Kth Largest Element in an Array ★★★★
 // O(nLog(k))
-import {HeapNode, MaxHeap, MinHeap} from '../../data-structures/heap';
+import {HeapNode, MaxHeap, MinHeap} from '../../data-structures';
 import {runAlgorithm} from '../helpers';
 import {
     findKthLargestCase1,
