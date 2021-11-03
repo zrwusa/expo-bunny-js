@@ -7,26 +7,23 @@ const initialState = {
 export function blStateReducer(prevState = initialState, {type, payload}) {
     switch (type) {
         case EBL.COLLECT_BL_RESULT:
-            const collectBLResultsPayload = payload;
-            prevState.blResults.push(collectBLResultsPayload);
+            prevState.blResults.push(payload);
             return {
                 ...prevState,
             };
         case EBL.CLEAR_BL_RESULT:
-            const clearBLResultsPayload = payload;
-            if (clearBLResultsPayload.all) {
+            if (payload.all) {
                 prevState.blResults = [];
-            } else if (clearBLResultsPayload.top) {
-                prevState.blResults.splice(0, clearBLResultsPayload.top);
-            } else if (clearBLResultsPayload.last) {
-                prevState.blResults.splice(prevState.blResults.length - clearBLResultsPayload.last, clearBLResultsPayload.last);
+            } else if (payload.top) {
+                prevState.blResults.splice(0, payload.top);
+            } else if (payload.last) {
+                prevState.blResults.splice(prevState.blResults.length - payload.last, payload.last);
             }
             return {...prevState};
         case EBL.SET_BL_RESULT:
-            const blResult = payload;
             prevState.blResults.map((item) => {
-                if (item.id === blResult.id) {
-                    item.shouldShow = blResult.shouldShow;
+                if (item.id === payload.id) {
+                    item.shouldShow = payload.shouldShow;
                 }
                 return item;
             });

@@ -14,50 +14,43 @@ const initialState = {
 export function sysStateReducer(prevState = initialState, {type, payload}) {
     switch (type) {
         case ESys.RESTORE_IS_READY:
-            const restoreIsReadyPayload = payload;
             return {
                 ...prevState,
-                ...restoreIsReadyPayload,
+                ...payload,
             };
         case ESys.ERROR:
-            const sysErrorPayload = payload;
-            prevState.errors.push(sysErrorPayload);
+            prevState.errors.push(payload);
             return {
                 ...prevState,
             };
         case ESys.CLEAR_ERRORS:
-            const sysClearErrorPayload = payload;
-            if (sysClearErrorPayload.all) {
+            if (payload.all) {
                 prevState.errors = [];
-            } else if (sysClearErrorPayload.top) {
-                prevState.errors.splice(0, sysClearErrorPayload.top);
-            } else if (sysClearErrorPayload.last) {
-                prevState.errors.splice(prevState.errors.length - sysClearErrorPayload.last, sysClearErrorPayload.last);
+            } else if (payload.top) {
+                prevState.errors.splice(0, payload.top);
+            } else if (payload.last) {
+                prevState.errors.splice(prevState.errors.length - payload.last, payload.last);
             }
             return {...prevState};
         case ESys.WARN:
-            const sysWarnPayload = payload;
-            prevState.warns.push(sysWarnPayload.warn);
+            prevState.warns.push(payload.warn);
             return {
                 ...prevState,
             };
         case ESys.RESTORE_NAV_INITIAL_STATE:
-            const restoreNavInitialStatePayload = payload;
             return {
                 ...prevState,
-                ...restoreNavInitialStatePayload
+                ...payload
             };
         case ESys.REQUESTING:
-            const requestingPayload = payload;
-            prevState.requestStatuses.push({...requestingPayload, status: 'LOADING'});
+            prevState.requestStatuses.push({...payload, status: 'LOADING'});
             return {
                 ...prevState,
             };
         case ESys.REQUEST_RECEIVED:
-            const receivedPayload = payload;
-            _.remove(prevState.requestStatuses, item => (item.url === receivedPayload.url && item.method === receivedPayload.method && item.params === receivedPayload.params));
+            _.remove(prevState.requestStatuses, item => (item.url === payload.url && item.method === payload.method && item.params === payload.params));
             // prevState.requestStatuses.map(item=>{
-            //     if(item.id===receivedPayload.id){
+            //     if(item.id===payload.id){
             //         item.status = 'SUCCESS'
             //     }
             // })
@@ -65,10 +58,9 @@ export function sysStateReducer(prevState = initialState, {type, payload}) {
                 ...prevState,
             };
         case ESys.REQUEST_FAILED:
-            const requestFailedPayload = payload;
-            _.remove(prevState.requestStatuses, item => (item.url === requestFailedPayload.url && item.method === requestFailedPayload.method && item.params === requestFailedPayload.params));
+            _.remove(prevState.requestStatuses, item => (item.url === payload.url && item.method === payload.method && item.params === payload.params));
             // prevState.requestStatuses.map(item=>{
-            //     if(item.id===requestFailedPayload.id){
+            //     if(item.id===payload.id){
             //         item.status = 'FAILED'
             //     }
             // })

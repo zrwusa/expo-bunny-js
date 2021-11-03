@@ -5,10 +5,9 @@ export function demoSagaReducer(prevState = {
 }, {type, payload}) {
     switch (type) {
         case EDemoSaga.RECEIVE_GET_DEMO_SAGAS:
-            const payloadNow = payload;
             return {
                 ...prevState,
-                items: payloadNow
+                items: payload
             };
         default:
             return prevState;
