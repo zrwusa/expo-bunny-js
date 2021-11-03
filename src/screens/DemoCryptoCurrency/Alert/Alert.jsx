@@ -10,7 +10,7 @@ import {cancelAlertSettings, getCurrentPrice, saveQuickAlertSettings, sysError} 
 import {useDispatch, useSelector} from 'react-redux';
 import {getStyles} from './styles';
 import {getSharedStyles} from '../../../helpers';
-import {useBunnyKit} from '../../../hooks';
+import {useBunnyKit} from '../../../hooks/bunny-kit';
 
 export default function CryptoCurrencyAlertScreen({route, navigation}) {
     const {sizeLabor, themeLabor, t} = useBunnyKit();

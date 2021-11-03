@@ -1,16 +1,16 @@
 import * as React from 'react';
 import {useEffect} from 'react';
 import {ButtonTO, InButtonText, Text, View} from '../../components/UI';
-import {shortenTFunctionKey} from '../../providers';
+import {shortenTFunctionKey} from '../../providers/i18n-labor';
 import {SafeAreaView, ScrollView} from 'react-native';
 import {getStyles} from './styles';
 import ImageProgressive from '../../components/UI/ImageProgressive';
 import {Col, getContainerStyles, Row} from '../../containers';
 import {getSharedStyles} from '../../helpers';
-import {Avatar} from '../../components';
+import {Avatar} from '../../components/Avatar';
 import {useFirestore} from 'react-redux-firebase';
 import {useSelector} from 'react-redux';
-import {useBunnyKit} from '../../hooks';
+import {useBunnyKit} from '../../hooks/bunny-kit';
 
 function ProfileScreen({route, navigation}) {
     const {sizeLabor, themeLabor, t, user} = useBunnyKit();

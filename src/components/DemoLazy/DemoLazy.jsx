@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text, View} from '../UI';
 import {getStyles} from './styles';
-import {useBunnyKit} from '../../hooks';
+import {useBunnyKit} from '../../hooks/bunny-kit';
 
 export const DemoLazy = (props) => {
     const {sizeLabor, themeLabor} = useBunnyKit();

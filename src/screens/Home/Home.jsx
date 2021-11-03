@@ -1,14 +1,14 @@
 import * as React from 'react';
 import {ScrollView, View} from 'react-native';
-import {shortenTFunctionKey} from '../../providers';
+import {shortenTFunctionKey} from '../../providers/i18n-labor';
 import {Card, getContainerStyles} from '../../containers';
-import {useAuthLabor} from '../../providers';
+import {useAuthLabor} from '../../providers/auth-labor';
 import {useDispatch} from 'react-redux';
 import {sysError} from '../../store/actions';
-import {Divider} from '../../components';
+import {Divider} from '../../components/Divider';
 import {getStyles} from './styles';
-import {InlineJump} from '../../components';
-import {useBunnyKit} from '../../hooks';
+import {InlineJump} from '../../components/InlineJump';
+import {useBunnyKit} from '../../hooks/bunny-kit';
 
 function HomeScreen({navigation}) {
     const {sizeLabor, themeLabor, t, wp} = useBunnyKit();

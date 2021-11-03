@@ -9,7 +9,7 @@ import {Permissions, removeFileFromFirebaseByURL, uploadFileToFirebase} from '..
 import Modal from 'react-native-modal';
 import {Divider} from '../Divider';
 import {CopyableText} from '../CopyableText';
-import {useBunnyKit} from '../../hooks';
+import {useBunnyKit} from '../../hooks/bunny-kit';
 
 export function ImageUploader(props) {
     const {sizeLabor, themeLabor, wp} = useBunnyKit();

@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import {Text, TextButton, TextInput, View} from '../../components/UI';
 import {getStyles} from './styles';
-import {Card} from '../../containers';
-import {useBunnyKit} from '../../hooks';
+import {Card} from '../../containers/Card';
+import {useBunnyKit} from '../../hooks/bunny-kit';
 import {
     BFS,
     binaryTreeInorderTraversal,
@@ -30,8 +30,8 @@ import {
     treeData,
     treeMaxDepth
 } from '../../utils/algorithms';
-import {VividAlgorithm} from '../../components';
-import {BinaryTree, BinaryTreeNode, SinglyLinkedList} from '../../utils';
+import {VividAlgorithm} from '../../components/VividAlgorithm';
+import {BinaryTree, BinaryTreeNode, SinglyLinkedList} from '../../utils/data-structures';
 import {ScrollView} from 'react-native';
 import {runAllWordBreakII} from '../../utils/algorithms/uncategorized';
 

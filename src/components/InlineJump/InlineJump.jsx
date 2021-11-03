@@ -1,12 +1,12 @@
 import {useLinkTo} from '@react-navigation/native';
 import {Col, getContainerStyles, Row} from '../../containers';
-import {useAuthLabor} from '../../providers';
+import {useAuthLabor} from '../../providers/auth-labor';
 import {IcoMoon, Link, Text} from '../UI';
 import {LinearGradientIcon} from '../LinearGradientIcon';
 import {TouchableOpacity} from 'react-native';
 import * as React from 'react';
 import {getStyles} from './styles';
-import {useBunnyKit} from '../../hooks';
+import {useBunnyKit} from '../../hooks/bunny-kit';
 
 export const InlineJump = (props) => {
     const {sizeLabor, themeLabor, wp} = useBunnyKit();

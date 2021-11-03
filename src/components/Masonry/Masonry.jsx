@@ -3,7 +3,7 @@ import {View} from '../UI';
 import {ScaledImage} from '../ScalableImage/ScalableImage';
 import {uuid4} from '@sentry/utils';
 import {getStyles} from './styles';
-import {withBunnyKit} from '../../hooks';
+import {withBunnyKit} from '../../hooks/bunny-kit';
 
 class MasonryInner extends React.PureComponent {
     constructor(props) {

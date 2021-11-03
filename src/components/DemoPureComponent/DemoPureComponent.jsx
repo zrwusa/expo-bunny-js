@@ -1,8 +1,8 @@
 import React, {PureComponent} from 'react';
 import {Text, View} from '../UI';
 import {getStyles} from './styles';
-import {SizeLaborContext} from '../../providers';
-import {ThemeLaborContext} from '../../providers';
+import {SizeLaborContext} from '../../providers/size-labor';
+import {ThemeLaborContext} from '../../providers/theme-labor';
 
 // PureComponent ensures rendering just from props or contexts changing.Not rendered by parent component
 export class DemoPureComponent extends PureComponent {

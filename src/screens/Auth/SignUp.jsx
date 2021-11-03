@@ -2,16 +2,16 @@ import {InButtonText, LinearGradientButton, TextInputIcon, View} from '../../com
 import * as React from 'react';
 import {useState} from 'react';
 import {useDispatch} from 'react-redux';
-import {shortenTFunctionKey} from '../../providers';
+import {shortenTFunctionKey} from '../../providers/i18n-labor';
 import {getContainerStyles, InputCard, Row} from '../../containers';
-import {useAuthLabor} from '../../providers';
+import {useAuthLabor} from '../../providers/auth-labor';
 import {LinearGradientIcon} from '../../components/LinearGradientIcon';
 import {Keyboard} from 'react-native';
 import {collectBLResult, sysError} from '../../store/actions';
 import {LoginVector} from '../../components/LoginVector';
 import {getSharedStyles, navToReference} from '../../helpers';
 import {getStyles} from './styles';
-import {useBunnyKit} from '../../hooks';
+import {useBunnyKit} from '../../hooks/bunny-kit';
 
 export function SignUpScreen({route, navigation}) {
     const {sizeLabor, themeLabor, colors, wp, theme, t, ms} = useBunnyKit();

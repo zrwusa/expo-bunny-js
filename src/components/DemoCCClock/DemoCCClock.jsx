@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react';
 import {ButtonTO, InButtonText, Text, View} from '../UI';
-import {withSizeLabor} from '../../providers';
+import {withSizeLabor} from '../../providers/size-labor';
 
 class DemoCCClock extends PureComponent {
     constructor(props) {

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Video} from '../../../packages/expo-av/src';
-import {withBunnyKit} from '../../hooks';
+import {withBunnyKit} from '../../hooks/bunny-kit';
 
 const getStyles = (sizeLabor, themeLabor) => {
     const {wp} = sizeLabor.designsBasedOn.iphoneX;

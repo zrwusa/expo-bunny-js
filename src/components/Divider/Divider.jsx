@@ -1,7 +1,7 @@
 import React from 'react';
 import {View} from 'react-native';
 import {getStyles} from './styles';
-import {useBunnyKit} from '../../hooks';
+import {useBunnyKit} from '../../hooks/bunny-kit';
 
 export function Divider(props) {
     const {sizeLabor, themeLabor, wp} = useBunnyKit();

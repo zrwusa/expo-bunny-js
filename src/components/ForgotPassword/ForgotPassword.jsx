@@ -1,17 +1,17 @@
 import {InButtonText, LinearGradientButton, Text, TextButton, TextInputIcon, View} from '../UI';
 import * as React from 'react';
 import {useState} from 'react';
-import {Row} from '../../containers';
+import {Row} from '../../containers/Row';
 import {collectBLResult, sysError} from '../../store/actions';
-import {shortenTFunctionKey} from '../../providers';
+import {shortenTFunctionKey} from '../../providers/i18n-labor';
 import {getStyles} from './styles';
-import {useAuthLabor} from '../../providers';
+import {useAuthLabor} from '../../providers/auth-labor';
 import {useDispatch} from 'react-redux';
-import {InputCard} from '../../containers';
+import {InputCard} from '../../containers/InputCard';
 import {LinearGradientIcon} from '../LinearGradientIcon';
 import {blError} from '../../helpers';
-import {Col} from '../../containers';
-import {useBunnyKit} from '../../hooks';
+import {Col} from '../../containers/Col';
+import {useBunnyKit} from '../../hooks/bunny-kit';
 
 export const ForgotPassword = ({route, navigation, onSent, onCancel, email}) => {
     const {sizeLabor, themeLabor, t, wp} = useBunnyKit();

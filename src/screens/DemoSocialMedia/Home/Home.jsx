@@ -5,7 +5,7 @@ import {IncrementId} from '../../../utils';
 import {SocialMediaVideoCard} from '../../../components/SocialMediaVideoCard';
 import {isLoaded, useFirebase, useFirestoreConnect} from 'react-redux-firebase';
 import {useSelector} from 'react-redux';
-import {Preparing} from '../../../components';
+import {Preparing} from '../../../components/Preparing';
 
 export function SocialMediaHomeScreen() {
     const firebase = useFirebase();

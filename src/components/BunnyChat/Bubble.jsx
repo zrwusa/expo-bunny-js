@@ -8,7 +8,7 @@ import MessageAudio from './MessageAudio';
 import Time from './Time';
 import {isSameDay, isSameUser} from './utils';
 import MessageSticker from './MessageSticker';
-import {withBunnyKit} from '../../hooks';
+import {withBunnyKit} from '../../hooks/bunny-kit';
 import {connectActionSheet} from '../../../packages/react-native-action-sheet/src';
 
 const getStyles = (sizeLabor, themeLabor) => {

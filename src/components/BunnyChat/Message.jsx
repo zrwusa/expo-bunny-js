@@ -5,7 +5,7 @@ import Bubble from './Bubble';
 import SystemMessage from './SystemMessage';
 import Day from './Day';
 import {isSameUser} from './utils';
-import {withBunnyKit} from '../../hooks';
+import {withBunnyKit} from '../../hooks/bunny-kit';
 
 const getStyles = (sizeLabor, themeLabor) => {
     const {wp} = sizeLabor.designsBasedOn.iphoneX;

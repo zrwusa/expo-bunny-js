@@ -1,14 +1,14 @@
 import * as React from 'react';
 import {useState} from 'react';
 import {IcoMoon, PickerSelect, SwitchP, Text, View} from '../../../components/UI';
-import {shortenTFunctionKey} from '../../../providers';
+import {shortenTFunctionKey} from '../../../providers/i18n-labor';
 import {Card, getContainerStyles, Row} from '../../../containers';
-import {Divider} from '../../../components';
+import {Divider} from '../../../components/Divider';
 import {LinearGradientIcon} from '../../../components/LinearGradientIcon';
 import {getStyles} from './styles';
-import {Col} from '../../../containers';
+import {Col} from '../../../containers/Col';
 import {SafeAreaView, ScrollView, TouchableOpacity} from 'react-native';
-import {useBunnyKit} from '../../../hooks';
+import {useBunnyKit} from '../../../hooks/bunny-kit';
 
 export function HealthSettingsScreen({route, navigation}) {
     const {sizeLabor, themeLabor, colors, t} = useBunnyKit();

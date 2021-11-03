@@ -2,7 +2,7 @@ import React, {Suspense} from 'react';
 import {Provider as ReduxProvider} from 'react-redux';
 import store, {rrfProps} from './store';
 import App from './App';
-import {DemoLazyLoading} from './components';
+import {DemoLazyLoading} from './components/DemoLazyLoading';
 import {ReactReduxFirebaseProvider} from 'react-redux-firebase';
 import './hacks/long-period-timer';
 

@@ -4,7 +4,7 @@ import {Text, View} from '../../../components/UI';
 import {Col, getContainerStyles, ModalFromBottom, ModalFromRight, Row} from '../../../containers';
 import {getSharedStyles} from '../../../helpers';
 import {ScrollView} from 'react-native';
-import {useBunnyKit} from '../../../hooks';
+import {useBunnyKit} from '../../../hooks/bunny-kit';
 import {
     Divider,
     HeightPicker,

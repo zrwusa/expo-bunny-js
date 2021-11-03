@@ -9,7 +9,7 @@ import {
     UndirectedEdge,
     UndirectedGraph,
     UndirectedVertex
-} from '../../data-structures';
+} from '../../data-structures/graph';
 import {timeEnd, timeStart, wait, WaitManager} from '../../utils';
 import {DeepProxy} from '@qiwi/deep-proxy';
 import {canFinishCase1, canFinishCase3, criticalConnectionsCase1} from './cases';

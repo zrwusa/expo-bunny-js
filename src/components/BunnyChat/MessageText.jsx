@@ -2,7 +2,7 @@ import React from 'react';
 import {Linking, StyleSheet, Text, View} from 'react-native';
 import ParsedText from 'react-native-parsed-text';
 import Communications from 'react-native-communications';
-import {withBunnyKit} from '../../hooks';
+import {withBunnyKit} from '../../hooks/bunny-kit';
 import {connectActionSheet} from '../../../packages/react-native-action-sheet/src';
 
 const WWW_URL_PATTERN = /^www\./i;

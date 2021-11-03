@@ -1,6 +1,6 @@
 import React from 'react';
 import {ActivityIndicator, Platform, StyleSheet, Text, TouchableOpacity, View,} from 'react-native';
-import {withBunnyKit} from '../../hooks';
+import {withBunnyKit} from '../../hooks/bunny-kit';
 
 const getStyles = (sizeLabor, themeLabor) => {
     const {wp} = sizeLabor.designsBasedOn.iphoneX;

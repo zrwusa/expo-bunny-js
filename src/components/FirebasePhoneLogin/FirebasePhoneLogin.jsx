@@ -1,18 +1,18 @@
 import {ActivityIndicator, View} from 'react-native';
 import * as React from 'react';
-import {InputCard} from '../../containers';
+import {InputCard} from '../../containers/InputCard';
 import {InButtonText, LinearGradientButton, Text, TextInputIcon} from '../UI';
 import {LinearGradientIcon} from '../LinearGradientIcon';
-import {Row} from '../../containers';
+import {Row} from '../../containers/Row';
 import * as FirebaseRecaptcha from 'expo-firebase-recaptcha';
 import {FIREBASE_CONFIG} from '../../firebase';
-import {shortenTFunctionKey} from '../../providers';
+import {shortenTFunctionKey} from '../../providers/i18n-labor';
 import {getStyles} from './styles';
-import {useAuthLabor} from '../../providers';
+import {useAuthLabor} from '../../providers/auth-labor';
 import {useDispatch} from 'react-redux';
 import {collectBLResult} from '../../store/actions';
 import {navToReference} from '../../helpers';
-import {useBunnyKit} from '../../hooks';
+import {useBunnyKit} from '../../hooks/bunny-kit';
 
 export const FirebasePhoneLogin = ({route, navigation}) => {
     const {sizeLabor, themeLabor, t, wp} = useBunnyKit();

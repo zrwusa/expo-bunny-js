@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import dayjs from 'dayjs';
 import {TIME_FORMAT} from './Constant';
-import {withBunnyKit} from '../../hooks';
+import {withBunnyKit} from '../../hooks/bunny-kit';
 
 const getStyles = (sizeLabor, themeLabor) => {
     const {wp} = sizeLabor.designsBasedOn.iphoneX;

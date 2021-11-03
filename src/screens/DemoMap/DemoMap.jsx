@@ -9,7 +9,7 @@ import BunnyConstants from '../../constants/constants';
 import getStyles, {getCardSize} from './styles';
 import {getContainerStyles} from '../../containers';
 import config from '../../config';
-import {withBunnyKit} from '../../hooks';
+import {withBunnyKit} from '../../hooks/bunny-kit';
 
 const {Marker} = MapView; // react-native-maps under typescript bug trick
 const mapStateToProps = (rootState) => ({...rootState.demoMapState});

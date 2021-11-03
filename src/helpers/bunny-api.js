@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {authLaborContext} from '../providers';
+import {authLaborContext} from '../providers/auth-labor';
 import {checkBunnyAPIProtocol, getApiInstanceConfig} from './index';
 
 export const defaultBunnyAPIResponseData = {

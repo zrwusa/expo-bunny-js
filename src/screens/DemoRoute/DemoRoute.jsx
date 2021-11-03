@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {Text, View} from '../../components/UI';
 import {getStyles} from './styles';
-import {shortenTFunctionKey} from '../../providers';
+import {shortenTFunctionKey} from '../../providers/i18n-labor';
 import {getContainerStyles} from '../../containers';
 import {getSharedStyles} from '../../helpers';
-import {useBunnyKit} from '../../hooks';
+import {useBunnyKit} from '../../hooks/bunny-kit';
 
 function DemoRouteScreen(props) {
     const {sizeLabor, themeLabor, t} = useBunnyKit();

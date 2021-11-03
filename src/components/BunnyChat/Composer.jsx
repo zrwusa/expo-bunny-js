@@ -1,7 +1,7 @@
 import React from 'react';
 import {Platform, StyleSheet, TextInput} from 'react-native';
 import {DEFAULT_PLACEHOLDER, MIN_COMPOSER_HEIGHT} from './Constant';
-import {withBunnyKit} from '../../hooks';
+import {withBunnyKit} from '../../hooks/bunny-kit';
 
 const getStyles = (sizeLabor, themeLabor) => {
     const {wp} = sizeLabor.designsBasedOn.iphoneX;

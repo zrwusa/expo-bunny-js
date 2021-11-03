@@ -1,16 +1,16 @@
 import {IcoMoon, Text, TextButton, View} from '../UI';
 import * as React from 'react';
-import {Row} from '../../containers';
-import {Col} from '../../containers';
+import {Row} from '../../containers/Row';
+import {Col} from '../../containers/Col';
 import {Divider} from '../Divider';
 import {Keyboard, Platform} from 'react-native';
 import {collectBLResult, sysError} from '../../store/actions';
-import {shortenTFunctionKey} from '../../providers';
+import {shortenTFunctionKey} from '../../providers/i18n-labor';
 import {getStyles} from './styles';
-import {useAuthLabor} from '../../providers';
+import {useAuthLabor} from '../../providers/auth-labor';
 import {useDispatch} from 'react-redux';
 import {navToReference} from '../../helpers';
-import {useBunnyKit} from '../../hooks';
+import {useBunnyKit} from '../../hooks/bunny-kit';
 
 export const LoginVector = ({route, navigation}) => {
     const {sizeLabor, themeLabor, t, wp} = useBunnyKit();

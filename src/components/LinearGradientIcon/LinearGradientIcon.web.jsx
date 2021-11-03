@@ -1,7 +1,7 @@
 import React from 'react';
 import {getStyles} from './styles';
 import {IcoMoon} from '../UI';
-import {useBunnyKit} from '../../hooks';
+import {useBunnyKit} from '../../hooks/bunny-kit';
 
 export function LinearGradientIcon(props) {
     const {sizeLabor, themeLabor, wp} = useBunnyKit();

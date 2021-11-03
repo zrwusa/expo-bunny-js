@@ -6,7 +6,7 @@ import {Image, Text} from 'react-native';
 import {ShowVideo} from '../Video/Video';
 import {ReadMore} from '../ReadMore';
 import {getStyles} from './styles';
-import {withBunnyKit} from '../../hooks';
+import {withBunnyKit} from '../../hooks/bunny-kit';
 
 class SocialMediaVideoCardInner extends PureComponent {
     constructor(props) {

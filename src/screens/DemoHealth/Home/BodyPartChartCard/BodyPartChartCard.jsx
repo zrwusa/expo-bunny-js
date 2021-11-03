@@ -3,7 +3,7 @@ import {View} from 'react-native';
 import {getStyles} from './styles';
 import {Text} from '../../../../components/UI';
 import {Col, Row} from '../../../../containers';
-import {Divider} from '../../../../components';
+import {Divider} from '../../../../components/Divider';
 import {
     VictoryAxis,
     VictoryChart,
@@ -12,7 +12,7 @@ import {
     VictoryTooltip,
     VictoryVoronoiContainer
 } from '../../../../components/Victory/Victory';
-import {useBunnyKit} from '../../../../hooks';
+import {useBunnyKit} from '../../../../hooks/bunny-kit';
 
 export function BodyPartChartCard(props) {
     const {sizeLabor, themeLabor, theme, wp, ms} = useBunnyKit();

@@ -1,8 +1,8 @@
 import {TouchableOpacity} from 'react-native';
-import {useBunnyKit} from '../../hooks';
+import {useBunnyKit} from '../../hooks/bunny-kit';
 import {getSharedStyles} from '../../helpers';
-import {Row} from '../../containers';
-import {Col} from '../../containers';
+import {Row} from '../../containers/Row';
+import {Col} from '../../containers/Col';
 import {IcoMoon, Text} from '../UI';
 import * as React from 'react';
 
