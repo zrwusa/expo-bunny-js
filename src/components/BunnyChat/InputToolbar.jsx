@@ -1,12 +1,13 @@
 import React from 'react';
-import { Keyboard, StyleSheet, View, } from 'react-native';
+import {Keyboard, StyleSheet, View,} from 'react-native';
 import Composer from './Composer';
 import Send from './Send';
 import Actions from './Actions';
-import { withBunnyKit } from '../../hooks/bunny-kit';
+import {withBunnyKit} from '../../hooks/bunny-kit';
+
 const getStyles = (sizeLabor, themeLabor) => {
-    const { wp } = sizeLabor.designsBasedOn.iphoneX;
-    const { theme: { colors } } = themeLabor;
+    const {wp} = sizeLabor.designsBasedOn.iphoneX;
+    const {theme: {colors}} = themeLabor;
     return StyleSheet.create({
         container: {
             borderTopWidth: StyleSheet.hairlineWidth,
@@ -25,6 +26,7 @@ const getStyles = (sizeLabor, themeLabor) => {
         },
     });
 };
+
 class InputToolbar extends React.Component {
     constructor() {
         super(...arguments);
@@ -49,10 +51,12 @@ class InputToolbar extends React.Component {
             }
         };
     }
+
     componentDidMount() {
         this.keyboardWillShowListener = Keyboard.addListener('keyboardWillShow', this.keyboardWillShow);
         this.keyboardWillHideListener = Keyboard.addListener('keyboardWillHide', this.keyboardWillHide);
     }
+
     componentWillUnmount() {
         if (this.keyboardWillShowListener) {
             this.keyboardWillShowListener.remove();
@@ -61,8 +65,16 @@ class InputToolbar extends React.Component {
             this.keyboardWillHideListener.remove();
         }
     }
+
     renderActions() {
-        const { actionsConfig, actionOptionTintColor, renderActionIcon, actionContainerStyle, actionIconTextStyle, actionWrapperStyle, } = this.props;
+        const {
+            actionsConfig,
+            actionOptionTintColor,
+            renderActionIcon,
+            actionContainerStyle,
+            actionIconTextStyle,
+            actionWrapperStyle,
+        } = this.props;
         const actionsProps = {
             actionsConfig,
             actionOptionTintColor,
@@ -74,15 +86,25 @@ class InputToolbar extends React.Component {
         if (this.props.renderActions) {
             return this.props.renderActions(actionsProps);
             // } else {
-        }
-        else if (actionsConfig) {
+        } else if (actionsConfig) {
             // TODO why need onPressActionButton to render Actions
             return <Actions {...actionsProps}/>;
         }
         return null;
     }
+
     renderSend() {
-        const { text, onSend, sendLabel, sendContainerStyle, sendTextStyle, children, alwaysShowSend, disabled, sendButtonProps } = this.props;
+        const {
+            text,
+            onSend,
+            sendLabel,
+            sendContainerStyle,
+            sendTextStyle,
+            children,
+            alwaysShowSend,
+            disabled,
+            sendButtonProps
+        } = this.props;
         const sendProps = {
             text,
             onSend,
@@ -100,8 +122,22 @@ class InputToolbar extends React.Component {
         return <Send {...sendProps}/>;
         // return <Send {...sendProps} />
     }
+
     renderComposer() {
-        const { composerHeight, text, placeholderTextColor, placeholder, textInputProps, multiline, disableComposer, textInputStyle, textInputAutoFocus, keyboardAppearance, onTextChanged, onInputSizeChanged } = this.props;
+        const {
+            composerHeight,
+            text,
+            placeholderTextColor,
+            placeholder,
+            textInputProps,
+            multiline,
+            disableComposer,
+            textInputStyle,
+            textInputAutoFocus,
+            keyboardAppearance,
+            onTextChanged,
+            onInputSizeChanged
+        } = this.props;
         const composerProps = {
             composerHeight,
             text,
@@ -121,33 +157,36 @@ class InputToolbar extends React.Component {
         }
         return <Composer {...composerProps}/>;
     }
+
     renderAccessory() {
         if (this.props.renderAccessory) {
-            const { bunnyKit: { sizeLabor, themeLabor } } = this.props;
+            const {bunnyKit: {sizeLabor, themeLabor}} = this.props;
             const styles = getStyles(sizeLabor, themeLabor);
             return (<View style={[styles.accessory, this.props.accessoryStyle]}>
-                    {this.props.renderAccessory(this.props)}
-                </View>);
+                {this.props.renderAccessory(this.props)}
+            </View>);
         }
         return null;
     }
+
     render() {
-        const { bunnyKit: { sizeLabor, themeLabor } } = this.props;
+        const {bunnyKit: {sizeLabor, themeLabor}} = this.props;
         const styles = getStyles(sizeLabor, themeLabor);
         return (<View style={[
-                styles.container,
-                { position: this.state.position },
-                this.props.inputToolbarContainerStyle,
-            ]}>
-                <View style={[styles.primary, this.props.primaryStyle]}>
-                    {this.renderActions()}
-                    {this.renderComposer()}
-                    {this.renderSend()}
-                </View>
-                {this.renderAccessory()}
-            </View>);
+            styles.container,
+            {position: this.state.position},
+            this.props.inputToolbarContainerStyle,
+        ]}>
+            <View style={[styles.primary, this.props.primaryStyle]}>
+                {this.renderActions()}
+                {this.renderComposer()}
+                {this.renderSend()}
+            </View>
+            {this.renderAccessory()}
+        </View>);
     }
 }
+
 InputToolbar.defaultProps = {
     renderAccessory: undefined,
     renderActions: undefined,

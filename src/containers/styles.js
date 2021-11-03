@@ -1,11 +1,12 @@
-import { StyleSheet } from 'react-native';
-import { getSharedStyles } from '../helpers';
+import {StyleSheet} from 'react-native';
+import {getSharedStyles} from '../helpers';
+
 export const getContainerStyles = (sizeLabor, themeLabor) => {
-    const { sharedStylesFlatten } = getSharedStyles(sizeLabor, themeLabor);
-    const { ms, designsBasedOn } = sizeLabor;
-    const { wp } = designsBasedOn.iphoneX;
-    const { shadowAround, title, title2, card } = sharedStylesFlatten;
-    const { theme } = themeLabor;
+    const {sharedStylesFlatten} = getSharedStyles(sizeLabor, themeLabor);
+    const {ms, designsBasedOn} = sizeLabor;
+    const {wp} = designsBasedOn.iphoneX;
+    const {shadowAround, title, title2, card} = sharedStylesFlatten;
+    const {theme} = themeLabor;
     return StyleSheet.create({
         Card: {
             ...shadowAround,

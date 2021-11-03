@@ -1,16 +1,17 @@
-import { Platform } from 'react-native';
+import {Platform} from 'react-native';
 import * as Notifications from 'expo-notifications';
 import Constants from 'expo-constants';
-import { collectBLResult } from '../store/actions';
-import { blSuccess } from '../helpers';
+import {collectBLResult} from '../store/actions';
+import {blSuccess} from '../helpers';
 import store from '../store';
+
 export const registerForPushNotificationsAsync = async (copywriting) => {
     let token;
     if (Constants.isDevice) {
-        const { status: existingStatus } = await Notifications.getPermissionsAsync();
+        const {status: existingStatus} = await Notifications.getPermissionsAsync();
         let finalStatus = existingStatus;
         if (existingStatus !== 'granted') {
-            const { status } = await Notifications.requestPermissionsAsync();
+            const {status} = await Notifications.requestPermissionsAsync();
             finalStatus = status;
         }
         if (finalStatus !== 'granted') {
@@ -18,8 +19,7 @@ export const registerForPushNotificationsAsync = async (copywriting) => {
             return;
         }
         token = (await Notifications.getExpoPushTokenAsync()).data;
-    }
-    else {
+    } else {
         store.dispatch(collectBLResult(blSuccess(undefined, copywriting.mustUsePhysicalDevice)));
         return;
     }
@@ -39,9 +39,9 @@ export const schedulePushNotification = async () => {
             title: 'You\'ve got mail! 📬',
             body: 'Here is the notification body',
             sound: 'default',
-            data: { data: 'goes here' },
+            data: {data: 'goes here'},
         },
-        trigger: { seconds: 2 },
+        trigger: {seconds: 2},
     });
 };
 export const defaultNotification = {

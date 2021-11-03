@@ -1,4 +1,5 @@
 import * as Linking from 'expo-linking';
+
 export const basePath = Linking.makeUrl('/');
 export const linking = {
     prefixes: [basePath],
@@ -26,7 +27,7 @@ export const linking = {
             Profile: {
                 name: 'Profile',
                 path: 'profile/:id',
-                initialParams: { 'id': '1' },
+                initialParams: {'id': '1'},
                 parse: {
                     id: (id) => `${id}`,
                 },

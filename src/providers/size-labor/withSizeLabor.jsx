@@ -1,5 +1,6 @@
-import { useSizeLabor } from './useSizeLabor';
+import {useSizeLabor} from './useSizeLabor';
 import React from 'react';
+
 export function withSizeLabor(WrappedComponent) {
     // Try to create a nice displayName for React Dev Tools.
     const displayName = WrappedComponent.displayName || WrappedComponent.name || 'Component';

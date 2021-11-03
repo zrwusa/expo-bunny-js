@@ -1,17 +1,31 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { ActivityIndicator, TouchableOpacity, View } from 'react-native';
-import { getStyles } from './styles';
-import { IcoMoon, Text } from '../UI';
-import { Audio } from '../../../packages/expo-av/src';
-import { ProgressBar } from 'react-native-paper';
-import { minuted } from '../../utils';
-import { useBunnyKit } from '../../hooks/bunny-kit';
+import React, {useEffect, useRef, useState} from 'react';
+import {ActivityIndicator, TouchableOpacity, View} from 'react-native';
+import {getStyles} from './styles';
+import {IcoMoon, Text} from '../UI';
+import {Audio} from '../../../packages/expo-av/src';
+import {ProgressBar} from 'react-native-paper';
+import {minuted} from '../../utils';
+import {useBunnyKit} from '../../hooks/bunny-kit';
+
 export function AudioPlayer(props) {
-    const { sizeLabor, themeLabor, colors } = useBunnyKit();
+    const {sizeLabor, themeLabor, colors} = useBunnyKit();
     const styles = getStyles(sizeLabor, themeLabor);
-    const { source, style, onLoad, onLoadStart, onLoadEnd, onError, isDebug = false, progressStyle, progressColor, playButtonStyle, remainTimeStyle, playButtonIconStyle } = props;
+    const {
+        source,
+        style,
+        onLoad,
+        onLoadStart,
+        onLoadEnd,
+        onError,
+        isDebug = false,
+        progressStyle,
+        progressColor,
+        playButtonStyle,
+        remainTimeStyle,
+        playButtonIconStyle
+    } = props;
     const soundRef = useRef();
-    const [status, setStatus] = useState({ isLoaded: false });
+    const [status, setStatus] = useState({isLoaded: false});
     const [error, setError] = useState('');
     useEffect(() => {
         (async () => {
@@ -20,7 +34,7 @@ export function AudioPlayer(props) {
                     return;
                 }
                 onLoadStart?.();
-                const { sound } = await Audio.Sound.createAsync(source);
+                const {sound} = await Audio.Sound.createAsync(source);
                 if (status?.isLoaded) {
                     onLoad?.();
                 }
@@ -28,8 +42,7 @@ export function AudioPlayer(props) {
                 soundRef.current = sound;
                 soundRef.current.setOnPlaybackStatusUpdate(setStatus);
                 onLoadEnd?.();
-            }
-            catch (e) {
+            } catch (e) {
                 isDebug && console.log(e.toString());
                 setError(e.toString());
                 onError?.(e);
@@ -47,6 +60,7 @@ export function AudioPlayer(props) {
             })();
         };
     }, []);
+
     async function togglePlayOrPause() {
         if (!soundRef.current) {
             return;
@@ -56,18 +70,17 @@ export function AudioPlayer(props) {
             if (curSoundRef) {
                 if (status.isPlaying) {
                     await curSoundRef.pauseAsync();
-                }
-                else {
+                } else {
                     if (status.positionMillis === status.durationMillis) {
                         await curSoundRef.replayAsync();
-                    }
-                    else {
+                    } else {
                         await curSoundRef.playAsync();
                     }
                 }
             }
         }
     }
+
     return <View style={[styles.container, style]}>
         {isDebug
             ? <>
@@ -76,34 +89,35 @@ export function AudioPlayer(props) {
             </>
             : null}
         {<TouchableOpacity onPress={async () => {
-                await togglePlayOrPause();
-            }}>
-                <View style={styles.control}>
-                    <View style={[styles.playButton, playButtonStyle]}>
-                        {status?.isLoaded
-                ?
-                    status.isPlaying
-                        ? <IcoMoon style={[styles.playButtonIcon, playButtonIconStyle]} name="pause"/>
-                        : <IcoMoon style={[styles.playButtonIcon, playButtonIconStyle]} name="play"/>
-                : <ActivityIndicator />}
-                    </View>
-                    <View style={styles.progress}>
-                        {status?.isLoaded
-                ?
-                    status.durationMillis
-                        ? <>
-                                        <ProgressBar style={progressStyle} color={progressColor} progress={(status.positionMillis | 0) / status.durationMillis}/>
-                                        <Text style={[styles.remainTime, remainTimeStyle]}>
-                                            {minuted(status.durationMillis - status.positionMillis)}</Text>
-                                    </>
-                        : <>
-                                        <ProgressBar progress={0} color={progressColor} style={progressStyle}/>
-                                        <Text style={[styles.remainTime, remainTimeStyle]}> </Text>
-                                    </>
-                : <ActivityIndicator color={progressColor}/>}
-
-                    </View>
+            await togglePlayOrPause();
+        }}>
+            <View style={styles.control}>
+                <View style={[styles.playButton, playButtonStyle]}>
+                    {status?.isLoaded
+                        ?
+                        status.isPlaying
+                            ? <IcoMoon style={[styles.playButtonIcon, playButtonIconStyle]} name="pause"/>
+                            : <IcoMoon style={[styles.playButtonIcon, playButtonIconStyle]} name="play"/>
+                        : <ActivityIndicator/>}
                 </View>
-            </TouchableOpacity>}
+                <View style={styles.progress}>
+                    {status?.isLoaded
+                        ?
+                        status.durationMillis
+                            ? <>
+                                <ProgressBar style={progressStyle} color={progressColor}
+                                             progress={(status.positionMillis | 0) / status.durationMillis}/>
+                                <Text style={[styles.remainTime, remainTimeStyle]}>
+                                    {minuted(status.durationMillis - status.positionMillis)}</Text>
+                            </>
+                            : <>
+                                <ProgressBar progress={0} color={progressColor} style={progressStyle}/>
+                                <Text style={[styles.remainTime, remainTimeStyle]}> </Text>
+                            </>
+                        : <ActivityIndicator color={progressColor}/>}
+
+                </View>
+            </View>
+        </TouchableOpacity>}
     </View>;
 }

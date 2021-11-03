@@ -1,11 +1,12 @@
-import { Dimensions, PixelRatio } from 'react-native';
+import {Dimensions, PixelRatio} from 'react-native';
+
 const percentageToDP = (type, percentage, shouldRound) => {
     let _shouldRound = shouldRound;
     if (typeof shouldRound === 'undefined') {
         _shouldRound = true;
     }
     let screenWidthOrHeight;
-    const { width, height } = Dimensions.get('window');
+    const {width, height} = Dimensions.get('window');
     switch (type) {
         case 'W':
             screenWidthOrHeight = width;
@@ -33,4 +34,4 @@ const widthPercentageToDP = (widthPercent, shouldRound) => {
 const heightPercentageToDP = (heightPercent, shouldRound) => {
     return percentageToDP('H', heightPercent, shouldRound);
 };
-export { widthPercentageToDP, heightPercentageToDP, };
+export {widthPercentageToDP, heightPercentageToDP,};

@@ -1,4 +1,5 @@
 import _ from 'lodash';
+
 export function randomText(length) {
     let result = '';
     let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -8,23 +9,25 @@ export function randomText(length) {
     }
     return result;
 }
+
 export const uuidV4 = function () {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
         let r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
         return v.toString(16);
     });
 };
+
 export class IncrementId {
     constructor(prefix) {
         this._prefix = prefix ? prefix : '';
         this._id = this._prefix + '0';
     }
+
     getId() {
-        const { _id, _prefix } = this;
+        const {_id, _prefix} = this;
         if (!_id) {
             this._id = _prefix + '0';
-        }
-        else {
+        } else {
             let idNumStr = _id.substr(_prefix.length, _id.length - _prefix.length);
             let newIdNum = parseInt(idNumStr, 10) + 1;
             this._id = _prefix + newIdNum.toString();
@@ -32,6 +35,7 @@ export class IncrementId {
         return this._id;
     }
 }
+
 export function incrementId(prefix) {
     let _prefix = prefix ? prefix : '';
     let _id = _prefix + '0';
@@ -42,6 +46,7 @@ export function incrementId(prefix) {
         return _id;
     };
 }
+
 export const getValue = (obj, names) => {
     return names.map(i => obj[i]);
 };
@@ -77,15 +82,16 @@ export const deepObjectStrictEqual = (object1, object2) => {
 export const isTypeEqual = (obj) => {
     try {
         let m = obj;
-    }
-    catch (e) {
+    } catch (e) {
     }
 };
+
 export function reverseColor(oldColor) {
     let oldColorTemp = '0x' + oldColor.replace(/#/g, '');
     let str = '000000' + (0xFFFFFF - Number(oldColorTemp)).toString(16);
     return '#' + str.substring(str.length - 6, str.length);
 }
+
 export const isSameStructure = (objA, objB) => {
     let objATraversable = objA;
     let objBTraversable = objB;
@@ -94,8 +100,7 @@ export const isSameStructure = (objA, objB) => {
     let isSame = true;
     if (objAKeys.length !== objBKeys.length) {
         return isSame = false;
-    }
-    else {
+    } else {
         objAKeys.forEach((i) => {
             if (!objBKeys.includes(i)) {
                 return isSame = false;
@@ -125,6 +130,7 @@ export const addDays = (date, days) => {
     date.setDate(date.getDate() + days);
     return date;
 };
+
 export class WaitManager {
     constructor(nXSpeed) {
         this._time1 = 1000;
@@ -141,37 +147,48 @@ export class WaitManager {
             nXSpeed = 1;
         this._nXSpeed = nXSpeed;
     }
+
     get time1() {
         return this._time1 / this._nXSpeed;
     }
+
     get time2() {
         return this._time2 / this._nXSpeed;
     }
+
     get time3() {
         return this._time3 / this._nXSpeed;
     }
+
     get time4() {
         return this._time4 / this._nXSpeed;
     }
+
     get time10() {
         return this._time10 / this._nXSpeed;
     }
+
     get time20() {
         return this._time20 / this._nXSpeed;
     }
+
     get time50() {
         return this._time30 / this._nXSpeed;
     }
+
     get time60() {
         return this._time60 / this._nXSpeed;
     }
+
     get cusTime() {
         return this._cusTime / this._nXSpeed;
     }
+
     set cusTime(v) {
         this._cusTime = v;
     }
 }
+
 export const wait = async (ms, resolveValue) => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
@@ -180,6 +197,7 @@ export const wait = async (ms, resolveValue) => {
         }, ms);
     });
 };
+
 export class AuthAPIError extends Error {
     constructor(serverErrorMessage, serverErrorCode, serverErrorStack) {
         super(serverErrorMessage);
@@ -195,12 +213,12 @@ export class AuthAPIError extends Error {
         }
         if (typeof Object.setPrototypeOf === 'function') {
             Object.setPrototypeOf(this, new.target.prototype);
-        }
-        else {
+        } else {
             this.__proto__ = new.target.prototype;
         }
     }
 }
+
 export class BunnyAPIError extends Error {
     constructor(serverErrorMessage, serverErrorCode, serverErrorStack) {
         super(serverErrorMessage);
@@ -216,12 +234,12 @@ export class BunnyAPIError extends Error {
         }
         if (typeof Object.setPrototypeOf === 'function') {
             Object.setPrototypeOf(this, new.target.prototype);
-        }
-        else {
+        } else {
             this.__proto__ = new.target.prototype;
         }
     }
 }
+
 export class NomicsAPIError extends Error {
     constructor(serverErrorMessage, serverErrorCode, serverErrorStack) {
         super(serverErrorMessage);
@@ -237,12 +255,12 @@ export class NomicsAPIError extends Error {
         }
         if (typeof Object.setPrototypeOf === 'function') {
             Object.setPrototypeOf(this, new.target.prototype);
-        }
-        else {
+        } else {
             this.__proto__ = new.target.prototype;
         }
     }
 }
+
 export function extractValue(data) {
     let result = [];
     if (data && data.length > 0) {
@@ -250,19 +268,22 @@ export function extractValue(data) {
     }
     return result;
 }
+
 export function keyValueToArray(data) {
     const itemArray = [];
     const keys = Object.keys(data);
     for (let i of keys) {
-        itemArray.push({ ...data[i], _id: i });
+        itemArray.push({...data[i], _id: i});
     }
     return itemArray;
 }
+
 export function minuted(time) {
     const minutes = Math.floor(time / 60000).toString();
     const seconds = Math.floor((time % 60000) / 1000).toString().padStart(2, '0');
     return `${minutes}:${seconds}`;
 }
+
 export function randomDate(start, end, specificProbabilityStart, specificProbability) {
     if (!start)
         start = new Date('1970-1-1');
@@ -277,6 +298,7 @@ export function randomDate(start, end, specificProbabilityStart, specificProbabi
     }
     return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
 }
+
 export function firestoreTimestampToDate(timeStamp) {
     let date = new Date('1970-01-01');
     switch (typeof timeStamp) {
@@ -286,15 +308,13 @@ export function firestoreTimestampToDate(timeStamp) {
         case 'object':
             if (timeStamp instanceof Date) {
                 date = timeStamp;
-            }
-            else {
+            } else {
                 if (!timeStamp) {
                     // When use firestore.FieldValue.serverTimestamp(),
                     // the redux-firestore will not wait for addOnCompleteListener,
                     // just update data immediately,the timestamp will be null
                     date = new Date();
-                }
-                else {
+                } else {
                     const dateStamp = timeStamp;
                     date = dateStamp.toDate();
                 }
@@ -305,6 +325,7 @@ export function firestoreTimestampToDate(timeStamp) {
     }
     return date;
 }
+
 export const capitalizeWords = (str) => {
     return str.replace(/(?:^|\s)\S/g, (a) => a.toUpperCase());
 };
@@ -316,8 +337,7 @@ export const comparerArray = (otherArray, limitKeys) => {
         return otherArray.filter(function (other) {
             if (!limitKeys) {
                 return _.isEqual(current, other);
-            }
-            else {
+            } else {
                 // TODO
             }
         }).length == 0;
@@ -332,54 +352,64 @@ export const onlyInB = (a, b) => {
 export const diffAB = (a, b) => {
     return onlyInA(a, b).concat(onlyInB(a, b));
 };
+
 export class StringUtil {
     // camelCase
     static toCamelCase(str) {
         return _.camelCase(str);
     }
+
     // snake_case
     static toSnakeCase(str) {
         return _.snakeCase(str);
     }
+
     // PascalCase
     static toPascalCase(str) {
         return _.startCase(_.camelCase(str)).replace(/ /g, '');
     }
+
     // CONSTANT_CASE
     static toConstantCase(str) {
         return _.upperCase(str).replace(/ /g, '_');
     }
+
     // kebab-case
     static toKebabCase(str) {
         return _.kebabCase(str);
     }
+
     // lowercase
     static toLowerCase(str) {
         return _.lowerCase(str).replace(/ /g, '');
     }
+
     // Title Case
     static toTitleCase(str) {
         return _.startCase(_.camelCase(str));
     }
+
     // Sentence case
     static toSentenceCase(str) {
         return _.upperFirst(_.lowerCase(str));
     }
+
     // path/case
     static toPathCase(str) {
         return _.lowerCase(str).replace(/ /g, '/');
     }
+
     // dot.case
     static toDotCase(str) {
         return _.lowerCase(str).replace(/ /g, '.');
     }
 }
+
 export const deepKeysConvert = (obj, toType) => {
     const _toType = toType || 'snake';
     if (Array.isArray(obj)) {
         return obj.map(v => deepKeysConvert(v, _toType));
-    }
-    else if (obj !== null && obj.constructor === Object) {
+    } else if (obj !== null && obj.constructor === Object) {
         return Object.keys(obj).reduce((result, key) => {
             let newKey = '';
             switch (_toType) {
@@ -448,8 +478,7 @@ export const deepReplaceValues = (obj, keyReducerMap) => {
         for (const item in keyReducerMap) {
             if (key === item) {
                 newObject[key] = keyReducerMap[item](newObject);
-            }
-            else if (typeof (val) === 'object' || val instanceof Array) {
+            } else if (typeof (val) === 'object' || val instanceof Array) {
                 newObject[key] = deepReplaceValues(val, keyReducerMap);
             }
         }

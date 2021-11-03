@@ -1,4 +1,5 @@
-import { ESys } from '../../constants';
+import {ESys} from '../../constants';
+
 export const sysError = (payload) => {
     return {
         type: ESys.ERROR,

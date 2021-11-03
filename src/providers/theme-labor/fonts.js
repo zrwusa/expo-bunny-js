@@ -1,5 +1,6 @@
-import { Platform } from 'react-native';
-import { EThemes } from '../../constants';
+import {Platform} from 'react-native';
+import {EThemes} from '../../constants';
+
 const fontConfig = {
     web: {
         regular: {
@@ -75,11 +76,15 @@ const getFontConfigLeavesWrappedWithThemeNames = () => {
     });
     return configWithThemeName;
 };
+
 export function configureFonts(config) {
-    return Platform.select({ ...fontConfig, ...config });
+    return Platform.select({...fontConfig, ...config});
 }
+
 export const fonts = configureFonts();
+
 export function configureFontsWarehouse(config) {
-    return Platform.select({ ...getFontConfigLeavesWrappedWithThemeNames(), ...config });
+    return Platform.select({...getFontConfigLeavesWrappedWithThemeNames(), ...config});
 }
+
 export const fontsWarehouse = configureFontsWarehouse();

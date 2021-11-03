@@ -1,6 +1,7 @@
-import { SegmentTree } from '../../../data-structures/binary-tree';
-import { runAlgorithm } from '../../helpers';
-import { testSegmentTreeCase1 } from './cases';
+import {SegmentTree} from '../../../data-structures/binary-tree';
+import {runAlgorithm} from '../../helpers';
+import {testSegmentTreeCase1} from './cases';
+
 export const testSegmentTree = (values, update1, query1) => {
     const sgt = new SegmentTree(values);
     sgt.updateNode(...update1);

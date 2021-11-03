@@ -1,5 +1,6 @@
 import React from 'react';
-import { useKeyboardHeight } from './useKeyboardHeight';
+import {useKeyboardHeight} from './useKeyboardHeight';
+
 export function withKeyboardHeight(WrappedComponent) {
     const displayName = WrappedComponent.displayName || WrappedComponent.name || 'Component';
     const ComponentWithKeyboardHeight = (props) => {

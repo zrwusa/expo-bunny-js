@@ -1,7 +1,8 @@
 import React from 'react';
-import { View } from 'react-native';
+import {View} from 'react-native';
+
 export const Col = function (props) {
-    const { children, size = 1, style, align = 'stretch' } = props;
+    const {children, size = 1, style, align = 'stretch'} = props;
     // const styleOBJ = StyleSheet.flatten<ViewStyle>(style)
     // // web basis 'auto' shrink:0 grow:0
     // let flexGrow: FlexStyle['flexGrow'] = size;

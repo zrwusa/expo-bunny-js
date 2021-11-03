@@ -1,24 +1,29 @@
-import React, { useCallback } from 'react';
-import { Dimensions, Modal, StyleSheet, Text, TouchableOpacity, View, } from 'react-native';
-import { GifSearch } from 'react-native-gif-search';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
+import React, {useCallback} from 'react';
+import {Dimensions, Modal, StyleSheet, Text, TouchableOpacity, View,} from 'react-native';
+import {GifSearch} from 'react-native-gif-search';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
+
 const GIPHY_API_KEY = 'NctafbvmG7x6Z1HyDVsd5gvB5SBf87ZE';
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const WINDOW_HEIGHT = Dimensions.get('window').height;
-const GiphyPicker = ({ showModal, handleChangeModal, selectGif, }) => {
+const GiphyPicker = ({showModal, handleChangeModal, selectGif,}) => {
     const _handleSelectGif = useCallback((gifUrl) => {
         selectGif(gifUrl);
         handleChangeModal();
     }, [handleChangeModal, selectGif]);
     return (<Modal visible={showModal} animationType={'fade'} transparent>
-            <View style={styles.modalDarkBackground}/>
-            <View style={styles.contentContainer}>
-                <GifSearch visible giphyApiKey={GIPHY_API_KEY} gifsToLoad={10} maxGifsToLoad={3 * 9} style={styles.gifContainer} textInputStyle={styles.searchInputText} gifListStyle={styles.gifListComponent} gifStyle={styles.gifComponent} loadingSpinnerColor={'black'} placeholderTextColor={'#807E7E'} placeholderText={'Search a GIF'} horizontal={false} numColumns={3} onGifSelected={_handleSelectGif} showScrollBar={false}/>
-                <TouchableOpacity onPress={handleChangeModal} style={styles.giphyPickerHeader}>
-                    <Text style={styles.closeButtonLabel}>Close</Text>
-                </TouchableOpacity>
-            </View>
-        </Modal>);
+        <View style={styles.modalDarkBackground}/>
+        <View style={styles.contentContainer}>
+            <GifSearch visible giphyApiKey={GIPHY_API_KEY} gifsToLoad={10} maxGifsToLoad={3 * 9}
+                       style={styles.gifContainer} textInputStyle={styles.searchInputText}
+                       gifListStyle={styles.gifListComponent} gifStyle={styles.gifComponent}
+                       loadingSpinnerColor={'black'} placeholderTextColor={'#807E7E'} placeholderText={'Search a GIF'}
+                       horizontal={false} numColumns={3} onGifSelected={_handleSelectGif} showScrollBar={false}/>
+            <TouchableOpacity onPress={handleChangeModal} style={styles.giphyPickerHeader}>
+                <Text style={styles.closeButtonLabel}>Close</Text>
+            </TouchableOpacity>
+        </View>
+    </Modal>);
 };
 export default GiphyPicker;
 const styles = StyleSheet.create({

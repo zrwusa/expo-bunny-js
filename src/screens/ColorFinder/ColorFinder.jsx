@@ -1,27 +1,28 @@
-import React, { useState } from 'react';
-import { ButtonTO, InButtonText, Text, TextInput, View } from '../../components/UI';
-import { checkColor, colorFaultTolerance, deltaEDes, diffColors } from '../../utils/color';
-import { ScrollView } from 'react-native';
-import { getStyles } from './styles';
-import { palette, uuidV4 } from '../../utils';
-import { Card, Col, Row } from '../../containers';
-import { collectBLResult } from '../../store/actions';
-import { blError } from '../../helpers';
-import { useDispatch } from 'react-redux';
-import { ColorTranslator } from 'colortranslator';
-import { CopyableText } from '../../components/CopyableText';
-import { ColorValuesCard } from '../../components/ColorValuesCard';
-import { shortenTFunctionKey } from '../../providers';
-import { Tab } from '../../components';
-import { useBunnyKit } from '../../hooks';
+import React, {useState} from 'react';
+import {ButtonTO, InButtonText, Text, TextInput, View} from '../../components/UI';
+import {checkColor, colorFaultTolerance, deltaEDes, diffColors} from '../../utils/color';
+import {ScrollView} from 'react-native';
+import {getStyles} from './styles';
+import {palette, uuidV4} from '../../utils';
+import {Card, Col, Row} from '../../containers';
+import {collectBLResult} from '../../store/actions';
+import {blError} from '../../helpers';
+import {useDispatch} from 'react-redux';
+import {ColorTranslator} from 'colortranslator';
+import {CopyableText} from '../../components/CopyableText';
+import {ColorValuesCard} from '../../components/ColorValuesCard';
+import {shortenTFunctionKey} from '../../providers';
+import {Tab} from '../../components';
+import {useBunnyKit} from '../../hooks';
+
 export function ColorFinderScreen() {
-    const { sizeLabor, themeLabor, t } = useBunnyKit();
+    const {sizeLabor, themeLabor, t} = useBunnyKit();
     const st = shortenTFunctionKey(t, 'screens.ColorFinder');
     const dispatch = useDispatch();
-    const { themes } = themeLabor;
+    const {themes} = themeLabor;
     const styles = getStyles(sizeLabor, themeLabor);
     const [inputText, setInputText] = useState('');
-    const [colorInput, setColorInput] = useState({ text: '', Hex: '', RGB: '', HSL: '' });
+    const [colorInput, setColorInput] = useState({text: '', Hex: '', RGB: '', HSL: ''});
     const [similarColorsFromTheme, setSimilarColorsFromTheme] = useState([]);
     const [similarColorsFromPalette, setSimilarColorsFromPalette] = useState([]);
     const [uglyType, setUglyType] = useState('Beautiful');
@@ -31,8 +32,7 @@ export function ColorFinderScreen() {
             const escaped20 = escaped09.replaceAll('%20', ',');
             const truncated = escaped20.split(',').slice(0, 3).join(',');
             return `rgb(${truncated})`;
-        }
-        else {
+        } else {
             return colorString;
         }
     };
@@ -64,7 +64,7 @@ export function ColorFinderScreen() {
         let _similarColorsFromPalette = [];
         themesKeys.forEach((themeName) => {
             const theme = themes[themeName];
-            const { colors } = theme;
+            const {colors} = theme;
             const similarIndexed = [];
             const colorKeys = Object.keys(colors);
             colorKeys.forEach((colorKey) => {
@@ -74,8 +74,7 @@ export function ColorFinderScreen() {
                     // themColorValue.forEach((value: string,index) => {
                     //     getIndexedColor(value, colorKey+`[${index}]`, inputColorText, themeName, similarIndexed)
                     // })
-                }
-                else {
+                } else {
                     getIndexedColor(themColorValue, colorKey, inputColorText, themeName, similarIndexed);
                 }
             });
@@ -140,8 +139,7 @@ export function ColorFinderScreen() {
                 RGB: ColorTranslator.toRGB(_text),
                 HSL: ColorTranslator.toHSL(_text),
             });
-        }
-        else {
+        } else {
             setColorInput({
                 text: '',
                 Hex: '',
@@ -150,70 +148,72 @@ export function ColorFinderScreen() {
             });
         }
     };
-    const handleKeyPress = ({ nativeEvent }) => {
+    const handleKeyPress = ({nativeEvent}) => {
         if (nativeEvent.key === 'Enter') {
             getSimilarColor();
         }
     };
     return (<ScrollView>
-            <View style={styles.container}>
-                <Card titleMode="OUT" title={st('colorInput')}>
-                    <Tab items={['Beautiful', 'RGB', 'Hex', 'HSL']} value={uglyType} onChange={(item) => {
-            setUglyType(item);
-        }}/>
-                    <Row paddingVertical="l">
-                        <Col size={30}>
-                            <TextInput style={styles.input} value={inputText} placeholder={st('inputAColorString')} onChangeText={handleChangeTextFrom} onKeyPress={handleKeyPress} autoCapitalize='none'/>
-                        </Col>
-                        <Col size={2}/>
-                        <Col size={20}>
-                            <ButtonTO onPress={handleSimilarColor}>
-                                <InButtonText>{st('findSimilarColors')}</InButtonText>
-                            </ButtonTO>
-                        </Col>
-                    </Row>
-                    <ColorValuesCard item={colorInput}/>
+        <View style={styles.container}>
+            <Card titleMode="OUT" title={st('colorInput')}>
+                <Tab items={['Beautiful', 'RGB', 'Hex', 'HSL']} value={uglyType} onChange={(item) => {
+                    setUglyType(item);
+                }}/>
+                <Row paddingVertical="l">
+                    <Col size={30}>
+                        <TextInput style={styles.input} value={inputText} placeholder={st('inputAColorString')}
+                                   onChangeText={handleChangeTextFrom} onKeyPress={handleKeyPress}
+                                   autoCapitalize="none"/>
+                    </Col>
+                    <Col size={2}/>
+                    <Col size={20}>
+                        <ButtonTO onPress={handleSimilarColor}>
+                            <InButtonText>{st('findSimilarColors')}</InButtonText>
+                        </ButtonTO>
+                    </Col>
+                </Row>
+                <ColorValuesCard item={colorInput}/>
 
-                </Card>
-                <Card titleMode="OUT" title={st('similarColorFromPalette')}>
-                    {similarColorsFromPalette.map(similarColorItem => {
-            return <View key={similarColorItem.keyInPalette}>
-                                <Row paddingVertical="xs" style={styles.row}>
-                                    <Text>Diff</Text>
-                                    <Text>{similarColorItem.diff.toFixed(2)}</Text>
-                                </Row>
-                                <Row paddingVertical="xs" style={styles.row}>
-                                    <Text>Diff Tip</Text>
-                                    <Text>{similarColorItem.diffDes}</Text>
-                                </Row>
-                                <Row paddingVertical="xs" style={styles.row}>
-                                    <Text>Key</Text><CopyableText>{similarColorItem.keyInPalette}</CopyableText>
-                                </Row>
-                                <ColorValuesCard item={similarColorItem}/>
-                            </View>;
-        })}
-                </Card>
-                <Card titleMode="OUT" title={st('similarColorsFromThemes')}>
-                    {similarColorsFromTheme.map(similarColorItem => {
-            return <View key={uuidV4()}>
-                                <Row paddingVertical="m" style={styles.row}>
-                                    <Text>Diff</Text>
-                                    <Text>{similarColorItem.diff.toFixed(2)}</Text>
-                                </Row>
-                                <Row paddingVertical="m" style={styles.row}>
-                                    <Text>Diff Tip</Text>
-                                    <Text>{similarColorItem.diffDes}</Text>
-                                </Row>
-                                <Row paddingVertical="m" style={styles.row}>
-                                    <Text>Theme</Text><Text>{similarColorItem.themeName}</Text>
-                                </Row>
-                                <Row paddingVertical="m" style={styles.row}>
-                                    <Text>Key</Text><CopyableText>{similarColorItem.keyInThemeColors}</CopyableText>
-                                </Row>
-                                <ColorValuesCard item={similarColorItem}/>
-                            </View>;
-        })}
-                </Card>
-            </View>
-        </ScrollView>);
+            </Card>
+            <Card titleMode="OUT" title={st('similarColorFromPalette')}>
+                {similarColorsFromPalette.map(similarColorItem => {
+                    return <View key={similarColorItem.keyInPalette}>
+                        <Row paddingVertical="xs" style={styles.row}>
+                            <Text>Diff</Text>
+                            <Text>{similarColorItem.diff.toFixed(2)}</Text>
+                        </Row>
+                        <Row paddingVertical="xs" style={styles.row}>
+                            <Text>Diff Tip</Text>
+                            <Text>{similarColorItem.diffDes}</Text>
+                        </Row>
+                        <Row paddingVertical="xs" style={styles.row}>
+                            <Text>Key</Text><CopyableText>{similarColorItem.keyInPalette}</CopyableText>
+                        </Row>
+                        <ColorValuesCard item={similarColorItem}/>
+                    </View>;
+                })}
+            </Card>
+            <Card titleMode="OUT" title={st('similarColorsFromThemes')}>
+                {similarColorsFromTheme.map(similarColorItem => {
+                    return <View key={uuidV4()}>
+                        <Row paddingVertical="m" style={styles.row}>
+                            <Text>Diff</Text>
+                            <Text>{similarColorItem.diff.toFixed(2)}</Text>
+                        </Row>
+                        <Row paddingVertical="m" style={styles.row}>
+                            <Text>Diff Tip</Text>
+                            <Text>{similarColorItem.diffDes}</Text>
+                        </Row>
+                        <Row paddingVertical="m" style={styles.row}>
+                            <Text>Theme</Text><Text>{similarColorItem.themeName}</Text>
+                        </Row>
+                        <Row paddingVertical="m" style={styles.row}>
+                            <Text>Key</Text><CopyableText>{similarColorItem.keyInThemeColors}</CopyableText>
+                        </Row>
+                        <ColorValuesCard item={similarColorItem}/>
+                    </View>;
+                })}
+            </Card>
+        </View>
+    </ScrollView>);
 }

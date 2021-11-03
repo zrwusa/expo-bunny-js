@@ -1,5 +1,6 @@
 import React from 'react';
-import { useAuthLabor } from './useAuthLabor';
+import {useAuthLabor} from './useAuthLabor';
+
 export function withAuthLabor(WrappedComponent) {
     // Try to create a nice displayName for React Dev Tools.
     const displayName = WrappedComponent.displayName || WrappedComponent.name || 'Component';

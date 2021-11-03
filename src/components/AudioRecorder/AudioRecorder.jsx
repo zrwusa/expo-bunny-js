@@ -1,20 +1,28 @@
 import * as React from 'react';
-import { useEffect, useState } from 'react';
-import { useBunnyKit } from '../../hooks/bunny-kit';
-import { IcoMoon } from '../UI';
-import { Platform, TouchableHighlight, Vibration } from 'react-native';
-import { Audio } from '../../../packages/expo-av/src';
-import { uploadFileToFirebase } from '../../helpers';
-import { RECORDING_OPTIONS_PRESET_HIGH_QUALITY } from '../../../packages/expo-av/src/Audio/Recording';
-import { getStyles } from './styles';
-export const AudioRecorder = ({ onValueChanged, isUpload = false, onStatusChanged, uploadPath = '/', isDebug = false }) => {
-    const { sizeLabor, themeLabor, colors } = useBunnyKit();
+import {useEffect, useState} from 'react';
+import {useBunnyKit} from '../../hooks/bunny-kit';
+import {IcoMoon} from '../UI';
+import {Platform, TouchableHighlight, Vibration} from 'react-native';
+import {Audio} from '../../../packages/expo-av/src';
+import {uploadFileToFirebase} from '../../helpers';
+import {RECORDING_OPTIONS_PRESET_HIGH_QUALITY} from '../../../packages/expo-av/src/Audio/Recording';
+import {getStyles} from './styles';
+
+export const AudioRecorder = ({
+                                  onValueChanged,
+                                  isUpload = false,
+                                  onStatusChanged,
+                                  uploadPath = '/',
+                                  isDebug = false
+                              }) => {
+    const {sizeLabor, themeLabor, colors} = useBunnyKit();
     const [recording, setRecording] = useState();
     const [status, setStatus] = useState('STOPPED');
     const styles = getStyles(sizeLabor, themeLabor);
     useEffect(() => {
         onStatusChanged && onStatusChanged(status);
     }, [status]);
+
     async function startRecording() {
         try {
             isDebug && console.log('Requesting permissions..');
@@ -32,12 +40,12 @@ export const AudioRecorder = ({ onValueChanged, isUpload = false, onStatusChange
             setRecording(recording);
             setStatus('STARTED');
             isDebug && console.log('Recording started');
-        }
-        catch (err) {
+        } catch (err) {
             setStatus('ERROR');
             isDebug && console.error('Failed to start recording', err);
         }
     }
+
     async function stopRecording() {
         setStatus('STOPPING');
         isDebug && console.log('Stopping recording..');
@@ -57,14 +65,14 @@ export const AudioRecorder = ({ onValueChanged, isUpload = false, onStatusChange
             isDebug && console.log('Recording stopped and stored (remotely) at', remoteURL);
             setStatus('STOPPED');
             onValueChanged && onValueChanged(remoteURL);
-        }
-        else {
+        } else {
             setStatus('STOPPED');
             isDebug && console.log('Recording stopped and stored (locally) at', localURI);
             onValueChanged && onValueChanged(localURI);
         }
         setRecording(undefined);
     }
+
     const _longPress = async () => {
         switch (status) {
             case 'STOPPED':
@@ -83,7 +91,8 @@ export const AudioRecorder = ({ onValueChanged, isUpload = false, onStatusChange
         setPressIn(false);
         await stopRecording();
     };
-    return <TouchableHighlight onPressIn={_pressIn} onLongPress={_longPress} onPressOut={_pressOut} underlayColor={colors.transparent}>
+    return <TouchableHighlight onPressIn={_pressIn} onLongPress={_longPress} onPressOut={_pressOut}
+                               underlayColor={colors.transparent}>
         <IcoMoon name="mic1" style={[styles.micIcon, pressIn && styles.active]}/>
     </TouchableHighlight>;
 };

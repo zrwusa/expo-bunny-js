@@ -15,16 +15,17 @@ export class AbstractBinaryTree {
         if (idOrNode !== undefined) {
             if (typeof idOrNode === 'number') {
                 this.root = this.createNode(idOrNode, val, count);
-            }
-            else {
+            } else {
                 this.root = idOrNode;
             }
             this._size = 1;
         }
     }
+
     get root() {
         return this._root;
     }
+
     set root(v) {
         if (v) {
             v.parent = null;
@@ -32,25 +33,32 @@ export class AbstractBinaryTree {
         }
         this._root = v;
     }
+
     get size() {
         return this.size;
     }
+
     set size(v) {
         this._size = v;
     }
+
     get allowDuplicate() {
         return this._allowDuplicate;
     }
+
     set allowDuplicate(v) {
         this._allowDuplicate = v;
     }
+
     clear() {
         this.root = null;
         this._size = 0;
     }
+
     isEmpty() {
         return this._size === 0;
     }
+
     insert(id, val, count) {
         if (count === undefined) {
             count = 1;
@@ -76,8 +84,7 @@ export class AbstractBinaryTree {
                     }
                     cur.left && queue.push(cur.left);
                     cur.right && queue.push(cur.right);
-                }
-                else {
+                } else {
                     return null;
                 }
             }
@@ -89,8 +96,7 @@ export class AbstractBinaryTree {
                 for (let i = 0; i < count; i++) {
                     inserted.push(_bfs(this.root, new BinaryTreeNode(id, val, 1)));
                 }
-            }
-            else {
+            } else {
                 this.root = new BinaryTreeNode(id, val, 1);
                 inserted.push(this.root);
                 this._size = 1;
@@ -98,19 +104,16 @@ export class AbstractBinaryTree {
                     inserted.push(_bfs(this.root, new BinaryTreeNode(id, val, 1)));
                 }
             }
-        }
-        else {
+        } else {
             const existNode = this.getNode(id);
             if (this.root) {
                 if (existNode) {
                     existNode.count += count;
                     inserted.push(existNode);
-                }
-                else {
+                } else {
                     inserted.push(_bfs(this.root, new BinaryTreeNode(id, val, count)));
                 }
-            }
-            else {
+            } else {
                 this.root = new BinaryTreeNode(id, val, count);
                 this._size = 1;
                 inserted.push(this.root);
@@ -118,6 +121,7 @@ export class AbstractBinaryTree {
         }
         return inserted;
     }
+
     remove(id) {
         let nodes = [];
         nodes = this.getNodes(id);
@@ -125,8 +129,7 @@ export class AbstractBinaryTree {
             switch (node.familyPosition) {
                 case 0:
                     if (node.left) {
-                    }
-                    else if (node.right) {
+                    } else if (node.right) {
                     }
                     break;
                 case 1:
@@ -135,8 +138,9 @@ export class AbstractBinaryTree {
                     break;
             }
         }
-        return [{ deleted: null, needBalanced: null }];
+        return [{deleted: null, needBalanced: null}];
     }
+
     getDepth(node) {
         let depth = 0;
         while (node.parent !== null) {
@@ -145,6 +149,7 @@ export class AbstractBinaryTree {
         }
         return depth;
     }
+
     getMinHeight(beginRoot) {
         const _beginRoot = beginRoot || this.root;
         const _getMinHeight = (cur) => {
@@ -158,11 +163,11 @@ export class AbstractBinaryTree {
         };
         if (_beginRoot) {
             return _getMinHeight(_beginRoot);
-        }
-        else {
+        } else {
             return -1;
         }
     }
+
     getHeight(beginRoot) {
         const _beginRoot = beginRoot || this.root;
         const _getMaxHeight = (cur) => {
@@ -176,19 +181,21 @@ export class AbstractBinaryTree {
         };
         if (_beginRoot) {
             return _getMaxHeight(_beginRoot);
-        }
-        else {
+        } else {
             return -1;
         }
     }
+
     isBalanced(beginRoot) {
         return (this.getMinHeight(beginRoot) >= this.getHeight(beginRoot) + 1);
     }
+
     getNodes(nodeProperty, propertyName, onlyOne) {
         if (propertyName === undefined) {
             propertyName = 'id';
         }
         const result = [];
+
         function _traverse(cur) {
             switch (propertyName) {
                 case 'id':
@@ -232,9 +239,11 @@ export class AbstractBinaryTree {
             cur.left ? _traverse(cur.left) : null;
             cur.right ? _traverse(cur.right) : null;
         }
+
         this.root && _traverse(this.root);
         return result;
     }
+
     getNode(nodeProperty, propertyName) {
         if (propertyName === undefined) {
             propertyName = 'id';
@@ -242,11 +251,11 @@ export class AbstractBinaryTree {
         const node = this.getNodes(nodeProperty, propertyName, true)[0];
         if (node) {
             return node;
-        }
-        else {
+        } else {
             return null;
         }
     }
+
     getPathToRoot(node) {
         const result = [];
         while (node.parent !== null) {
@@ -256,6 +265,7 @@ export class AbstractBinaryTree {
         result.unshift(node);
         return result;
     }
+
     _resetResults() {
         this._visitedId = [];
         this._visitedVal = [];
@@ -263,6 +273,7 @@ export class AbstractBinaryTree {
         this._visitedCount = [];
         this._visitedLeftSum = [];
     }
+
     _pushByPropertyName(node, nodeOrPropertyName) {
         if (nodeOrPropertyName === undefined) {
             nodeOrPropertyName = 'id';
@@ -288,6 +299,7 @@ export class AbstractBinaryTree {
                 break;
         }
     }
+
     _getResultByPropertyName(nodeOrPropertyName) {
         if (nodeOrPropertyName === undefined) {
             nodeOrPropertyName = 'id';
@@ -307,6 +319,7 @@ export class AbstractBinaryTree {
                 return this._visitedId;
         }
     }
+
     BFS(nodeOrPropertyName) {
         if (nodeOrPropertyName === undefined) {
             nodeOrPropertyName = 'id';
@@ -326,6 +339,7 @@ export class AbstractBinaryTree {
         }
         return this._getResultByPropertyName(nodeOrPropertyName);
     }
+
     DFS(pattern, nodeOrPropertyName) {
         if (pattern === undefined) {
             pattern = 'in';
@@ -362,6 +376,7 @@ export class AbstractBinaryTree {
         this.root && _traverse(this.root);
         return this._getResultByPropertyName(nodeOrPropertyName);
     }
+
     /**
      * Time complexity is O(n)
      * Space complexity of Iterative DFS equals to recursive DFS which is O(n) because of the stack
@@ -377,41 +392,41 @@ export class AbstractBinaryTree {
             return this._getResultByPropertyName(nodeOrPropertyName);
         // 0: visit, 1: print
         const stack = [];
-        stack.push({ opt: 0, node: this.root });
+        stack.push({opt: 0, node: this.root});
         while (stack.length > 0) {
             const cur = stack.pop();
             if (!cur || !cur.node)
                 continue;
             if (cur.opt === 1) {
                 this._pushByPropertyName(cur.node, nodeOrPropertyName);
-            }
-            else {
+            } else {
                 switch (pattern) {
                     case 'in':
-                        stack.push({ opt: 0, node: cur.node.right });
-                        stack.push({ opt: 1, node: cur.node });
-                        stack.push({ opt: 0, node: cur.node.left });
+                        stack.push({opt: 0, node: cur.node.right});
+                        stack.push({opt: 1, node: cur.node});
+                        stack.push({opt: 0, node: cur.node.left});
                         break;
                     case 'pre':
-                        stack.push({ opt: 0, node: cur.node.right });
-                        stack.push({ opt: 0, node: cur.node.left });
-                        stack.push({ opt: 1, node: cur.node });
+                        stack.push({opt: 0, node: cur.node.right});
+                        stack.push({opt: 0, node: cur.node.left});
+                        stack.push({opt: 1, node: cur.node});
                         break;
                     case 'post':
-                        stack.push({ opt: 1, node: cur.node });
-                        stack.push({ opt: 0, node: cur.node.right });
-                        stack.push({ opt: 0, node: cur.node.left });
+                        stack.push({opt: 1, node: cur.node});
+                        stack.push({opt: 0, node: cur.node.right});
+                        stack.push({opt: 0, node: cur.node.left});
                         break;
                     default:
-                        stack.push({ opt: 0, node: cur.node.right });
-                        stack.push({ opt: 1, node: cur.node });
-                        stack.push({ opt: 0, node: cur.node.left });
+                        stack.push({opt: 0, node: cur.node.right});
+                        stack.push({opt: 1, node: cur.node});
+                        stack.push({opt: 0, node: cur.node.left});
                         break;
                 }
             }
         }
         return this._getResultByPropertyName(nodeOrPropertyName);
     }
+
     getPredecessor(node) {
         if (node.left) {
             let predecessor = node.left;
@@ -419,11 +434,11 @@ export class AbstractBinaryTree {
                 predecessor = predecessor.right;
             }
             return predecessor;
-        }
-        else {
+        } else {
             return node;
         }
     }
+
     /**
      * The time complexity of Morris traversal is O(n), it's may slower than others
      * The space complexity  Morris traversal is O(1) because no using stack
@@ -447,8 +462,7 @@ export class AbstractBinaryTree {
                             predecessor.right = cur;
                             cur = cur.left;
                             continue;
-                        }
-                        else {
+                        } else {
                             predecessor.right = null;
                         }
                     }
@@ -465,12 +479,10 @@ export class AbstractBinaryTree {
                             this._pushByPropertyName(cur, nodeOrPropertyName);
                             cur = cur.left;
                             continue;
-                        }
-                        else {
+                        } else {
                             predecessor.right = null;
                         }
-                    }
-                    else {
+                    } else {
                         this._pushByPropertyName(cur, nodeOrPropertyName);
                     }
                     cur = cur.right;
@@ -504,8 +516,7 @@ export class AbstractBinaryTree {
                             predecessor.right = cur;
                             cur = cur.left;
                             continue;
-                        }
-                        else {
+                        } else {
                             predecessor.right = null;
                             printEdge(cur.left);
                         }
@@ -517,11 +528,13 @@ export class AbstractBinaryTree {
         }
         return this._getResultByPropertyName(nodeOrPropertyName);
     }
+
     subTreeSum(subTreeRoot, propertyName) {
         if (propertyName === undefined) {
             propertyName = 'id';
         }
         let sum = 0;
+
         function _traverse(cur) {
             let needSum;
             switch (propertyName) {
@@ -544,10 +557,12 @@ export class AbstractBinaryTree {
             cur.left && _traverse(cur.left);
             cur.right && _traverse(cur.right);
         }
+
         subTreeRoot && _traverse(subTreeRoot);
         return sum;
     }
 }
+
 export class BinaryTreeNode {
     constructor(id, val, count) {
         this._val = null;
@@ -568,21 +583,27 @@ export class BinaryTreeNode {
         this._val = val;
         this._count = count;
     }
+
     get id() {
         return this._id;
     }
+
     set id(v) {
         this._id = v;
     }
+
     get val() {
         return this._val;
     }
+
     set val(v) {
         this._val = v;
     }
+
     get left() {
         return this._left;
     }
+
     set left(v) {
         if (v) {
             v.parent = this;
@@ -590,9 +611,11 @@ export class BinaryTreeNode {
         }
         this._left = v;
     }
+
     get right() {
         return this._right;
     }
+
     set right(v) {
         if (v) {
             v.parent = this;
@@ -600,36 +623,47 @@ export class BinaryTreeNode {
         }
         this._right = v;
     }
+
     get parent() {
         return this._parent;
     }
+
     set parent(v) {
         this._parent = v;
     }
+
     get familyPosition() {
         return this._familyPosition;
     }
+
     set familyPosition(v) {
         this._familyPosition = v;
     }
+
     get count() {
         return this._count;
     }
+
     set count(v) {
         this._count = v;
     }
+
     get height() {
         return this._height;
     }
+
     set height(v) {
         this._height = v;
     }
+
     get allLesserSum() {
         return this._allLesserSum;
     }
+
     set allLesserSum(v) {
         this._allLesserSum = v;
     }
+
     replaceLocation(replaceNode) {
         this._id = replaceNode.id;
         this._val = replaceNode.val;
@@ -638,9 +672,10 @@ export class BinaryTreeNode {
         this._height = replaceNode.height;
         return true;
     }
+
     swapLocation(swapNode) {
         const tempNode = new BinaryTreeNode(swapNode.id);
-        const { val, count, height, allLesserSum } = swapNode;
+        const {val, count, height, allLesserSum} = swapNode;
         tempNode.val = val;
         tempNode.count = count;
         tempNode.height = height;
@@ -657,10 +692,12 @@ export class BinaryTreeNode {
         this._allLesserSum = tempNode.allLesserSum;
         return swapNode;
     }
+
     clone() {
         return new BinaryTreeNode(this._id, this._val, this._count);
     }
 }
+
 export class BinaryTree extends AbstractBinaryTree {
     createNode(id, val, count) {
         return new BinaryTreeNode(id, val, count);

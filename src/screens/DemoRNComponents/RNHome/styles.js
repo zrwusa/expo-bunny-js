@@ -1,8 +1,9 @@
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
 import BunnyConstants from '../../../constants/constants';
+
 export const getStyles = (sizeLabor, themeLabor) => {
-    const { ms, designsBasedOn } = sizeLabor;
-    const { wp, hp } = designsBasedOn.iphoneX;
+    const {ms, designsBasedOn} = sizeLabor;
+    const {wp, hp} = designsBasedOn.iphoneX;
     const activityIndicatorStyles = StyleSheet.create({
         horizontal: {
             flexDirection: 'row',

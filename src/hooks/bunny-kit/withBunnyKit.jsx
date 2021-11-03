@@ -1,5 +1,6 @@
 import React from 'react';
-import { useBunnyKit } from './useBunnyKit';
+import {useBunnyKit} from './useBunnyKit';
+
 export function withBunnyKit(Component) {
     // Try to create a nice displayName for React Dev Tools.
     const displayName = Component.displayName || Component.name || 'Component';

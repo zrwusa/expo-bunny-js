@@ -1,11 +1,12 @@
 import React from 'react';
-import { View } from 'react-native';
-import { getStyles } from './styles';
-import { useBunnyKit } from '../../hooks/bunny-kit';
+import {View} from 'react-native';
+import {getStyles} from './styles';
+import {useBunnyKit} from '../../hooks/bunny-kit';
+
 export function Divider(props) {
-    const { sizeLabor, themeLabor, wp } = useBunnyKit();
+    const {sizeLabor, themeLabor, wp} = useBunnyKit();
     const styles = getStyles(sizeLabor, themeLabor);
-    const { isVertical, size, style } = props;
+    const {isVertical, size, style} = props;
     const sizeVerticalMap = {
         xxs: wp(6),
         xs: wp(10),
@@ -24,6 +25,6 @@ export function Divider(props) {
         style
     ];
     return isVertical
-        ? <View style={[mergeStyleVertical, { height: size ? sizeVerticalMap[size] : wp(6) }]}/>
+        ? <View style={[mergeStyleVertical, {height: size ? sizeVerticalMap[size] : wp(6)}]}/>
         : <View style={mergeStyleHorizontal}/>;
 }

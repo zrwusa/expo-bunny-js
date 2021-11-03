@@ -1,14 +1,16 @@
-import { DeepProxy } from '@qiwi/deep-proxy';
-import { BinaryTree } from '../../../data-structures/binary-tree';
-import { wait, WaitManager } from '../../../utils';
-import { runAlgorithm } from '../../helpers';
-import { testBSTCase1 } from '../bst';
+import {DeepProxy} from '@qiwi/deep-proxy';
+import {BinaryTree} from '../../../data-structures/binary-tree';
+import {wait, WaitManager} from '../../../utils';
+import {runAlgorithm} from '../../helpers';
+import {testBSTCase1} from '../bst';
+
 const waitManager = new WaitManager(10);
-const { time1, time2, time3 } = waitManager;
+const {time1, time2, time3} = waitManager;
+
 export async function testBinaryTree(arr, proxyHandler) {
     const arrCopy = [...arr];
     const rest = arrCopy.splice(1);
-    const proxyVariables = new DeepProxy({ binaryTree: new BinaryTree(arrCopy[0], arrCopy[0]) }, proxyHandler);
+    const proxyVariables = new DeepProxy({binaryTree: new BinaryTree(arrCopy[0], arrCopy[0])}, proxyHandler);
     for (let i of rest) {
         console.log(`insert ${i}`, proxyVariables.binaryTree.insert(i, i));
         await wait(time1);
@@ -55,6 +57,7 @@ export async function testBinaryTree(arr, proxyHandler) {
     console.log('BFS, node', proxyVariables.binaryTree.BFS('node'));
     return proxyVariables.binaryTree;
 }
+
 const runTestBinaryTree = async () => {
     await runAlgorithm(testBinaryTree, false, ...testBSTCase1);
 };

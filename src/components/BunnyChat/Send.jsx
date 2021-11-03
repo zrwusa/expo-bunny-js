@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, } from 'react-native';
-import { withBunnyKit } from '../../hooks/bunny-kit';
+import React, {Component} from 'react';
+import {StyleSheet, Text, TouchableOpacity, View,} from 'react-native';
+import {withBunnyKit} from '../../hooks/bunny-kit';
+
 const getStyles = (sizeLabor, themeLabor) => {
-    const { wp } = sizeLabor.designsBasedOn.iphoneX;
-    const { theme: { colors } } = themeLabor;
+    const {wp} = sizeLabor.designsBasedOn.iphoneX;
+    const {theme: {colors}} = themeLabor;
     return StyleSheet.create({
         container: {
             height: wp(44),
@@ -20,32 +21,45 @@ const getStyles = (sizeLabor, themeLabor) => {
         },
     });
 };
+
 class Send extends Component {
     constructor() {
         super(...arguments);
         this.handleOnPress = () => {
-            const { text, onSend } = this.props;
+            const {text, onSend} = this.props;
             if (text && onSend) {
-                onSend({ text: text.trim() }, true);
+                onSend({text: text.trim()}, true);
             }
         };
     }
+
     render() {
-        const { text, sendContainerStyle, children, sendTextStyle, sendLabel, alwaysShowSend, disabled, sendButtonProps, } = this.props;
+        const {
+            text,
+            sendContainerStyle,
+            children,
+            sendTextStyle,
+            sendLabel,
+            alwaysShowSend,
+            disabled,
+            sendButtonProps,
+        } = this.props;
         if (alwaysShowSend || (text && text.trim().length > 0)) {
-            const { bunnyKit: { sizeLabor, themeLabor } } = this.props;
+            const {bunnyKit: {sizeLabor, themeLabor}} = this.props;
             const styles = getStyles(sizeLabor, themeLabor);
-            return (<TouchableOpacity testID='send' accessible accessibilityLabel='send' style={[styles.container, sendContainerStyle]} onPress={this.handleOnPress} 
-            // @ts-ignore
-            accessibilityTraits='button' disabled={disabled} {...sendButtonProps}>
-                    <View>
-                        {children || <Text style={[styles.text, sendTextStyle]}>{sendLabel}</Text>}
-                    </View>
-                </TouchableOpacity>);
+            return (<TouchableOpacity testID="send" accessible accessibilityLabel="send"
+                                      style={[styles.container, sendContainerStyle]} onPress={this.handleOnPress}
+                // @ts-ignore
+                                      accessibilityTraits="button" disabled={disabled} {...sendButtonProps}>
+                <View>
+                    {children || <Text style={[styles.text, sendTextStyle]}>{sendLabel}</Text>}
+                </View>
+            </TouchableOpacity>);
         }
-        return <View />;
+        return <View/>;
     }
 }
+
 Send.defaultProps = {
     text: '',
     onSend: () => {

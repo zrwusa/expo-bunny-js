@@ -1,14 +1,15 @@
 // TODO crash when large gif images loaded
-import { useBunnyKit } from '../../hooks/bunny-kit';
-import { ScrollView, TouchableOpacity, View } from 'react-native';
-import React, { useEffect, useRef, useState } from 'react';
-import { useKeyboardHeight } from '../../hooks/keyboard-height';
-import { useFirebase } from 'react-redux-firebase';
-import { getStyles } from './styles';
-import { CachedImage } from '../CachedImage';
-export const StickerPicker = ({ isShow = false, onValueChanged, quality = 'MEDIUM' }) => {
-    const { sizeLabor, themeLabor } = useBunnyKit();
-    const { currentHeight } = useKeyboardHeight();
+import {useBunnyKit} from '../../hooks/bunny-kit';
+import {ScrollView, TouchableOpacity, View} from 'react-native';
+import React, {useEffect, useRef, useState} from 'react';
+import {useKeyboardHeight} from '../../hooks/keyboard-height';
+import {useFirebase} from 'react-redux-firebase';
+import {getStyles} from './styles';
+import {CachedImage} from '../CachedImage';
+
+export const StickerPicker = ({isShow = false, onValueChanged, quality = 'MEDIUM'}) => {
+    const {sizeLabor, themeLabor} = useBunnyKit();
+    const {currentHeight} = useKeyboardHeight();
     const [stickers, setStickers] = useState([]);
     const firebase = useFirebase();
     const styles = getStyles(sizeLabor, themeLabor);
@@ -30,7 +31,7 @@ export const StickerPicker = ({ isShow = false, onValueChanged, quality = 'MEDIU
             const allStickerRef = await shaunTheSheepRef.listAll();
             const stickers = await Promise.all(allStickerRef.items.map(async (stickerRef) => {
                 const url = await stickerRef.getDownloadURL();
-                return { id: stickerRef.fullPath, url };
+                return {id: stickerRef.fullPath, url};
             }));
             isMounted.current && setStickers(stickers);
         })();
@@ -39,18 +40,18 @@ export const StickerPicker = ({ isShow = false, onValueChanged, quality = 'MEDIU
         };
     }, []);
     return isShow
-        ? <View style={{ height: currentHeight || 346 }}>
+        ? <View style={{height: currentHeight || 346}}>
             <ScrollView contentContainerStyle={styles.panel}>
                 {stickers.map((sticker => {
-                return <View key={sticker.id}>
-                            <TouchableOpacity onPress={async () => {
-                        onValueChanged && onValueChanged(sticker.url);
-                    }}>
-                                {/*<Image style={styles.stickerImage} source={{uri: sticker.url}}/>*/}
-                                <CachedImage style={styles.stickerImage} source={{ uri: sticker.url }}/>
-                            </TouchableOpacity>
-                        </View>;
-            }))}
+                    return <View key={sticker.id}>
+                        <TouchableOpacity onPress={async () => {
+                            onValueChanged && onValueChanged(sticker.url);
+                        }}>
+                            {/*<Image style={styles.stickerImage} source={{uri: sticker.url}}/>*/}
+                            <CachedImage style={styles.stickerImage} source={{uri: sticker.url}}/>
+                        </TouchableOpacity>
+                    </View>;
+                }))}
             </ScrollView>
         </View>
         : null;

@@ -1,34 +1,34 @@
 // todo description this provider
 import * as React from 'react';
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import { AuthLaborContext, authLaborContext } from './AuthLaborContext';
-import { Preparing } from '../../components/Preparing';
-import { useTranslation } from 'react-i18next';
-import { shortenTFunctionKey } from '../i18n-labor';
-import { EventRegister } from 'react-native-event-listeners';
-import { uuidV4 } from '../../utils';
+import {useCallback, useEffect, useMemo, useState} from 'react';
+import {AuthLaborContext, authLaborContext} from './AuthLaborContext';
+import {Preparing} from '../../components/Preparing';
+import {useTranslation} from 'react-i18next';
+import {shortenTFunctionKey} from '../i18n-labor';
+import {EventRegister} from 'react-native-event-listeners';
+import {uuidV4} from '../../utils';
+
 function AuthLaborProvider(props) {
-    const { children } = props;
-    const { t } = useTranslation();
+    const {children} = props;
+    const {t} = useTranslation();
     const st = shortenTFunctionKey(t, 'sys');
-    const { authFunctions, authResult } = authLaborContext;
+    const {authFunctions, authResult} = authLaborContext;
     const [isReady, setIsReady] = useState(false);
     const [authResultState, setAuthResultState] = useState(authResult);
     const memoizedAuthResultState = useMemo(() => {
         return authResultState;
     }, [JSON.stringify(authResultState)]);
     const handleLogin = useCallback((blResult) => {
-        const { success, data } = blResult;
+        const {success, data} = blResult;
         if (success) {
-            const { accessToken, refreshToken, user } = data;
+            const {accessToken, refreshToken, user} = data;
             setAuthResultState({
                 accessToken,
                 refreshToken,
                 user,
                 isLogin: true,
             });
-        }
-        else {
+        } else {
             setAuthResultState({
                 accessToken: '',
                 refreshToken: '',
@@ -37,13 +37,13 @@ function AuthLaborProvider(props) {
             });
         }
     }, []);
-    const handleCheckIsLogin = useCallback(({ data }) => {
-        setAuthResultState((preState) => ({ ...preState, isLogin: data }));
+    const handleCheckIsLogin = useCallback(({data}) => {
+        setAuthResultState((preState) => ({...preState, isLogin: data}));
     }, []);
     const handleAuthTrigger = useCallback((triggerType) => {
-        setAuthResultState((preState) => ({ ...preState, triggerType, triggerUUID: uuidV4() }));
+        setAuthResultState((preState) => ({...preState, triggerType, triggerUUID: uuidV4()}));
     }, []);
-    const handleLogOut = useCallback(({ success, message }) => {
+    const handleLogOut = useCallback(({success, message}) => {
         if (success) {
             setAuthResultState({
                 accessToken: '',
@@ -51,22 +51,20 @@ function AuthLaborProvider(props) {
                 user: undefined,
                 isLogin: false,
             });
-        }
-        else {
+        } else {
         }
     }, []);
-    const handleBunnyRefreshAuth = useCallback(({ success, data, message }) => {
+    const handleBunnyRefreshAuth = useCallback(({success, data, message}) => {
         if (success) {
-            const { accessToken } = data;
-            setAuthResultState((preState) => ({ ...preState, accessToken }));
-        }
-        else {
-            setAuthResultState((preState) => ({ ...preState, accessToken: '' }));
+            const {accessToken} = data;
+            setAuthResultState((preState) => ({...preState, accessToken}));
+        } else {
+            setAuthResultState((preState) => ({...preState, accessToken: ''}));
         }
     }, []);
     useEffect(() => {
         const bootstrapAsync = async () => {
-            const { accessToken, refreshToken, user } = await authFunctions.getPersistenceAuth();
+            const {accessToken, refreshToken, user} = await authFunctions.getPersistenceAuth();
             if (accessToken) {
                 setAuthResultState({
                     accessToken,
@@ -74,8 +72,7 @@ function AuthLaborProvider(props) {
                     user,
                     isLogin: true,
                 });
-            }
-            else {
+            } else {
                 setAuthResultState({
                     accessToken: '',
                     refreshToken: '',
@@ -86,8 +83,8 @@ function AuthLaborProvider(props) {
         };
         bootstrapAsync()
             .then(() => {
-            setIsReady(true);
-        });
+                setIsReady(true);
+            });
     }, []);
     useEffect(() => {
         const loginID = EventRegister.on('login', handleLogin);
@@ -115,11 +112,12 @@ function AuthLaborProvider(props) {
     }, []);
     return (isReady
         ? <AuthLaborContext.Provider value={{
-                authResult: memoizedAuthResultState,
-                authFunctions
-            }}>
-                {children}
-            </AuthLaborContext.Provider>
+            authResult: memoizedAuthResultState,
+            authFunctions
+        }}>
+            {children}
+        </AuthLaborContext.Provider>
         : <Preparing text={st(`AuthLaborProviderLoading`)}/>);
 }
-export { AuthLaborProvider };
+
+export {AuthLaborProvider};

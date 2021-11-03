@@ -1,10 +1,11 @@
 import React from 'react';
-import { FlatList, SafeAreaView, Text, View } from 'react-native';
-import { getStyles } from './styles';
-import { getContainerStyles } from '../../../containers';
-import { useBunnyKit } from '../../../hooks/bunny-kit';
+import {FlatList, SafeAreaView, Text, View} from 'react-native';
+import {getStyles} from './styles';
+import {getContainerStyles} from '../../../containers';
+import {useBunnyKit} from '../../../hooks/bunny-kit';
+
 function RNFlatListScreen() {
-    const { sizeLabor, themeLabor } = useBunnyKit();
+    const {sizeLabor, themeLabor} = useBunnyKit();
     const containerStyles = getContainerStyles(sizeLabor, themeLabor);
     const styles = getStyles(sizeLabor, themeLabor);
     const FLAT_LIST_DATA = [
@@ -21,11 +22,13 @@ function RNFlatListScreen() {
             title: 'Third Item',
         },
     ];
-    const FlatListItem = ({ title }) => (<View style={styles.item}>
-            <Text style={styles.title}>{title}</Text>
-        </View>);
+    const FlatListItem = ({title}) => (<View style={styles.item}>
+        <Text style={styles.title}>{title}</Text>
+    </View>);
     return (<SafeAreaView style={containerStyles.Screen}>
-            <FlatList data={FLAT_LIST_DATA} renderItem={({ item }) => (<FlatListItem title={item.title}/>)} keyExtractor={(item) => item.id}/>
-        </SafeAreaView>);
+        <FlatList data={FLAT_LIST_DATA} renderItem={({item}) => (<FlatListItem title={item.title}/>)}
+                  keyExtractor={(item) => item.id}/>
+    </SafeAreaView>);
 }
+
 export default RNFlatListScreen;

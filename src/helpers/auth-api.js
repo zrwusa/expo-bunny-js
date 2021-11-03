@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { checkAuthAPIProtocol, getApiInstanceConfig } from './index';
+import {checkAuthAPIProtocol, getApiInstanceConfig} from './index';
+
 export const defaultAuthAPIResponseData = {
     'httpExtra': {
         'code': 0,
@@ -33,24 +34,21 @@ apiAuth.interceptors.response.use((response) => {
     // status 200-300
     if (checkAuthAPIProtocol(response.data)) {
         response.data = response.data.successData;
-    }
-    else {
+    } else {
         response.data = defaultAuthAPIResponseData;
     }
     return response;
 }, async (error) => {
-    const { response, request } = error;
+    const {response, request} = error;
     if (response) {
         // status 300-600 The request was made and the server responded with a status code that falls out of the range of 2xx
         if (checkAuthAPIProtocol(response.data)) {
             throw error;
         }
-    }
-    else if (request) {
+    } else if (request) {
         // status 100-200 timeout The request was made but no response was received, `error.request` is an instance of XMLHttpRequest in the browser and an instance of http.ClientRequest in Node.js
         throw error;
-    }
-    else {
+    } else {
         // Something happened in setting up the request and triggered an error
         throw error;
     }

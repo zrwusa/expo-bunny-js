@@ -1,10 +1,11 @@
-import { StyleSheet } from 'react-native';
-import { getSharedStyles } from '../../helpers';
+import {StyleSheet} from 'react-native';
+import {getSharedStyles} from '../../helpers';
+
 export const getStyles = (sizeLabor, themeLabor) => {
-    const { ms, designsBasedOn } = sizeLabor;
-    const { wp, hp } = designsBasedOn.iphoneX;
-    const { colors, borderRadius, roundness, fonts } = themeLabor.theme;
-    const { sharedStyles, sharedStylesFlatten } = getSharedStyles(sizeLabor, themeLabor);
+    const {ms, designsBasedOn} = sizeLabor;
+    const {wp, hp} = designsBasedOn.iphoneX;
+    const {colors, borderRadius, roundness, fonts} = themeLabor.theme;
+    const {sharedStyles, sharedStylesFlatten} = getSharedStyles(sizeLabor, themeLabor);
     const ImageProgressive = StyleSheet.create({
         imageOverlay: {
             position: 'absolute',
@@ -18,7 +19,7 @@ export const getStyles = (sizeLabor, themeLabor) => {
         },
     });
     const PickerSelect = StyleSheet.create({
-        viewContainer: { width: '100%' },
+        viewContainer: {width: '100%'},
         inputContainer: {
             flexDirection: 'row',
             alignItems: 'center',

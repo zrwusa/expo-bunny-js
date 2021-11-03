@@ -1,14 +1,63 @@
-import glyphMaterialCommunityMap from '@expo/vector-icons/build/vendor/react-native-vector-icons/glyphmaps/MaterialCommunityIcons.json';
-import { EBLMsg } from '../constants';
-import { AuthAPIError, BunnyAPIError, deepAdd, deepKeysConvert, deepRemoveByKey, deepRenameKeys, NomicsAPIError, uuidV4 } from '../utils';
+import glyphMaterialCommunityMap
+    from '@expo/vector-icons/build/vendor/react-native-vector-icons/glyphmaps/MaterialCommunityIcons.json';
+import {EBLMsg} from '../constants';
+import {
+    AuthAPIError,
+    BunnyAPIError,
+    deepAdd,
+    deepKeysConvert,
+    deepRemoveByKey,
+    deepRenameKeys,
+    NomicsAPIError,
+    uuidV4
+} from '../utils';
 import configORG from '../config';
 import _ from 'lodash';
 import icoMoonSelection from '../assets/fonts/icomoon/selection.json';
-import { firebase } from '../firebase/firebase';
+import {firebase} from '../firebase/firebase';
 import * as ImagePicker from 'expo-image-picker';
-import { PanResponder } from 'react-native';
+import {PanResponder} from 'react-native';
+
 export const navigatorPropsExtract = (node) => {
-    const { name, stack, component, childrenNode, authScreen, navigatorType, path, exact, parse, stringify, initialParams, screenOptions, detachInactiveScreens, initialRouteName, statusBarAnimation, sceneContainerStyle, overlayColor, openByDefault, mode, minSwipeDistance, lazy, tabBarOptions, tabBar, keyboardHandlingEnabled, keyboardDismissMode, hideStatusBar, headerMode, gestureHandlerProps, edgeWidth, drawerType, drawerStyle, drawerContentOptions, drawerPosition, drawerContent, backBehavior, options, ...rest } = node;
+    const {
+        name,
+        stack,
+        component,
+        childrenNode,
+        authScreen,
+        navigatorType,
+        path,
+        exact,
+        parse,
+        stringify,
+        initialParams,
+        screenOptions,
+        detachInactiveScreens,
+        initialRouteName,
+        statusBarAnimation,
+        sceneContainerStyle,
+        overlayColor,
+        openByDefault,
+        mode,
+        minSwipeDistance,
+        lazy,
+        tabBarOptions,
+        tabBar,
+        keyboardHandlingEnabled,
+        keyboardDismissMode,
+        hideStatusBar,
+        headerMode,
+        gestureHandlerProps,
+        edgeWidth,
+        drawerType,
+        drawerStyle,
+        drawerContentOptions,
+        drawerPosition,
+        drawerContent,
+        backBehavior,
+        options,
+        ...rest
+    } = node;
     const tabProps = {
         initialRouteName, screenOptions, backBehavior, lazy,
         detachInactiveScreens, sceneContainerStyle, tabBar, tabBarOptions
@@ -127,10 +176,10 @@ const getIconMCCustomMap = (iconConfig) => {
 export const glyphMaterialCommunityCustomMap = getIconMCCustomMap(tabBarIconNameConfig);
 export const icoMoonSelectionToGlyphMap = (icoMoonSelection) => {
     let map = {};
-    const { icons } = icoMoonSelection;
+    const {icons} = icoMoonSelection;
     for (const i in icons) {
         const iconProperties = icons[i].properties;
-        const { name, code } = iconProperties;
+        const {name, code} = iconProperties;
         map[name.toString()] = code;
     }
     return map;
@@ -142,8 +191,7 @@ export const getIconNameByRoute = (routeName, focused) => {
     let iconName;
     if (routeIconObj && routeIconObj[key]) {
         iconName = routeIconObj[key];
-    }
-    else {
+    } else {
         iconName = '';
     }
     return iconName;
@@ -172,15 +220,14 @@ export const checkCommonAPIProtocol = (data, PErrorClass) => {
     let dataKeys;
     try {
         dataKeys = Object.keys(data);
-    }
-    catch (err) {
+    } catch (err) {
         throw new PErrorClass(err.message, err.stack);
     }
     const isDataKeysEqual = _.isEqual(dataKeys, ['timeSpent', 'successData', 'httpExtra', 'businessLogic']);
     if (!isDataKeysEqual) {
         throw new PErrorClass(EBLMsg.NOT_CONFORM_TO_API_RESPONSE_ROOT_STRUCTURE);
     }
-    const { businessLogic, httpExtra } = data;
+    const {businessLogic, httpExtra} = data;
     const blKeys = Object.keys(businessLogic);
     const isBLKeysEqual = _.isEqual(blKeys, ['code', 'message', 'description', 'errorCode', 'errorMessage', 'errorDescription', 'errorStack']);
     if (!isBLKeysEqual) {
@@ -191,7 +238,7 @@ export const checkCommonAPIProtocol = (data, PErrorClass) => {
     if (!isHttpExtraKeysEqual) {
         throw new PErrorClass(EBLMsg.NOT_CONFORM_TO_API_RESPONSE_EXTRA_STRUCTURE);
     }
-    const { errorCode, errorMessage, errorStack } = businessLogic;
+    const {errorCode, errorMessage, errorStack} = businessLogic;
     if (errorCode) {
         throw new PErrorClass(errorMessage, errorCode, errorStack);
     }
@@ -210,7 +257,7 @@ export const getApiInstanceConfig = (apiConfigName) => {
     const config = configORG;
     const apiConfig = config[apiConfigName];
     if (apiConfig) {
-        const { isDevServer, isDevServerProxy, devServerProxy, devServer, timeout } = apiConfig;
+        const {isDevServer, isDevServerProxy, devServerProxy, devServer, timeout} = apiConfig;
         let port;
         let httpPrefix;
         let defaultPort;
@@ -219,8 +266,7 @@ export const getApiInstanceConfig = (apiConfigName) => {
             const devServerHost = `${devServer.domain}${devServer.port}`;
             const devProxyPrefix = isDevServerProxy ? Object.keys(devServerProxy)[0] : '';
             finalBaseUrl = `${devServerHost}${devProxyPrefix}`;
-        }
-        else {
+        } else {
             const env = process.env.NODE_ENV === 'production' ? 'prod' : apiConfig.env;
             const envObj = apiConfig[env];
             if (envObj) {
@@ -228,8 +274,7 @@ export const getApiInstanceConfig = (apiConfigName) => {
                 defaultPort = envObj.isHttps ? 443 : 80;
                 port = envObj.port || defaultPort;
                 finalBaseUrl = `${httpPrefix}${envObj.domain}:${port}`;
-            }
-            else {
+            } else {
                 throw (`${env} config not available,check the config`);
             }
         }
@@ -245,25 +290,22 @@ export const navToReference = (route, navigation) => {
     if (route.params && route.params.reference) {
         referenceRoute = JSON.parse(route.params.reference);
         navigation.navigate(referenceRoute);
-    }
-    else {
+    } else {
         navigation.navigate('Home');
     }
 };
 export const navToLogin = (route, navigation) => {
     if (route.params && route.params.reference) {
-        navigation.navigate('Auth', { screen: 'Login', params: { reference: route.params.reference } });
-    }
-    else {
-        navigation.navigate('Auth', { screen: 'Login' });
+        navigation.navigate('Auth', {screen: 'Login', params: {reference: route.params.reference}});
+    } else {
+        navigation.navigate('Auth', {screen: 'Login'});
     }
 };
 export const navToSignUp = (route, navigation) => {
     if (route.params && route.params.reference) {
-        navigation.navigate('Auth', { screen: 'SignUp', params: { reference: route.params.reference } });
-    }
-    else {
-        navigation.navigate('Auth', { screen: 'SignUp' });
+        navigation.navigate('Auth', {screen: 'SignUp', params: {reference: route.params.reference}});
+    } else {
+        navigation.navigate('Auth', {screen: 'SignUp'});
     }
 };
 export const uploadFileToFirebase = async function (uri, path) {
@@ -294,12 +336,10 @@ export const removeFileFromFirebaseByURL = async function (uri) {
     try {
         const imageRef = firebase.storage().refFromURL(uri);
         return await imageRef.delete();
-    }
-    catch (e) {
+    } catch (e) {
         if (['storage/invalid-argument', 'storage/object-not-found'].includes(e.code)) {
             return;
-        }
-        else {
+        } else {
             throw e;
         }
     }

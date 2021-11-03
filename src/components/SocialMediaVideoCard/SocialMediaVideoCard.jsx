@@ -1,22 +1,24 @@
 import * as React from 'react';
-import { PureComponent } from 'react';
-import { IcoMoon, View } from '../UI';
-import { Avatar } from '../Avatar';
-import { Image, Text } from 'react-native';
-import { ShowVideo } from '../Video/Video';
-import { ReadMore } from '../ReadMore';
-import { getStyles } from './styles';
-import { withBunnyKit } from '../../hooks/bunny-kit';
+import {PureComponent} from 'react';
+import {IcoMoon, View} from '../UI';
+import {Avatar} from '../Avatar';
+import {Image, Text} from 'react-native';
+import {ShowVideo} from '../Video/Video';
+import {ReadMore} from '../ReadMore';
+import {getStyles} from './styles';
+import {withBunnyKit} from '../../hooks/bunny-kit';
+
 class SocialMediaVideoCardInner extends PureComponent {
     constructor(props) {
         super(props);
     }
+
     render() {
-        const { bunnyKit } = this.props;
-        const { sizeLabor, themeLabor, wp, colors } = bunnyKit;
+        const {bunnyKit} = this.props;
+        const {sizeLabor, themeLabor, wp, colors} = bunnyKit;
         const bottomBarIconColor = colors.text;
         const styles = getStyles(sizeLabor, themeLabor);
-        const { category, user, userAvatar, avSource, imageSource, likes, comments } = this.props.card;
+        const {category, user, userAvatar, avSource, imageSource, likes, comments} = this.props.card;
         return (<View>
             <View style={styles.card}>
                 <View style={styles.header}>
@@ -55,12 +57,13 @@ class SocialMediaVideoCardInner extends PureComponent {
             <View style={styles.comments}>
                 <Text style={styles.commentsLikes}>{likes} likes</Text>
                 {comments.map(comment => {
-                const { id, text } = comment;
-                return <ReadMore key={id} numberOfLines={1}>
+                    const {id, text} = comment;
+                    return <ReadMore key={id} numberOfLines={1}>
                         <Text style={styles.comment}>{text}</Text></ReadMore>;
-            })}
+                })}
             </View>
         </View>);
     }
 }
+
 export const SocialMediaVideoCard = withBunnyKit(SocialMediaVideoCardInner);

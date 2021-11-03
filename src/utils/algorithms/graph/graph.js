@@ -1,28 +1,39 @@
 /* --- start Graph --- */
 // 133	Clone Graph	★★	138					queue + hashtable
 // 200	Number of Islands	★★	547	695	733	827	1162
-import { Coordinate, runAlgorithm } from '../helpers';
-import { DirectedEdge, DirectedGraph, DirectedVertex, UndirectedEdge, UndirectedGraph, UndirectedVertex } from '../../data-structures/graph';
-import { timeEnd, timeStart, wait, WaitManager } from '../../utils';
-import { DeepProxy } from '@qiwi/deep-proxy';
-import { canFinishCase1, canFinishCase3, criticalConnectionsCase1 } from './cases';
+import {Coordinate, runAlgorithm} from '../helpers';
+import {
+    DirectedEdge,
+    DirectedGraph,
+    DirectedVertex,
+    UndirectedEdge,
+    UndirectedGraph,
+    UndirectedVertex
+} from '../../data-structures/graph';
+import {timeEnd, timeStart, wait, WaitManager} from '../../utils';
+import {DeepProxy} from '@qiwi/deep-proxy';
+import {canFinishCase1, canFinishCase3, criticalConnectionsCase1} from './cases';
+
 class MyVertex extends DirectedVertex {
     constructor(id, data) {
         super(id);
         this.data = data;
     }
 }
+
 class MyEdge extends DirectedEdge {
     constructor(v1, v2, weight, data) {
         super(v1, v2, weight);
         this.data = data;
     }
 }
+
 class MyGraph extends DirectedGraph {
     constructor() {
         super();
     }
 }
+
 const waitMan = new WaitManager(100);
 export const testGraphs = async (proxyHandler) => {
     const directedGraph = new DirectedGraph();
@@ -43,7 +54,7 @@ export const testGraphs = async (proxyHandler) => {
     // console.log('graph.getAllEdges(1,'100')', graph.getAllEdges(1, '100'));
     // console.log('graph.removeEdgeBetween(1,2)', graph.removeEdgeBetween(1, 2));
     // console.log('graph.getAllEdges(1, 2)', graph.getAllEdges(1, 2));
-    let vars = new DeepProxy({ myGraph: new DirectedGraph() }, proxyHandler);
+    let vars = new DeepProxy({myGraph: new DirectedGraph()}, proxyHandler);
     await wait(waitMan.time3);
     console.log(`vars.myGraph.addVertex(new MyVertex(1, 'data1'))`, vars.myGraph.addVertex(new MyVertex(1, 'data1')));
     await wait(waitMan.time3);
@@ -126,10 +137,11 @@ export const testGraphs = async (proxyHandler) => {
     // console.log(`vars.myGraph.getAllEdges(3, 1)', vars.myGraph.getAllEdges(3, 1));
     // myGraphEdge3to1 && console.log(`vars.myGraph.removeEdge(myGraphEdge3to1)', vars.myGraph.removeEdge(myGraphEdge3to1));
 };
+
 function numIslands(grid) {
     const boundY = grid.length - 1;
     const boundX = grid[0].length - 1;
-    const dirs = [{ y: -1, x: 0 }, { y: 1, x: 0 }, { y: 0, x: -1 }, { y: 0, x: 1 }];
+    const dirs = [{y: -1, x: 0}, {y: 1, x: 0}, {y: 0, x: -1}, {y: 0, x: 1}];
     const isLand = (cord) => {
         if (cord.y < 0 || cord.y > boundY || cord.x < 0 || cord.x > boundX)
             return false;
@@ -139,8 +151,7 @@ function numIslands(grid) {
     const dfs = (cur) => {
         if (isLand(cur)) {
             grid[cur.y][cur.x] = '2';
-        }
-        else {
+        } else {
             return;
         }
         for (let dir of dirs) {
@@ -157,6 +168,7 @@ function numIslands(grid) {
     }
     return ans;
 }
+
 // grid + connected components
 // 841	Keys and Rooms	★★	1202					DFS, connected components
 // 207	Course Schedule	★★★	210	802				topology sorting
@@ -166,6 +178,7 @@ class LinkedNode {
         this.next = next;
     }
 }
+
 function canFinish(numCourses, prerequisites) {
     let hash = {};
     for (const [course, preRqt] of prerequisites) {
@@ -196,6 +209,7 @@ function canFinish(numCourses, prerequisites) {
     }
     return true;
 }
+
 function canFinishByGraph(numCourses, prerequisites) {
     const graph = new DirectedGraph();
     const time1 = timeStart();
@@ -213,6 +227,7 @@ function canFinishByGraph(numCourses, prerequisites) {
     timeEnd(time3, 'topologicalSort');
     return !!sorted;
 }
+
 const runAllCanFinish = async () => {
     await runAlgorithm(canFinish, false, ...canFinishCase1);
     await runAlgorithm(canFinishByGraph, false, ...canFinishCase1);
@@ -238,6 +253,7 @@ function calcEquation(equations, values, queries) {
     }
     return ans;
 }
+
 // 785	Is Graph Bipartite?	★★★	886	1042				bipartition, graph coloring
 // 997	Find the Town Judge	★★★						in/out degrees
 // 433	Minimum Genetic Mutation	★★★	815	863	1129	1263
@@ -247,10 +263,9 @@ function calcEquation(equations, values, queries) {
 export async function networkDelayTime(times, n, k, proxyHandler) {
     let graph;
     if (proxyHandler) {
-        const vars = new DeepProxy({ graph: new DirectedGraph() }, proxyHandler);
+        const vars = new DeepProxy({graph: new DirectedGraph()}, proxyHandler);
         graph = vars.graph;
-    }
-    else {
+    } else {
         graph = new DirectedGraph();
     }
     for (let [u, v, w] of times) {
@@ -273,6 +288,7 @@ export async function networkDelayTime(times, n, k, proxyHandler) {
     }
     return -1;
 }
+
 // 847 Shortest Path Visiting All Nodes ★★★★	864	1298	BFS
 // 332	Reconstruct Itinerary	★★★★						Eulerian path
 // 1192 Critical Connections in a Network ★★★★						Tarjan
@@ -289,14 +305,12 @@ function criticalConnections(n, connections) {
     for (let conn of connections) {
         if (graph[conn[0]]) {
             graph[conn[0]].push(conn[1]);
-        }
-        else {
+        } else {
             graph[conn[0]] = [conn[1]];
         }
         if (graph[conn[1]]) {
             graph[conn[1]].push(conn[0]);
-        }
-        else {
+        } else {
             graph[conn[1]] = [conn[0]];
         }
     }
@@ -336,6 +350,7 @@ function criticalConnections(n, connections) {
     timeEnd(time2, 'tarjan');
     return bridges;
 }
+
 /**
  * data size 1e+5
  * [construct graph] 1278.30
@@ -354,7 +369,7 @@ function criticalConnectionsByGraph(n, connections) {
     }
     timeEnd(time1, 'construct graph');
     const time2 = timeStart();
-    const { bridges } = graph.tarjan(false, true);
+    const {bridges} = graph.tarjan(false, true);
     timeEnd(time2, 'tarjan');
     const ans = [];
     for (let bridge of bridges) {
@@ -363,6 +378,7 @@ function criticalConnectionsByGraph(n, connections) {
     }
     return ans;
 }
+
 const runAllCriticalConnections = async () => {
     await runAlgorithm(criticalConnections, false, ...criticalConnectionsCase1);
     await runAlgorithm(criticalConnectionsByGraph, false, ...criticalConnectionsCase1);
@@ -389,10 +405,9 @@ export async function regionsBySlashes(grid, proxyHandler) {
     // const ret = graph.tarjan(false, false, true, true);
     let graph2;
     if (proxyHandler) {
-        const vars = new DeepProxy({ graph2: new DirectedGraph() }, proxyHandler);
+        const vars = new DeepProxy({graph2: new DirectedGraph()}, proxyHandler);
         graph2 = vars.graph2;
-    }
-    else {
+    } else {
         graph2 = new DirectedGraph();
     }
     const grid2 = [
@@ -411,6 +426,7 @@ export async function regionsBySlashes(grid, proxyHandler) {
     let ans = 0;
     return ans;
 }
+
 const runAllRegionsBySlashes = async () => {
     await runAlgorithm(regionsBySlashes, false);
 };

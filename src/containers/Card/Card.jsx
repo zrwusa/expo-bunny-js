@@ -1,17 +1,18 @@
 import * as React from 'react';
-import { View } from 'react-native';
-import { useSizeLabor } from '../../providers/size-labor';
-import { useThemeLabor } from '../../providers/theme-labor';
-import { getStyles } from './styles';
-import { Text } from '../../components/UI';
-import { getContainerStyles } from '../styles';
-import { LinearGradient } from 'expo-linear-gradient';
+import {View} from 'react-native';
+import {useSizeLabor} from '../../providers/size-labor';
+import {useThemeLabor} from '../../providers/theme-labor';
+import {getStyles} from './styles';
+import {Text} from '../../components/UI';
+import {getContainerStyles} from '../styles';
+import {LinearGradient} from 'expo-linear-gradient';
+
 export function Card(props) {
-    const { title, children, style, titleMode, isLinear = false } = props;
+    const {title, children, style, titleMode, isLinear = false} = props;
     const finalTitleMode = titleMode || 'IN';
     const sizeLabor = useSizeLabor();
     const themeLabor = useThemeLabor();
-    const { colors } = themeLabor.theme;
+    const {colors} = themeLabor.theme;
     const styles = getStyles(sizeLabor, themeLabor);
     const containerStyles = getContainerStyles(sizeLabor, themeLabor);
     const mergedStyle = [containerStyles.Card, style];
@@ -23,11 +24,11 @@ export function Card(props) {
             <Text style={containerStyles.CardOutTitle}>{title}</Text>
             {isLinear
                 ? <LinearGradient style={mergedStyle} colors={colors.backgroundLinear2}>
-                        {children}
-                    </LinearGradient>
+                    {children}
+                </LinearGradient>
                 : <View style={mergedStyle}>
-                        {children}
-                    </View>}
+                    {children}
+                </View>}
         </View>
         : isLinear
             ? <LinearGradient style={mergedStyle} colors={colors.backgroundLinear2}>

@@ -1,8 +1,10 @@
-import { EBL } from '../../constants';
+import {EBL} from '../../constants';
+
 const initialState = {
     blResults: []
 };
-export function blStateReducer(prevState = initialState, { type, payload }) {
+
+export function blStateReducer(prevState = initialState, {type, payload}) {
     switch (type) {
         case EBL.COLLECT_BL_RESULT:
             const collectBLResultsPayload = payload;
@@ -14,14 +16,12 @@ export function blStateReducer(prevState = initialState, { type, payload }) {
             const clearBLResultsPayload = payload;
             if (clearBLResultsPayload.all) {
                 prevState.blResults = [];
-            }
-            else if (clearBLResultsPayload.top) {
+            } else if (clearBLResultsPayload.top) {
                 prevState.blResults.splice(0, clearBLResultsPayload.top);
-            }
-            else if (clearBLResultsPayload.last) {
+            } else if (clearBLResultsPayload.last) {
                 prevState.blResults.splice(prevState.blResults.length - clearBLResultsPayload.last, clearBLResultsPayload.last);
             }
-            return { ...prevState };
+            return {...prevState};
         case EBL.SET_BL_RESULT:
             const blResult = payload;
             prevState.blResults.map((item) => {
@@ -30,7 +30,7 @@ export function blStateReducer(prevState = initialState, { type, payload }) {
                 }
                 return item;
             });
-            return { ...prevState };
+            return {...prevState};
         default:
             return prevState;
     }

@@ -1,41 +1,72 @@
 // TODO support ImageSourcePropType
-import React, { useEffect, useState } from 'react';
-import { IcoMoon, Text, TextButton } from '../UI';
-import { ActivityIndicator, Image, Platform, SafeAreaView, Share, TouchableOpacity, View } from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {IcoMoon, Text, TextButton} from '../UI';
+import {ActivityIndicator, Image, Platform, SafeAreaView, Share, TouchableOpacity, View} from 'react-native';
 // import * as CameraRoll from "@react-native-community/cameraroll";
-import { getStyles } from './styles';
+import {getStyles} from './styles';
 import * as ImagePicker from 'expo-image-picker';
-import { Permissions, removeFileFromFirebaseByURL, uploadFileToFirebase } from '../../helpers';
+import {Permissions, removeFileFromFirebaseByURL, uploadFileToFirebase} from '../../helpers';
 import Modal from 'react-native-modal';
-import { Divider } from '../Divider';
-import { CopyableText } from '../CopyableText';
-import { useBunnyKit } from '../../hooks/bunny-kit';
+import {Divider} from '../Divider';
+import {CopyableText} from '../CopyableText';
+import {useBunnyKit} from '../../hooks/bunny-kit';
+
 export function ImageUploader(props) {
-    const { sizeLabor, themeLabor, wp } = useBunnyKit();
-    const { colors } = themeLabor.theme;
-    const { width = wp(200), height = wp(200), source, path, isFullFill = false, isShowUri = false, isDeleteFromServerWhenRemove = true, isDeleteFromServerWhenUpload = true, style, placeholderContainerStyle, imageContainerStyle, loadingOverlayStyle, modalPanelContainerStyle, modalPanelStyle, modalPanel2Style, imageStyle, buttonStyle, buttonTextStyle, placeholderIconName = 'plus', modalProps, imagePickerOptions = {
-        mediaTypes: ImagePicker.MediaTypeOptions.All,
-        allowsEditing: true,
-        aspect: [4, 3],
-        quality: 0.2,
-    }, cameraPickerOptions = {
-        mediaTypes: ImagePicker.MediaTypeOptions.All,
-        allowsEditing: true,
-        aspect: [4, 3],
-        quality: 0.2,
-    }, loadingIndicatorProps = {
-        color: colors.text,
-        animating: true,
-        size: 'large'
-    }, renderPreview, onError, onSelected, onUploaded, onValueChanged, onRemovePhoto, } = props;
-    const sizeStyle = { width: isFullFill ? '100%' : width, height: isFullFill ? '100%' : height };
+    const {sizeLabor, themeLabor, wp} = useBunnyKit();
+    const {colors} = themeLabor.theme;
+    const {
+        width = wp(200),
+        height = wp(200),
+        source,
+        path,
+        isFullFill = false,
+        isShowUri = false,
+        isDeleteFromServerWhenRemove = true,
+        isDeleteFromServerWhenUpload = true,
+        style,
+        placeholderContainerStyle,
+        imageContainerStyle,
+        loadingOverlayStyle,
+        modalPanelContainerStyle,
+        modalPanelStyle,
+        modalPanel2Style,
+        imageStyle,
+        buttonStyle,
+        buttonTextStyle,
+        placeholderIconName = 'plus',
+        modalProps,
+        imagePickerOptions = {
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            allowsEditing: true,
+            aspect: [4, 3],
+            quality: 0.2,
+        },
+        cameraPickerOptions = {
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            allowsEditing: true,
+            aspect: [4, 3],
+            quality: 0.2,
+        },
+        loadingIndicatorProps = {
+            color: colors.text,
+            animating: true,
+            size: 'large'
+        },
+        renderPreview,
+        onError,
+        onSelected,
+        onUploaded,
+        onValueChanged,
+        onRemovePhoto,
+    } = props;
+    const sizeStyle = {width: isFullFill ? '100%' : width, height: isFullFill ? '100%' : height};
     const styles = getStyles(sizeLabor, themeLabor);
-    const [image, setImage] = useState(source || { uri: '' });
+    const [image, setImage] = useState(source || {uri: ''});
     const [isModalVisible, setModalVisible] = useState(false);
     const [isUploading, setIsUploading] = useState(false);
     // const screenshotIt = useRef<ViewShot>(null)
     useEffect(() => {
-        setImage(source || { uri: '' });
+        setImage(source || {uri: ''});
     }, [source]);
     const _takePhoto = async () => {
         const isAllowed = await Permissions.camera.get();
@@ -69,7 +100,7 @@ export function ImageUploader(props) {
             // fixed expo-image-picker did not give a type on web platform
             switch (Platform.OS) {
                 case 'web':
-                    const { uri } = pickerResult;
+                    const {uri} = pickerResult;
                     let mimeType = '';
                     if (uri) {
                         const matched = uri.match(/[^:]\w+\/[\w-+\d.]+(?=;|,)/);
@@ -105,15 +136,13 @@ export function ImageUploader(props) {
                     await removeFileFromFirebaseByURL(image.uri);
                 }
                 const uploadUrl = await uploadFileToFirebase(pickerResult.uri, path);
-                onUploaded && onUploaded({ uri: uploadUrl }, pickerResult.type);
-                setImage({ uri: uploadUrl });
-                onValueChanged && onValueChanged({ uri: uploadUrl });
+                onUploaded && onUploaded({uri: uploadUrl}, pickerResult.type);
+                setImage({uri: uploadUrl});
+                onValueChanged && onValueChanged({uri: uploadUrl});
             }
-        }
-        catch (e) {
+        } catch (e) {
             _errorHandle(e);
-        }
-        finally {
+        } finally {
             setIsUploading(false);
         }
     };
@@ -125,12 +154,11 @@ export function ImageUploader(props) {
             if (isDeleteFromServerWhenRemove) {
                 const removeResult = await removeFileFromFirebaseByURL(image.uri);
             }
-            const needRemovePhoto = { ...image };
-            setImage({ uri: '' });
+            const needRemovePhoto = {...image};
+            setImage({uri: ''});
             setModalVisible(false);
             onRemovePhoto && onRemovePhoto(needRemovePhoto);
-        }
-        else {
+        } else {
             onRemovePhoto && onRemovePhoto();
         }
     };
@@ -169,56 +197,61 @@ export function ImageUploader(props) {
     const _maybeRenderUploadingOverlay = () => {
         if (isUploading) {
             return (<View style={[styles.loadingOverlay, loadingOverlayStyle]}>
-                    <ActivityIndicator {...loadingIndicatorProps}/>
-                </View>);
+                <ActivityIndicator {...loadingIndicatorProps}/>
+            </View>);
         }
     };
     const _renderImage = () => {
         return (<View style={[styles.imageContainer, sizeStyle, imageContainerStyle]}>
-                <Image source={image} style={[styles.image, sizeStyle, imageStyle]} onError={_imageError}/>
-                {isShowUri
+            <Image source={image} style={[styles.image, sizeStyle, imageStyle]} onError={_imageError}/>
+            {isShowUri
                 ? <CopyableText numberOfLines={1}>{image.uri}</CopyableText>
                 : null}
-            </View>);
+        </View>);
     };
     const _renderPlaceholder = () => {
         return (<View style={[styles.placeholderContainer, sizeStyle, placeholderContainerStyle]}>
-                <IcoMoon name={placeholderIconName} color={colors.text3}/>
-            </View>);
+            <IcoMoon name={placeholderIconName} color={colors.text3}/>
+        </View>);
     };
     const styleJudge = renderPreview ? undefined : [styles.container, sizeStyle, style];
-    return (<SafeAreaView 
-    // ref={screenshotIt}
-    style={styleJudge}>
-            {renderPreview
-            ? renderPreview({ imageSource: image, toggleModal: _toggleModal })
+    return (<SafeAreaView
+        // ref={screenshotIt}
+        style={styleJudge}>
+        {renderPreview
+            ? renderPreview({imageSource: image, toggleModal: _toggleModal})
             : <TouchableOpacity style={[sizeStyle]} onPress={_toggleModal}>
-                        {image.uri ? _renderImage() : _renderPlaceholder()}
-                        {_maybeRenderUploadingOverlay()}
-                    </TouchableOpacity>}
+                {image.uri ? _renderImage() : _renderPlaceholder()}
+                {_maybeRenderUploadingOverlay()}
+            </TouchableOpacity>}
 
-            <Modal isVisible={isModalVisible} onSwipeComplete={() => setModalVisible(false)} swipeDirection="down" style={styles.modal} onBackdropPress={() => setModalVisible(false)} {...modalProps}>
-                <View style={[styles.modalPanelContainer, modalPanelContainerStyle]}>
-                    <View style={[styles.modalPanel, modalPanelStyle]}>
-                        <TextButton style={[styles.button, buttonStyle]} onPress={_pickImage}><Text style={[styles.buttonText, buttonTextStyle]}>Open
-                            Gallery</Text></TextButton>
-                        <Divider />
-                        <TextButton style={[styles.button, buttonStyle]} onPress={_takePhoto}><Text style={[styles.buttonText, buttonTextStyle]}>Take
-                            A Photo</Text></TextButton>
-                        {/*<Divider/>*/}
-                        {/*<TextButton onPress={_takeScreenshot}><Text>Take a screenshot</Text></TextButton>*/}
-                        {image.uri
-            ? <>
-                                    <Divider />
-                                    <TextButton onPress={_removePhoto} style={[styles.button, buttonStyle]}><Text style={[styles.buttonText, buttonTextStyle]}>Remove
-                                        Photo</Text></TextButton>
-                                </>
-            : null}
-                    </View>
-                    <View style={[styles.modalPanel2, modalPanel2Style]}>
-                        <TextButton style={[styles.button, buttonStyle]} onPress={_toggleModal}><Text style={[styles.buttonText, buttonTextStyle]}>Cancel</Text></TextButton>
-                    </View>
+        <Modal isVisible={isModalVisible} onSwipeComplete={() => setModalVisible(false)} swipeDirection="down"
+               style={styles.modal} onBackdropPress={() => setModalVisible(false)} {...modalProps}>
+            <View style={[styles.modalPanelContainer, modalPanelContainerStyle]}>
+                <View style={[styles.modalPanel, modalPanelStyle]}>
+                    <TextButton style={[styles.button, buttonStyle]} onPress={_pickImage}><Text
+                        style={[styles.buttonText, buttonTextStyle]}>Open
+                        Gallery</Text></TextButton>
+                    <Divider/>
+                    <TextButton style={[styles.button, buttonStyle]} onPress={_takePhoto}><Text
+                        style={[styles.buttonText, buttonTextStyle]}>Take
+                        A Photo</Text></TextButton>
+                    {/*<Divider/>*/}
+                    {/*<TextButton onPress={_takeScreenshot}><Text>Take a screenshot</Text></TextButton>*/}
+                    {image.uri
+                        ? <>
+                            <Divider/>
+                            <TextButton onPress={_removePhoto} style={[styles.button, buttonStyle]}><Text
+                                style={[styles.buttonText, buttonTextStyle]}>Remove
+                                Photo</Text></TextButton>
+                        </>
+                        : null}
                 </View>
-            </Modal>
-        </SafeAreaView>);
+                <View style={[styles.modalPanel2, modalPanel2Style]}>
+                    <TextButton style={[styles.button, buttonStyle]} onPress={_toggleModal}><Text
+                        style={[styles.buttonText, buttonTextStyle]}>Cancel</Text></TextButton>
+                </View>
+            </View>
+        </Modal>
+    </SafeAreaView>);
 }

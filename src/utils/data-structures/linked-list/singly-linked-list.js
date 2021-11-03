@@ -6,19 +6,20 @@
  */
 export class SinglyLinkedListNode {
     constructor(
-    /** Data stored on the node */
-    data, 
-    /** The previous node in the list */
-    prev, 
-    /** The next link in the list */
-    next, 
-    /** The list this node belongs to */
-    list) {
+        /** Data stored on the node */
+        data,
+        /** The previous node in the list */
+        prev,
+        /** The next link in the list */
+        next,
+        /** The list this node belongs to */
+        list) {
         this.data = data;
         this.prev = prev;
         this.next = next;
         this.list = list;
     }
+
     /**
      * Alias to .data
      * ```ts
@@ -28,6 +29,7 @@ export class SinglyLinkedListNode {
     get value() {
         return this.data;
     }
+
     /**
      * Get the index of this node
      * ```ts
@@ -40,6 +42,7 @@ export class SinglyLinkedListNode {
         }
         return this.list.findIndex((value) => value === this.value);
     }
+
     /**
      * Insert a new node before this one
      * ```ts
@@ -52,6 +55,7 @@ export class SinglyLinkedListNode {
             ? this.list.insertBefore(this, data)
             : new SinglyLinkedList(data, this.data);
     }
+
     /**
      * Insert new data after this node
      * ```ts
@@ -64,6 +68,7 @@ export class SinglyLinkedListNode {
             ? this.list.insertAfter(this, data)
             : new SinglyLinkedList(this.data, data);
     }
+
     /**
      * Remove this node
      * ```ts
@@ -77,6 +82,7 @@ export class SinglyLinkedListNode {
         return this.list.removeNode(this);
     }
 }
+
 /**
  * A doubly linked list
  * ```ts
@@ -93,12 +99,14 @@ export class SinglyLinkedList {
             this.append(arguments[i]);
         }
     }
+
     /**
      * The length of the list
      */
     get length() {
         return this.size;
     }
+
     /**
      * Convert any iterable to a new linked list
      * ```javascript
@@ -110,6 +118,7 @@ export class SinglyLinkedList {
     static from(iterable) {
         return new SinglyLinkedList(...iterable);
     }
+
     /**
      * Get the node data at a specified index, zero based
      * ```ts
@@ -121,6 +130,7 @@ export class SinglyLinkedList {
         const node = this.getNode(index);
         return node !== undefined ? node.data : undefined;
     }
+
     /**
      * Get the node at index, zero based
      * ```ts
@@ -141,6 +151,7 @@ export class SinglyLinkedList {
         }
         return currentNode;
     }
+
     /**
      * Return the first node and its index in the list that
      * satisfies the testing function
@@ -165,6 +176,7 @@ export class SinglyLinkedList {
         }
         return undefined;
     }
+
     /**
      * Returns the first node in the list that
      * satisfies the provided testing function. Otherwise undefined is returned.
@@ -178,6 +190,7 @@ export class SinglyLinkedList {
         const nodeIndex = this.findNodeIndex(f);
         return nodeIndex !== undefined ? nodeIndex.node : undefined;
     }
+
     /**
      * Returns the value of the first element in the list that
      * satisfies the provided testing function. Otherwise undefined is returned.
@@ -190,6 +203,7 @@ export class SinglyLinkedList {
         const nodeIndex = this.findNodeIndex(f);
         return nodeIndex !== undefined ? nodeIndex.node.data : undefined;
     }
+
     /**
      * Returns the index of the first node in the list that
      * satisfies the provided testing function. Ohterwise -1 is returned.
@@ -202,6 +216,7 @@ export class SinglyLinkedList {
         const nodeIndex = this.findNodeIndex(f);
         return nodeIndex !== undefined ? nodeIndex.index : -1;
     }
+
     /**
      * Append one or any number of nodes to the end of the list.
      * This modifies the list in place and returns the list itself
@@ -225,6 +240,7 @@ export class SinglyLinkedList {
         }
         return this;
     }
+
     /**
      * Synonym for append
      * ```ts
@@ -236,6 +252,7 @@ export class SinglyLinkedList {
         this.append(...args);
         return this.length;
     }
+
     /**
      * Prepend any number of data arguments to the list. The
      * argument list is prepended as a block to reduce confusion:
@@ -259,6 +276,7 @@ export class SinglyLinkedList {
         }
         return this;
     }
+
     /**
      * Insert a new node at a given index position. If index is
      * out of bounds, the node is appended, if index is negative
@@ -285,6 +303,7 @@ export class SinglyLinkedList {
         currentNode.insertAfter(data);
         return this;
     }
+
     /**
      * Remove the specified node from the list and return the removed
      * node afterwards.
@@ -316,6 +335,7 @@ export class SinglyLinkedList {
         node.list = null;
         return node;
     }
+
     /**
      * Remove the node at the specified index
      * ```ts
@@ -327,6 +347,7 @@ export class SinglyLinkedList {
         const node = this.getNode(index);
         return node !== undefined ? this.removeNode(node) : undefined;
     }
+
     /**
      * Insert a new node before the reference node
      * ```ts
@@ -348,6 +369,7 @@ export class SinglyLinkedList {
         this.size += 1;
         return this;
     }
+
     /**
      * Sorts the linked list using the provided compare function
      * @param compare A function used to compare the data of two nodes. It should return
@@ -396,6 +418,7 @@ export class SinglyLinkedList {
         quicksort(this.head, this.tail);
         return this;
     }
+
     /**
      * Insert a new node after this one
      * ```ts
@@ -417,6 +440,7 @@ export class SinglyLinkedList {
         this.size += 1;
         return this;
     }
+
     /**
      * Remove the first node from the list and return the data of the removed node
      * or undefined
@@ -427,6 +451,7 @@ export class SinglyLinkedList {
     shift() {
         return this.removeFromAnyEnd(this.head);
     }
+
     /**
      * Remove the last node from the list and return the data of the removed node
      * or undefined if the list was empty
@@ -437,6 +462,7 @@ export class SinglyLinkedList {
     pop() {
         return this.removeFromAnyEnd(this.tail);
     }
+
     /**
      * Merge the current list with another. Both lists will be
      * equal after merging.
@@ -462,6 +488,7 @@ export class SinglyLinkedList {
         list.head = this.head;
         list.tail = this.tail;
     }
+
     /**
      * Removes all nodes from a list
      *
@@ -475,6 +502,7 @@ export class SinglyLinkedList {
         this.size = 0;
         return this;
     }
+
     /**
      * The slice() method returns a shallow copy of a
      * portion of a list into a new list object selected
@@ -503,6 +531,7 @@ export class SinglyLinkedList {
         }
         return list;
     }
+
     /**
      * The reverse() function reverses the list in place and returns the list
      * itself.
@@ -523,6 +552,7 @@ export class SinglyLinkedList {
         this.head = tail;
         return this;
     }
+
     /**
      * The forEach() method executes a provided function once for each list node.
      * ```ts
@@ -542,6 +572,7 @@ export class SinglyLinkedList {
             currentIndex += modifier;
         }
     }
+
     /**
      * The map() method creates a new list with the results of
      * calling a provided function on every node in the calling list.
@@ -556,6 +587,7 @@ export class SinglyLinkedList {
         this.forEach((data, index) => list.append(f(data, index, this)), reverse);
         return list;
     }
+
     /**
      * The filter() method creates a new list with all nodes
      * that pass the test implemented by the provided function.
@@ -574,6 +606,7 @@ export class SinglyLinkedList {
         }, reverse);
         return list;
     }
+
     /**
      * Reduce over each node in the list
      * ```ts
@@ -591,12 +624,10 @@ export class SinglyLinkedList {
         let result;
         if (start !== undefined) {
             result = start;
-        }
-        else if (currentElement) {
+        } else if (currentElement) {
             result = currentElement.data;
             currentElement = currentElement[nextNode];
-        }
-        else {
+        } else {
             throw new TypeError('Reduce of empty LinkedList with no initial value');
         }
         while (currentElement) {
@@ -606,6 +637,7 @@ export class SinglyLinkedList {
         }
         return result;
     }
+
     /**
      * Convert the linked list to an array
      * ```ts
@@ -615,6 +647,7 @@ export class SinglyLinkedList {
     toArray() {
         return [...this];
     }
+
     /**
      * Convert a linked list to string
      * ```ts
@@ -625,6 +658,7 @@ export class SinglyLinkedList {
     toString(separator = ' ') {
         return this.reduce((s, data) => `${s}${separator}${data}`);
     }
+
     /**
      * The iterator implementation
      * ```ts
@@ -632,13 +666,14 @@ export class SinglyLinkedList {
      * for (const data of list) { log(data); } // 1 2 3
      * ```
      */
-    *[Symbol.iterator]() {
+    * [Symbol.iterator]() {
         let element = this.head;
         while (element !== null) {
             yield element.data;
             element = element.next;
         }
     }
+
     /** Private helper function to reduce duplication of pop() and shift() methods */
     removeFromAnyEnd(node) {
         return node !== null ? this.removeNode(node).data : undefined;

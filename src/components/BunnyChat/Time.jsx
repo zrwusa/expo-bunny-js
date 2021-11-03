@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {Component} from 'react';
+import {StyleSheet, Text, View} from 'react-native';
 import dayjs from 'dayjs';
-import { TIME_FORMAT } from './Constant';
-import { withBunnyKit } from '../../hooks/bunny-kit';
+import {TIME_FORMAT} from './Constant';
+import {withBunnyKit} from '../../hooks/bunny-kit';
+
 const getStyles = (sizeLabor, themeLabor) => {
-    const { wp } = sizeLabor.designsBasedOn.iphoneX;
-    const { theme: { colors } } = themeLabor;
+    const {wp} = sizeLabor.designsBasedOn.iphoneX;
+    const {theme: {colors}} = themeLabor;
     const containerStyle = {
         marginLeft: wp(10),
         marginRight: wp(10),
@@ -37,30 +38,32 @@ const getStyles = (sizeLabor, themeLabor) => {
         }),
     };
 };
+
 class Time extends Component {
     render() {
-        const { position, timeContainerStyle, currentMessage, timeFormat, timeTextStyle, bunnyKit } = this.props;
-        const { language } = bunnyKit;
+        const {position, timeContainerStyle, currentMessage, timeFormat, timeTextStyle, bunnyKit} = this.props;
+        const {language} = bunnyKit;
         if (!!currentMessage) {
-            const { bunnyKit: { sizeLabor, themeLabor } } = this.props;
+            const {bunnyKit: {sizeLabor, themeLabor}} = this.props;
             const styles = getStyles(sizeLabor, themeLabor);
             return (<View style={[
-                    styles[position].container,
-                    timeContainerStyle && timeContainerStyle[position],
-                ]}>
-                    <Text style={[
+                styles[position].container,
+                timeContainerStyle && timeContainerStyle[position],
+            ]}>
+                <Text style={[
                     styles[position].text,
                     timeTextStyle && timeTextStyle[position],
                 ]}>
-                        {dayjs(currentMessage.createdAt)
-                    .locale(language)
-                    .format(timeFormat)}
-                    </Text>
-                </View>);
+                    {dayjs(currentMessage.createdAt)
+                        .locale(language)
+                        .format(timeFormat)}
+                </Text>
+            </View>);
         }
         return null;
     }
 }
+
 Time.defaultProps = {
     position: 'left',
     currentMessage: undefined,

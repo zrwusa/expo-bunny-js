@@ -1,8 +1,9 @@
-import { AVLTree } from '../../../data-structures/binary-tree/avl-tree';
-import { runAlgorithm } from '../../helpers';
-import { DeepProxy } from '@qiwi/deep-proxy';
-import { wait, WaitManager } from '../../../utils';
-import { testBSTCase1 } from '../bst';
+import {AVLTree} from '../../../data-structures/binary-tree/avl-tree';
+import {runAlgorithm} from '../../helpers';
+import {DeepProxy} from '@qiwi/deep-proxy';
+import {wait, WaitManager} from '../../../utils';
+import {testBSTCase1} from '../bst';
+
 const avlTree = new AVLTree();
 const performanceAVLTree = () => {
     for (let i = 0; i < 1e+5; i++) {
@@ -13,11 +14,11 @@ const performanceAVLTreeIsBST = () => {
     return avlTree.isBST();
 };
 const waitManager = new WaitManager(10);
-const { time1, time2, time3 } = waitManager;
+const {time1, time2, time3} = waitManager;
 export const testAVLTree = async (arr, proxyHandler) => {
     const arrCopy = [...arr];
     const rest = arrCopy.splice(1);
-    const proxyVariables = new DeepProxy({ avl: new AVLTree(true, arrCopy[0], arrCopy[0]) }, proxyHandler);
+    const proxyVariables = new DeepProxy({avl: new AVLTree(true, arrCopy[0], arrCopy[0])}, proxyHandler);
     for (let i of rest) {
         proxyVariables.avl.insert(i, i);
         await wait(time1);

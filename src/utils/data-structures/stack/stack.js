@@ -12,6 +12,7 @@ export class Stack {
     constructor(elements) {
         this._elements = Array.isArray(elements) ? elements : [];
     }
+
     /**
      * Checks if the stack is empty.
      * @public
@@ -20,6 +21,7 @@ export class Stack {
     isEmpty() {
         return this._elements.length === 0;
     }
+
     /**
      * Returns the number of elements in the stack.
      * @public
@@ -28,6 +30,7 @@ export class Stack {
     size() {
         return this._elements.length;
     }
+
     /**
      * Returns the top element in the stack.
      * @public
@@ -38,6 +41,7 @@ export class Stack {
             return null;
         return this._elements[this._elements.length - 1];
     }
+
     /**
      * Adds an element to the top of the stack.
      * @public
@@ -47,6 +51,7 @@ export class Stack {
         this._elements.push(element);
         return this;
     }
+
     /**
      * Removes and returns the top element in the stack.
      * @public
@@ -57,6 +62,7 @@ export class Stack {
             return null;
         return this._elements.pop() || null;
     }
+
     /**
      * Returns the remaining elements as an array.
      * @public
@@ -65,6 +71,7 @@ export class Stack {
     toArray() {
         return this._elements.slice();
     }
+
     /**
      * Clears all elements from the stack.
      * @public
@@ -72,6 +79,7 @@ export class Stack {
     clear() {
         this._elements = [];
     }
+
     /**
      * Creates a shallow copy from the stack.
      * @public
@@ -80,6 +88,7 @@ export class Stack {
     clone() {
         return new Stack(this._elements.slice());
     }
+
     /**
      * Creates a stack from an existing array
      * @public

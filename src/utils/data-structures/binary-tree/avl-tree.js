@@ -1,9 +1,11 @@
-import { BST, BSTNode } from './bst';
+import {BST, BSTNode} from './bst';
+
 export class AVLTreeNode extends BSTNode {
     clone() {
         return new AVLTreeNode(this._id, this._val, this._count);
     }
 }
+
 export class AVLTree extends BST {
     balanceFactor(node) {
         if (node.right === null) // node has no right subtree
@@ -13,6 +15,7 @@ export class AVLTree extends BST {
         else
             return node.right.height - node.left.height;
     }
+
     updateHeight(node) {
         if (node.left === null && node.right === null) // node is a leaf
             node.height = 0;
@@ -20,12 +23,12 @@ export class AVLTree extends BST {
             // node has no left subtree
             const rightHeight = node.right ? node.right.height : 0;
             node.height = 1 + rightHeight;
-        }
-        else if (node.right === null) // node has no right subtree
+        } else if (node.right === null) // node has no right subtree
             node.height = 1 + node.left.height;
         else
             node.height = 1 + Math.max(node.right.height, node.left.height);
     }
+
     balancePath(node) {
         const path = this.getPathToRoot(node);
         for (let i = path.length - 1; i >= 0; i--) {
@@ -36,8 +39,7 @@ export class AVLTree extends BST {
                     if (A && A.left) {
                         if (this.balanceFactor(A.left) <= 0) {
                             this.balanceLL(A); // Perform LL rotation
-                        }
-                        else {
+                        } else {
                             this.balanceLR(A); // Perform LR rotation
                         }
                     }
@@ -46,14 +48,14 @@ export class AVLTree extends BST {
                     if (A && A.right) {
                         if (this.balanceFactor(A.right) >= 0) {
                             this.balanceRR(A); // Perform RR rotation
-                        }
-                        else {
+                        } else {
                             this.balanceRL(A); // Perform RL rotation
                         }
                     }
             }
         }
     }
+
     balanceLL(A) {
         const parentOfA = A.parent;
         const B = A.left; // A is left-heavy and B is left-heavy
@@ -65,12 +67,10 @@ export class AVLTree extends BST {
             B.parent = parentOfA;
         if (A === this.root) {
             this.root = B;
-        }
-        else {
+        } else {
             if (parentOfA?.left === A) {
                 parentOfA.left = B;
-            }
-            else {
+            } else {
                 if (parentOfA)
                     parentOfA.right = B;
             }
@@ -83,6 +83,7 @@ export class AVLTree extends BST {
         if (B)
             this.updateHeight(B);
     }
+
     balanceLR(A) {
         const parentOfA = A.parent;
         const B = A.left; // A is left-heavy
@@ -105,13 +106,11 @@ export class AVLTree extends BST {
         }
         if (A === this.root) {
             this.root = C;
-        }
-        else {
+        } else {
             if (parentOfA) {
                 if (parentOfA.left === A) {
                     parentOfA.left = C;
-                }
-                else {
+                } else {
                     parentOfA.right = C;
                 }
             }
@@ -127,6 +126,7 @@ export class AVLTree extends BST {
         B && this.updateHeight(B);
         C && this.updateHeight(C);
     }
+
     balanceRR(A) {
         const parentOfA = A.parent;
         const B = A.right; // A is right-heavy and B is right-heavy
@@ -139,13 +139,11 @@ export class AVLTree extends BST {
         }
         if (A === this.root) {
             this.root = B;
-        }
-        else {
+        } else {
             if (parentOfA) {
                 if (parentOfA.left === A) {
                     parentOfA.left = B;
-                }
-                else {
+                } else {
                     parentOfA.right = B;
                 }
             }
@@ -157,6 +155,7 @@ export class AVLTree extends BST {
         this.updateHeight(A);
         B && this.updateHeight(B);
     }
+
     balanceRL(A) {
         const parentOfA = A.parent;
         const B = A.right; // A is right-heavy
@@ -178,13 +177,11 @@ export class AVLTree extends BST {
         }
         if (A === this.root) {
             this.root = C;
-        }
-        else {
+        } else {
             if (parentOfA) {
                 if (parentOfA.left === A) {
                     parentOfA.left = C;
-                }
-                else {
+                } else {
                     parentOfA.right = C;
                 }
             }
@@ -201,9 +198,11 @@ export class AVLTree extends BST {
         B && this.updateHeight(B);
         C && this.updateHeight(C);
     }
+
     createNode(id, val, count) {
         return new AVLTreeNode(id, val, count);
     }
+
     insert(id, val, count) {
         const inserted = super.insert(id, val, count);
         for (let node of inserted) {
@@ -213,9 +212,10 @@ export class AVLTree extends BST {
         }
         return inserted;
     }
+
     remove(id, isUpdateAllLeftSum) {
         const deletedResults = super.remove(id, isUpdateAllLeftSum);
-        for (let { needBalanced } of deletedResults) {
+        for (let {needBalanced} of deletedResults) {
             if (needBalanced) {
                 this.balancePath(needBalanced);
             }

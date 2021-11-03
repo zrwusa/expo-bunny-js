@@ -1,9 +1,11 @@
-import { BinaryTree, BinaryTreeNode } from './binary-tree';
+import {BinaryTree, BinaryTreeNode} from './binary-tree';
+
 export class BSTNode extends BinaryTreeNode {
     clone() {
         return new BSTNode(this._id, this._val, this._count);
     }
 }
+
 export class BST extends BinaryTree {
     constructor(autoPrefixSum, id, val, count) {
         super(id, val, count);
@@ -12,10 +14,12 @@ export class BST extends BinaryTree {
             this._autoAllLesserSum = true;
         }
     }
+
     // --- start basic functions
     createNode(id, val, count) {
         return new BSTNode(id, val, count);
     }
+
     insert(id, val, count) {
         const inserted = [];
         const newNode = this.createNode(id, val, count);
@@ -24,8 +28,7 @@ export class BST extends BinaryTree {
             this.root = newNode;
             this._size++;
             inserted.push(this.root);
-        }
-        else {
+        } else {
             let cur = this.root;
             let traversing = true;
             while (traversing) {
@@ -35,8 +38,7 @@ export class BST extends BinaryTree {
                     //Duplicates are not accepted.
                     traversing = false;
                     inserted.push(cur);
-                }
-                else if (newId < cur.id) {
+                } else if (newId < cur.id) {
                     this._autoAllLesserSum && cur.right && this.subTreeAdd(cur.right, newNode.count, 'allLesserSum');
                     if (this._autoAllLesserSum)
                         cur.allLesserSum += newNode.count;
@@ -51,13 +53,11 @@ export class BST extends BinaryTree {
                         this._size++;
                         traversing = false;
                         inserted.push(cur.left);
-                    }
-                    else {
+                    } else {
                         //Traverse the left of the current node
                         cur = cur.left;
                     }
-                }
-                else if (newId > cur.id) {
+                } else if (newId > cur.id) {
                     // Traverse right of the node
                     if (cur.right === null) {
                         if (this._autoAllLesserSum)
@@ -69,8 +69,7 @@ export class BST extends BinaryTree {
                         this._size++;
                         traversing = false;
                         inserted.push(cur.right);
-                    }
-                    else {
+                    } else {
                         //Traverse the left of the current node
                         cur = cur.right;
                     }
@@ -79,6 +78,7 @@ export class BST extends BinaryTree {
         }
         return inserted;
     }
+
     remove(id, isUpdateAllLeftSum) {
         if (isUpdateAllLeftSum === undefined) {
             isUpdateAllLeftSum = true;
@@ -99,8 +99,7 @@ export class BST extends BinaryTree {
             // Connect the parent with the right child of the current node
             if (parent === null) {
                 this.root = current.right;
-            }
-            else {
+            } else {
                 switch (current.familyPosition) {
                     case 1:
                         parent.left = current.right;
@@ -111,8 +110,7 @@ export class BST extends BinaryTree {
                 }
                 needBalanced = parent;
             }
-        }
-        else {
+        } else {
             // Case 2: The current node has a left child
             // Locate the rightmost node in the left subtree of
             // the current node and also its parent
@@ -124,8 +122,7 @@ export class BST extends BinaryTree {
             if (parentOfLeftSubTreeMax) {
                 if (parentOfLeftSubTreeMax.right === leftSubTreeMax) {
                     parentOfLeftSubTreeMax.right = leftSubTreeMax.left;
-                }
-                else {
+                } else {
                     // Special case: parentOfLeftSubTreeMax is current
                     parentOfLeftSubTreeMax.left = leftSubTreeMax.left;
                 }
@@ -134,12 +131,14 @@ export class BST extends BinaryTree {
         }
         this._size--;
         this._autoAllLesserSum && isUpdateAllLeftSum && this.allGreaterNodesAdd(current, -deletedCount, 'allLesserSum');
-        bstDeletedResult.push({ deleted: orgCurrent, needBalanced });
+        bstDeletedResult.push({deleted: orgCurrent, needBalanced});
         return bstDeletedResult;
     }
+
     isBST() {
         if (!this.root)
             return true;
+
         function dfs(cur, min, max) {
             if (!cur)
                 return true;
@@ -147,6 +146,7 @@ export class BST extends BinaryTree {
                 return false;
             return dfs(cur.left, min, cur.id) && dfs(cur.right, cur.id, max);
         }
+
         return dfs(this.root, Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER);
         // if (!this.root) return true;
         //
@@ -165,14 +165,17 @@ export class BST extends BinaryTree {
         // dfs(this.root, Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER);
         // return valid;
     }
+
     contains(node) {
         return false;
     }
+
     getNodes(nodeProperty, propertyName, onlyOne) {
         if (propertyName === undefined) {
             propertyName = 'id';
         }
         const result = [];
+
         function _traverse(cur) {
             switch (propertyName) {
                 case 'id':
@@ -220,15 +223,16 @@ export class BST extends BinaryTree {
                 if (nodeProperty > cur.id) {
                     cur.right ? _traverse(cur.right) : null;
                 }
-            }
-            else {
+            } else {
                 cur.left ? _traverse(cur.left) : null;
                 cur.right ? _traverse(cur.right) : null;
             }
         }
+
         this.root && _traverse(this.root);
         return result;
     }
+
     getNode(nodeProperty, propertyName) {
         if (propertyName === undefined) {
             propertyName = 'id';
@@ -236,33 +240,39 @@ export class BST extends BinaryTree {
         const node = this.getNodes(nodeProperty, propertyName, true)[0];
         if (node) {
             return node;
-        }
-        else {
+        } else {
             return null;
         }
     }
+
     getMinNode(node) {
         if (!node) {
             node = this.root;
         }
+
         function _traverse(cur) {
             if (!cur.left)
                 return cur;
             return _traverse(cur.left);
         }
+
         return node ? _traverse(node) : null;
     }
+
     getMaxNode(node) {
         if (!node) {
             node = this.root;
         }
+
         function _traverse(cur) {
             if (!cur.right)
                 return cur;
             return _traverse(cur.right);
         }
+
         return node ? _traverse(node) : null;
     }
+
     // getMaxNode(node?: BSTNode<T> | null): BSTNode<T> | null {
     //     if (!node) {
     //         node = this.root;
@@ -312,16 +322,14 @@ export class BST extends BinaryTree {
                 sum += needSum;
                 if (cur.right) {
                     _traverse(cur.right);
-                }
-                else {
+                } else {
                     return;
                 }
             }
             if (id < curId) {
                 if (cur.left) {
                     _traverse(cur.left);
-                }
-                else {
+                } else {
                     return;
                 }
             }
@@ -329,6 +337,7 @@ export class BST extends BinaryTree {
         this.root && _traverse(this.root);
         return sum;
     }
+
     subTreeAdd(subTreeRoot, delta, propertyName) {
         if (propertyName === undefined) {
             propertyName = 'id';
@@ -360,6 +369,7 @@ export class BST extends BinaryTree {
         }
         return false;
     }
+
     allGreaterNodesAdd(node, delta, propertyName) {
         if (propertyName === undefined) {
             propertyName = 'id';
@@ -393,6 +403,7 @@ export class BST extends BinaryTree {
         }
         return false;
     }
+
     balance() {
         const sorted = this.DFS('in', 'node');
         this.clear();
@@ -408,11 +419,11 @@ export class BST extends BinaryTree {
         if (sorted.length > 0) {
             buildBalanceBST(0, sorted.length - 1);
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
+
     isAVLBalanced() {
         let balanced = true;
         const _height = (cur) => {

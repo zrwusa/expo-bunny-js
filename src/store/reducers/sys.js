@@ -1,5 +1,6 @@
-import { ELanguage, ESys, EThemes } from '../../constants';
+import {ELanguage, ESys, EThemes} from '../../constants';
 import _ from 'lodash';
+
 const initialState = {
     isReady: false,
     errors: [],
@@ -9,7 +10,8 @@ const initialState = {
     navInitialState: undefined,
     requestStatuses: []
 };
-export function sysStateReducer(prevState = initialState, { type, payload }) {
+
+export function sysStateReducer(prevState = initialState, {type, payload}) {
     switch (type) {
         case ESys.RESTORE_IS_READY:
             const restoreIsReadyPayload = payload;
@@ -27,14 +29,12 @@ export function sysStateReducer(prevState = initialState, { type, payload }) {
             const sysClearErrorPayload = payload;
             if (sysClearErrorPayload.all) {
                 prevState.errors = [];
-            }
-            else if (sysClearErrorPayload.top) {
+            } else if (sysClearErrorPayload.top) {
                 prevState.errors.splice(0, sysClearErrorPayload.top);
-            }
-            else if (sysClearErrorPayload.last) {
+            } else if (sysClearErrorPayload.last) {
                 prevState.errors.splice(prevState.errors.length - sysClearErrorPayload.last, sysClearErrorPayload.last);
             }
-            return { ...prevState };
+            return {...prevState};
         case ESys.WARN:
             const sysWarnPayload = payload;
             prevState.warns.push(sysWarnPayload.warn);
@@ -49,7 +49,7 @@ export function sysStateReducer(prevState = initialState, { type, payload }) {
             };
         case ESys.REQUESTING:
             const requestingPayload = payload;
-            prevState.requestStatuses.push({ ...requestingPayload, status: 'LOADING' });
+            prevState.requestStatuses.push({...requestingPayload, status: 'LOADING'});
             return {
                 ...prevState,
             };

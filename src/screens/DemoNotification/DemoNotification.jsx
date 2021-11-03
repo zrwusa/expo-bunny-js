@@ -1,12 +1,17 @@
 import * as Notifications from 'expo-notifications';
-import React, { useEffect, useState } from 'react';
-import { Button, Text, View } from '../../components/UI';
-import { Platform } from 'react-native';
-import { defaultNotification, registerForPushNotificationsAsync, schedulePushNotification } from '../../utils/expo-notification';
-import { shortenTFunctionKey } from '../../providers/i18n-labor';
-import { useBunnyKit } from '../../hooks/bunny-kit';
+import React, {useEffect, useState} from 'react';
+import {Button, Text, View} from '../../components/UI';
+import {Platform} from 'react-native';
+import {
+    defaultNotification,
+    registerForPushNotificationsAsync,
+    schedulePushNotification
+} from '../../utils/expo-notification';
+import {shortenTFunctionKey} from '../../providers/i18n-labor';
+import {useBunnyKit} from '../../hooks/bunny-kit';
+
 export default function DemoNotificationScreen() {
-    const { t } = useBunnyKit();
+    const {t} = useBunnyKit();
     let notificationReceivedListener = {
         remove: () => {
         }
@@ -62,10 +67,10 @@ export default function DemoNotificationScreen() {
             mustUsePhysicalDevice: stSys(`mustUsePhysicalDevice`)
         })
             .then(token => {
-            if (token) {
-                setExpoPushToken(token);
-            }
-        });
+                if (token) {
+                    setExpoPushToken(token);
+                }
+            });
         notificationReceivedListener = Notifications.addNotificationReceivedListener(notification => {
             setNotification(notification);
         });
@@ -78,20 +83,20 @@ export default function DemoNotificationScreen() {
         };
     }, []);
     return Platform.OS !== 'web' ? (
-    // <Text>Dummy notification</Text>
-    <View style={{
+        // <Text>Dummy notification</Text>
+        <View style={{
             flex: 1,
             alignItems: 'center',
             justifyContent: 'space-around',
         }}>
             <Text>Your expo push token: {expoPushToken}</Text>
-            <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+            <View style={{alignItems: 'center', justifyContent: 'center'}}>
                 <Text>Title: {notification && notification.request.content.title} </Text>
                 <Text>Body: {notification && notification.request.content.body}</Text>
                 <Text>Data: {notification && JSON.stringify(notification.request.content.data)}</Text>
             </View>
             <Button title="Press to schedule a notification" onPress={async () => {
-            await schedulePushNotification();
-        }}/>
+                await schedulePushNotification();
+            }}/>
         </View>) : (<Text>Dummy notification</Text>);
 }

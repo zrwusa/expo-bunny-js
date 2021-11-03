@@ -1,13 +1,14 @@
 // todo description this provider
 import * as React from 'react';
-import { useEffect, useMemo, useState } from 'react';
-import { Dimensions } from 'react-native';
+import {useEffect, useMemo, useState} from 'react';
+import {Dimensions} from 'react-native';
 import _ from 'lodash';
 import BunnyConstants from '../../constants/constants';
 import getSizeLabor from './sizeLabor';
-import { SizeLaborContext } from './SizeLaborContext';
+import {SizeLaborContext} from './SizeLaborContext';
+
 function SizeLaborProvider(props) {
-    const { children } = props;
+    const {children} = props;
     const [sizeLabor, setSizeLabor] = useState(getSizeLabor());
     useEffect(() => {
         const onDimensionsChange = _.throttle(() => {
@@ -18,7 +19,8 @@ function SizeLaborProvider(props) {
     });
     const sizeLaborMemorized = useMemo(() => sizeLabor, [sizeLabor]);
     return (<SizeLaborContext.Provider value={sizeLaborMemorized}>
-            {children}
-        </SizeLaborContext.Provider>);
+        {children}
+    </SizeLaborContext.Provider>);
 }
-export { SizeLaborProvider };
+
+export {SizeLaborProvider};

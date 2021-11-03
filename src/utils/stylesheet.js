@@ -1,4 +1,5 @@
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
+
 export const getStyleObj = (style) => {
     let result;
     if (style) {
@@ -10,11 +11,10 @@ export const getStyleObj = (style) => {
                 if (style instanceof Array) {
                     let combineObj = {};
                     for (let key in style) {
-                        combineObj = { ...combineObj, ...StyleSheet.flatten(style[key]) };
+                        combineObj = {...combineObj, ...StyleSheet.flatten(style[key])};
                     }
                     result = combineObj;
-                }
-                else {
+                } else {
                     result = style;
                 }
                 break;

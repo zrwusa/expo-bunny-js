@@ -10,11 +10,13 @@ export function throttle(func, limit) {
         }
     };
 }
+
 export function debounce(func, waitMilliseconds = 50, options = {}) {
     let timeoutId;
     const isImmediate = options.isImmediate ?? false;
     const maxWait = options.maxWait;
     let lastInvokeTime = Date.now();
+
     function nextInvokeTimeout() {
         if (maxWait !== undefined) {
             const timeSinceLastInvocation = Date.now() - lastInvokeTime;
@@ -24,6 +26,7 @@ export function debounce(func, waitMilliseconds = 50, options = {}) {
         }
         return waitMilliseconds;
     }
+
     const debouncedFunction = function (...args) {
         const context = this;
         const invokeFunction = function () {

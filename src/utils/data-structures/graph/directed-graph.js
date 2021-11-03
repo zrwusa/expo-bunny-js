@@ -1,29 +1,36 @@
-import { arrayRemove } from '../../utils';
-import { AbstractEdge, AbstractGraph, AbstractVertex } from './abstract-graph';
+import {arrayRemove} from '../../utils';
+import {AbstractEdge, AbstractGraph, AbstractVertex} from './abstract-graph';
+
 export class DirectedVertex extends AbstractVertex {
     constructor(id) {
         super(id);
     }
 }
+
 export class DirectedEdge extends AbstractEdge {
     constructor(src, dest, weight) {
         super(weight);
         this._src = src;
         this._dest = dest;
     }
+
     get src() {
         return this._src;
     }
+
     set src(v) {
         this._src = v;
     }
+
     get dest() {
         return this._dest;
     }
+
     set dest(v) {
         this._dest = v;
     }
 }
+
 // Strongly connected, One direction connected, Weakly connected
 export class DirectedGraph extends AbstractGraph {
     constructor() {
@@ -31,6 +38,7 @@ export class DirectedGraph extends AbstractGraph {
         this._outEdgeMap = new Map();
         this._inEdgeMap = new Map();
     }
+
     getEdge(srcOrId, destOrId) {
         let edges = [];
         if (srcOrId !== null && destOrId !== null) {
@@ -45,6 +53,7 @@ export class DirectedGraph extends AbstractGraph {
         }
         return edges[0] || null;
     }
+
     addEdge(edge) {
         if (!(this.containsVertex(edge.src) && this.containsVertex(edge.dest))) {
             return false;
@@ -53,20 +62,19 @@ export class DirectedGraph extends AbstractGraph {
         const srcOutEdges = this._outEdgeMap.get(srcVertex);
         if (srcOutEdges) {
             srcOutEdges.push(edge);
-        }
-        else {
+        } else {
             this._outEdgeMap.set(srcVertex, [edge]);
         }
         const destVertex = this.getVertex(edge.dest);
         const destInEdges = this._inEdgeMap.get(destVertex);
         if (destInEdges) {
             destInEdges.push(edge);
-        }
-        else {
+        } else {
             this._inEdgeMap.set(destVertex, [edge]);
         }
         return true;
     }
+
     removeEdgeBetween(srcOrId, destOrId) {
         const src = this.getVertex(srcOrId);
         const dest = this.getVertex(destOrId);
@@ -84,6 +92,7 @@ export class DirectedGraph extends AbstractGraph {
         }
         return removed;
     }
+
     removeEdge(edge) {
         let removed = null;
         const src = this.getVertex(edge.src);
@@ -100,9 +109,11 @@ export class DirectedGraph extends AbstractGraph {
         }
         return removed;
     }
+
     removeAllEdges(src, dest) {
         return [];
     }
+
     incomingEdgesOf(vertexOrId) {
         const target = this.getVertex(vertexOrId);
         if (target) {
@@ -110,6 +121,7 @@ export class DirectedGraph extends AbstractGraph {
         }
         return [];
     }
+
     outgoingEdgesOf(vertexOrId) {
         const target = this.getVertex(vertexOrId);
         if (target) {
@@ -117,24 +129,31 @@ export class DirectedGraph extends AbstractGraph {
         }
         return [];
     }
+
     degreeOf(vertexOrId) {
         return this.outDegreeOf(vertexOrId) + this.inDegreeOf(vertexOrId);
     }
+
     inDegreeOf(vertexOrId) {
         return this.incomingEdgesOf(vertexOrId).length;
     }
+
     outDegreeOf(vertexOrId) {
         return this.outgoingEdgesOf(vertexOrId).length;
     }
+
     edgesOf(vertexOrId) {
         return [...this.outgoingEdgesOf(vertexOrId), ...this.incomingEdgesOf(vertexOrId)];
     }
+
     getEdgeSrc(e) {
         return this.getVertex(e.src);
     }
+
     getEdgeDest(e) {
         return this.getVertex(e.dest);
     }
+
     getDestinations(vertex) {
         if (vertex === null) {
             return [];
@@ -149,6 +168,7 @@ export class DirectedGraph extends AbstractGraph {
         }
         return destinations;
     }
+
     /**--- start find cycles --- */
     /**
      * when stored with adjacency list time: O(V+E)
@@ -199,8 +219,7 @@ export class DirectedGraph extends AbstractGraph {
                 const childStatus = statusMap.get(child);
                 if (childStatus === 0) {
                     dfs(child);
-                }
-                else if (childStatus === 1) {
+                } else if (childStatus === 1) {
                     hasCycle = true;
                 }
             }
@@ -217,6 +236,7 @@ export class DirectedGraph extends AbstractGraph {
         }
         return sorted.reverse();
     }
+
     /**--- end find cycles --- */
     edgeSet() {
         let edges = [];
@@ -225,6 +245,7 @@ export class DirectedGraph extends AbstractGraph {
         });
         return edges;
     }
+
     getNeighbors(vertexOrId) {
         const neighbors = [];
         const vertex = this.getVertex(vertexOrId);
@@ -237,6 +258,7 @@ export class DirectedGraph extends AbstractGraph {
         }
         return neighbors;
     }
+
     getEndsOfEdge(edge) {
         if (!this.containsEdge(edge.src, edge.dest)) {
             return null;
@@ -245,8 +267,7 @@ export class DirectedGraph extends AbstractGraph {
         const v2 = this.getVertex(edge.dest);
         if (v1 && v2) {
             return [v1, v2];
-        }
-        else {
+        } else {
             return null;
         }
     }

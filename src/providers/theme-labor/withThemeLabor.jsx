@@ -1,5 +1,6 @@
-import { useThemeLabor } from './useThemeLabor';
+import {useThemeLabor} from './useThemeLabor';
 import React from 'react';
+
 export function withThemeLabor(WrappedComponent) {
     // Try to create a nice displayName for React Dev Tools.
     const displayName = WrappedComponent.displayName || WrappedComponent.name || 'Component';

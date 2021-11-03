@@ -1,378 +1,378 @@
 {
-    "titleFormat": "ExpoReact兔子",
-    "sys": {
-        "navigationFallback": "导航回退...",
-        "failedToGetToken": "无法获得用于推送通知的Token！",
-        "mustUsePhysicalDevice": "必须使用真实设备推送通知",
-        "I18nProviderLoading": "语言国际化组件加载中",
-        "AuthLaborProviderLoading": "用户授权组件加载中",
-        "ThemeProviderLoading": "主题组件加载中",
-        "apiNeedLogin": "需要登录",
-        "loginSuccess": "登录成功",
-        "LogOutSuccess": "已退出登录",
-        "canceledRequest": "请求已取消",
-        "loadingData": "数据加载中..."
+  "titleFormat": "ExpoReact兔子",
+  "sys": {
+    "navigationFallback": "导航回退...",
+    "failedToGetToken": "无法获得用于推送通知的Token！",
+    "mustUsePhysicalDevice": "必须使用真实设备推送通知",
+    "I18nProviderLoading": "语言国际化组件加载中",
+    "AuthLaborProviderLoading": "用户授权组件加载中",
+    "ThemeProviderLoading": "主题组件加载中",
+    "apiNeedLogin": "需要登录",
+    "loginSuccess": "登录成功",
+    "LogOutSuccess": "已退出登录",
+    "canceledRequest": "请求已取消",
+    "loadingData": "数据加载中..."
+  },
+  "dictionary": {
+    "BTC": "比特币",
+    "ETH": "以太坊",
+    "1d": "1天",
+    "1w": "1周",
+    "1m": "1个月",
+    "1y": "1年",
+    "Beautiful": "标准",
+    "RGB": "RGB",
+    "Hex": "Hex",
+    "HSL": "HSL",
+    "email": "邮箱",
+    "phone": "手机"
+  },
+  "placeholders": {
+    "email": "abc@gmail.com",
+    "password": "password",
+    "phone": "+1 012 245 6789",
+    "otp": "123456"
+  },
+  "screens": {
+    "Home": {
+      "title": "首页",
+      "navAndRoute": "导航&路由",
+      "redux": "Redux",
+      "nativeCapabilities": "原生功能",
+      "componentsAndThemes": "组件&主题",
+      "devTools": "开发工具",
+      "others": "其他",
+      "apps": "Apps",
+      "system": "系统",
+      "profile": "我的",
+      "demoModal": "模态框",
+      "route": "路由参数",
+      "tab": "底部导航",
+      "drawer": "抽屉导航",
+      "nestedNavigation": "《嵌套-Lv0-首页》（默认到《嵌套-Lv1-首页》）",
+      "passParamsFromRootToLeaf": "根节点到叶子节点传参",
+      "passParamsFromRootToLeafTab": "根节点到叶子节点（底部导航）",
+      "FCReduxHook": "函数组件 Redux Hooks",
+      "thunkCC": "类组件 Thunk",
+      "saga": "Redux Saga",
+      "sagaFirebase": "Redux Saga Firebase",
+      "map": "地图",
+      "chat": "聊天",
+      "share": "分享",
+      "notification": "推送消息",
+      "thirdPart": "第三方组件",
+      "componentCollection": "组件合集",
+      "RNAllInOne": "所有RN组件",
+      "demoTheme": "样例-主题",
+      "demoSuspense": "样例-Suspense",
+      "cryptoCurrency": "加密币",
+      "socialMedia": "社交媒体",
+      "demoSearch": "示例-搜索",
+      "colorFinder": "颜色查找器",
+      "playground": "游乐场",
+      "algorithm": "算法",
+      "demoHealth": "健身",
+      "iconTools": "图标工具",
+      "demoDating": "交友",
+      "settings": "设置",
+      "logOut": "注销"
     },
-    "dictionary": {
-        "BTC": "比特币",
-        "ETH": "以太坊",
-        "1d": "1天",
-        "1w": "1周",
-        "1m": "1个月",
-        "1y": "1年",
-        "Beautiful": "标准",
-        "RGB": "RGB",
-        "Hex": "Hex",
-        "HSL": "HSL",
-        "email": "邮箱",
-        "phone": "手机"
+    "Profile": {
+      "title": "我的",
+      "profileScreenId": "个人资料id: ",
+      "goToHomeScreen": "返回首页",
+      "email": "邮箱: "
     },
-    "placeholders": {
-        "email": "abc@gmail.com",
-        "password": "password",
-        "phone": "+1 012 245 6789",
-        "otp": "123456"
+    "DemoModal": {
+      "title": "模态框"
     },
-    "screens": {
-        "Home": {
-            "title": "首页",
-            "navAndRoute": "导航&路由",
-            "redux": "Redux",
-            "nativeCapabilities": "原生功能",
-            "componentsAndThemes": "组件&主题",
-            "devTools": "开发工具",
-            "others": "其他",
-            "apps": "Apps",
-            "system": "系统",
-            "profile": "我的",
-            "demoModal": "模态框",
-            "route": "路由参数",
-            "tab": "底部导航",
-            "drawer": "抽屉导航",
-            "nestedNavigation": "《嵌套-Lv0-首页》（默认到《嵌套-Lv1-首页》）",
-            "passParamsFromRootToLeaf": "根节点到叶子节点传参",
-            "passParamsFromRootToLeafTab": "根节点到叶子节点（底部导航）",
-            "FCReduxHook": "函数组件 Redux Hooks",
-            "thunkCC": "类组件 Thunk",
-            "saga": "Redux Saga",
-            "sagaFirebase": "Redux Saga Firebase",
-            "map": "地图",
-            "chat": "聊天",
-            "share": "分享",
-            "notification": "推送消息",
-            "thirdPart": "第三方组件",
-            "componentCollection": "组件合集",
-            "RNAllInOne": "所有RN组件",
-            "demoTheme": "样例-主题",
-            "demoSuspense": "样例-Suspense",
-            "cryptoCurrency": "加密币",
-            "socialMedia": "社交媒体",
-            "demoSearch": "示例-搜索",
-            "colorFinder": "颜色查找器",
-            "playground": "游乐场",
-            "algorithm": "算法",
-            "demoHealth": "健身",
-            "iconTools": "图标工具",
-            "demoDating": "交友",
-            "settings": "设置",
-            "logOut": "注销"
-        },
-        "Profile": {
-            "title": "我的",
-            "profileScreenId": "个人资料id: ",
-            "goToHomeScreen": "返回首页",
-            "email": "邮箱: "
-        },
-        "DemoModal": {
-            "title": "模态框"
-        },
-        "DemoFCReduxHook": {
-            "title": "样例-函数组件 & Redux & Hooks",
-            "dispatchSomething": "Dispatch点东西",
-            "order": "订单 :"
-        },
-        "DemoCollection": {
-            "title": "样例-合集",
-            "go": "走你",
-            "stop": "停止",
-            "btnRequest": "单击获取员工信息",
-            "functionComponent": "函数组件",
-            "classComponent": "类组件",
-            "lbRequest": "发出请求",
-            "iAmPure": "React.PureComponent",
-            "iAmRegular": "React.component",
-            "iHaveBeenRendered": "我被渲染了",
-            "renderedUnit": "次",
-            "placeholder": "Placeholder",
-            "tipLabel": "当前时间: "
-        },
-        "DemoRoute": {
-            "title": "样例-路由参数",
-            "paramId": "参数id: ",
-            "typeofId": "参数id类型: ",
-            "paramIsHuman": "参数isHuman: ",
-            "typeofIsHuman": "参数isHuman类型: ",
-            "paramSort": "参数sort: ",
-            "typeofSort": "参数sort类型: "
-        },
-        "DemoThirdPart": {
-            "title": "样例-第三方组件",
-            "buttonWithIcon": "带有图标的按钮"
-        },
-        "DemoThunkCC": {
-            "title": "样例-Thunk & 类组件",
-            "thunkDispatch": "Thunk 发送",
-            "text": "text: ",
-            "id": "id: "
-        },
-        "DemoSaga": {
-            "title": "样例-Saga"
-        },
-        "DemoSagaFirebase": {
-            "title": "样例-SagaFirebase",
-            "saveDemoSagaFirebaseTodo": "保存到Firebase"
-        },
-        "DemoMap": {
-            "title": "样例-地图"
-        },
-        "DemoChat": {
-            "title": "样例-聊天"
-        },
-        "ChatHome": {
-            "title": "聊天-首页"
-        },
-        "ChatRoom": {
-            "title": "聊天-聊天室"
-        },
-        "TestMap": {
-            "title": "测试-地图"
-        },
-        "DemoShare": {
-            "title": "样例-共享",
-            "shareMessage": "共享文字",
-            "pressButtonTip": "按下下面的按钮 !",
-            "message": "React Bunny给你分享了一些东西",
-            "permissionNotGranted": "访问未被同意!",
-            "notAvailable": "哦，你的平台不支持分享功能",
-            "pickAPhoto": "选一张照片"
-        },
-        "DemoNotification": {
-            "title": "样例-推送",
-            "scheduleNotification": "点击发送推送通知"
-        },
-        "Auth": {
-            "title": "登录",
-            "login": "登录",
-            "signUp": "注册",
-            "dummyLogin": "假登录",
-            "googleLogin": "谷歌登录",
-            "facebookLogin": "脸书登录",
-            "goToSignUp": "去注册",
-            "goToLogin": "去登录",
-            "username": "用户名",
-            "email": "邮箱",
-            "password": "密码",
-            "enterPhoneNumber": "输入手机号",
-            "enterVerificationCode": "输入验证码",
-            "resetPassword": "重置密码",
-            "send": "发送",
-            "resend": "重发",
-            "otpSentSuccess": "验证码已发送至您手机",
-            "verificationCode": "验证码",
-            "firebaseConfirmOTP": "验证&登录",
-            "checkYourEmail": "重置密码邮件已发送"
-        },
-        "Login": {
-            "title": "登录"
-        },
-        "SignUp": {
-            "title": "注册"
-        },
-        "DemoTab": {
-            "title": "样例-选项卡"
-        },
-        "TabHome": {
-            "title": "选项卡-首页"
-        },
-        "TabSettings": {
-            "title": "选项卡-设置"
-        },
-        "DemoDrawer": {
-            "title": "样例-抽屉"
-        },
-        "DrawerHome": {
-            "title": "抽屉-首页"
-        },
-        "DrawerSettings": {
-            "title": "抽屉-设置"
-        },
-        "DemoNestedLv0": {
-            "title": "嵌套-Lv0"
-        },
-        "NestedLv1Home": {
-            "title": "嵌套-Lv1-首页",
-            "goToNestedLv1Settings": "跳转到《嵌套-Lv1-设置》（默认《嵌套-Lv2-首页》）"
-        },
-        "NestedLv1Settings": {
-            "title": "嵌套-Lv1-设置",
-            "goToNestedHome": "跳转到《嵌套-Lv1-首页》"
-        },
-        "NestedLv2Home": {
-            "title": "嵌套-Lv2-首页",
-            "goToNestedLv2Settings": "跳转到《嵌套-Lv2-设置》"
-        },
-        "NestedLv2Settings": {
-            "title": "嵌套-Lv2-设置",
-            "goToNestedLv2Home": "跳转到《嵌套-Lv2-首页》"
-        },
-        "DemoRNComponents": {
-            "title": "样例-RN组件"
-        },
-        "RNHome": {
-            "title": "RN组件-首页",
-            "btnAccessibility": "辅助功能按钮",
-            "pressMe": "按我",
-            "pressed": "按下 !",
-            "hideModal": "隐藏模态框",
-            "showModal": "显示模态框",
-            "touchHere": "触摸此处",
-            "pressHere": "按下此处",
-            "toggleStatusBar": "切换StatusBar",
-            "changeStatusBarStyle": "更改StatusBar样式",
-            "lbAccessibility": "辅助功能标签（VoiceOver 将读取此字符串）",
-            "xOnPress": "X 按压",
-            "onPress": "按压",
-            "modalClosed": "模态框已关闭。",
-            "helloWorld": "你好",
-            "uselessPlaceholder": "无用placeholder",
-            "count": "计数: "
-        },
-        "RNSectionList": {
-            "title": "RNSectionList"
-        },
-        "RNFlatList": {
-            "title": "RNFlatList"
-        },
-        "RNNoKeyboard": {
-            "title": "RNNoKeyboard"
-        },
-        "RNSafeArea": {
-            "title": "RNSafeArea"
-        },
-        "RNVirtualizedList": {
-            "title": "RN无限下拉列表"
-        },
-        "DemoCryptoCurrency": {
-            "title": "样例-加密币"
-        },
-        "CryptoCurrencyHome": {
-            "title": "加密币-首页"
-        },
-        "CryptoCurrencyAlert": {
-            "title": "加密币-闹钟",
-            "paramIsPush": "参数isPush: ",
-            "scheduleNotification": "点击发送推送通知",
-            "failedToGetToken": "无法获得用于推送的Token！",
-            "mustUsePhysicalDevice": "必须使用真实设备进行推送",
-            "saveAlertSetting": "保存闹钟设置",
-            "saveQuickSettings": "保存",
-            "cancelAlertSettings": "取消",
-            "granularity": "波动范围",
-            "remindTimesLabel": "提醒次数",
-            "remindIntervalLabel": "提醒周期",
-            "currentPriceLabel": "当前价格"
-        },
-        "DemoSocialMedia": {
-            "title": "示例-Social Media"
-        },
-        "SocialMediaHome": {
-            "title": "Social Media-主页"
-        },
-        "SocialMediaSearch": {
-            "title": "Social Media-搜索"
-        },
-        "SocialMediaSettings": {
-            "title": "Social Media-设置"
-        },
-        "DemoSearch": {
-            "title": "示例-搜索"
-        },
-        "Playground": {
-            "title": "游乐场"
-        },
-        "Algorithm": {
-            "title": "算法"
-        },
-        "ColorFinder": {
-            "title": "颜色查找器",
-            "colorInput": "输入颜色",
-            "findSimilarColors": "查找相近颜色",
-            "inputAColorString": "颜色字符串",
-            "similarColorFromPalette": "调色板（palette）中的相近色",
-            "similarColorsFromThemes": "主题（themes）中的相近色"
-        },
-        "DemoHealth": {
-            "title": "示例-健身"
-        },
-        "HealthHome": {
-            "title": "健身-首页"
-        },
-        "HealthSettings": {
-            "title": "健身-设置"
-        },
-        "DemoDating": {
-            "title": "示例-交友"
-        },
-        "DatingHome": {
-            "title": "交友-首页"
-        },
-        "DatingChat": {
-            "title": "交友-聊天"
-        },
-        "DatingSettings": {
-            "title": "交友-设置"
-        },
-        "IconTools": {
-            "title": "图标工具",
-            "generateIcoMoonConfigTitle": "生成IcoMoon配置",
-            "icoMoonConfigPath": "src/assets/fonts/icomoon-cus/icomoon.json",
-            "copyTip": "点击文本，然后粘贴到如下文件",
-            "generate": "生成"
-        },
-        "Settings": {
-            "title": "设置",
-            "darkTheme": "暗色主题",
-            "changeTheme": "切换主题",
-            "language": "语言",
-            "changeLanguage": "切换语言",
-            "rightToLeft": "右至左"
-        },
-        "DemoSuspense": {
-            "title": "样例-Suspense",
-            "lazyComponentTitle": "我迟到了，但只会迟到一次，请多包涵",
-            "noSupporting": "SSR不支持React.lazy或者Suspense"
-        },
-        "DemoTheme": {
-            "title": "样例-主题",
-            "btnCustom": "RN按钮",
-            "btnFromPaper": "RNE按钮",
-            "demoShadow": "阴影样式，兼容安卓",
-            "demoButton": "按钮",
-            "demoButtonSec": "按钮（次要）",
-            "demoButtonDisabled": "按钮（未启用）",
-            "demoButtonThemedRNE": "来自RNE的带有主题功能的按钮",
-            "demoText": "文本",
-            "demoTextSec": "文本（次要）",
-            "demoTitle": "标题",
-            "demoTitleSec": "标题（次要）",
-            "demoCaption": "字幕",
-            "demoCaptionSec": "字幕（次要）",
-            "demoParagraph": "段落",
-            "demoParagraphSec": "段落（次要）",
-            "demoSurface": "表面",
-            "demoSurfaceSec": "表面（次要）"
-        }
+    "DemoFCReduxHook": {
+      "title": "样例-函数组件 & Redux & Hooks",
+      "dispatchSomething": "Dispatch点东西",
+      "order": "订单 :"
     },
-    "CFBundleDisplayName": "ExpoReact兔子",
-    "NSContactsUsageDescription": "中文NSContactsUsageDescription"
+    "DemoCollection": {
+      "title": "样例-合集",
+      "go": "走你",
+      "stop": "停止",
+      "btnRequest": "单击获取员工信息",
+      "functionComponent": "函数组件",
+      "classComponent": "类组件",
+      "lbRequest": "发出请求",
+      "iAmPure": "React.PureComponent",
+      "iAmRegular": "React.component",
+      "iHaveBeenRendered": "我被渲染了",
+      "renderedUnit": "次",
+      "placeholder": "Placeholder",
+      "tipLabel": "当前时间: "
+    },
+    "DemoRoute": {
+      "title": "样例-路由参数",
+      "paramId": "参数id: ",
+      "typeofId": "参数id类型: ",
+      "paramIsHuman": "参数isHuman: ",
+      "typeofIsHuman": "参数isHuman类型: ",
+      "paramSort": "参数sort: ",
+      "typeofSort": "参数sort类型: "
+    },
+    "DemoThirdPart": {
+      "title": "样例-第三方组件",
+      "buttonWithIcon": "带有图标的按钮"
+    },
+    "DemoThunkCC": {
+      "title": "样例-Thunk & 类组件",
+      "thunkDispatch": "Thunk 发送",
+      "text": "text: ",
+      "id": "id: "
+    },
+    "DemoSaga": {
+      "title": "样例-Saga"
+    },
+    "DemoSagaFirebase": {
+      "title": "样例-SagaFirebase",
+      "saveDemoSagaFirebaseTodo": "保存到Firebase"
+    },
+    "DemoMap": {
+      "title": "样例-地图"
+    },
+    "DemoChat": {
+      "title": "样例-聊天"
+    },
+    "ChatHome": {
+      "title": "聊天-首页"
+    },
+    "ChatRoom": {
+      "title": "聊天-聊天室"
+    },
+    "TestMap": {
+      "title": "测试-地图"
+    },
+    "DemoShare": {
+      "title": "样例-共享",
+      "shareMessage": "共享文字",
+      "pressButtonTip": "按下下面的按钮 !",
+      "message": "React Bunny给你分享了一些东西",
+      "permissionNotGranted": "访问未被同意!",
+      "notAvailable": "哦，你的平台不支持分享功能",
+      "pickAPhoto": "选一张照片"
+    },
+    "DemoNotification": {
+      "title": "样例-推送",
+      "scheduleNotification": "点击发送推送通知"
+    },
+    "Auth": {
+      "title": "登录",
+      "login": "登录",
+      "signUp": "注册",
+      "dummyLogin": "假登录",
+      "googleLogin": "谷歌登录",
+      "facebookLogin": "脸书登录",
+      "goToSignUp": "去注册",
+      "goToLogin": "去登录",
+      "username": "用户名",
+      "email": "邮箱",
+      "password": "密码",
+      "enterPhoneNumber": "输入手机号",
+      "enterVerificationCode": "输入验证码",
+      "resetPassword": "重置密码",
+      "send": "发送",
+      "resend": "重发",
+      "otpSentSuccess": "验证码已发送至您手机",
+      "verificationCode": "验证码",
+      "firebaseConfirmOTP": "验证&登录",
+      "checkYourEmail": "重置密码邮件已发送"
+    },
+    "Login": {
+      "title": "登录"
+    },
+    "SignUp": {
+      "title": "注册"
+    },
+    "DemoTab": {
+      "title": "样例-选项卡"
+    },
+    "TabHome": {
+      "title": "选项卡-首页"
+    },
+    "TabSettings": {
+      "title": "选项卡-设置"
+    },
+    "DemoDrawer": {
+      "title": "样例-抽屉"
+    },
+    "DrawerHome": {
+      "title": "抽屉-首页"
+    },
+    "DrawerSettings": {
+      "title": "抽屉-设置"
+    },
+    "DemoNestedLv0": {
+      "title": "嵌套-Lv0"
+    },
+    "NestedLv1Home": {
+      "title": "嵌套-Lv1-首页",
+      "goToNestedLv1Settings": "跳转到《嵌套-Lv1-设置》（默认《嵌套-Lv2-首页》）"
+    },
+    "NestedLv1Settings": {
+      "title": "嵌套-Lv1-设置",
+      "goToNestedHome": "跳转到《嵌套-Lv1-首页》"
+    },
+    "NestedLv2Home": {
+      "title": "嵌套-Lv2-首页",
+      "goToNestedLv2Settings": "跳转到《嵌套-Lv2-设置》"
+    },
+    "NestedLv2Settings": {
+      "title": "嵌套-Lv2-设置",
+      "goToNestedLv2Home": "跳转到《嵌套-Lv2-首页》"
+    },
+    "DemoRNComponents": {
+      "title": "样例-RN组件"
+    },
+    "RNHome": {
+      "title": "RN组件-首页",
+      "btnAccessibility": "辅助功能按钮",
+      "pressMe": "按我",
+      "pressed": "按下 !",
+      "hideModal": "隐藏模态框",
+      "showModal": "显示模态框",
+      "touchHere": "触摸此处",
+      "pressHere": "按下此处",
+      "toggleStatusBar": "切换StatusBar",
+      "changeStatusBarStyle": "更改StatusBar样式",
+      "lbAccessibility": "辅助功能标签（VoiceOver 将读取此字符串）",
+      "xOnPress": "X 按压",
+      "onPress": "按压",
+      "modalClosed": "模态框已关闭。",
+      "helloWorld": "你好",
+      "uselessPlaceholder": "无用placeholder",
+      "count": "计数: "
+    },
+    "RNSectionList": {
+      "title": "RNSectionList"
+    },
+    "RNFlatList": {
+      "title": "RNFlatList"
+    },
+    "RNNoKeyboard": {
+      "title": "RNNoKeyboard"
+    },
+    "RNSafeArea": {
+      "title": "RNSafeArea"
+    },
+    "RNVirtualizedList": {
+      "title": "RN无限下拉列表"
+    },
+    "DemoCryptoCurrency": {
+      "title": "样例-加密币"
+    },
+    "CryptoCurrencyHome": {
+      "title": "加密币-首页"
+    },
+    "CryptoCurrencyAlert": {
+      "title": "加密币-闹钟",
+      "paramIsPush": "参数isPush: ",
+      "scheduleNotification": "点击发送推送通知",
+      "failedToGetToken": "无法获得用于推送的Token！",
+      "mustUsePhysicalDevice": "必须使用真实设备进行推送",
+      "saveAlertSetting": "保存闹钟设置",
+      "saveQuickSettings": "保存",
+      "cancelAlertSettings": "取消",
+      "granularity": "波动范围",
+      "remindTimesLabel": "提醒次数",
+      "remindIntervalLabel": "提醒周期",
+      "currentPriceLabel": "当前价格"
+    },
+    "DemoSocialMedia": {
+      "title": "示例-Social Media"
+    },
+    "SocialMediaHome": {
+      "title": "Social Media-主页"
+    },
+    "SocialMediaSearch": {
+      "title": "Social Media-搜索"
+    },
+    "SocialMediaSettings": {
+      "title": "Social Media-设置"
+    },
+    "DemoSearch": {
+      "title": "示例-搜索"
+    },
+    "Playground": {
+      "title": "游乐场"
+    },
+    "Algorithm": {
+      "title": "算法"
+    },
+    "ColorFinder": {
+      "title": "颜色查找器",
+      "colorInput": "输入颜色",
+      "findSimilarColors": "查找相近颜色",
+      "inputAColorString": "颜色字符串",
+      "similarColorFromPalette": "调色板（palette）中的相近色",
+      "similarColorsFromThemes": "主题（themes）中的相近色"
+    },
+    "DemoHealth": {
+      "title": "示例-健身"
+    },
+    "HealthHome": {
+      "title": "健身-首页"
+    },
+    "HealthSettings": {
+      "title": "健身-设置"
+    },
+    "DemoDating": {
+      "title": "示例-交友"
+    },
+    "DatingHome": {
+      "title": "交友-首页"
+    },
+    "DatingChat": {
+      "title": "交友-聊天"
+    },
+    "DatingSettings": {
+      "title": "交友-设置"
+    },
+    "IconTools": {
+      "title": "图标工具",
+      "generateIcoMoonConfigTitle": "生成IcoMoon配置",
+      "icoMoonConfigPath": "src/assets/fonts/icomoon-cus/icomoon.json",
+      "copyTip": "点击文本，然后粘贴到如下文件",
+      "generate": "生成"
+    },
+    "Settings": {
+      "title": "设置",
+      "darkTheme": "暗色主题",
+      "changeTheme": "切换主题",
+      "language": "语言",
+      "changeLanguage": "切换语言",
+      "rightToLeft": "右至左"
+    },
+    "DemoSuspense": {
+      "title": "样例-Suspense",
+      "lazyComponentTitle": "我迟到了，但只会迟到一次，请多包涵",
+      "noSupporting": "SSR不支持React.lazy或者Suspense"
+    },
+    "DemoTheme": {
+      "title": "样例-主题",
+      "btnCustom": "RN按钮",
+      "btnFromPaper": "RNE按钮",
+      "demoShadow": "阴影样式，兼容安卓",
+      "demoButton": "按钮",
+      "demoButtonSec": "按钮（次要）",
+      "demoButtonDisabled": "按钮（未启用）",
+      "demoButtonThemedRNE": "来自RNE的带有主题功能的按钮",
+      "demoText": "文本",
+      "demoTextSec": "文本（次要）",
+      "demoTitle": "标题",
+      "demoTitleSec": "标题（次要）",
+      "demoCaption": "字幕",
+      "demoCaptionSec": "字幕（次要）",
+      "demoParagraph": "段落",
+      "demoParagraphSec": "段落（次要）",
+      "demoSurface": "表面",
+      "demoSurfaceSec": "表面（次要）"
+    }
+  },
+  "CFBundleDisplayName": "ExpoReact兔子",
+  "NSContactsUsageDescription": "中文NSContactsUsageDescription"
 }

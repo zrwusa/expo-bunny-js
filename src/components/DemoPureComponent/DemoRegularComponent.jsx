@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
-import { Text, View } from '../UI';
-import { getStyles } from './styles';
-import { SizeLaborContext } from '../../providers/size-labor';
-import { ThemeLaborContext } from '../../providers/theme-labor';
+import React, {Component} from 'react';
+import {Text, View} from '../UI';
+import {getStyles} from './styles';
+import {SizeLaborContext} from '../../providers/size-labor';
+import {ThemeLaborContext} from '../../providers/theme-labor';
+
 // PureComponent ensures rendering just from props or contexts changing.Not rendered by parent component
 export class DemoRegularComponent extends Component {
     constructor(props) {
@@ -10,23 +11,24 @@ export class DemoRegularComponent extends Component {
         // SizeLaborContent and SizeLaborProvider to pass content
         this.count = 0;
     }
+
     render() {
-        const { title, labelBeenRendered, labelRenderedUnit } = this.props;
+        const {title, labelBeenRendered, labelRenderedUnit} = this.props;
         // this.context is from the SizeLaborProvider
         this.count++;
         return (<SizeLaborContext.Consumer>
-                {(sizeLabor) => {
+            {(sizeLabor) => {
                 return (<ThemeLaborContext.Consumer>
-                            {(theme) => {
+                    {(theme) => {
                         const styles = getStyles(sizeLabor, theme);
                         return <View>
-                                    <Text>{title}</Text>
-                                    <View style={styles.demoSizeLabor}/>
-                                    <Text>{labelBeenRendered} {this.count} {labelRenderedUnit}</Text>
-                                </View>;
+                            <Text>{title}</Text>
+                            <View style={styles.demoSizeLabor}/>
+                            <Text>{labelBeenRendered} {this.count} {labelRenderedUnit}</Text>
+                        </View>;
                     }}
-                        </ThemeLaborContext.Consumer>);
+                </ThemeLaborContext.Consumer>);
             }}
-            </SizeLaborContext.Consumer>);
+        </SizeLaborContext.Consumer>);
     }
 }

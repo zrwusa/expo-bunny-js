@@ -1,27 +1,33 @@
-import { arrayRemove } from '../../utils';
-import { AbstractEdge, AbstractGraph, AbstractVertex } from './abstract-graph';
+import {arrayRemove} from '../../utils';
+import {AbstractEdge, AbstractGraph, AbstractVertex} from './abstract-graph';
+
 export class UndirectedVertex extends AbstractVertex {
     constructor(id) {
         super(id);
     }
 }
+
 export class UndirectedEdge extends AbstractEdge {
     constructor(v1, v2, weight) {
         super(weight);
         this._vertices = [v1, v2];
     }
+
     get vertices() {
         return this._vertices;
     }
+
     set vertices(v) {
         this._vertices = v;
     }
 }
+
 export class UndirectedGraph extends AbstractGraph {
     constructor() {
         super();
         this._edges = new Map();
     }
+
     getEdge(v1, v2) {
         let edges = [];
         if (v1 !== null && v2 !== null) {
@@ -33,6 +39,7 @@ export class UndirectedGraph extends AbstractGraph {
         }
         return edges ? edges[0] || null : null;
     }
+
     addEdge(edge) {
         for (let end of edge.vertices) {
             const endVertex = this.getVertex(end);
@@ -42,14 +49,14 @@ export class UndirectedGraph extends AbstractGraph {
                 const edges = this._edges.get(endVertex);
                 if (edges) {
                     edges.push(edge);
-                }
-                else {
+                } else {
                     this._edges.set(endVertex, [edge]);
                 }
             }
         }
         return true;
     }
+
     removeEdgeBetween(v1, v2) {
         const vertex1 = this.getVertex(v1);
         const vertex2 = this.getVertex(v2);
@@ -67,27 +74,29 @@ export class UndirectedGraph extends AbstractGraph {
         }
         return removed;
     }
+
     removeEdge(edge) {
         return this.removeEdgeBetween(edge.vertices[0], edge.vertices[1]);
     }
+
     degreeOf(vertexOrId) {
         const vertex = this.getVertex(vertexOrId);
         if (vertex) {
             return this._edges.get(vertex)?.length || 0;
-        }
-        else {
+        } else {
             return 0;
         }
     }
+
     edgesOf(vertexOrId) {
         const vertex = this.getVertex(vertexOrId);
         if (vertex) {
             return this._edges.get(vertex) || [];
-        }
-        else {
+        } else {
             return [];
         }
     }
+
     edgeSet() {
         const edgeSet = new Set();
         this._edges.forEach(edges => {
@@ -97,6 +106,7 @@ export class UndirectedGraph extends AbstractGraph {
         });
         return [...edgeSet];
     }
+
     getEdgesOf(vertexOrId) {
         const vertex = this.getVertex(vertexOrId);
         if (!vertex) {
@@ -104,6 +114,7 @@ export class UndirectedGraph extends AbstractGraph {
         }
         return this._edges.get(vertex) || [];
     }
+
     getNeighbors(vertexOrId) {
         const neighbors = [];
         const vertex = this.getVertex(vertexOrId);
@@ -116,6 +127,7 @@ export class UndirectedGraph extends AbstractGraph {
         }
         return neighbors;
     }
+
     getEndsOfEdge(edge) {
         if (!this.containsEdge(edge.vertices[0], edge.vertices[1])) {
             return null;
@@ -124,8 +136,7 @@ export class UndirectedGraph extends AbstractGraph {
         const v2 = this.getVertex(edge.vertices[1]);
         if (v1 && v2) {
             return [v1, v2];
-        }
-        else {
+        } else {
             return null;
         }
     }

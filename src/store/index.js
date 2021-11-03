@@ -1,11 +1,20 @@
-import { applyMiddleware, combineReducers, createStore } from 'redux';
+import {applyMiddleware, combineReducers, createStore} from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import createSagaMiddleware from 'redux-saga';
-import { blStateReducer, demoCryptoCurrencyReducer, demoHelloStateReducer, demoMapStateReducer, demoSagaReducer, demoThunkStateReducer, sysStateReducer } from './reducers';
-import { sagasGenerator } from './sagas';
-import { firebase } from '../firebase/firebase';
-import { firebaseReducer } from 'react-redux-firebase';
-import { createFirestoreInstance, firestoreReducer } from 'redux-firestore';
+import {
+    blStateReducer,
+    demoCryptoCurrencyReducer,
+    demoHelloStateReducer,
+    demoMapStateReducer,
+    demoSagaReducer,
+    demoThunkStateReducer,
+    sysStateReducer
+} from './reducers';
+import {sagasGenerator} from './sagas';
+import {firebase} from '../firebase/firebase';
+import {firebaseReducer} from 'react-redux-firebase';
+import {createFirestoreInstance, firestoreReducer} from 'redux-firestore';
+
 const rootReducer = combineReducers({
     demoHelloState: demoHelloStateReducer,
     demoThunkState: demoThunkStateReducer,

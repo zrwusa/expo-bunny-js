@@ -1,10 +1,11 @@
 import React from 'react';
-import { Platform, StyleSheet, TextInput } from 'react-native';
-import { DEFAULT_PLACEHOLDER, MIN_COMPOSER_HEIGHT } from './Constant';
-import { withBunnyKit } from '../../hooks/bunny-kit';
+import {Platform, StyleSheet, TextInput} from 'react-native';
+import {DEFAULT_PLACEHOLDER, MIN_COMPOSER_HEIGHT} from './Constant';
+import {withBunnyKit} from '../../hooks/bunny-kit';
+
 const getStyles = (sizeLabor, themeLabor) => {
-    const { wp } = sizeLabor.designsBasedOn.iphoneX;
-    const { theme: { colors } } = themeLabor;
+    const {wp} = sizeLabor.designsBasedOn.iphoneX;
+    const {theme: {colors}} = themeLabor;
     return StyleSheet.create({
         textInput: {
             flex: 1,
@@ -31,12 +32,13 @@ const getStyles = (sizeLabor, themeLabor) => {
         },
     });
 };
+
 class Composer extends React.Component {
     constructor() {
         super(...arguments);
         this.layout = undefined;
         this.onLayout = (e) => {
-            const { layout } = e.nativeEvent;
+            const {layout} = e.nativeEvent;
             // Support earlier versions of React Native on Android.
             if (!layout) {
                 return;
@@ -54,26 +56,33 @@ class Composer extends React.Component {
             this.props.onTextChanged(text);
         };
     }
+
     render() {
-        const { bunnyKit: { sizeLabor, themeLabor, colors } } = this.props;
+        const {bunnyKit: {sizeLabor, themeLabor, colors}} = this.props;
         const styles = getStyles(sizeLabor, themeLabor);
-        const { placeholderTextColor = colors.placeholder } = this.props;
-        return (<TextInput testID={this.props.placeholder} accessible accessibilityLabel={this.props.placeholder} placeholder={this.props.placeholder} placeholderTextColor={placeholderTextColor} multiline={this.props.multiline} editable={!this.props.disableComposer} onLayout={this.onLayout} onChangeText={this.onChangeText} style={[
-                styles.textInput,
-                this.props.textInputStyle,
-                {
-                    height: this.props.composerHeight,
-                    ...Platform.select({
-                        web: {
-                            outlineWidth: 0,
-                            outlineColor: 'transparent',
-                            outlineOffset: 0,
-                        },
-                    }),
-                },
-            ]} autoFocus={this.props.textInputAutoFocus} value={this.props.text} enablesReturnKeyAutomatically underlineColorAndroid='transparent' keyboardAppearance={this.props.keyboardAppearance} {...this.props.textInputProps}/>);
+        const {placeholderTextColor = colors.placeholder} = this.props;
+        return (<TextInput testID={this.props.placeholder} accessible accessibilityLabel={this.props.placeholder}
+                           placeholder={this.props.placeholder} placeholderTextColor={placeholderTextColor}
+                           multiline={this.props.multiline} editable={!this.props.disableComposer}
+                           onLayout={this.onLayout} onChangeText={this.onChangeText} style={[
+            styles.textInput,
+            this.props.textInputStyle,
+            {
+                height: this.props.composerHeight,
+                ...Platform.select({
+                    web: {
+                        outlineWidth: 0,
+                        outlineColor: 'transparent',
+                        outlineOffset: 0,
+                    },
+                }),
+            },
+        ]} autoFocus={this.props.textInputAutoFocus} value={this.props.text} enablesReturnKeyAutomatically
+                           underlineColorAndroid="transparent"
+                           keyboardAppearance={this.props.keyboardAppearance} {...this.props.textInputProps}/>);
     }
 }
+
 Composer.defaultProps = {
     composerHeight: MIN_COMPOSER_HEIGHT,
     text: '',

@@ -1,7 +1,8 @@
-import { EDemoSaga } from '../../constants';
+import {EDemoSaga} from '../../constants';
+
 export function demoSagaReducer(prevState = {
     items: [],
-}, { type, payload }) {
+}, {type, payload}) {
     switch (type) {
         case EDemoSaga.RECEIVE_GET_DEMO_SAGAS:
             const payloadNow = payload;

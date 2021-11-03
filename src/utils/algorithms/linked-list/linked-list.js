@@ -7,8 +7,9 @@
 // 147	Insertion Sort List	★★★								insertion sort
 // 148	Sort List	★★★★								merge sort O(1) space
 // 707	Design Linked List	★★★★
-import { DeepProxy } from '@qiwi/deep-proxy';
-import { wait } from '../../utils';
+import {DeepProxy} from '@qiwi/deep-proxy';
+import {wait} from '../../utils';
+
 export async function reverseLinkedList(head, proxyHandler) {
     let pre = null;
     let variables = {
@@ -24,4 +25,5 @@ export async function reverseLinkedList(head, proxyHandler) {
     }
     return pre;
 }
+
 /* --- end Linked List ---*/

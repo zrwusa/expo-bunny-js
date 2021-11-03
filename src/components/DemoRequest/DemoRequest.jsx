@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import { ButtonTO, InButtonText, Text, View } from '../UI';
-import { useRequest } from '../../providers/request-labor';
-import { useDispatch } from 'react-redux';
-import { saveQuickAlertSettings, sysError } from '../../store/actions';
+import React, {useState} from 'react';
+import {ButtonTO, InButtonText, Text, View} from '../UI';
+import {useRequest} from '../../providers/request-labor';
+import {useDispatch} from 'react-redux';
+import {saveQuickAlertSettings, sysError} from '../../store/actions';
 import bunnyAPI from '../../helpers/bunny-api';
+
 function DemoRequest(props) {
     const request = useRequest();
     const dispatch = useDispatch();
@@ -12,16 +13,15 @@ function DemoRequest(props) {
     const expoPushToken = 'ExponentPushToken[oT1TDBCO7jtDytecDBmKWW]';
     const saveAlertSetting = async function () {
         try {
-            await request.post('/push-service/alert-settings', { toke: expoPushToken });
-        }
-        catch (err) {
+            await request.post('/push-service/alert-settings', {toke: expoPushToken});
+        } catch (err) {
         }
     };
     const handleSaveQuickAlertSettings = async function () {
         dispatch(saveQuickAlertSettings({
             token: expoPushToken,
             granularity,
-            reminder: { times: 3, interval: '1s' }
+            reminder: {times: 3, interval: '1s'}
         }));
     };
     // const cancelAlertSettings = async function () {
@@ -58,12 +58,11 @@ function DemoRequest(props) {
             // const btcDataMapped = timestamps.map((item: string, index: number) => {
             //     return {x: new Date(item), y: parseFloat(parseFloat(prices[index]).toFixed(2))}
             // })
-        }
-        catch (err) {
+        } catch (err) {
             dispatch(sysError(err.toString()));
         }
     };
-    const { buttonTitle } = props;
+    const {buttonTitle} = props;
     return (<View>
         <Text>{props.title}</Text>
         <ButtonTO onPress={async () => {
@@ -71,11 +70,12 @@ function DemoRequest(props) {
         }}><InButtonText>{buttonTitle}</InButtonText></ButtonTO>
         <View>
             {employees && employees.length > 0
-            ? employees.map((employee) => <Text key={employee._id}>
-                        {employee.email}
-                    </Text>) :
-            null}
+                ? employees.map((employee) => <Text key={employee._id}>
+                    {employee.email}
+                </Text>) :
+                null}
         </View>
     </View>);
 }
+
 export default DemoRequest;

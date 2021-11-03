@@ -1,9 +1,10 @@
 import React from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View, } from 'react-native';
-import { withBunnyKit } from '../../hooks/bunny-kit';
+import {Image, StyleSheet, Text, TouchableOpacity, View,} from 'react-native';
+import {withBunnyKit} from '../../hooks/bunny-kit';
+
 const getStyles = (sizeLabor, themeLabor) => {
-    const { wp } = sizeLabor.designsBasedOn.iphoneX;
-    const { theme: { colors } } = themeLabor;
+    const {wp} = sizeLabor.designsBasedOn.iphoneX;
+    const {theme: {colors}} = themeLabor;
     return StyleSheet.create({
         avatarStyle: {
             justifyContent: 'center',
@@ -23,13 +24,14 @@ const getStyles = (sizeLabor, themeLabor) => {
         },
     });
 };
+
 class BunnyAvatar extends React.Component {
     constructor() {
         super(...arguments);
         this.avatarName = undefined;
         this.avatarColor = undefined;
         this.handleOnPress = () => {
-            const { onPress, ...other } = this.props;
+            const {onPress, ...other} = this.props;
             if (this.props.onPress) {
                 this.props.onPress(other);
             }
@@ -37,16 +39,15 @@ class BunnyAvatar extends React.Component {
         this.handleOnLongPress = () => {
         };
     }
+
     setAvatarColor() {
         const userName = (this.props.user && this.props.user.name) || '';
         const name = userName.toUpperCase().split(' ');
         if (name.length === 1) {
             this.avatarName = `${name[0].charAt(0)}`;
-        }
-        else if (name.length > 1) {
+        } else if (name.length > 1) {
             this.avatarName = `${name[0].charAt(0)}${name[1].charAt(0)}`;
-        }
-        else {
+        } else {
             this.avatarName = '';
         }
         let sumChars = 0;
@@ -66,63 +67,67 @@ class BunnyAvatar extends React.Component {
         ];
         this.avatarColor = colors[sumChars % colors.length];
     }
+
     renderAvatar() {
-        const { user } = this.props;
+        const {user} = this.props;
         if (user) {
-            const { bunnyKit: { sizeLabor, themeLabor } } = this.props;
+            const {bunnyKit: {sizeLabor, themeLabor}} = this.props;
             const styles = getStyles(sizeLabor, themeLabor);
             if (typeof user.avatar === 'function') {
                 return user.avatar([styles.avatarStyle, this.props.avatarStyle]);
-            }
-            else if (typeof user.avatar === 'string') {
-                return (<Image source={{ uri: user.avatar }} style={[styles.avatarStyle, this.props.avatarStyle]}/>);
-            }
-            else if (typeof user.avatar === 'number') {
+            } else if (typeof user.avatar === 'string') {
+                return (<Image source={{uri: user.avatar}} style={[styles.avatarStyle, this.props.avatarStyle]}/>);
+            } else if (typeof user.avatar === 'number') {
                 return (<Image source={user.avatar} style={[styles.avatarStyle, this.props.avatarStyle]}/>);
             }
         }
         return null;
     }
+
     renderInitials() {
-        const { bunnyKit: { sizeLabor, themeLabor } } = this.props;
+        const {bunnyKit: {sizeLabor, themeLabor}} = this.props;
         const styles = getStyles(sizeLabor, themeLabor);
         return (<Text style={[styles.textStyle, this.props.textStyle]}>
-                {this.avatarName}
-            </Text>);
+            {this.avatarName}
+        </Text>);
     }
+
     render() {
-        const { bunnyKit: { sizeLabor, themeLabor } } = this.props;
+        const {bunnyKit: {sizeLabor, themeLabor}} = this.props;
         const styles = getStyles(sizeLabor, themeLabor);
         if (!this.props.user ||
             (!this.props.user.name && !this.props.user.avatar)) {
             // render placeholder
             return (<View style={[
-                    styles.avatarStyle,
-                    styles.avatarTransparent,
-                    this.props.avatarStyle,
-                ]} 
-            // @ts-ignore
-            accessibilityTraits='image'/>);
+                styles.avatarStyle,
+                styles.avatarTransparent,
+                this.props.avatarStyle,
+            ]}
+                // @ts-ignore
+                          accessibilityTraits="image"/>);
         }
         if (this.props.user.avatar) {
-            return (<TouchableOpacity disabled={!this.props.onPress} onPress={this.props.onPress} onLongPress={this.props.onLongPress} 
-            // @ts-ignore
-            accessibilityTraits='image'>
-                    {this.renderAvatar()}
-                </TouchableOpacity>);
+            return (<TouchableOpacity disabled={!this.props.onPress} onPress={this.props.onPress}
+                                      onLongPress={this.props.onLongPress}
+                // @ts-ignore
+                                      accessibilityTraits="image">
+                {this.renderAvatar()}
+            </TouchableOpacity>);
         }
         this.setAvatarColor();
-        return (<TouchableOpacity disabled={!this.props.onPress} onPress={this.props.onPress} onLongPress={this.props.onLongPress} style={[
-                styles.avatarStyle,
-                { backgroundColor: this.avatarColor },
-                this.props.avatarStyle,
-            ]} 
-        // @ts-ignore
-        accessibilityTraits='image'>
-                {this.renderInitials()}
-            </TouchableOpacity>);
+        return (<TouchableOpacity disabled={!this.props.onPress} onPress={this.props.onPress}
+                                  onLongPress={this.props.onLongPress} style={[
+            styles.avatarStyle,
+            {backgroundColor: this.avatarColor},
+            this.props.avatarStyle,
+        ]}
+            // @ts-ignore
+                                  accessibilityTraits="image">
+            {this.renderInitials()}
+        </TouchableOpacity>);
     }
 }
+
 BunnyAvatar.defaultProps = {
     user: undefined,
     onPress: undefined,

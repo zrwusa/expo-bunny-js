@@ -1,8 +1,9 @@
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
+
 export const getStyles = (sizeLabor, themeLabor) => {
-    const { ms, designsBasedOn } = sizeLabor;
-    const { wp, hp } = designsBasedOn.iphoneX;
-    const { colors, fonts } = themeLabor.theme;
+    const {ms, designsBasedOn} = sizeLabor;
+    const {wp, hp} = designsBasedOn.iphoneX;
+    const {colors, fonts} = themeLabor.theme;
     return StyleSheet.create({
         card: {
             flexDirection: 'row',
@@ -11,7 +12,7 @@ export const getStyles = (sizeLabor, themeLabor) => {
             paddingLeft: wp(6),
             paddingRight: wp(16)
         },
-        header: { flexDirection: 'row', alignItems: 'center' },
+        header: {flexDirection: 'row', alignItems: 'center'},
         headerLeft: {
             marginRight: wp(5),
             // width: wp(28),
@@ -28,8 +29,8 @@ export const getStyles = (sizeLabor, themeLabor) => {
         //     borderColor: colors.buttonText,
         //     borderWidth: wp(1)
         // },
-        headerLeftUser: { fontSize: ms.fs.s, lineHeight: ms.fs.s, color: colors.text },
-        headerRightText: { fontSize: ms.fs.l, color: colors.text },
+        headerLeftUser: {fontSize: ms.fs.s, lineHeight: ms.fs.s, color: colors.text},
+        headerRightText: {fontSize: ms.fs.l, color: colors.text},
         image: {
             alignSelf: 'center',
             width: wp(373),
@@ -41,9 +42,9 @@ export const getStyles = (sizeLabor, themeLabor) => {
             paddingVertical: wp(10),
             justifyContent: 'space-between'
         },
-        bottomBarLeft: { flexDirection: 'row', width: wp(80), justifyContent: 'space-between' },
-        comments: { paddingHorizontal: wp(16) },
-        commentsLikes: { fontSize: ms.fs.xs, fontWeight: 'bold', color: colors.text },
+        bottomBarLeft: {flexDirection: 'row', width: wp(80), justifyContent: 'space-between'},
+        comments: {paddingHorizontal: wp(16)},
+        commentsLikes: {fontSize: ms.fs.xs, fontWeight: 'bold', color: colors.text},
         comment: {
             fontFamily: fonts.thin.fontFamily,
             fontWeight: fonts.light.fontWeight,

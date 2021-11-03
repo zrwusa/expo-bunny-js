@@ -1,4 +1,5 @@
-import { EBL } from '../../constants';
+import {EBL} from '../../constants';
+
 export const collectBLResult = (payload) => {
     return {
         type: EBL.COLLECT_BL_RESULT,

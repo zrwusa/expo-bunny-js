@@ -1,25 +1,26 @@
 import * as React from 'react';
-import { useEffect, useMemo, useState } from 'react';
-import { shortenTFunctionKey } from '../../../providers/i18n-labor';
-import { getContainerStyles } from '../../../containers';
-import { getStyles } from './styles';
-import { Animated, Platform, SafeAreaView } from 'react-native';
-import { uuid4 } from '@sentry/utils';
-import { Masonry } from '../../../components/Masonry/Masonry';
-import { FollowUpSearchBar } from '../../../components/FollowUpSearchBar';
-import { useSelector } from 'react-redux';
-import { isLoaded, useFirebase, useFirestoreConnect } from 'react-redux-firebase';
+import {useEffect, useMemo, useState} from 'react';
+import {shortenTFunctionKey} from '../../../providers/i18n-labor';
+import {getContainerStyles} from '../../../containers';
+import {getStyles} from './styles';
+import {Animated, Platform, SafeAreaView} from 'react-native';
+import {uuid4} from '@sentry/utils';
+import {Masonry} from '../../../components/Masonry/Masonry';
+import {FollowUpSearchBar} from '../../../components/FollowUpSearchBar';
+import {useSelector} from 'react-redux';
+import {isLoaded, useFirebase, useFirestoreConnect} from 'react-redux-firebase';
 import config from '../../../config';
-import { Preparing } from '../../../components/Preparing';
-import { useBunnyKit } from '../../../hooks/bunny-kit';
-export function SocialMediaSearchScreen({ route, navigation }) {
-    const { sizeLabor, themeLabor, wp, t } = useBunnyKit();
+import {Preparing} from '../../../components/Preparing';
+import {useBunnyKit} from '../../../hooks/bunny-kit';
+
+export function SocialMediaSearchScreen({route, navigation}) {
+    const {sizeLabor, themeLabor, wp, t} = useBunnyKit();
     const firebase = useFirebase();
     const getSocialMediaImages = async () => {
         await firebase.watchEvent('value', 'socialMediaImages', 'socialMediaImages');
     };
     useFirestoreConnect([
-        { collection: 'socialMediaImages' }
+        {collection: 'socialMediaImages'}
     ]);
     const socialMediaImages = useSelector((rootState) => rootState.firestoreState.ordered.socialMediaImages);
     const st = shortenTFunctionKey(t, 'screens.SocialMediaSearch');
@@ -56,7 +57,7 @@ export function SocialMediaSearchScreen({ route, navigation }) {
         }
         let newMasonryData = [];
         for (let i = 0; i < 10; i++) {
-            newMasonryData.push({ id: uuid4(), column1, column2, column3 });
+            newMasonryData.push({id: uuid4(), column1, column2, column3});
         }
         setMasonryData(newMasonryData);
     }, [socialMediaImages]);
@@ -88,14 +89,18 @@ export function SocialMediaSearchScreen({ route, navigation }) {
         }
         let newMasonryData = [];
         for (let i = 0; i < 10; i++) {
-            newMasonryData.push({ id: uuid4(), column1, column2, column3 });
+            newMasonryData.push({id: uuid4(), column1, column2, column3});
         }
         setMasonryData(newMasonryData);
     };
     return (<SafeAreaView style={containerStyles.Screen}>
-            <FollowUpSearchBar scrollYValue={scrollYValue} onSearch={handleSearch}/>
-            {isLoaded(socialMediaImages) ?
-            <Animated.FlatList data={MasonryData} renderItem={({ item }) => <Masonry data={item}/>} keyExtractor={item => item.id} initialNumToRender={1} windowSize={3} removeClippedSubviews={Platform.OS === 'android'} maxToRenderPerBatch={10} updateCellsBatchingPeriod={50} onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollYValue } } }], { useNativeDriver: config.useNativeDriver })}/>
-            : <Preparing />}
-        </SafeAreaView>);
+        <FollowUpSearchBar scrollYValue={scrollYValue} onSearch={handleSearch}/>
+        {isLoaded(socialMediaImages) ?
+            <Animated.FlatList data={MasonryData} renderItem={({item}) => <Masonry data={item}/>}
+                               keyExtractor={item => item.id} initialNumToRender={1} windowSize={3}
+                               removeClippedSubviews={Platform.OS === 'android'} maxToRenderPerBatch={10}
+                               updateCellsBatchingPeriod={50}
+                               onScroll={Animated.event([{nativeEvent: {contentOffset: {y: scrollYValue}}}], {useNativeDriver: config.useNativeDriver})}/>
+            : <Preparing/>}
+    </SafeAreaView>);
 }

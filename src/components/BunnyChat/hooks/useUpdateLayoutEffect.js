@@ -1,4 +1,5 @@
-import { useLayoutEffect, useRef } from 'react';
+import {useLayoutEffect, useRef} from 'react';
+
 /**
  * A custom useEffect hook that only triggers on updates, not on initial mount
  * Idea stolen from: https://stackoverflow.com/a/55075818/1526448
@@ -10,8 +11,7 @@ export function useUpdateLayoutEffect(effect, dependencies = []) {
     useLayoutEffect(() => {
         if (isInitialMount.current) {
             isInitialMount.current = false;
-        }
-        else {
+        } else {
             effect();
         }
     }, dependencies);

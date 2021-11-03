@@ -22,8 +22,7 @@ export class TreeNode {
             }
             if (children instanceof Array) {
                 this.children = this.children.concat(children);
-            }
-            else {
+            } else {
                 this.children.push(children);
             }
         };
@@ -35,7 +34,7 @@ export class TreeNode {
                     if (level > maxDepth) {
                         maxDepth = level;
                     }
-                    const { children } = node;
+                    const {children} = node;
                     if (children) {
                         for (let i = 0, len = children.length; i < len; i++) {
                             bfs(children[i], level + 1);

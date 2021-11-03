@@ -13,6 +13,7 @@ export class Queue {
         this._elements = elements || [];
         this._offset = 0;
     }
+
     /**
      * Adds an element at the back of the queue.
      * @public
@@ -22,6 +23,7 @@ export class Queue {
         this._elements.push(element);
         return this;
     }
+
     /**
      * Dequeues the front element in the queue.
      * @public
@@ -40,6 +42,7 @@ export class Queue {
         this._offset = 0;
         return first;
     }
+
     /**
      * Returns the front element of the queue.
      * @public
@@ -48,6 +51,7 @@ export class Queue {
     front() {
         return this.size() > 0 ? this._elements[this._offset] : null;
     }
+
     /**
      * Returns the back element of the queue.
      * @public
@@ -56,6 +60,7 @@ export class Queue {
     back() {
         return this.size() > 0 ? this._elements[this._elements.length - 1] : null;
     }
+
     /**
      * Returns the number of elements in the queue.
      * @public
@@ -64,6 +69,7 @@ export class Queue {
     size() {
         return this._elements.length - this._offset;
     }
+
     /**
      * Checks if the queue is empty.
      * @public
@@ -72,6 +78,7 @@ export class Queue {
     isEmpty() {
         return this.size() === 0;
     }
+
     /**
      * Returns the remaining elements in the queue as an array.
      * @public
@@ -80,6 +87,7 @@ export class Queue {
     toArray() {
         return this._elements.slice(this._offset);
     }
+
     /**
      * Clears the queue.
      * @public
@@ -88,6 +96,7 @@ export class Queue {
         this._elements = [];
         this._offset = 0;
     }
+
     /**
      * Creates a shallow copy of the queue.
      * @public
@@ -96,6 +105,7 @@ export class Queue {
     clone() {
         return new Queue(this._elements.slice(this._offset));
     }
+
     /**
      * Creates a queue from an existing array.
      * @public
