@@ -7,13 +7,6 @@ We don't want a complicated project, what we want is a collection of samples bas
 
 
 # Architecture principles
-## Type Safety
-
-Critical bugs reported during the application runtime. Most of the time the bug involved calling a function with wrong parameters. 
-
-Although it can be solved by rigorous unit tests, but let's face it, we can not assure 100% test coverage and even then 100% cases being considered.
- 
-So, it can turn out to be a million-dollar mistake. When I switched to TypeScript from plain Javascript then this problem got resolved.
 
 <!--## Separation of Concern
 ## Feature Encapsulation
@@ -31,7 +24,7 @@ So, it can turn out to be a million-dollar mistake. When I switched to TypeScrip
 # Tech Stack
 
 - React Native,
-- Typescript,
+- Javascript,
 - Redux,
 - Expo,
 - Firbase
