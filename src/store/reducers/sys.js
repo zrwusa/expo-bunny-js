@@ -49,21 +49,11 @@ export function sysStateReducer(prevState = initialState, {type, payload}) {
             };
         case ESys.REQUEST_RECEIVED:
             _.remove(prevState.requestStatuses, item => (item.url === payload.url && item.method === payload.method && item.params === payload.params));
-            // prevState.requestStatuses.map(item=>{
-            //     if(item.id===payload.id){
-            //         item.status = 'SUCCESS'
-            //     }
-            // })
             return {
                 ...prevState,
             };
         case ESys.REQUEST_FAILED:
             _.remove(prevState.requestStatuses, item => (item.url === payload.url && item.method === payload.method && item.params === payload.params));
-            // prevState.requestStatuses.map(item=>{
-            //     if(item.id===payload.id){
-            //         item.status = 'FAILED'
-            //     }
-            // })
             return {
                 ...prevState,
             };

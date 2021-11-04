@@ -1,4 +1,4 @@
-import {TreeNode} from '../../../types';
+import {TreeNode} from '../../data-structures';
 
 export const treeData = new TreeNode('1', '1', 0, [
     new TreeNode('1-1', '2', 0, [

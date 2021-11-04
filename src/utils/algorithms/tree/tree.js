@@ -1,9 +1,9 @@
 /* --- start tree --- */
 // 94 Binary Tree Inorder Traversal	★ 144 145 429 589 590 987 1302 traversal
-import {TreeNode} from '../../../types';
+
 import {DeepProxy} from '@qiwi/deep-proxy';
 import {wait} from '../../utils';
-import {Queue, Stack} from '../../data-structures';
+import {Queue, Stack, TreeNode} from '../../data-structures';
 import {
     fourthQuadrantMove,
     fourthQuadrantMoveByIndex,
