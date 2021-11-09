@@ -8,12 +8,6 @@ We don't want a complicated project, what we want is a collection of samples bas
 
 # Architecture principles
 
-<!--## Separation of Concern
-## Feature Encapsulation
-## Better Error Handling
-## Better Response Handling
-## Better Promise Management-->
-<!--## Robust Unit Tests-->
 ## Simple Deployability
 
 <!--## SOLID patterns,UML diagram-->
@@ -24,7 +18,6 @@ We don't want a complicated project, what we want is a collection of samples bas
 # Tech Stack
 
 - React Native,
-- Javascript,
 - Redux,
 - Expo,
 - Firbase
@@ -35,11 +28,11 @@ We don't want a complicated project, what we want is a collection of samples bas
 
 # Principles
 
-### 1.Don’t repeat yourself (DRY) 
+### 1.Don’t repeat yourself (DRY)
 
-### 2.Do one thing (DOT) (from Unix philosophy) 
+### 2.Do one thing (DOT) (from Unix philosophy)
 
-### 3.Separation of concerns 
+### 3.Separation of concerns
 
 ### 4.The principle of the least knowledge (Law of Demeter)
 
@@ -71,20 +64,21 @@ We don't want a complicated project, what we want is a collection of samples bas
 </table>
 
 
-
+# Typescript version
+[If not Javascript,just use Typescript](https://github.com/zrwusa/expo-react-bunny)
 
 # Preview
 
 ## Online Simples
 [Expo online deployed stable](https://expo.io/@zrwusa/projects/expo-react-bunny)
 
-[Web Next.js online deployed stable](https://expo-react-bunny-akodd3mj6-zrwusa.vercel.app)
+[Web Next.js online deployed stable](https://expo-react-bunny-jlbcujxu2-zrwusa.vercel.app)
 
 [Web Next.js online deployed latest](https://expo-react-bunny.vercel.app)
 
 Test Account:
 
-username:  test@gmail.com 
+username:  test@gmail.com
 
 password:  testtest
 
@@ -113,11 +107,11 @@ xcrun simctl launch booted com.zrwusa.expo-react-bunny
 ```sh
 // with yarn
 yarn
-yarn start
+yarn dev
 
 // with npm
 npm install
-npm start
+npm dev
 ```
 ## Development
 
@@ -130,7 +124,7 @@ yarn mock
 npm run mock
 ```
 ### BackEnd server
-I also provided a complete standard KOA backend,including RESTFul API,push notification feature and MongoDB access
+I also provided a complete standard KOA backend,including RESTFul API,Mysql Sequelize,MongoDB Mongoose,Redis,Mailer,push notification feature
 [react-bunny-server](https://github.com/zrwusa/react-bunny-server)
 
 ### Local web server
@@ -188,22 +182,22 @@ Just configure the dimensions size used by the designer, "size-labor" provider w
 
 src/config.json
 
-  "UE": {
-    "dimensions": {
-      "DesignName": {
-        "width": 360,
-        "height": 640
-      }
-      ...
-    }
-  }
+"UE": {
+"dimensions": {
+"DesignName": {
+"width": 360,
+"height": 640
+}
+...
+}
+}
 
 in your pages or styles
 
 ```javascript
     const {designsBasedOn} = sizeLabor;
-    const {wp} = designsBasedOn.iphoneX;
-    <View style={{width:wp(100),height:wp(100)}}></View>
+const {wp} = designsBasedOn.iphoneX;
+<View style={{width:wp(100),height:wp(100)}}></View>
 ```
 
 ms: measure util defined sizes for styles(recommend use this to keep consistency)
@@ -223,10 +217,10 @@ IOS_CLIENT_ID_FOR_EXPO=111111111111-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.apps.google
 ANDROID_CLIENT_ID_FOR_EXPO=111111111111-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.apps.googleusercontent.com
 IOS_CLIENT_ID=111111111111-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.apps.googleusercontent.com
 ANDROID_CLIENT_ID=111111111111-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.apps.googleusercontent.com
-                  
+
 GOOGLE_API_KEY=xxxxxxxxxxxxx_xxxxxxx_xxxxxxxxxxxxxxxxx
 FACEBOOK_APP_ID=1111111111111111
-                
+
 FIREBASE_PROJECT_ID=xxxxxxxxxxxxxxxx
 FIREBASE_AUTH_DOMAIN=xxxxxxxxxxxxxxxx..firebaseapp.com
 FIREBASE_DATABASE_URL=https://xxxxxxxxxxxxxxxxxxxxxxxx-rtdb.firebaseio.com
@@ -264,14 +258,14 @@ yarn next
 
 
 ## Architecture benefits
- Architecture is necessary to save time during the development process, to maintain the system’s testability and extensibility over a long development period.
- 
- 
- If our project is even 50% cheaper to maintain than it could be without a good architecture — it will save developers’ time and customer’s profit.
- Building a good and clear architecture from the start of the project gives you the following benefits:
- 
- 1.costs:cheaper code maintenance (less time is required and cheaper financial costs);
- 
- 2.test:simplification of code testing (you will need fewer testers and have fewer missed “production bugs”);
- 
- 3.developer:easier to involve new developers into the project.
+Architecture is necessary to save time during the development process, to maintain the system’s testability and extensibility over a long development period.
+
+
+If our project is even 50% cheaper to maintain than it could be without a good architecture — it will save developers’ time and customer’s profit.
+Building a good and clear architecture from the start of the project gives you the following benefits:
+
+1.costs:cheaper code maintenance (less time is required and cheaper financial costs);
+
+2.test:simplification of code testing (you will need fewer testers and have fewer missed “production bugs”);
+
+3.developer:easier to involve new developers into the project.
