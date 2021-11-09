@@ -1,14 +1,13 @@
-import {Text, View} from '../UI';
-import {CopyableText} from '../CopyableText';
+import { Text, View } from '../UI';
+import { CopyableText } from '../CopyableText';
 import React from 'react';
-import {getStyles} from './styles';
-import {Col, Row} from '../../containers';
-import {useBunnyKit} from '../../hooks';
-
+import { makeStyles } from './styles';
+import { Col, Row } from '../../containers';
+import { useBunnyKit } from '../../hooks/bunny-kit';
 export const ColorValuesCard = (props) => {
-    const {sizeLabor, themeLabor} = useBunnyKit();
-    const {item} = props;
-    const styles = getStyles(sizeLabor, themeLabor);
+    const { sizeLabor, themeLabor } = useBunnyKit();
+    const { item } = props;
+    const styles = makeStyles(sizeLabor, themeLabor);
     return <View>
         <Row paddingVertical="m">
             <Col size={1}>
@@ -25,7 +24,7 @@ export const ColorValuesCard = (props) => {
                 </Row>
             </Col>
             <Col size={1}>
-                <View style={[styles.colorPanel, {backgroundColor: item.Hex}]}/>
+                <View style={[styles.colorPanel, { backgroundColor: item.Hex }]}/>
             </Col>
         </Row>
         <Row paddingVertical="m">
@@ -36,7 +35,7 @@ export const ColorValuesCard = (props) => {
                 <CopyableText>{item.RGB}</CopyableText>
             </Col>
             <Col size={1}>
-                <View style={[styles.colorPanel, {backgroundColor: item.RGB}]}/>
+                <View style={[styles.colorPanel, { backgroundColor: item.RGB }]}/>
             </Col>
         </Row>
         <Row paddingVertical="m">
@@ -47,7 +46,7 @@ export const ColorValuesCard = (props) => {
                 <CopyableText>{item.HSL}</CopyableText>
             </Col>
             <Col size={1}>
-                <View style={[styles.colorPanel, {backgroundColor: item.HSL}]}/>
+                <View style={[styles.colorPanel, { backgroundColor: item.HSL }]}/>
             </Col>
         </Row>
     </View>;

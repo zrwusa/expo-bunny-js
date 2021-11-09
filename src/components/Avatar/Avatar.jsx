@@ -1,13 +1,12 @@
 import React from 'react';
-import {Image} from 'react-native';
-import {getStyles} from './styles';
-import {ImageUploader} from '../ImageUploader';
-import {useBunnyKit} from '../../hooks';
-
+import { Image } from 'react-native';
+import { makeStyles } from './styles';
+import { ImageUploader } from '../ImageUploader';
+import { useBunnyKit } from '../../hooks/bunny-kit';
 export function Avatar(props) {
-    const {sizeLabor, themeLabor, wp} = useBunnyKit();
-    const styles = getStyles(sizeLabor, themeLabor);
-    const {size, source, style, shouldUpload = false, uploaderProps, isBorder = true} = props;
+    const { sizeLabor, themeLabor, wp } = useBunnyKit();
+    const styles = makeStyles(sizeLabor, themeLabor);
+    const { size, source, style, shouldUpload = false, uploaderProps, isBorder = true } = props;
     const finalSize = size || 'm';
     const sizeAvatarMap = {
         xxs: wp(16),
@@ -22,21 +21,20 @@ export function Avatar(props) {
     const borderWidth = isBorder ? wp(1) : 0;
     return shouldUpload
         ?
-        <ImageUploader style={[styles.Avatar, {
-            borderWidth,
-            width: sizeAvatarMap[finalSize],
-            height: sizeAvatarMap[finalSize],
-            borderRadius: sizeAvatarMap[finalSize] / 2,
-        }]} imageStyle={[{
-            width: sizeAvatarMap[finalSize] - borderDiff,
-            height: sizeAvatarMap[finalSize] - borderDiff,
-            borderRadius: sizeAvatarMap[finalSize] / 2,
-        }, style]} width={sizeAvatarMap[finalSize] - borderDiff} height={sizeAvatarMap[finalSize] - borderDiff}
-                       source={source} {...uploaderProps}/>
+            <ImageUploader style={[styles.Avatar, {
+                        borderWidth,
+                        width: sizeAvatarMap[finalSize],
+                        height: sizeAvatarMap[finalSize],
+                        borderRadius: sizeAvatarMap[finalSize] / 2,
+                    }]} imageStyle={[{
+                        width: sizeAvatarMap[finalSize] - borderDiff,
+                        height: sizeAvatarMap[finalSize] - borderDiff,
+                        borderRadius: sizeAvatarMap[finalSize] / 2,
+                    }, style]} width={sizeAvatarMap[finalSize] - borderDiff} height={sizeAvatarMap[finalSize] - borderDiff} source={source} {...uploaderProps}/>
         : <Image style={[styles.Avatar, {
-            borderWidth,
-            width: sizeAvatarMap[finalSize],
-            height: sizeAvatarMap[finalSize],
-            borderRadius: sizeAvatarMap[finalSize] / 2,
-        }, style]} width={sizeAvatarMap[finalSize]} height={sizeAvatarMap[finalSize]} source={source}/>;
+                    borderWidth,
+                    width: sizeAvatarMap[finalSize],
+                    height: sizeAvatarMap[finalSize],
+                    borderRadius: sizeAvatarMap[finalSize] / 2,
+                }, style]} width={sizeAvatarMap[finalSize]} height={sizeAvatarMap[finalSize]} source={source}/>;
 }

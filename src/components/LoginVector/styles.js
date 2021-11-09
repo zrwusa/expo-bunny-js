@@ -1,12 +1,11 @@
-import {StyleSheet} from 'react-native';
-import {getSharedStyles} from '../../helpers';
-
-export const getStyles = (sizeLabor, themeLabor) => {
-    const {ms, designsBasedOn} = sizeLabor;
-    const {wp, hp} = designsBasedOn.iphoneX;
-    const {colors} = themeLabor.theme;
-    const {sharedStylesFlatten} = getSharedStyles(sizeLabor, themeLabor);
-    const {shadowAround} = sharedStylesFlatten;
+import { StyleSheet } from 'react-native';
+import { getSharedStyles } from '../../helpers';
+export const makeStyles = (sizeLabor, themeLabor) => {
+    const { ms, designsBasedOn } = sizeLabor;
+    const { wp, hp } = designsBasedOn.iphoneX;
+    const { colors } = themeLabor.theme;
+    const { sharedStylesFlatten } = getSharedStyles(sizeLabor, themeLabor);
+    const { shadowAround } = sharedStylesFlatten;
     return StyleSheet.create({
         orRow: {
             marginTop: ms.sp.l
@@ -21,6 +20,6 @@ export const getStyles = (sizeLabor, themeLabor) => {
         vectorButton: {
             justifyContent: 'center'
         },
-        icon: {marginRight: wp(5)}
+        icon: { marginRight: wp(5) }
     });
 };

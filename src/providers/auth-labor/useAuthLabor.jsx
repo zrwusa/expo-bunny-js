@@ -1,5 +1,3 @@
 import * as React from 'react';
-import {AuthLaborContext} from './AuthLaborContext';
-
-const useAuthLabor = () => React.useContext(AuthLaborContext);
-export {useAuthLabor};
+import { AuthLaborContext } from './AuthLaborContext';
+export const useAuthLabor = () => React.useContext(AuthLaborContext);

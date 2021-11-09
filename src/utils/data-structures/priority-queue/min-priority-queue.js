@@ -2,9 +2,8 @@
  * @copyright 2020 Eyas Ranjous <eyas.ranjous@gmail.com>
  * @license MIT
  */
-import {PriorityQueue} from './priority-queue';
-import {MinHeap} from '../heap';
-
+import { PriorityQueue } from './priority-queue';
+import { MinHeap } from '../heap';
 /**
  * @class MinPriorityQueue
  * @extends PriorityQueue

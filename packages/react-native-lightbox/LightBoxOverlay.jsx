@@ -160,9 +160,18 @@ export class LightBoxOverlay extends Component {
         const styles = getStyles();
         const openStyle = [styles.open, {
                 left: openVal.interpolate({ inputRange: [0, 1], outputRange: [origin.x, target.x] }),
-                top: openVal.interpolate({ inputRange: [0, 1], outputRange: [origin.y + STATUS_BAR_OFFSET, target.y + STATUS_BAR_OFFSET] }),
-                width: openVal.interpolate({ inputRange: [0, 1], outputRange: [origin.width, getCurrentWindowDimension().width] }),
-                height: openVal.interpolate({ inputRange: [0, 1], outputRange: [origin.height, getCurrentWindowDimension().height] }),
+                top: openVal.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [origin.y + STATUS_BAR_OFFSET, target.y + STATUS_BAR_OFFSET]
+                }),
+                width: openVal.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [origin.width, getCurrentWindowDimension().width]
+                }),
+                height: openVal.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [origin.height, getCurrentWindowDimension().height]
+                }),
             }];
         const background = (<Animated.View style={[styles.background, { backgroundColor: backgroundColor }, lightBoxOpacityStyle]}/>);
         const header = (<Animated.View style={[styles.header, lightBoxOpacityStyle]}>{(renderHeader ?

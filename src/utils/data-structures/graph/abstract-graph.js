@@ -1,20 +1,16 @@
-import {arrayRemove, uuidV4} from '../../utils';
-import {HeapNode, MinHeap} from '../heap';
-
+import { arrayRemove, uuidV4 } from '../../utils';
+import { HeapNode, MinHeap } from '../heap';
 export class AbstractVertex {
     constructor(id) {
         this._id = id;
     }
-
     get id() {
         return this._id;
     }
-
     set id(v) {
         this._id = v;
     }
 }
-
 export class AbstractEdge {
     constructor(weight) {
         if (weight === undefined)
@@ -22,49 +18,38 @@ export class AbstractEdge {
         this._weight = weight;
         this._hashCode = uuidV4();
     }
-
     get weight() {
         return this._weight;
     }
-
     set weight(v) {
         this._weight = v;
     }
-
     get hashCode() {
         return this._hashCode;
     }
-
     set hashCode(v) {
         this._hashCode = v;
     }
 }
-
 AbstractEdge.DEFAULT_EDGE_WEIGHT = 1;
-
 // Connected Component === Largest Connected Sub-Graph
 export class AbstractGraph {
     constructor() {
         this._vertices = new Map();
     }
-
     getVertex(vertexOrId) {
         const vertexId = this.getVertexId(vertexOrId);
         return this._vertices.get(vertexId) || null;
     }
-
     getVertexId(vertexOrId) {
         return vertexOrId instanceof AbstractVertex ? vertexOrId.id : vertexOrId;
     }
-
     containsVertex(vertexOrId) {
         return this._vertices.has(this.getVertexId(vertexOrId));
     }
-
     vertexSet() {
         return this._vertices;
     }
-
     addVertex(newVertex) {
         if (this.containsVertex(newVertex)) {
             return false;
@@ -72,12 +57,10 @@ export class AbstractGraph {
         this._vertices.set(newVertex.id, newVertex);
         return true;
     }
-
     removeVertex(vertexOrId) {
         const vertexId = this.getVertexId(vertexOrId);
         return this._vertices.delete(vertexId);
     }
-
     removeAllVertices(vertices) {
         let removed = [];
         for (let v of vertices) {
@@ -85,22 +68,20 @@ export class AbstractGraph {
         }
         return removed.length > 0;
     }
-
     containsEdge(v1, v2) {
         const edge = this.getEdge(v1, v2);
         return !!edge;
     }
-
     setEdgeWeight(srcOrId, destOrId, weight) {
         const edge = this.getEdge(srcOrId, destOrId);
         if (edge) {
             edge.weight = weight;
             return true;
-        } else {
+        }
+        else {
             return false;
         }
     }
-
     getAllPathsBetween(v1, v2) {
         let paths = [];
         const vertex1 = this.getVertex(v1);
@@ -126,7 +107,6 @@ export class AbstractGraph {
         dfs(vertex1, vertex2, new Map(), []);
         return paths;
     }
-
     getPathSumWeight(path) {
         let sum = 0;
         for (let i = 0; i < path.length; i++) {
@@ -134,7 +114,6 @@ export class AbstractGraph {
         }
         return sum;
     }
-
     getMinCostBetween(v1, v2, isWeight) {
         if (isWeight === undefined)
             isWeight = false;
@@ -145,7 +124,8 @@ export class AbstractGraph {
                 min = Math.min(this.getPathSumWeight(path), min);
             }
             return min;
-        } else {
+        }
+        else {
             // BFS
             const vertex2 = this.getVertex(v2);
             const vertex1 = this.getVertex(v1);
@@ -176,7 +156,6 @@ export class AbstractGraph {
             return null;
         }
     }
-
     getMinPathBetween(v1, v2, isWeight) {
         if (isWeight === undefined)
             isWeight = false;
@@ -194,7 +173,8 @@ export class AbstractGraph {
                 index++;
             }
             return allPaths[minIndex] || null;
-        } else {
+        }
+        else {
             // BFS
             let minPath = [];
             const vertex1 = this.getVertex(v1);
@@ -222,7 +202,6 @@ export class AbstractGraph {
             return minPath;
         }
     }
-
     /**
      * Dijkstra algorithm time: O(VE) space: O(V + E)
      * @param src
@@ -293,7 +272,7 @@ export class AbstractGraph {
                     if (genPaths) {
                         getPaths(destVertex);
                     }
-                    return {distMap, preMap, seen, paths, minDist, minPath};
+                    return { distMap, preMap, seen, paths, minDist, minPath };
                 }
                 const neighbors = this.getNeighbors(cur);
                 for (let neighbor of neighbors) {
@@ -319,9 +298,8 @@ export class AbstractGraph {
             }
         });
         genPaths && getPaths(minDest);
-        return {distMap, preMap, seen, paths, minDist, minPath};
+        return { distMap, preMap, seen, paths, minDist, minPath };
     }
-
     /**
      * Dijkstra algorithm time: O(logVE) space: O(V + E)
      * @param src
@@ -384,7 +362,7 @@ export class AbstractGraph {
                         if (genPaths) {
                             getPaths(destVertex);
                         }
-                        return {distMap, preMap, seen, paths, minDist, minPath};
+                        return { distMap, preMap, seen, paths, minDist, minPath };
                     }
                     const neighbors = this.getNeighbors(cur);
                     for (let neighbor of neighbors) {
@@ -419,9 +397,8 @@ export class AbstractGraph {
         if (genPaths) {
             getPaths(minDest);
         }
-        return {distMap, preMap, seen, paths, minDist, minPath};
+        return { distMap, preMap, seen, paths, minDist, minPath };
     }
-
     /**
      * BellmanFord time:O(VE) space:O(V)
      * one to rest pairs
@@ -446,7 +423,7 @@ export class AbstractGraph {
         if (scanNegativeCycle)
             hasNegativeCycle = false;
         if (!srcVertex)
-            return {hasNegativeCycle, distMap, preMap, paths, min, minPath};
+            return { hasNegativeCycle, distMap, preMap, paths, min, minPath };
         const vertices = this._vertices;
         const numOfVertices = vertices.size;
         const edges = this.edgeSet();
@@ -510,9 +487,8 @@ export class AbstractGraph {
                 }
             }
         }
-        return {hasNegativeCycle, distMap, preMap, paths, min, minPath};
+        return { hasNegativeCycle, distMap, preMap, paths, min, minPath };
     }
-
     /**
      * Floyd algorithm time: O(V^3) space: O(V^2), not support graph with negative weight cycle
      * all pairs
@@ -545,9 +521,8 @@ export class AbstractGraph {
                 }
             }
         }
-        return {costs, predecessor};
+        return { costs, predecessor };
     }
-
     /**--- start find cycles --- */
     /**
      * Tarjan is an algorithm based on DFS,which is used to solve the connectivity problem of graphs.
@@ -615,7 +590,8 @@ export class AbstractGraph {
             lowMap.forEach((low, vertex) => {
                 if (!SCCs.has(low)) {
                     SCCs.set(low, [vertex]);
-                } else {
+                }
+                else {
                     SCCs.get(low)?.push(vertex);
                 }
             });
@@ -636,9 +612,8 @@ export class AbstractGraph {
                 }
             });
         }
-        return {dfnMap, lowMap, bridges, articulationPoints, SCCs, cycles};
+        return { dfnMap, lowMap, bridges, articulationPoints, SCCs, cycles };
     }
-
     unionFind() {
     }
 }

@@ -1,34 +1,32 @@
 import React from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {getStyles} from './styles';
-import {Snackbar} from 'react-native-paper';
-import {Text, View} from '../UI';
-import {setBLResult} from '../../store/actions';
-import {useBunnyKit} from '../../hooks';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { makeStyles } from './styles';
+import { Snackbar } from 'react-native-paper';
+import { Text, View } from '../UI';
+import { setBizLogicResult } from '../../store/actions';
+import { useBunnyKit } from '../../hooks/bunny-kit';
 const BLToast = () => {
-    const {sizeLabor, themeLabor} = useBunnyKit();
-    const {blResults} = useSelector((store) => store.blResultState);
-    const styles = getStyles(sizeLabor, themeLabor);
+    const { sizeLabor, themeLabor } = useBunnyKit();
+    const { bizLogicResults } = useSelector((store) => store.bizLogicResultState);
+    const styles = makeStyles(sizeLabor, themeLabor);
     const dispatch = useDispatch();
     return (<View>
-        {blResults.map(blResult => {
-            return <Snackbar key={blResult.id} visible={blResult.shouldShow} duration={Snackbar.DURATION_MEDIUM}
-                             onDismiss={() => {
-                                 blResult.shouldShow = false;
-                                 dispatch(setBLResult(blResult));
-                             }} action={{
-                label: 'Close',
-                onPress: () => {
-                    blResult.shouldShow = false;
-                    dispatch(setBLResult(blResult));
-                },
-            }}>
-                <View>
-                    <Text style={styles.text}>{blResult.message}</Text>
-                </View>
-            </Snackbar>;
+            {bizLogicResults.map(bizLogicResult => {
+            return <Snackbar key={bizLogicResult.id} visible={bizLogicResult.shouldShow} duration={Snackbar.DURATION_MEDIUM} onDismiss={() => {
+                    bizLogicResult.shouldShow = false;
+                    dispatch(setBizLogicResult(bizLogicResult));
+                }} action={{
+                    label: 'Close',
+                    onPress: () => {
+                        bizLogicResult.shouldShow = false;
+                        dispatch(setBizLogicResult(bizLogicResult));
+                    },
+                }}>
+                    <View>
+                        <Text style={styles.text}>{bizLogicResult.message}</Text>
+                    </View>
+                </Snackbar>;
         })}
-    </View>);
+        </View>);
 };
 export default BLToast;

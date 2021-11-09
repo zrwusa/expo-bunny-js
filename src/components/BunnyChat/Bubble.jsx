@@ -1,19 +1,18 @@
 import React from 'react';
-import {ActivityIndicator, Clipboard, StyleSheet, Text, TouchableWithoutFeedback, View,} from 'react-native';
+import { ActivityIndicator, Clipboard, StyleSheet, Text, TouchableWithoutFeedback, View, } from 'react-native';
 import QuickReplies from './QuickReplies';
 import MessageText from './MessageText';
 import MessageImage from './MessageImage';
 import MessageVideo from './MessageVideo';
 import MessageAudio from './MessageAudio';
 import Time from './Time';
-import {isSameDay, isSameUser} from './utils';
+import { isSameDay, isSameUser } from './utils';
 import MessageSticker from './MessageSticker';
-import {withBunnyKit} from '../../hooks';
-import {connectActionSheet} from '../../../packages/react-native-action-sheet/src';
-
-const getStyles = (sizeLabor, themeLabor) => {
-    const {wp} = sizeLabor.designsBasedOn.iphoneX;
-    const {theme: {colors}} = themeLabor;
+import { withBunnyKit } from '../../hooks/bunny-kit';
+import { connectActionSheet } from '../../../packages/react-native-action-sheet/src';
+const makeStyles = (sizeLabor, themeLabor) => {
+    const { wp } = sizeLabor.designsBasedOn.iphoneX;
+    const { theme: { colors } } = themeLabor;
     return {
         left: StyleSheet.create({
             container: {
@@ -87,7 +86,6 @@ const getStyles = (sizeLabor, themeLabor) => {
 };
 // TODO need i18n
 const DEFAULT_OPTION_TITLES = ['Copy Text', 'Cancel'];
-
 class Bubble extends React.Component {
     constructor() {
         super(...arguments);
@@ -97,11 +95,12 @@ class Bubble extends React.Component {
             }
         };
         this.onLongPress = () => {
-            const {currentMessage} = this.props;
+            const { currentMessage } = this.props;
             if (this.props.onLongPress) {
                 this.props.onLongPress(this.context, this.props.currentMessage);
-            } else if (currentMessage && currentMessage.text) {
-                const {textLongPressOptionTitles} = this.props;
+            }
+            else if (currentMessage && currentMessage.text) {
+                const { textLongPressOptionTitles } = this.props;
                 const options = textLongPressOptionTitles && textLongPressOptionTitles.length > 0
                     ? textLongPressOptionTitles.slice(0, 2)
                     : DEFAULT_OPTION_TITLES;
@@ -121,16 +120,15 @@ class Bubble extends React.Component {
             }
         };
     }
-
     styledBubbleToNext() {
-        const {currentMessage, nextMessage, position, containerToNextStyle, bunnyKit,} = this.props;
+        const { currentMessage, nextMessage, position, containerToNextStyle, bunnyKit, } = this.props;
         if (currentMessage &&
             nextMessage &&
             position &&
             isSameUser(currentMessage, nextMessage) &&
             isSameDay(currentMessage, nextMessage)) {
-            const {sizeLabor, themeLabor} = bunnyKit;
-            const styles = getStyles(sizeLabor, themeLabor);
+            const { sizeLabor, themeLabor } = bunnyKit;
+            const styles = makeStyles(sizeLabor, themeLabor);
             return [
                 styles[position].containerToNext,
                 containerToNextStyle && containerToNextStyle[position],
@@ -138,16 +136,15 @@ class Bubble extends React.Component {
         }
         return null;
     }
-
     styledBubbleToPrevious() {
-        const {currentMessage, previousMessage, position, containerToPreviousStyle, bunnyKit} = this.props;
+        const { currentMessage, previousMessage, position, containerToPreviousStyle, bunnyKit } = this.props;
         if (currentMessage &&
             previousMessage &&
             position &&
             isSameUser(currentMessage, previousMessage) &&
             isSameDay(currentMessage, previousMessage)) {
-            const {sizeLabor, themeLabor} = bunnyKit;
-            const styles = getStyles(sizeLabor, themeLabor);
+            const { sizeLabor, themeLabor } = bunnyKit;
+            const styles = makeStyles(sizeLabor, themeLabor);
             return [
                 styles[position].containerToPrevious,
                 containerToPreviousStyle && containerToPreviousStyle[position],
@@ -155,18 +152,10 @@ class Bubble extends React.Component {
         }
         return null;
     }
-
     renderQuickReplies() {
-        const {currentMessage, nextMessage,} = this.props;
+        const { currentMessage, nextMessage, } = this.props;
         if (currentMessage && currentMessage.quickReplies) {
-            const {
-                onQuickReply,
-                quickRepliesColor,
-                sendText,
-                keepReplies,
-                renderQuickReplySend,
-                quickReplyStyle
-            } = this.props;
+            const { onQuickReply, quickRepliesColor, sendText, keepReplies, renderQuickReplySend, quickReplyStyle } = this.props;
             const quickRepliesProps = {
                 currentMessage,
                 nextMessage,
@@ -181,31 +170,14 @@ class Bubble extends React.Component {
                 return this.props.renderQuickReplies(quickRepliesProps);
             }
             return (<QuickReplies {...quickRepliesProps}/>
-                // <QuickReplies {...quickRepliesProps} />
+            // <QuickReplies {...quickRepliesProps} />
             );
         }
         return null;
     }
-
     renderMessageText() {
         if (this.props.currentMessage && this.props.currentMessage.text) {
-            const {
-                position,
-                phoneNumberOptionTitles,
-                currentMessage,
-                textContainerStyle,
-                textStyle,
-                linkStyle,
-                customTextStyle,
-                textProps,
-                parsePatterns,
-                onMessageLoad,
-                onMessageLoadStart,
-                onMessageLoadEnd,
-                onMessageReadyForDisplay,
-                onMessageLoadError,
-                isDebug,
-            } = this.props;
+            const { position, phoneNumberOptionTitles, currentMessage, textContainerStyle, textStyle, linkStyle, customTextStyle, textProps, parsePatterns, onMessageLoad, onMessageLoadStart, onMessageLoadEnd, onMessageReadyForDisplay, onMessageLoadError, isDebug, } = this.props;
             const messageTextProps = {
                 position,
                 phoneNumberOptionTitles,
@@ -227,26 +199,13 @@ class Bubble extends React.Component {
                 return this.props.renderMessageText(messageTextProps);
             }
             return <MessageText {...messageTextProps}/>;
+            // return <MessageText {...messageTextProps} />
         }
         return null;
     }
-
     renderMessageImage() {
         if (this.props.currentMessage && this.props.currentMessage.image) {
-            const {
-                messages,
-                currentMessage,
-                imageContainerStyle,
-                imageStyle,
-                imageProps,
-                lightBoxProps,
-                onMessageLoad,
-                onMessageLoadStart,
-                onMessageLoadEnd,
-                onMessageReadyForDisplay,
-                onMessageLoadError,
-                isDebug
-            } = this.props;
+            const { messages, currentMessage, imageContainerStyle, imageStyle, imageProps, lightBoxProps, onMessageLoad, onMessageLoadStart, onMessageLoadEnd, onMessageReadyForDisplay, onMessageLoadError, isDebug } = this.props;
             const messageImageProps = {
                 messages,
                 currentMessage,
@@ -265,24 +224,13 @@ class Bubble extends React.Component {
                 return this.props.renderMessageImage(messageImageProps);
             }
             return <MessageImage {...messageImageProps}/>;
+            // return <MessageImage {...messageImageProps} />
         }
         return null;
     }
-
     renderMessageSticker() {
         if (this.props.currentMessage && this.props.currentMessage.sticker) {
-            const {
-                currentMessage,
-                stickerContainerStyle,
-                stickerStyle,
-                stickerProps,
-                onMessageLoad,
-                onMessageLoadStart,
-                onMessageLoadEnd,
-                onMessageReadyForDisplay,
-                onMessageLoadError,
-                isDebug
-            } = this.props;
+            const { currentMessage, stickerContainerStyle, stickerStyle, stickerProps, onMessageLoad, onMessageLoadStart, onMessageLoadEnd, onMessageReadyForDisplay, onMessageLoadError, isDebug } = this.props;
             const messageStickerProps = {
                 currentMessage,
                 stickerContainerStyle,
@@ -299,25 +247,14 @@ class Bubble extends React.Component {
                 return this.props.renderMessageSticker(messageStickerProps);
             }
             return <MessageSticker {...messageStickerProps}/>;
+            // return <MessageSticker {...messageStickerProps} />
         }
         return null;
     }
-
     renderMessageVideo() {
         if (this.props.currentMessage && this.props.currentMessage.video) {
             // const {bubbleContainerStyle, bubbleWrapperStyle, ...messageVideoProps} = this.props
-            const {
-                currentMessage,
-                videoContainerStyle,
-                videoStyle,
-                videoProps,
-                onMessageLoad,
-                onMessageLoadStart,
-                onMessageLoadEnd,
-                onMessageReadyForDisplay,
-                onMessageLoadError,
-                isDebug
-            } = this.props;
+            const { currentMessage, videoContainerStyle, videoStyle, videoProps, onMessageLoad, onMessageLoadStart, onMessageLoadEnd, onMessageReadyForDisplay, onMessageLoadError, isDebug } = this.props;
             const messageVideoProps = {
                 currentMessage,
                 videoContainerStyle,
@@ -334,30 +271,13 @@ class Bubble extends React.Component {
                 return this.props.renderMessageVideo(messageVideoProps);
             }
             return <MessageVideo {...messageVideoProps}/>;
+            // return <MessageVideo {...messageVideoProps} />
         }
         return null;
     }
-
     renderMessageAudio() {
         if (this.props.currentMessage && this.props.currentMessage.audio) {
-            const {
-                currentMessage,
-                audioContainerStyle,
-                audioStyle,
-                audioProps,
-                onMessageLoad,
-                onMessageLoadStart,
-                onMessageLoadEnd,
-                onMessageReadyForDisplay,
-                onMessageLoadError,
-                isDebug,
-                position,
-                audioProgressStyle,
-                audioPlayButtonStyle,
-                audioProgressColor,
-                audioRemainTimeStyle,
-                audioPlayButtonIconStyle,
-            } = this.props;
+            const { currentMessage, audioContainerStyle, audioStyle, audioProps, onMessageLoad, onMessageLoadStart, onMessageLoadEnd, onMessageReadyForDisplay, onMessageLoadError, isDebug, position, audioProgressStyle, audioPlayButtonStyle, audioProgressColor, audioRemainTimeStyle, audioPlayButtonIconStyle, } = this.props;
             const messageAudioProps = {
                 currentMessage,
                 audioContainerStyle,
@@ -380,12 +300,12 @@ class Bubble extends React.Component {
                 return this.props.renderMessageAudio(messageAudioProps);
             }
             return <MessageAudio {...messageAudioProps}/>;
+            // return <MessageAudio {...messageAudioProps} />
         }
         return null;
     }
-
     renderTicks() {
-        const {currentMessage, renderTicks, user, bunnyKit} = this.props;
+        const { currentMessage, renderTicks, user, bunnyKit } = this.props;
         if (renderTicks && currentMessage) {
             return renderTicks(currentMessage);
         }
@@ -397,23 +317,22 @@ class Bubble extends React.Component {
         }
         if (currentMessage &&
             (currentMessage.sent || currentMessage.received || currentMessage.pending)) {
-            const {sizeLabor, themeLabor} = bunnyKit;
-            const styles = getStyles(sizeLabor, themeLabor);
-            const {wp} = sizeLabor.designsBasedOn.iphoneX;
+            const { sizeLabor, themeLabor } = bunnyKit;
+            const styles = makeStyles(sizeLabor, themeLabor);
+            const { wp } = sizeLabor.designsBasedOn.iphoneX;
             return (<View style={styles.content.tickView}>
-                {!!currentMessage.sent && (<Text style={[styles.content.tick, this.props.tickStyle]}>✓</Text>)}
-                {!!currentMessage.received && (<Text style={[styles.content.tick, this.props.tickStyle]}>✓</Text>)}
-                {!!currentMessage.pending && (
-                    // <Text style={[styles.content.tick, this.props.tickStyle]}>🕓</Text>
-                    <ActivityIndicator color={'white'} size={wp(10)}/>)}
-            </View>);
+                    {!!currentMessage.sent && (<Text style={[styles.content.tick, this.props.tickStyle]}>✓</Text>)}
+                    {!!currentMessage.received && (<Text style={[styles.content.tick, this.props.tickStyle]}>✓</Text>)}
+                    {!!currentMessage.pending && (
+                // <Text style={[styles.content.tick, this.props.tickStyle]}>🕓</Text>
+                <ActivityIndicator color={'white'} size={wp(10)}/>)}
+                </View>);
         }
         return null;
     }
-
     renderTime() {
         if (this.props.currentMessage && this.props.currentMessage.createdAt) {
-            const {position, currentMessage, timeContainerStyle, timeFormat, timeTextStyle} = this.props;
+            const { position, currentMessage, timeContainerStyle, timeFormat, timeTextStyle } = this.props;
             const timeProps = {
                 position,
                 currentMessage,
@@ -429,84 +348,79 @@ class Bubble extends React.Component {
         }
         return null;
     }
-
     renderUsername() {
-        const {currentMessage, user, bunnyKit} = this.props;
+        const { currentMessage, user, bunnyKit } = this.props;
         if (this.props.renderUsernameOnMessage && currentMessage) {
             if (user && currentMessage.user._id === user._id) {
                 return null;
             }
-            const {sizeLabor, themeLabor} = bunnyKit;
-            const styles = getStyles(sizeLabor, themeLabor);
+            const { sizeLabor, themeLabor } = bunnyKit;
+            const styles = makeStyles(sizeLabor, themeLabor);
             return (<View style={styles.content.usernameView}>
-                <Text style={[styles.content.username, this.props.usernameStyle]}>
-                    ~ {currentMessage.user.name}
-                </Text>
-            </View>);
+                    <Text style={[styles.content.username, this.props.usernameStyle]}>
+                        ~ {currentMessage.user.name}
+                    </Text>
+                </View>);
         }
         return null;
     }
-
     renderCustomView() {
         if (this.props.renderCustomView) {
             return this.props.renderCustomView(this.props);
         }
         return null;
     }
-
     renderBubbleContent() {
         return this.props.isCustomViewBottom ? (<View>
-            {this.renderMessageImage()}
-            {this.renderMessageSticker()}
-            {this.renderMessageVideo()}
-            {this.renderMessageAudio()}
-            {this.renderMessageText()}
-            {this.renderCustomView()}
-        </View>) : (<View>
-            {this.renderCustomView()}
-            {this.renderMessageImage()}
-            {this.renderMessageSticker()}
-            {this.renderMessageVideo()}
-            {this.renderMessageAudio()}
-            {this.renderMessageText()}
-        </View>);
+                {this.renderMessageImage()}
+                {this.renderMessageSticker()}
+                {this.renderMessageVideo()}
+                {this.renderMessageAudio()}
+                {this.renderMessageText()}
+                {this.renderCustomView()}
+            </View>) : (<View>
+                {this.renderCustomView()}
+                {this.renderMessageImage()}
+                {this.renderMessageSticker()}
+                {this.renderMessageVideo()}
+                {this.renderMessageAudio()}
+                {this.renderMessageText()}
+            </View>);
     }
-
     render() {
-        const {position, bubbleContainerStyle, bubbleWrapperStyle, bottomContainerStyle, bunnyKit} = this.props;
-        const {sizeLabor, themeLabor} = bunnyKit;
-        const styles = getStyles(sizeLabor, themeLabor);
+        const { position, bubbleContainerStyle, bubbleWrapperStyle, bottomContainerStyle, bunnyKit } = this.props;
+        const { sizeLabor, themeLabor } = bunnyKit;
+        const styles = makeStyles(sizeLabor, themeLabor);
         return (<View style={[
-            styles[position].container,
-            bubbleContainerStyle && bubbleContainerStyle[position],
-        ]}>
-            <View style={[
+                styles[position].container,
+                bubbleContainerStyle && bubbleContainerStyle[position],
+            ]}>
+                <View style={[
                 styles[position].wrapper,
                 this.styledBubbleToNext(),
                 this.styledBubbleToPrevious(),
                 bubbleWrapperStyle && bubbleWrapperStyle[position],
             ]}>
-                <TouchableWithoutFeedback onPress={this.onPress} onLongPress={this.onLongPress}
-                    // @ts-ignore
-                                          accessibilityTraits="text" {...this.props.touchableProps}>
-                    <View>
-                        {this.renderBubbleContent()}
-                        <View style={[
-                            styles[position].bottom,
-                            bottomContainerStyle && bottomContainerStyle[position],
-                        ]}>
-                            {this.renderUsername()}
-                            {this.renderTime()}
-                            {this.renderTicks()}
+                    <TouchableWithoutFeedback onPress={this.onPress} onLongPress={this.onLongPress} 
+        // @ts-ignore
+        accessibilityTraits="text" {...this.props.touchableProps}>
+                        <View>
+                            {this.renderBubbleContent()}
+                            <View style={[
+                styles[position].bottom,
+                bottomContainerStyle && bottomContainerStyle[position],
+            ]}>
+                                {this.renderUsername()}
+                                {this.renderTime()}
+                                {this.renderTicks()}
+                            </View>
                         </View>
-                    </View>
-                </TouchableWithoutFeedback>
-            </View>
-            {this.renderQuickReplies()}
-        </View>);
+                    </TouchableWithoutFeedback>
+                </View>
+                {this.renderQuickReplies()}
+            </View>);
     }
 }
-
 Bubble.defaultProps = {
     messages: [],
     touchableProps: {},

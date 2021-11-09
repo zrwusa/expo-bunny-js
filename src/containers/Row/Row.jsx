@@ -1,14 +1,14 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
-import {useSizeLabor, useThemeLabor} from '../../providers';
-import {getStyles} from './styles';
-
-export const Row = function (props) {
-    const {children, size, paddingVertical, style, align = 'flex-start'} = props;
+import { StyleSheet, View } from 'react-native';
+import { useSizeLabor } from '../../providers/size-labor';
+import { useThemeLabor } from '../../providers/theme-labor';
+import { makeStyles } from './styles';
+export const Row = (props) => {
+    const { children, size, paddingVertical, style, align = 'flex-start' } = props;
     const sizeLabor = useSizeLabor();
     const themeLabor = useThemeLabor();
-    const {wp} = sizeLabor.designsBasedOn.iphoneX;
-    const styles = getStyles(sizeLabor, themeLabor);
+    const { wp } = sizeLabor.designsBasedOn.iphoneX;
+    const styles = makeStyles(sizeLabor, themeLabor);
     const rowPaddingVertical = {
         xxs: wp(2),
         xs: wp(4),

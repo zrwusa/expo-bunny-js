@@ -1,10 +1,9 @@
-import {Dimensions, StyleSheet} from 'react-native';
-import {getSharedStyles} from '../../helpers';
-
+import { Dimensions, StyleSheet } from 'react-native';
+import { getSharedStyles } from '../../helpers';
 export const getCardSize = (sizeLabor, themeLabor) => {
-    const {designsBasedOn} = sizeLabor;
-    const {wp, hp} = designsBasedOn.iphoneX;
-    const {width, height} = Dimensions.get('window');
+    const { designsBasedOn } = sizeLabor;
+    const { wp, hp } = designsBasedOn.iphoneX;
+    const { width, height } = Dimensions.get('window');
     const CARD_WIDTH = wp(100);
     const CARD_HEIGHT = 1.4 * CARD_WIDTH;
     return {
@@ -12,14 +11,14 @@ export const getCardSize = (sizeLabor, themeLabor) => {
         height: CARD_HEIGHT
     };
 };
-const getStyles = (sizeLabor, themeLabor) => {
-    const {ms, designsBasedOn} = sizeLabor;
-    const {wp, hp} = designsBasedOn.iphoneX;
-    const {width, height} = Dimensions.get('window');
-    const {colors} = themeLabor.theme;
+const makeStyles = (sizeLabor, themeLabor) => {
+    const { ms, designsBasedOn } = sizeLabor;
+    const { wp, hp } = designsBasedOn.iphoneX;
+    const { width, height } = Dimensions.get('window');
+    const { colors } = themeLabor.theme;
     const cardSize = getCardSize(sizeLabor, themeLabor);
-    const {sharedStylesFlatten} = getSharedStyles(sizeLabor, themeLabor);
-    const {shadow} = sharedStylesFlatten;
+    const { sharedStylesFlatten } = getSharedStyles(sizeLabor, themeLabor);
+    const { shadow } = sharedStylesFlatten;
     return StyleSheet.create({
         mapView: {
             flex: 1,
@@ -82,4 +81,4 @@ const getStyles = (sizeLabor, themeLabor) => {
         },
     });
 };
-export default getStyles;
+export default makeStyles;

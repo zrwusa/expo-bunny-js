@@ -2,10 +2,8 @@
  * @copyright 2020 Eyas Ranjous <eyas.ranjous@gmail.com>
  * @license MIT
  */
-import {MaxHeap} from '../heap';
-
-const {PriorityQueue} = require('./priority-queue');
-
+import { MaxHeap } from '../heap';
+const { PriorityQueue } = require('./priority-queue');
 /**
  * @class MaxPriorityQueue
  * @extends PriorityQueue

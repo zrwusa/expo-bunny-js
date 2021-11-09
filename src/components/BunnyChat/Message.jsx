@@ -1,14 +1,13 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import ChatAvatar from './ChatAvatar';
 import Bubble from './Bubble';
 import SystemMessage from './SystemMessage';
 import Day from './Day';
-import {isSameUser} from './utils';
-import {withBunnyKit} from '../../hooks';
-
-const getStyles = (sizeLabor, themeLabor) => {
-    const {wp} = sizeLabor.designsBasedOn.iphoneX;
+import { isSameUser } from './utils';
+import { withBunnyKit } from '../../hooks/bunny-kit';
+const makeStyles = (sizeLabor, themeLabor) => {
+    const { wp } = sizeLabor.designsBasedOn.iphoneX;
     return {
         left: StyleSheet.create({
             container: {
@@ -30,16 +29,15 @@ const getStyles = (sizeLabor, themeLabor) => {
         }),
     };
 };
-
 class Message extends React.Component {
     shouldComponentUpdate(nextProps) {
         const next = nextProps.currentMessage;
         const current = this.props.currentMessage;
-        const {previousMessage, nextMessage} = this.props;
+        const { previousMessage, nextMessage } = this.props;
         const nextPropsMessage = nextProps.nextMessage;
         const nextPropsPreviousMessage = nextProps.previousMessage;
         const shouldUpdate = (this.props.shouldUpdateMessage &&
-                this.props.shouldUpdateMessage(this.props, nextProps)) ||
+            this.props.shouldUpdateMessage(this.props, nextProps)) ||
             false;
         return (next.sent !== current.sent ||
             next.received !== current.received ||
@@ -54,21 +52,10 @@ class Message extends React.Component {
             nextMessage !== nextPropsMessage ||
             shouldUpdate);
     }
-
     renderDay() {
         if (this.props.currentMessage && this.props.currentMessage.createdAt) {
             // const {messageContainerStyle, onMessageLayout, ...dayProps} = this.props
-            const {
-                currentMessage,
-                previousMessage,
-                nextMessage,
-                dayContainerStyle,
-                dayWrapperStyle,
-                dayTextStyle,
-                dayTextProps,
-                dateFormat,
-                isDebug
-            } = this.props;
+            const { currentMessage, previousMessage, nextMessage, dayContainerStyle, dayWrapperStyle, dayTextStyle, dayTextProps, dateFormat, isDebug } = this.props;
             const dayProps = {
                 currentMessage,
                 previousMessage,
@@ -88,79 +75,9 @@ class Message extends React.Component {
         }
         return null;
     }
-
     renderBubble() {
         // const {messageContainerStyle, onMessageLayout, ...props} = this.props
-        const {
-            audioProps,
-            audioStyle,
-            audioContainerStyle,
-            bottomContainerStyle,
-            bubbleContainerStyle,
-            bubbleWrapperStyle,
-            currentMessage,
-            quickRepliesColor,
-            containerToNextStyle,
-            containerToPreviousStyle,
-            customTextStyle,
-            isDebug,
-            imageContainerStyle,
-            imageProps,
-            imageStyle,
-            isCustomViewBottom,
-            keepReplies,
-            lightBoxProps,
-            linkStyle,
-            messages,
-            nextMessage,
-            onLongPress,
-            onMessageLoad,
-            onMessageLoadEnd,
-            onMessageLoadError,
-            onMessageLoadStart,
-            onMessageReadyForDisplay,
-            onPress,
-            onQuickReply,
-            textLongPressOptionTitles,
-            phoneNumberOptionTitles,
-            parsePatterns,
-            position,
-            previousMessage,
-            quickReplyStyle,
-            renderCustomView,
-            renderMessageAudio,
-            renderMessageImage,
-            renderMessageSticker,
-            renderMessageText,
-            renderMessageVideo,
-            renderQuickReplies,
-            renderQuickReplySend,
-            renderTicks,
-            renderTime,
-            renderUsernameOnMessage,
-            stickerStyle,
-            sendText,
-            stickerContainerStyle,
-            stickerProps,
-            textContainerStyle,
-            textProps,
-            textStyle,
-            tickStyle,
-            timeContainerStyle,
-            timeFormat,
-            timeTextStyle,
-            touchableProps,
-            usernameStyle,
-            user,
-            videoProps,
-            videoContainerStyle,
-            videoStyle,
-            audioProgressStyle,
-            audioPlayButtonStyle,
-            audioProgressColor,
-            audioRemainTimeStyle,
-            audioPlayButtonIconStyle,
-        } = this.props;
+        const { audioProps, audioStyle, audioContainerStyle, bottomContainerStyle, bubbleContainerStyle, bubbleWrapperStyle, currentMessage, quickRepliesColor, containerToNextStyle, containerToPreviousStyle, customTextStyle, isDebug, imageContainerStyle, imageProps, imageStyle, isCustomViewBottom, keepReplies, lightBoxProps, linkStyle, messages, nextMessage, onLongPress, onMessageLoad, onMessageLoadEnd, onMessageLoadError, onMessageLoadStart, onMessageReadyForDisplay, onPress, onQuickReply, textLongPressOptionTitles, phoneNumberOptionTitles, parsePatterns, position, previousMessage, quickReplyStyle, renderCustomView, renderMessageAudio, renderMessageImage, renderMessageSticker, renderMessageText, renderMessageVideo, renderQuickReplies, renderQuickReplySend, renderTicks, renderTime, renderUsernameOnMessage, stickerStyle, sendText, stickerContainerStyle, stickerProps, textContainerStyle, textProps, textStyle, tickStyle, timeContainerStyle, timeFormat, timeTextStyle, touchableProps, usernameStyle, user, videoProps, videoContainerStyle, videoStyle, audioProgressStyle, audioPlayButtonStyle, audioProgressColor, audioRemainTimeStyle, audioPlayButtonIconStyle, } = this.props;
         const bubbleProps = {
             audioProps,
             audioStyle,
@@ -238,16 +155,9 @@ class Message extends React.Component {
         return <Bubble {...bubbleProps}/>;
         // return <Bubble {...bubbleProps} />
     }
-
     renderSystemMessage() {
         // const {messageContainerStyle, onMessageLayout, ...props} = this.props
-        const {
-            currentMessage,
-            systemMessageContainerStyle,
-            systemMessageWrapperStyle,
-            systemTextStyle,
-            isDebug
-        } = this.props;
+        const { currentMessage, systemMessageContainerStyle, systemMessageWrapperStyle, systemTextStyle, isDebug } = this.props;
         const systemMessageProps = {
             currentMessage,
             systemMessageContainerStyle,
@@ -261,9 +171,8 @@ class Message extends React.Component {
         return <SystemMessage {...systemMessageProps}/>;
         // return <SystemMessage {...systemMessageProps} />
     }
-
     renderAvatar() {
-        const {user, currentMessage, showUserAvatar} = this.props;
+        const { user, currentMessage, showUserAvatar } = this.props;
         if (user &&
             user._id &&
             currentMessage &&
@@ -278,18 +187,7 @@ class Message extends React.Component {
             return null;
         }
         // const {messageContainerStyle, onMessageLayout, ...props} = this.props
-        const {
-            renderAvatarOnTop,
-            showAvatarForEveryMessage,
-            position,
-            previousMessage,
-            nextMessage,
-            avatarContainerStyle,
-            avatarImageStyle,
-            onPressAvatar,
-            onLongPressAvatar,
-            isDebug
-        } = this.props;
+        const { renderAvatarOnTop, showAvatarForEveryMessage, position, previousMessage, nextMessage, avatarContainerStyle, avatarImageStyle, onPressAvatar, onLongPressAvatar, isDebug } = this.props;
         const avatarProps = {
             renderAvatarOnTop,
             showAvatarForEveryMessage,
@@ -305,31 +203,29 @@ class Message extends React.Component {
         isDebug && console.log('%c[ chat ]', 'background: #555; color: #bada55', '[level3]Message avatarProps', avatarProps);
         return <ChatAvatar {...avatarProps}/>;
     }
-
     render() {
-        const {currentMessage, onMessageLayout, nextMessage, position, messageContainerStyle,} = this.props;
+        const { currentMessage, onMessageLayout, nextMessage, position, messageContainerStyle, } = this.props;
         if (currentMessage) {
             const sameUser = isSameUser(currentMessage, nextMessage);
-            const {bunnyKit: {sizeLabor, themeLabor}} = this.props;
-            const styles = getStyles(sizeLabor, themeLabor);
+            const { bunnyKit: { sizeLabor, themeLabor } } = this.props;
+            const styles = makeStyles(sizeLabor, themeLabor);
             return (<View onLayout={onMessageLayout}>
-                {this.renderDay()}
-                {currentMessage.system ? (this.renderSystemMessage()) : (<View style={[
-                    styles[position].container,
-                    {marginBottom: sameUser ? 2 : 10},
-                    !this.props.inverted && {marginBottom: 2},
-                    messageContainerStyle && messageContainerStyle[position],
-                ]}>
-                    {this.props.position === 'left' ? this.renderAvatar() : null}
-                    {this.renderBubble()}
-                    {this.props.position === 'right' ? this.renderAvatar() : null}
-                </View>)}
-            </View>);
+                    {this.renderDay()}
+                    {currentMessage.system ? (this.renderSystemMessage()) : (<View style={[
+                        styles[position].container,
+                        { marginBottom: sameUser ? 2 : 10 },
+                        !this.props.inverted && { marginBottom: 2 },
+                        messageContainerStyle && messageContainerStyle[position],
+                    ]}>
+                            {this.props.position === 'left' ? this.renderAvatar() : null}
+                            {this.renderBubble()}
+                            {this.props.position === 'right' ? this.renderAvatar() : null}
+                        </View>)}
+                </View>);
         }
         return null;
     }
 }
-
 Message.defaultProps = {
     messages: [],
     renderAvatar: undefined,

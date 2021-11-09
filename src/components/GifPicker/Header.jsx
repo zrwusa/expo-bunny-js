@@ -1,27 +1,25 @@
 import React from 'react';
-import {ImageBackground, StyleSheet, Text, useColorScheme} from 'react-native';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
-
+import { ImageBackground, StyleSheet, Text, useColorScheme } from 'react-native';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 const Header = () => {
     const isDarkMode = useColorScheme() === 'dark';
-    return (<ImageBackground accessibilityRole="image"
-                             source={require('react-native/Libraries/NewAppScreen/components/logo.png')} style={[
-        styles.background,
-        {
-            backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-        },
-    ]} imageStyle={styles.logo}>
-        <Text style={[
+    return (<ImageBackground accessibilityRole="image" source={require('react-native/Libraries/NewAppScreen/components/logo.png')} style={[
+            styles.background,
+            {
+                backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+            },
+        ]} imageStyle={styles.logo}>
+            <Text style={[
             styles.text,
             {
                 color: isDarkMode ? Colors.white : Colors.black,
             },
         ]}>
-            Welcome to
-            {'\n'}
-            Gif Search
-        </Text>
-    </ImageBackground>);
+                Welcome to
+                {'\n'}
+                Gif Search
+            </Text>
+        </ImageBackground>);
 };
 const styles = StyleSheet.create({
     background: {

@@ -1,26 +1,26 @@
-import {Platform} from 'react-native';
+import { Platform } from 'react-native';
 import * as Notifications from 'expo-notifications';
 import Constants from 'expo-constants';
-import {collectBLResult} from '../store/actions';
-import {blSuccess} from '../helpers';
-import store from '../store';
-
+import { collectBizLogicResult } from '../store/actions';
+import { bizLogicSuccess } from '../helpers';
+import store from '../store/store';
 export const registerForPushNotificationsAsync = async (copywriting) => {
     let token;
     if (Constants.isDevice) {
-        const {status: existingStatus} = await Notifications.getPermissionsAsync();
+        const { status: existingStatus } = await Notifications.getPermissionsAsync();
         let finalStatus = existingStatus;
         if (existingStatus !== 'granted') {
-            const {status} = await Notifications.requestPermissionsAsync();
+            const { status } = await Notifications.requestPermissionsAsync();
             finalStatus = status;
         }
         if (finalStatus !== 'granted') {
-            store.dispatch(collectBLResult(blSuccess(undefined, copywriting.failedToGetToken)));
+            store.dispatch(collectBizLogicResult(bizLogicSuccess(undefined, copywriting.failedToGetToken)));
             return;
         }
         token = (await Notifications.getExpoPushTokenAsync()).data;
-    } else {
-        store.dispatch(collectBLResult(blSuccess(undefined, copywriting.mustUsePhysicalDevice)));
+    }
+    else {
+        store.dispatch(collectBizLogicResult(bizLogicSuccess(undefined, copywriting.mustUsePhysicalDevice)));
         return;
     }
     if (Platform.OS === 'android') {
@@ -39,9 +39,9 @@ export const schedulePushNotification = async () => {
             title: 'You\'ve got mail! 📬',
             body: 'Here is the notification body',
             sound: 'default',
-            data: {data: 'goes here'},
+            data: { data: 'goes here' },
         },
-        trigger: {seconds: 2},
+        trigger: { seconds: 2 },
     });
 };
 export const defaultNotification = {

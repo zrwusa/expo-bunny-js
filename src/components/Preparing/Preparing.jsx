@@ -1,16 +1,15 @@
 import React from 'react';
-import {getStyles} from './styles';
-import {ActivityIndicator, Text, View} from 'react-native';
-
+import { makeStyles } from './styles';
+import { ActivityIndicator, Text, View } from 'react-native';
 export const Preparing = (props) => {
-    const {text = ''} = props;
-    const styles = getStyles();
+    const { text = '' } = props;
+    const styles = makeStyles();
     return (<View style={styles.container}>
-        <ActivityIndicator size="large"/>
-        {text
+            <ActivityIndicator size="large"/>
+            {text
             ? <Text style={styles.text}>
-                {text}
-            </Text>
+                    {text}
+                </Text>
             : null}
-    </View>);
+        </View>);
 };

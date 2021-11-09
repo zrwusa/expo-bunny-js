@@ -1,14 +1,13 @@
 import React from 'react';
-import {Image, View} from 'react-native';
-import {Col, getContainerStyles, Row} from '../../../containers';
-import {getSharedStyles} from '../../../helpers';
-import {IcoMoon} from '../../../components/UI';
-import {useBunnyKit} from '../../../hooks';
-
-const CardItem = ({description, hasActions, hasVariant, image, isOnline, matches, name,}) => {
-    const {sizeLabor, themeLabor, colors, wp, hp} = useBunnyKit();
-    const containerStyles = getContainerStyles(sizeLabor, themeLabor);
-    const {sharedStyles, sharedStylesFlatten} = getSharedStyles(sizeLabor, themeLabor);
+import { Image, View } from 'react-native';
+import { Col, makeContainerStyles, Row } from '../../../containers';
+import { getSharedStyles } from '../../../helpers';
+import { IcoMoon } from '../../../components/UI';
+import { useBunnyKit } from '../../../hooks/bunny-kit';
+const CardItem = ({ description, hasActions, hasVariant, image, isOnline, matches, name, }) => {
+    const { sizeLabor, themeLabor, colors, wp, hp } = useBunnyKit();
+    const containerStyles = makeContainerStyles(sizeLabor, themeLabor);
+    const { sharedStyles, sharedStylesFlatten } = getSharedStyles(sizeLabor, themeLabor);
     const imageStyle = [
         {
             borderRadius: wp(22),
@@ -18,40 +17,40 @@ const CardItem = ({description, hasActions, hasVariant, image, isOnline, matches
         },
     ];
     return (<View style={{
-        ...sharedStylesFlatten.shadowThin,
-        backgroundColor: '#ffffff',
-        borderRadius: wp(16),
-        alignItems: 'center',
-        margin: wp(10),
-    }}>
-        <Image source={image} style={imageStyle}/>
-        <Row style={{height: wp(80)}}>
-            <Col size={1}>
-            </Col>
-            <Col size={3} align="center">
-                <View style={[sharedStyles.centralized, {
-                    width: wp(50),
-                    height: wp(50),
-                    borderRadius: wp(30),
-                    backgroundColor: colors.backgroundBtn2
-                }]}>
-                    <IcoMoon name="cancel" color={colors.buttonText}/>
-                </View>
-            </Col>
+            ...sharedStylesFlatten.shadowThin,
+            backgroundColor: '#ffffff',
+            borderRadius: wp(16),
+            alignItems: 'center',
+            margin: wp(10),
+        }}>
+            <Image source={image} style={imageStyle}/>
+            <Row style={{ height: wp(80) }}>
+                <Col size={1}>
+                </Col>
+                <Col size={3} align="center">
+                    <View style={[sharedStyles.centralized, {
+                width: wp(50),
+                height: wp(50),
+                borderRadius: wp(30),
+                backgroundColor: colors.backgroundBtn2
+            }]}>
+                        <IcoMoon name="cancel" color={colors.buttonText}/>
+                    </View>
+                </Col>
 
-            <Col size={3} align="center">
-                <View style={[sharedStyles.centralized, {
-                    width: wp(50),
-                    height: wp(50),
-                    borderRadius: wp(30),
-                    backgroundColor: colors.backgroundBtn
-                }]}>
-                    <IcoMoon name="heart" color={colors.buttonText}/>
-                </View>
-            </Col>
-            <Col size={1}>
-            </Col>
-        </Row>
-    </View>);
+                <Col size={3} align="center">
+                    <View style={[sharedStyles.centralized, {
+                width: wp(50),
+                height: wp(50),
+                borderRadius: wp(30),
+                backgroundColor: colors.backgroundBtn
+            }]}>
+                        <IcoMoon name="heart" color={colors.buttonText}/>
+                    </View>
+                </Col>
+                <Col size={1}>
+                </Col>
+            </Row>
+        </View>);
 };
 export default CardItem;

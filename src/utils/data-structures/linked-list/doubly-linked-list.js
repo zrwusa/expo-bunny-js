@@ -4,32 +4,25 @@ export class DoublyLinkedListNode {
         this._next = undefined;
         this._prev = undefined;
     }
-
     get value() {
         return this._value;
     }
-
     set value(v) {
         this._value = v;
     }
-
     get next() {
         return this._next;
     }
-
     set next(v) {
         this._next = v;
     }
-
     get previous() {
         return this._prev;
     }
-
     set previous(v) {
         this._prev = v;
     }
 }
-
 export class DoublyLinkedList {
     //#endregion
     constructor() {
@@ -38,31 +31,24 @@ export class DoublyLinkedList {
         this.tail = undefined;
         this.length = 0;
     }
-
     get head() {
         return this._head;
     }
-
     set head(node) {
         this._head = node;
     }
-
     get tail() {
         return this._tail;
     }
-
     set tail(node) {
         this._tail = node;
     }
-
     get length() {
         return this._length;
     }
-
     set length(v) {
         this._length = v;
     }
-
     /**
      * Adds a node to the end of the linked list
      * @param value Value to be stored in the Doubly linked list node
@@ -72,7 +58,8 @@ export class DoublyLinkedList {
         if (this.length === 0) {
             this.head = newNode;
             this.tail = newNode;
-        } else {
+        }
+        else {
             if (this.tail)
                 this.tail.next = newNode;
             newNode.previous = this.tail;
@@ -81,7 +68,6 @@ export class DoublyLinkedList {
         this.length++;
         return true;
     }
-
     /**
      * Removes a node at the end of the linked list and will return the node value
      */
@@ -92,7 +78,8 @@ export class DoublyLinkedList {
         if (this.length === 1) {
             this.head = undefined;
             this.tail = undefined;
-        } else {
+        }
+        else {
             this.tail = poppedNode?.previous;
             if (this.tail)
                 this.tail.next = undefined;
@@ -102,7 +89,6 @@ export class DoublyLinkedList {
         this.length--;
         return poppedNode;
     }
-
     /**
      * Removes a node form the beginning of the linked list and will return the node value
      */
@@ -113,7 +99,8 @@ export class DoublyLinkedList {
         if (this.length === 1) {
             this.head = undefined;
             this.tail = undefined;
-        } else {
+        }
+        else {
             this.head = oldHead?.next;
             if (this.head)
                 this.head.previous = undefined;
@@ -123,7 +110,6 @@ export class DoublyLinkedList {
         this.length--;
         return oldHead?.value;
     }
-
     /**
      * Adds a node at the beginning of the linked list
      * @param value Value to be stored at the beginning of the linked list
@@ -133,7 +119,8 @@ export class DoublyLinkedList {
         if (this.length === 0) {
             this.head = newNode;
             this.tail = newNode;
-        } else {
+        }
+        else {
             if (this.head)
                 this.head.previous = newNode;
             newNode.next = this.head;
@@ -142,7 +129,6 @@ export class DoublyLinkedList {
         this.length++;
         return true;
     }
-
     /**
      * Returns the node at the specified index of the linked list.
      * If index = 0; first element in the list is returned.
@@ -160,7 +146,8 @@ export class DoublyLinkedList {
                 current = current?.next;
                 count++;
             }
-        } else {
+        }
+        else {
             count = this.length - 1;
             current = this.tail;
             while (count !== index) {
@@ -170,7 +157,6 @@ export class DoublyLinkedList {
         }
         return current;
     }
-
     /**
      * Updates the value of the node at the specified index.
      * If index = 0; Value of the first element in the list is updated.
@@ -186,7 +172,6 @@ export class DoublyLinkedList {
         }
         return false;
     }
-
     /**
      * Inserts a new node at the specified index.
      * @param index Index at which the new node has to be inserted
@@ -211,7 +196,6 @@ export class DoublyLinkedList {
         this.length++;
         return true;
     }
-
     /**
      * Removes a node at the specified index and returns its value.
      * @param index Index at which the node has to be removed.
@@ -219,11 +203,14 @@ export class DoublyLinkedList {
     remove(index) {
         if (index < 0 || index > this._length - 1) {
             return undefined;
-        } else if (index === 0) {
+        }
+        else if (index === 0) {
             return this.shift();
-        } else if (index === this._length - 1) {
+        }
+        else if (index === this._length - 1) {
             return this.pop()?.value;
-        } else {
+        }
+        else {
             const prevNode = this.get(index - 1);
             const removeNode = prevNode?.next;
             const nextNode = removeNode?.next;

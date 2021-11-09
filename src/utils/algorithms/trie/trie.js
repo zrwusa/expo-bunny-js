@@ -1,5 +1,4 @@
-import {Trie} from '../../data-structures/trie';
-
+import { Trie } from '../../data-structures/trie';
 export const testTrie = (words) => {
     const trie = new Trie();
     for (let word of words) {

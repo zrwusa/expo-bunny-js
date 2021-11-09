@@ -1,11 +1,10 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View,} from 'react-native';
-import {withBunnyKit} from '../../hooks';
-import {connectActionSheet} from '../../../packages/react-native-action-sheet/src';
-
-const getStyles = (sizeLabor, themeLabor) => {
-    const {wp} = sizeLabor.designsBasedOn.iphoneX;
-    const {theme: {colors}} = themeLabor;
+import { StyleSheet, Text, TouchableOpacity, View, } from 'react-native';
+import { withBunnyKit } from '../../hooks/bunny-kit';
+import { connectActionSheet } from '../../../packages/react-native-action-sheet/src';
+const makeStyles = (sizeLabor, themeLabor) => {
+    const { wp } = sizeLabor.designsBasedOn.iphoneX;
+    const { theme: { colors } } = themeLabor;
     return StyleSheet.create({
         container: {
             width: wp(26),
@@ -28,13 +27,12 @@ const getStyles = (sizeLabor, themeLabor) => {
         },
     });
 };
-
 class Actions extends React.Component {
     constructor() {
         super(...arguments);
         this.onActionsPress = () => {
             // TODO support multi actions
-            const {actionsConfig, showActionSheetWithOptions} = this.props;
+            const { actionsConfig, showActionSheetWithOptions } = this.props;
             const optionKeys = Object.keys(actionsConfig);
             const cancelButtonIndex = optionKeys.indexOf('Cancel');
             showActionSheetWithOptions({
@@ -49,29 +47,25 @@ class Actions extends React.Component {
             });
         };
     }
-
     renderIcon() {
         if (this.props.renderActionIcon) {
             return this.props.renderActionIcon();
         }
-        const {bunnyKit: {sizeLabor, themeLabor}} = this.props;
-        const styles = getStyles(sizeLabor, themeLabor);
+        const { bunnyKit: { sizeLabor, themeLabor } } = this.props;
+        const styles = makeStyles(sizeLabor, themeLabor);
         // TODO support multi actions
         return (<View style={[styles.wrapper, this.props.actionWrapperStyle]}>
-            <Text style={[styles.iconText, this.props.actionIconTextStyle]}>+</Text>
-        </View>);
+                <Text style={[styles.iconText, this.props.actionIconTextStyle]}>+</Text>
+            </View>);
     }
-
     render() {
-        const {bunnyKit: {sizeLabor, themeLabor}} = this.props;
-        const styles = getStyles(sizeLabor, themeLabor);
-        return (<TouchableOpacity style={[styles.container, this.props.actionContainerStyle]}
-                                  onPress={this.props.onPressActionButton || this.onActionsPress}>
-            {this.renderIcon()}
-        </TouchableOpacity>);
+        const { bunnyKit: { sizeLabor, themeLabor } } = this.props;
+        const styles = makeStyles(sizeLabor, themeLabor);
+        return (<TouchableOpacity style={[styles.container, this.props.actionContainerStyle]} onPress={this.props.onPressActionButton || this.onActionsPress}>
+                {this.renderIcon()}
+            </TouchableOpacity>);
     }
 }
-
 Actions.defaultProps = {
     actionsConfig: {},
     actionOptionTintColor: '#007AFF',

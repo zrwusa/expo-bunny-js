@@ -1,7 +1,6 @@
 // 699. Falling Squares
-import {runAlgorithm} from '../helpers';
-import {breakWordIICase8} from './cases';
-
+import { runAlgorithm } from '../helpers';
+import { breakWordIICase8 } from './cases';
 export const fallingSquaresMy = function (positions) {
     const h = [];
     for (let i = 0; i < 1e+6; i++) {
@@ -88,7 +87,6 @@ export const isValidSudoku = function (board) {
     };
     return areRowsValid() && areColsValid() && areBoxesValid();
 };
-
 // 37. Sudoku Solver
 function solveSudokuBruteForceFailed(board) {
     const getRowValidSet = (r) => {
@@ -142,7 +140,6 @@ function solveSudokuBruteForceFailed(board) {
     };
     fill();
 }
-
 // 48. Rotate Image
 function rotate(matrix) {
     const n = matrix.length;
@@ -161,7 +158,6 @@ function rotate(matrix) {
         }
     }
 }
-
 function subSetOfArray(input) {
     let res = [];
     let dfs = (index, accumulated) => {
@@ -177,7 +173,6 @@ function subSetOfArray(input) {
     dfs(0, []);
     return res;
 }
-
 // 131. Palindrome Partitioning
 function partition(s) {
     const ans = [];
@@ -209,7 +204,6 @@ function partition(s) {
     dfs([], 0);
     return ans;
 }
-
 // 312. Burst Balloons
 // 120. Triangle
 function minimumTotal(triangle) {
@@ -227,7 +221,6 @@ function minimumTotal(triangle) {
     }
     return Math.min(...dp[n - 1]);
 }
-
 // 198. House Robber
 function rob(nums) {
     const dp = [0, 0, 0];
@@ -239,7 +232,6 @@ function rob(nums) {
     const pre1 = dp[dpLen - 1], pre2 = dp[dpLen - 2];
     return Math.max(pre1 !== undefined ? pre1 : 0, pre2 !== undefined ? pre2 : 0);
 }
-
 // 213. House Robber II
 function robII(nums) {
     if (nums.length === 1)
@@ -252,7 +244,6 @@ function robII(nums) {
     const maxLast = rob(last);
     return Math.max(maxFirst, maxLast);
 }
-
 // 139. Word Break
 // time complexity is O(2*wordDict.length^validWord)
 function wordBreakBruteForce(s, wordDict) {
@@ -273,7 +264,6 @@ function wordBreakBruteForce(s, wordDict) {
     dfs(s);
     return ans;
 }
-
 function wordBreak(s, wordDict) {
     const l = s.length;
     const dp = new Array(l + 1).fill(false);
@@ -289,7 +279,6 @@ function wordBreak(s, wordDict) {
     }
     return dp[0];
 }
-
 // 140. Word Break II
 // time complexity is O(2*wordDict.length^validWord)
 function wordBreakIIBruteForce(s, wordDict) {
@@ -312,7 +301,6 @@ function wordBreakIIBruteForce(s, wordDict) {
     dfs(s, []);
     return ans;
 }
-
 function wordBreakIIDfsDPLoopWordDict(s, wordDict) {
     const memo = new Map();
     const dfs = (sub) => {
@@ -326,7 +314,8 @@ function wordBreakIIDfsDPLoopWordDict(s, wordDict) {
             if (prefix === word) {
                 if (prefix === sub) {
                     ret.push(prefix);
-                } else {
+                }
+                else {
                     const restOfCur = dfs(sub.substr(prefix.length));
                     for (let phrase of restOfCur) {
                         ret.push(prefix + ' ' + phrase);
@@ -339,7 +328,6 @@ function wordBreakIIDfsDPLoopWordDict(s, wordDict) {
     };
     return dfs(s);
 }
-
 // Use DP to accelerate,multiple times faster
 function wordBreakIIDfsDPLoopS(s, wordDict) {
     const wordSet = new Set(wordDict);
@@ -355,7 +343,8 @@ function wordBreakIIDfsDPLoopS(s, wordDict) {
             if (wordSet.has(prefix)) {
                 if (prefix === sub) {
                     ret.push(prefix);
-                } else {
+                }
+                else {
                     const restOfCur = dfs(sub.substr(prefix.length));
                     for (let phrase of restOfCur) {
                         ret.push(prefix + ' ' + phrase);
@@ -368,7 +357,6 @@ function wordBreakIIDfsDPLoopS(s, wordDict) {
     };
     return dfs(s);
 }
-
 export const runAllWordBreakII = async () => {
     // await runAlgorithm(wordBreakIIBruteForce, false, ...breakWordIICase4);
     // await runAlgorithm(wordBreakIIBruteForce, false, ...breakWordIICase7);

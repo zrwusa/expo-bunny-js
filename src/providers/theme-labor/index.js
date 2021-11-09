@@ -5,3 +5,5 @@ export * from './ThemeLaborProvider';
 export * from './useThemeLabor';
 export * from './withThemeLabor';
 export * from './ThemeLaborContext';
+export * from './victoryTheme';
+export * from './theme';

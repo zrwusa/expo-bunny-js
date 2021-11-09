@@ -1,7 +1,6 @@
-import {heightPercentageToDP as hp2dp, widthPercentageToDP as wp2dp} from './responsiveScreen';
+import { heightPercentageToDP as hp2dp, widthPercentageToDP as wp2dp } from './responsiveScreen';
 import bunnyConfig from '../../config';
-
-const getSizeLabor = () => {
+export const getSizeLabor = () => {
     const defaultDimensionFun = {
         wp: (width, shouldRound) => {
             return wp2dp((width / 375), shouldRound);
@@ -44,7 +43,7 @@ const getSizeLabor = () => {
         };
     });
     const _designsBasedOn = designsBasedOn;
-    const {wp} = _designsBasedOn.iphoneX;
+    const { wp } = _designsBasedOn.iphoneX;
     // todo need typescript to constrain types
     const measureObj = {
         breakpoints: {
@@ -103,6 +102,13 @@ const getSizeLabor = () => {
             xxl: wp(128),
         },
         zIndex: {
+            // mobile stepper: 1000
+            // speed dial: 1050
+            // app bar: 1100
+            // drawer: 1200
+            // modal: 1300
+            // snackbar: 1400
+            // tooltip: 1500
             xxs: 10,
             xs: 100,
             s: 1000,
@@ -129,4 +135,3 @@ const getSizeLabor = () => {
         ms: _measure,
     };
 };
-export default getSizeLabor;

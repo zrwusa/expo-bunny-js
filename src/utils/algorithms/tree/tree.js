@@ -1,40 +1,13 @@
 /* --- start tree --- */
 // 94 Binary Tree Inorder Traversal	★ 144 145 429 589 590 987 1302 traversal
-
-import {DeepProxy} from '@qiwi/deep-proxy';
-import {wait} from '../../utils';
-import {Queue, Stack, TreeNode} from '../../data-structures';
-import {
-    fourthQuadrantMove,
-    fourthQuadrantMoveByIndex,
-    getRouteByParentsHash,
-    isOneDiffOrdered,
-    isOneDiffOrderedPieced,
-    runAlgorithm
-} from '../helpers';
-import {
-    cutOffTreeCase1,
-    cutOffTreeCase2,
-    cutOffTreeCase3,
-    cutOffTreeCase4,
-    cutOffTreeCase5,
-    cutOffTreeCase6,
-    cutOffTreeCase7,
-    ladderLengthCase1,
-    ladderLengthCase2,
-    ladderLengthCase3,
-    ladderLengthCase4,
-    ladderLengthCase5,
-    ladderLengthCase6,
-    ladderLengthCase7,
-    updateMatrixCase1,
-    updateMatrixCase2,
-    updateMatrixCase3,
-    updateMatrixCase4
-} from './cases';
-
+import { TreeNode } from '../../../types';
+import { DeepProxy } from '@qiwi/deep-proxy';
+import { wait } from '../../utils';
+import { Queue, Stack } from '../../data-structures';
+import { fourthQuadrantMove, fourthQuadrantMoveByIndex, getRouteByParentsHash, isOneDiffOrdered, isOneDiffOrderedPieced, runAlgorithm } from '../helpers';
+import { cutOffTreeCase1, cutOffTreeCase2, cutOffTreeCase3, cutOffTreeCase4, cutOffTreeCase5, cutOffTreeCase6, cutOffTreeCase7, ladderLengthCase1, ladderLengthCase2, ladderLengthCase3, ladderLengthCase4, ladderLengthCase5, ladderLengthCase6, ladderLengthCase7, updateMatrixCase1, updateMatrixCase2, updateMatrixCase3, updateMatrixCase4 } from './cases';
 export async function binaryTreeInorderTraversal(root, proxyHandler) {
-    let proxyVariables = new DeepProxy({node: null}, proxyHandler);
+    let proxyVariables = new DeepProxy({ node: null }, proxyHandler);
     if (!root) {
         return [];
     }
@@ -52,21 +25,23 @@ export async function binaryTreeInorderTraversal(root, proxyHandler) {
             root.id,
             ...rightResult
         ];
-    } else if (leftResult) {
+    }
+    else if (leftResult) {
         return [
             ...leftResult,
             root.id
         ];
-    } else if (rightResult) {
+    }
+    else if (rightResult) {
         return [
             root.id,
             ...rightResult
         ];
-    } else {
+    }
+    else {
         return [root.id];
     }
 }
-
 export const DFS = async (node, type, proxyHandler) => {
     let variablesProxy = new DeepProxy({
         current: node,
@@ -75,7 +50,7 @@ export const DFS = async (node, type, proxyHandler) => {
     if (!variablesProxy.current) {
         return;
     }
-    const {children} = variablesProxy.current;
+    const { children } = variablesProxy.current;
     if (children && children.length > 0) {
         const left = children[0];
         const right = children[1];
@@ -107,7 +82,7 @@ export const DFS = async (node, type, proxyHandler) => {
 // 102	Binary Tree Level Order Traversal	★★	107	429	872			collecting nodes
 export const BFS = async (node, proxyHandler) => {
     let nodes = [];
-    let variablesProxy = new DeepProxy({node: node,}, proxyHandler);
+    let variablesProxy = new DeepProxy({ node: node, }, proxyHandler);
     if (node) {
         let queue = new Queue();
         queue.enqueue(node);
@@ -116,7 +91,7 @@ export const BFS = async (node, proxyHandler) => {
             nodes.push(item);
             variablesProxy.node = item;
             await wait(500);
-            const {children} = item;
+            const { children } = item;
             if (children) {
                 for (let i = 0; i < children.length; i++) {
                     queue.enqueue(children[i]);
@@ -127,7 +102,6 @@ export const BFS = async (node, proxyHandler) => {
     return nodes;
 };
 /* --- start Search (BFS/DFS) ---*/
-
 // 17	Letter Combinations of a Phone Number	★★	39	40	77	78	90	216
 export async function letterCombinations(digits, proxyHandler) {
     // corner case
@@ -164,7 +138,6 @@ export async function letterCombinations(digits, proxyHandler) {
     await dfs(0, new Stack());
     return proxyVariables.result;
 }
-
 // 46	Permutations	★★	47	784	943	996				Permutation
 const permute = function (nums) {
     if (nums.length === 1) {
@@ -290,12 +263,11 @@ function generateParenthesis(n) {
     dfs('', 0);
     return result;
 }
-
 // 37	Sudoku Solver	★★★	51	52						DFS
 // 79	Word Search	★★★	212							DFS
 // 127	Word Ladder	★★★★	126	752	818					BFS
 export function ladderLengthDFS(beginWord, endWord, wordList, proxyHandler) {
-    let proxyVariables = new DeepProxy({tree: new TreeNode(beginWord, beginWord, beginWord)}, proxyHandler);
+    let proxyVariables = new DeepProxy({ tree: new TreeNode(beginWord, beginWord, beginWord) }, proxyHandler);
     const wordListLength = wordList.length;
     // corner case
     if (wordListLength < 1) {
@@ -335,7 +307,6 @@ export function ladderLengthDFS(beginWord, endWord, wordList, proxyHandler) {
     dfs([], wordList, 0, proxyVariables.tree);
     return shortest;
 }
-
 // Plagiarized 3440 ms
 export const ladderLengthPlagiarized = function (beginWord, endWord, wordList, proxyHandler) {
     let queue = [beginWord];
@@ -466,7 +437,7 @@ export const updateMatrix = (mat) => {
         for (let x = 0; x < colCount; x++) {
             if (mat[y][x] === 0) {
                 costMat[y][x] = 0;
-                departureQueue.push({y, x});
+                departureQueue.push({ y, x });
             }
         }
     }
@@ -544,7 +515,7 @@ const runAllUpdateMatrix = async () => {
 export async function cutOffTree(forest, proxyHandler) {
     let proxyVariables = proxyHandler ? new DeepProxy({
         forest,
-        cur: {y: 0, x: 0},
+        cur: { y: 0, x: 0 },
         route: []
     }, proxyHandler) : undefined;
     const rowCount = forest.length;
@@ -557,7 +528,7 @@ export async function cutOffTree(forest, proxyHandler) {
     for (let rowIndex = 0; rowIndex < forest.length; rowIndex++) {
         for (let colIndex = 0; colIndex < forest[rowIndex].length; colIndex++) {
             if (forest[rowIndex][colIndex] > 1) {
-                treeCoordinates.push({y: rowIndex, x: colIndex});
+                treeCoordinates.push({ y: rowIndex, x: colIndex });
             }
         }
     }
@@ -595,7 +566,8 @@ export async function cutOffTree(forest, proxyHandler) {
                         const route = getRouteByParentsHash(parents, to, hashFunction);
                         proxyVariables.route.push(route);
                         return level + 1;
-                    } else {
+                    }
+                    else {
                         tempQueue.push(destination);
                     }
                 }
@@ -608,7 +580,7 @@ export async function cutOffTree(forest, proxyHandler) {
         }
         return -1;
     };
-    let begin = {y: 0, x: 0};
+    let begin = { y: 0, x: 0 };
     if (!(sortedTreeCoordinates[0].y === 0 && sortedTreeCoordinates[0].x === 0)) {
         sortedTreeCoordinates.unshift(begin);
     }
@@ -619,7 +591,8 @@ export async function cutOffTree(forest, proxyHandler) {
             const bfsResult = await bfs(front, second);
             if (bfsResult === -1) {
                 return -1;
-            } else {
+            }
+            else {
                 cost += bfsResult;
             }
         }
@@ -629,7 +602,6 @@ export async function cutOffTree(forest, proxyHandler) {
     }
     return -1;
 }
-
 function cutOffTreeByIndex(forest) {
     const rowCount = forest.length;
     if (rowCount < 1)
@@ -666,7 +638,8 @@ function cutOffTreeByIndex(forest) {
                 if (destination && !visited[destination[0].toString() + ',' + destination[1].toString()]) {
                     if (forest[destination[0]][destination[1]] === forest[to[0]][to[1]]) {
                         return level + 1;
-                    } else {
+                    }
+                    else {
                         visited[destination[0].toString() + ',' + destination[1].toString()] = true;
                         tempQueue.push(destination);
                     }
@@ -700,7 +673,6 @@ function cutOffTreeByIndex(forest) {
     }
     return -1;
 }
-
 const runAllCutOffTree = async () => {
     await runAlgorithm(cutOffTree, false, ...cutOffTreeCase1);
     await runAlgorithm(cutOffTreeByIndex, false, ...cutOffTreeCase1);
@@ -733,7 +705,7 @@ export const treeMaxDepth = (node) => {
     if (!node) {
         return 0;
     }
-    const {children} = node;
+    const { children } = node;
     if (children && children.length > 0) {
         const left = children[0];
         const right = children[1];
@@ -741,7 +713,8 @@ export const treeMaxDepth = (node) => {
         console.log(node.id);
         const maxRight = treeMaxDepth(right);
         return Math.max(maxLeft, maxRight) + 1;
-    } else {
+    }
+    else {
         return 1;
     }
 };

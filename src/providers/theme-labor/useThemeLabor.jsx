@@ -1,5 +1,3 @@
 import * as React from 'react';
-import {ThemeLaborContext} from './ThemeLaborContext';
-
-const useThemeLabor = () => React.useContext(ThemeLaborContext);
-export {useThemeLabor};
+import { ThemeLaborContext } from './ThemeLaborContext';
+export const useThemeLabor = () => React.useContext(ThemeLaborContext);

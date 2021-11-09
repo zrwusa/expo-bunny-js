@@ -1,28 +1,25 @@
-import {EDemoCryptoCurrency} from '../../constants';
-
-export function saveQuickAlertSettings(params) {
+import { EDemoCryptoCurrency } from '../../constants';
+export const saveQuickAlertSettings = (params) => {
     return {
         type: EDemoCryptoCurrency.SAVE_QUICK_ALERT_SETTINGS,
         payload: params
     };
-}
-
-export function cancelAlertSettings(params) {
+};
+export const cancelAlertSettings = (params) => {
     return {
         type: EDemoCryptoCurrency.CANCEL_ALL_ALERT_SETTINGS,
         payload: params
     };
-}
-
-export function getCurrentPrice() {
+};
+export const getCurrentPrice = () => {
     return {
         type: EDemoCryptoCurrency.GET_CURRENT_PRICE,
+        payload: undefined
     };
-}
-
-export function receiveGetCurrentPrice(payload) {
+};
+export const receiveGetCurrentPrice = (payload) => {
     return {
         type: EDemoCryptoCurrency.RECEIVE_CURRENT_PRICE,
         payload
     };
-}
+};

@@ -1,5 +1,4 @@
-import {useEffect, useRef} from 'react';
-
+import { useEffect, useRef } from 'react';
 export const useIsMounted = () => {
     // component is certainly mounted from the beginning
     const componentIsMounted = useRef(true);

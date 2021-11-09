@@ -1,34 +1,32 @@
-import React, {useEffect} from 'react';
-import {Text} from '../../../components/UI';
-import {Dimensions, FlatList, SafeAreaView, View} from 'react-native';
-import {useSelector} from 'react-redux';
-import {Col, Row} from '../../../containers';
-import {getStyles} from './styles';
-import {useBunnyKit} from '../../../hooks';
-import {isLoaded, useFirebaseConnect, useFirestore, useFirestoreConnect} from 'react-redux-firebase';
-import {Avatar, Divider, InlineJump, Preparing} from '../../../components';
+import React, { useEffect } from 'react';
+import { Text } from '../../../components/UI';
+import { Dimensions, FlatList, SafeAreaView, View } from 'react-native';
+import { useSelector } from 'react-redux';
+import { Col, Row } from '../../../containers';
+import { makeStyles } from './styles';
+import { useBunnyKit } from '../../../hooks/bunny-kit';
+import { isLoaded, useFirebaseConnect, useFirestore, useFirestoreConnect } from 'react-redux-firebase';
+import { Avatar, Divider, InlineJump, Preparing } from '../../../components';
 import dayJS from 'dayjs';
 import isToday from 'dayjs/plugin/isToday';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {firestoreTimestampToDate} from '../../../utils';
-
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { firestoreTimestampToDate } from '../../../utils';
 dayJS.extend(isToday);
-
-export function ChatHomeScreen({route, navigation}) {
-    const {sizeLabor, themeLabor, user, wp} = useBunnyKit();
-    const styles = getStyles(sizeLabor, themeLabor);
+export function ChatHomeScreen({ route, navigation }) {
+    const { sizeLabor, themeLabor, user, wp } = useBunnyKit();
+    const styles = makeStyles(sizeLabor, themeLabor);
     const firebaseUser = user?.firebaseUser;
     let userId = '';
     if (firebaseUser) {
         userId = firebaseUser.uid;
     }
-    useFirebaseConnect([{path: 'chatRooms', queryParams: []}]);
+    useFirebaseConnect([{ path: 'chatRooms', queryParams: [] }]);
     useFirestoreConnect([{
-        collection: 'conversations', where: [
-            ['users', 'array-contains', userId],
-        ],
-    }]);
-    useFirestoreConnect([{collection: 'users',}]);
+            collection: 'conversations', where: [
+                ['users', 'array-contains', userId],
+            ],
+        }]);
+    useFirestoreConnect([{ collection: 'users', }]);
     const conversations = useSelector((state) => state.firestoreState.ordered.conversations);
     const firestore = useFirestore();
     useEffect(() => {
@@ -64,13 +62,13 @@ export function ChatHomeScreen({route, navigation}) {
     const renderAvatar = (conversation) => {
         switch (conversation.type) {
             case 'GROUP':
-                return <Avatar size="l" isBorder={false} source={{uri: conversation.avatar}}/>;
+                return <Avatar size="l" isBorder={false} source={{ uri: conversation.avatar }}/>;
             case 'COUPLE':
                 const otherUsersInConversation = users?.filter((user) => {
                     return conversation.users.includes(user.uid) && user.uid !== userId;
                 });
                 return (otherUsersInConversation && otherUsersInConversation[0] && otherUsersInConversation[0].photoURL)
-                    ? <Avatar size="l" isBorder={false} source={{uri: otherUsersInConversation[0].photoURL}}/>
+                    ? <Avatar size="l" isBorder={false} source={{ uri: otherUsersInConversation[0].photoURL }}/>
                     : null;
         }
     };
@@ -120,27 +118,27 @@ export function ChatHomeScreen({route, navigation}) {
     };
     const renderItem = (conversation) => {
         return (<View style={styles.conversation}>
-            <InlineJump type="LINK" to={`/demo-chat/chat-rooms/${conversation.id}`}>
-                <Row paddingVertical="m">
-                    <Col size={1}>
-                        {renderAvatar(conversation)}
-                    </Col>
-                    <Col size={5} style={styles.latestMessage}>
-                        {renderLatestMessage(conversation)}
-                    </Col>
-                </Row>
-            </InlineJump>
-            <Divider/>
-        </View>);
+                <InlineJump type="LINK" to={`/demo-chat/chat-rooms/${conversation.id}`}>
+                    <Row paddingVertical="m">
+                        <Col size={1}>
+                            {renderAvatar(conversation)}
+                        </Col>
+                        <Col size={5} style={styles.latestMessage}>
+                            {renderLatestMessage(conversation)}
+                        </Col>
+                    </Row>
+                </InlineJump>
+                <Divider />
+            </View>);
     };
     // React Navigation bug,when nested navigators and headerShown = false,
     // the FlatList height not limited,as such the scrolling does't work
     const webFlatListHeight = Dimensions.get('window').height - insets.top - insets.bottom - wp(46);
-    return (<SafeAreaView style={{flex: 1}}>
-        {isLoaded(conversations)
-            ? <FlatList style={{height: webFlatListHeight}} data={conversations} renderItem={({item}) => {
-                return renderItem(item);
-            }} keyExtractor={(item) => item.id}/>
-            : <Preparing/>}
-    </SafeAreaView>);
+    return (<SafeAreaView style={{ flex: 1 }}>
+            {isLoaded(conversations)
+            ? <FlatList style={{ height: webFlatListHeight }} data={conversations} renderItem={({ item }) => {
+                    return renderItem(item);
+                }} keyExtractor={(item) => item.id}/>
+            : <Preparing />}
+        </SafeAreaView>);
 }

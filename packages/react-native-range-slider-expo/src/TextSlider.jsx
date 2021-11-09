@@ -118,10 +118,19 @@ const TextualSlider = ({ values, valueOnChange, styleSize = 'medium', knobColor 
         inputRange: [0.1, 1],
         outputRange: [0, 1]
     });
-    return (<Animated.View style={[styles.container, { opacity, padding: styleSize === 'large' ? 7 : styleSize === 'medium' ? 14 : 21 }]}>
+    return (<Animated.View style={[styles.container, {
+                opacity,
+                padding: styleSize === 'large' ? 7 : styleSize === 'medium' ? 14 : 21
+            }]}>
             {showValueLabels &&
             <View style={{ width: '100%', flexDirection }}>
-                    <Animated.View style={{ position: 'absolute', bottom: 0, left: 0, opacity: labelOpacity, transform: [{ translateX }, { scale: valueLabelScale }] }}>
+                    <Animated.View style={{
+                    position: 'absolute',
+                    bottom: 0,
+                    left: 0,
+                    opacity: labelOpacity,
+                    transform: [{ translateX }, { scale: valueLabelScale }]
+                }}>
                         <View style={{ width: '100%', alignItems: 'center' }}>
                             <TextInput style={{
                     ...svgOffset,
@@ -135,7 +144,14 @@ const TextualSlider = ({ values, valueOnChange, styleSize = 'medium', knobColor 
                         </View>
                     </Animated.View>
                 </View>}
-            <View style={{ width: '100%', height: knobSize, marginVertical: 4, position: 'relative', flexDirection, alignItems: 'center' }}>
+            <View style={{
+            width: '100%',
+            height: knobSize,
+            marginVertical: 4,
+            position: 'relative',
+            flexDirection,
+            alignItems: 'center'
+        }}>
                 <View style={[styles.bar, {
                 backgroundColor: inRangeBarColor,
                 left: knobSize / 4,
@@ -169,8 +185,11 @@ const TextualSlider = ({ values, valueOnChange, styleSize = 'medium', knobColor 
             </View>
             {showRangeLabels &&
             <View style={{ width: '100%', flexDirection, justifyContent: 'space-between' }}>
-                    <Text style={[rangeLabelsStyle, { fontWeight: "bold", marginLeft: -7 }]}>{values.length > 1 ? values[0].text : ''}</Text>
-                    <Text style={[rangeLabelsStyle, { fontWeight: "bold" }]}>{values.length > 1 ? values[max].text : ''}</Text>
+                    <Text style={[rangeLabelsStyle, {
+                        fontWeight: 'bold',
+                        marginLeft: -7
+                    }]}>{values.length > 1 ? values[0].text : ''}</Text>
+                    <Text style={[rangeLabelsStyle, { fontWeight: 'bold' }]}>{values.length > 1 ? values[max].text : ''}</Text>
                 </View>}
         </Animated.View>);
 };

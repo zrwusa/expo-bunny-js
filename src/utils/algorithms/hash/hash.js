@@ -1,7 +1,6 @@
 /* --- start hash table --- */
-import {DeepProxy} from '@qiwi/deep-proxy';
-import {wait} from '../../utils';
-
+import { DeepProxy } from '@qiwi/deep-proxy';
+import { wait } from '../../utils';
 export const lengthOfLongestSubstring = async function (input, proxyHandler) {
     let variablesProxy = new DeepProxy({
         maxLen: 0,
@@ -17,7 +16,8 @@ export const lengthOfLongestSubstring = async function (input, proxyHandler) {
         const mapped = variablesProxy.map.get(input[i]);
         if (mapped === undefined) {
             variablesProxy.curr++;
-        } else {
+        }
+        else {
             variablesProxy.curr = Math.min(i - mapped, variablesProxy.curr + 1);
         }
         variablesProxy.maxLen = Math.max(variablesProxy.maxLen, variablesProxy.curr);

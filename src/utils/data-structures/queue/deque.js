@@ -1,65 +1,50 @@
-import {Queue} from './queue';
-
+import { Queue } from './queue';
 // TODO not perfect
 export class Deque extends Queue {
     add(element) {
         this.enqueue(element);
         return this;
     }
-
     addFirst(element) {
         this.enqueue(element);
         return this;
     }
-
     addLast(element) {
         this._elements.unshift(element);
     }
-
     contains(element) {
         return this._elements.indexOf(element) > -1;
     }
-
     element() {
         return null;
     }
-
     getFirst() {
         return this.peekFirst();
     }
-
     getLast() {
         return this.peekLast();
     }
-
     offer(element) {
         return this.addFirst(element);
     }
-
     offerFirst(element) {
         return this.addFirst(element);
     }
-
     offerLast(element) {
         return this.addLast(element);
     }
-
     peekFirst() {
         return super.front();
     }
-
     peekLast() {
         return super.back();
     }
-
     poll() {
         return super.dequeue();
     }
-
     pollFirst() {
         return this.poll();
     }
-
     pollLast() {
         if (this.size() === 0)
             return null;
@@ -71,19 +56,15 @@ export class Deque extends Queue {
         this._offset = 0;
         return last;
     }
-
     pop() {
         return this.dequeue();
     }
-
     push(element) {
         return this._elements.unshift(element);
     }
-
     removeFirst() {
         this.poll();
     }
-
     removeLast() {
         this.pollLast();
     }

@@ -1,8 +1,7 @@
-import {pl, reverseColor} from '../../utils';
-import getSizeLabor from '../size-labor/sizeLabor';
-
+import { pl, reverseColor } from '../../utils';
+import { getSizeLabor } from '../size-labor/sizeLabor';
 export const getVictoryTheme = () => {
-    const {wp} = getSizeLabor().designsBasedOn.iphoneX;
+    const { wp } = getSizeLabor().designsBasedOn.iphoneX;
     const colorScale = [
         {
             light: pl.deepOrange600,
@@ -67,7 +66,7 @@ export const getVictoryTheme = () => {
     // histogram.style.data.fill,
     // line.style.data.stroke,(Victory standard theme, but in this project, we defined color separately.)
     // scatter.style.data.fill
-    const commonFill = {light: pl.grey600, dark: pl.grey400, indigo: pl.blueIndigo150, tinder: pl.grey600,};
+    const commonFill = { light: pl.grey600, dark: pl.grey400, indigo: pl.blueIndigo150, tinder: pl.grey600, };
     const lineStyleDataStroke = {
         light: pl.purple500,
         dark: pl.orange800,
@@ -78,7 +77,7 @@ export const getVictoryTheme = () => {
     // histogram.style.data.stroke,
     // tooltip.flyoutStyle.stroke,
     // voronoi.style.flyout.stroke
-    const commonStroke = {light: pl.grey900, dark: pl.grey900, indigo: pl.grey900, tinder: pl.grey900,};
+    const commonStroke = { light: pl.grey900, dark: pl.grey900, indigo: pl.grey900, tinder: pl.grey900, };
     // Typography
     const sansSerif = '\'Helvetica Neue\', \'Helvetica\', sans-serif';
     const letterSpacing = 'normal';
@@ -89,16 +88,16 @@ export const getVictoryTheme = () => {
     // bar.style.padding,
     // boxplot.style.[max,median,min,q1,q3].padding,
     // pie.style.data.padding,
-    const commonPadding = {light: wp(8), dark: wp(8), indigo: wp(8), tinder: wp(8),};
+    const commonPadding = { light: wp(8), dark: wp(8), indigo: wp(8), tinder: wp(8), };
     const baseProps = {
-        width: {light: wp(350), dark: wp(350), indigo: wp(350), tinder: wp(350),},
-        height: {light: wp(350), dark: wp(350), indigo: wp(350), tinder: wp(350),},
-        padding: {light: wp(50), dark: wp(50), indigo: wp(50), tinder: wp(50),}
+        width: { light: wp(350), dark: wp(350), indigo: wp(350), tinder: wp(350), },
+        height: { light: wp(350), dark: wp(350), indigo: wp(350), tinder: wp(350), },
+        padding: { light: wp(50), dark: wp(50), indigo: wp(50), tinder: wp(50), }
     };
     // * Labels
     const baseLabelStyles = {
-        fontFamily: {light: sansSerif, dark: sansSerif, indigo: sansSerif, tinder: sansSerif,},
-        fontSize: {light: fontSize, dark: fontSize, indigo: fontSize, tinder: fontSize,},
+        fontFamily: { light: sansSerif, dark: sansSerif, indigo: sansSerif, tinder: sansSerif, },
+        fontSize: { light: fontSize, dark: fontSize, indigo: fontSize, tinder: fontSize, },
         letterSpacing: {
             light: letterSpacing,
             dark: letterSpacing,
@@ -107,8 +106,8 @@ export const getVictoryTheme = () => {
         },
         padding: commonPadding,
         fill: commonFill,
-        stroke: {light: 'transparent', dark: 'transparent', indigo: 'transparent', tinder: 'transparent',},
-        strokeWidth: {light: wp(0), dark: wp(0), indigo: wp(0), tinder: wp(0),}
+        stroke: { light: 'transparent', dark: 'transparent', indigo: 'transparent', tinder: 'transparent', },
+        strokeWidth: { light: wp(0), dark: wp(0), indigo: wp(0), tinder: wp(0), }
     };
     const centeredLabelStyles = Object.assign({
         textAnchor: {
@@ -141,7 +140,7 @@ export const getVictoryTheme = () => {
                         tinder: 'transparent',
                     },
                     stroke: axisStrokeAndTicksStroke,
-                    strokeWidth: {light: wp(2), dark: wp(2), indigo: wp(2), tinder: wp(2),},
+                    strokeWidth: { light: wp(2), dark: wp(2), indigo: wp(2), tinder: wp(2), },
                     strokeLinecap: {
                         light: strokeLinecap,
                         dark: strokeLinecap,
@@ -165,7 +164,7 @@ export const getVictoryTheme = () => {
                     },
                 }),
                 grid: {
-                    fill: {light: 'none', dark: 'none', indigo: 'none', tinder: 'none',},
+                    fill: { light: 'none', dark: 'none', indigo: 'none', tinder: 'none', },
                     stroke: gridStrokeAndPieDataStroke,
                     strokeDasharray: {
                         light: strokeDasharray,
@@ -199,9 +198,9 @@ export const getVictoryTheme = () => {
                         indigo: 'transparent',
                         tinder: 'transparent',
                     },
-                    size: {light: wp(5), dark: wp(5), indigo: wp(5), tinder: wp(5),},
+                    size: { light: wp(5), dark: wp(5), indigo: wp(5), tinder: wp(5), },
                     stroke: axisStrokeAndTicksStroke,
-                    strokeWidth: {light: wp(1), dark: wp(1), indigo: wp(1), tinder: wp(1),},
+                    strokeWidth: { light: wp(1), dark: wp(1), indigo: wp(1), tinder: wp(1), },
                     strokeLinecap: {
                         light: strokeLinecap,
                         dark: strokeLinecap,
@@ -229,7 +228,7 @@ export const getVictoryTheme = () => {
                         indigo: 'transparent',
                         tinder: 'transparent',
                     },
-                    size: {light: wp(1), dark: wp(1), indigo: wp(1), tinder: wp(1),},
+                    size: { light: wp(1), dark: wp(1), indigo: wp(1), tinder: wp(1), },
                     stroke: {
                         light: 'transparent',
                         dark: 'transparent',
@@ -244,7 +243,7 @@ export const getVictoryTheme = () => {
                 data: {
                     fill: commonFill,
                     padding: commonPadding,
-                    strokeWidth: {light: wp(0), dark: wp(0), indigo: wp(0), tinder: wp(0)},
+                    strokeWidth: { light: wp(0), dark: wp(0), indigo: wp(0), tinder: wp(0) },
                 },
                 labels: baseLabelStyles
             }
@@ -254,7 +253,7 @@ export const getVictoryTheme = () => {
                 max: {
                     padding: commonPadding,
                     stroke: commonFill,
-                    strokeWidth: {light: wp(1), dark: wp(1), indigo: wp(1), tinder: wp(1)},
+                    strokeWidth: { light: wp(1), dark: wp(1), indigo: wp(1), tinder: wp(1) },
                 },
                 maxLabels: Object.assign({}, baseLabelStyles, {
                     padding: {
@@ -267,7 +266,7 @@ export const getVictoryTheme = () => {
                 median: {
                     padding: commonPadding,
                     stroke: commonFill,
-                    strokeWidth: {light: wp(1), dark: wp(1), indigo: wp(1), tinder: wp(1),},
+                    strokeWidth: { light: wp(1), dark: wp(1), indigo: wp(1), tinder: wp(1), },
                 },
                 medianLabels: Object.assign({}, baseLabelStyles, {
                     padding: {
@@ -280,7 +279,7 @@ export const getVictoryTheme = () => {
                 min: {
                     padding: commonPadding,
                     stroke: commonFill,
-                    strokeWidth: {light: wp(1), dark: wp(1), indigo: wp(1), tinder: wp(1),},
+                    strokeWidth: { light: wp(1), dark: wp(1), indigo: wp(1), tinder: wp(1), },
                 },
                 minLabels: Object.assign({}, baseLabelStyles, {
                     padding: {
@@ -315,7 +314,7 @@ export const getVictoryTheme = () => {
                     },
                 })
             },
-            boxWidth: {light: wp(20), dark: wp(20), indigo: wp(20), tinder: wp(20),},
+            boxWidth: { light: wp(20), dark: wp(20), indigo: wp(20), tinder: wp(20), },
         }, baseProps),
         candlestick: Object.assign({
             style: {
@@ -332,13 +331,13 @@ export const getVictoryTheme = () => {
                 })
             },
             candleColors: {
-                positive: {light: pl.white, dark: pl.white, indigo: pl.white, tinder: pl.white,},
+                positive: { light: pl.white, dark: pl.white, indigo: pl.white, tinder: pl.white, },
                 negative: commonFill
             }
         }, baseProps),
         chart: baseProps,
         errorbar: Object.assign({
-            borderWidth: {light: wp(8), dark: wp(8), indigo: wp(8), tinder: wp(8),},
+            borderWidth: { light: wp(8), dark: wp(8), indigo: wp(8), tinder: wp(8), },
             style: {
                 data: {
                     fill: {
@@ -347,9 +346,9 @@ export const getVictoryTheme = () => {
                         indigo: 'transparent',
                         tinder: 'transparent',
                     },
-                    opacity: {light: 1, dark: 1, indigo: 1, tinder: 1,},
+                    opacity: { light: 1, dark: 1, indigo: 1, tinder: 1, },
                     stroke: commonFill,
-                    strokeWidth: {light: wp(2), dark: wp(2), indigo: wp(2), tinder: wp(2),}
+                    strokeWidth: { light: wp(2), dark: wp(2), indigo: wp(2), tinder: wp(2), }
                 },
                 labels: baseLabelStyles
             }
@@ -372,12 +371,12 @@ export const getVictoryTheme = () => {
         // ),
         legend: {
             colorScale: colorScale,
-            gutter: {light: wp(10), dark: wp(10), indigo: wp(10), tinder: wp(10),},
-            orientation: {light: 'vertical', dark: 'vertical', indigo: 'vertical', tinder: 'vertical',},
-            titleOrientation: {light: 'top', dark: 'top', indigo: 'top', tinder: 'top',},
+            gutter: { light: wp(10), dark: wp(10), indigo: wp(10), tinder: wp(10), },
+            orientation: { light: 'vertical', dark: 'vertical', indigo: 'vertical', tinder: 'vertical', },
+            titleOrientation: { light: 'top', dark: 'top', indigo: 'top', tinder: 'top', },
             style: {
                 data: {
-                    type: {light: 'circle', dark: 'circle', indigo: 'circle', tinder: 'circle',}
+                    type: { light: 'circle', dark: 'circle', indigo: 'circle', tinder: 'circle', }
                 },
                 labels: baseLabelStyles,
                 title: Object.assign({}, baseLabelStyles, {
@@ -399,9 +398,9 @@ export const getVictoryTheme = () => {
                         indigo: 'transparent',
                         tinder: 'transparent',
                     },
-                    opacity: {light: 1, dark: 1, indigo: 1, tinder: 1,},
+                    opacity: { light: 1, dark: 1, indigo: 1, tinder: 1, },
                     stroke: lineStyleDataStroke,
-                    strokeWidth: {light: wp(2), dark: wp(2), indigo: wp(2), tinder: wp(2),}
+                    strokeWidth: { light: wp(2), dark: wp(2), indigo: wp(2), tinder: wp(2), }
                 },
                 labels: baseLabelStyles
             }
@@ -412,7 +411,7 @@ export const getVictoryTheme = () => {
                 data: {
                     padding: commonPadding,
                     stroke: gridStrokeAndPieDataStroke,
-                    strokeWidth: {light: wp(1), dark: wp(1), indigo: wp(1), tinder: wp(1),}
+                    strokeWidth: { light: wp(1), dark: wp(1), indigo: wp(1), tinder: wp(1), }
                 },
                 labels: Object.assign({}, baseLabelStyles, {
                     padding: {
@@ -428,14 +427,14 @@ export const getVictoryTheme = () => {
             style: {
                 data: {
                     fill: commonFill,
-                    opacity: {light: 1, dark: 1, indigo: 1, tinder: 1,},
+                    opacity: { light: 1, dark: 1, indigo: 1, tinder: 1, },
                     stroke: {
                         light: 'transparent',
                         dark: 'transparent',
                         indigo: 'transparent',
                         tinder: 'transparent',
                     },
-                    strokeWidth: {light: wp(0), dark: wp(0), indigo: wp(0), tinder: wp(0),},
+                    strokeWidth: { light: wp(0), dark: wp(0), indigo: wp(0), tinder: wp(0), },
                 },
                 labels: baseLabelStyles
             }
@@ -445,23 +444,23 @@ export const getVictoryTheme = () => {
         }, baseProps),
         tooltip: {
             style: Object.assign({}, baseLabelStyles, {
-                padding: {light: wp(0), dark: wp(0), indigo: wp(0), tinder: wp(0),},
-                pointerEvents: {light: 'none', dark: 'none', indigo: 'none', tinder: 'none',}
+                padding: { light: wp(0), dark: wp(0), indigo: wp(0), tinder: wp(0), },
+                pointerEvents: { light: 'none', dark: 'none', indigo: 'none', tinder: 'none', }
             }),
             flyoutStyle: {
                 stroke: commonStroke,
-                strokeWidth: {light: wp(1), dark: wp(1), indigo: wp(1), tinder: wp(1),},
+                strokeWidth: { light: wp(1), dark: wp(1), indigo: wp(1), tinder: wp(1), },
                 fill: {
                     light: pl.blackContrast,
                     dark: pl.blackContrast,
                     indigo: pl.blackContrast,
                     tinder: pl.blackContrast,
                 },
-                pointerEvents: {light: 'none', dark: 'none', indigo: 'none', tinder: 'none',}
+                pointerEvents: { light: 'none', dark: 'none', indigo: 'none', tinder: 'none', }
             },
-            flyoutPadding: {light: wp(5), dark: wp(5), indigo: wp(5), tinder: wp(5),},
-            cornerRadius: {light: wp(5), dark: wp(5), indigo: wp(5), tinder: wp(5),},
-            pointerLength: {light: wp(10), dark: wp(10), indigo: wp(10), tinder: wp(10),},
+            flyoutPadding: { light: wp(5), dark: wp(5), indigo: wp(5), tinder: wp(5), },
+            cornerRadius: { light: wp(5), dark: wp(5), indigo: wp(5), tinder: wp(5), },
+            pointerLength: { light: wp(10), dark: wp(10), indigo: wp(10), tinder: wp(10), },
         },
         voronoi: Object.assign({
             style: {
@@ -478,22 +477,22 @@ export const getVictoryTheme = () => {
                         indigo: 'transparent',
                         tinder: 'transparent',
                     },
-                    strokeWidth: {light: wp(0), dark: wp(0), indigo: wp(0), tinder: wp(0),},
+                    strokeWidth: { light: wp(0), dark: wp(0), indigo: wp(0), tinder: wp(0), },
                 },
                 labels: Object.assign({}, baseLabelStyles, {
-                    padding: {light: wp(5), dark: wp(5), indigo: wp(5), tinder: wp(5),},
-                    pointerEvents: {light: 'none', dark: 'none', indigo: 'none', tinder: 'none',}
+                    padding: { light: wp(5), dark: wp(5), indigo: wp(5), tinder: wp(5), },
+                    pointerEvents: { light: 'none', dark: 'none', indigo: 'none', tinder: 'none', }
                 }),
                 flyout: {
                     stroke: commonStroke,
-                    strokeWidth: {light: wp(1), dark: wp(1), indigo: wp(1), tinder: wp(1),},
+                    strokeWidth: { light: wp(1), dark: wp(1), indigo: wp(1), tinder: wp(1), },
                     fill: {
                         light: pl.blackContrast,
                         dark: pl.blackContrast,
                         indigo: pl.blackContrast,
                         tinder: pl.blackContrast,
                     },
-                    pointerEvents: {light: 'none', dark: 'none', indigo: 'none', tinder: 'none',}
+                    pointerEvents: { light: 'none', dark: 'none', indigo: 'none', tinder: 'none', }
                 }
             }
         }, baseProps)

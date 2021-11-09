@@ -1,10 +1,9 @@
-import React, {Component} from 'react';
-import {StyleSheet, Text, View,} from 'react-native';
-import {withBunnyKit} from '../../hooks';
-
-const getStyles = (sizeLabor, themeLabor) => {
-    const {wp} = sizeLabor.designsBasedOn.iphoneX;
-    const {theme: {colors}} = themeLabor;
+import React, { Component } from 'react';
+import { StyleSheet, Text, View, } from 'react-native';
+import { withBunnyKit } from '../../hooks/bunny-kit';
+const makeStyles = (sizeLabor, themeLabor) => {
+    const { wp } = sizeLabor.designsBasedOn.iphoneX;
+    const { theme: { colors } } = themeLabor;
     return StyleSheet.create({
         container: {
             alignItems: 'center',
@@ -21,23 +20,21 @@ const getStyles = (sizeLabor, themeLabor) => {
         },
     });
 };
-
 class SystemMessage extends Component {
     render() {
-        const {currentMessage, systemMessageContainerStyle, systemMessageWrapperStyle, systemTextStyle,} = this.props;
+        const { currentMessage, systemMessageContainerStyle, systemMessageWrapperStyle, systemTextStyle, } = this.props;
         if (currentMessage) {
-            const {bunnyKit: {sizeLabor, themeLabor}} = this.props;
-            const styles = getStyles(sizeLabor, themeLabor);
+            const { bunnyKit: { sizeLabor, themeLabor } } = this.props;
+            const styles = makeStyles(sizeLabor, themeLabor);
             return (<View style={[styles.container, systemMessageContainerStyle]}>
-                <View style={systemMessageWrapperStyle}>
-                    <Text style={[styles.text, systemTextStyle]}>{currentMessage.text}</Text>
-                </View>
-            </View>);
+                    <View style={systemMessageWrapperStyle}>
+                        <Text style={[styles.text, systemTextStyle]}>{currentMessage.text}</Text>
+                    </View>
+                </View>);
         }
         return null;
     }
 }
-
 SystemMessage.defaultProps = {
     currentMessage: undefined,
     systemMessageContainerStyle: {},

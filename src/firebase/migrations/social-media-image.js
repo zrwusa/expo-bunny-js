@@ -1,5 +1,4 @@
-import {firebase} from '../firebase';
-
+import { firebase } from '../firebase';
 const socialMediaImages = [
     {
         '_id': 'social-media-image-001',

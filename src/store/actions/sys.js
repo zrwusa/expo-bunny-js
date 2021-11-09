@@ -1,6 +1,5 @@
-import {ESys} from '../../constants';
-
-export const sysError = (payload) => {
+import { ESys } from '../../constants';
+export const collectSysError = (payload) => {
     return {
         type: ESys.ERROR,
         payload
@@ -18,16 +17,16 @@ export const sysWarn = (payload) => {
         payload
     };
 };
-export const restoreNavInitialState = (payload) => {
-    return {
-        type: ESys.RESTORE_NAV_INITIAL_STATE,
-        payload
-    };
-};
 export const restoreIsReady = (payload) => {
     return {
         type: ESys.RESTORE_IS_READY,
         payload,
+    };
+};
+export const requestFailed = (payload) => {
+    return {
+        type: ESys.REQUEST_FAILED,
+        payload
     };
 };
 export const requesting = (payload) => {
@@ -36,15 +35,15 @@ export const requesting = (payload) => {
         payload,
     };
 };
-export const requestReceived = (payload) => {
+export const requestSuccess = (payload) => {
     return {
-        type: ESys.REQUEST_RECEIVED,
+        type: ESys.REQUEST_SUCCESS,
         payload,
     };
 };
-export const requestFailed = (payload) => {
+export const restoreNavInitialState = (payload) => {
     return {
-        type: ESys.REQUEST_FAILED,
+        type: ESys.RESTORE_NAV_INITIAL_STATE,
         payload
     };
 };

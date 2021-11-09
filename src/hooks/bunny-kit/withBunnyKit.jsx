@@ -1,7 +1,6 @@
 import React from 'react';
-import {useBunnyKit} from './useBunnyKit';
-
-export function withBunnyKit(Component) {
+import { useBunnyKit } from './useBunnyKit';
+export const withBunnyKit = (Component) => {
     // Try to create a nice displayName for React Dev Tools.
     const displayName = Component.displayName || Component.name || 'Component';
     // TODO not very well for supporting generic components
@@ -16,4 +15,4 @@ export function withBunnyKit(Component) {
     };
     ComponentWithBunnyKit.displayName = `withBunnyKit(${displayName})`;
     return ComponentWithBunnyKit;
-}
+};

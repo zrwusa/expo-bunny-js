@@ -1,9 +1,8 @@
-import {StyleSheet} from 'react-native';
-
-export const getStyles = (sizeLabor, themeLabor) => {
-    const {theme} = themeLabor;
-    const {colors} = theme;
-    const {wp} = sizeLabor.designsBasedOn.iphoneX;
+import { StyleSheet } from 'react-native';
+export const makeStyles = (sizeLabor, themeLabor) => {
+    const { theme } = themeLabor;
+    const { colors } = theme;
+    const { wp } = sizeLabor.designsBasedOn.iphoneX;
     return StyleSheet.create({
         container: {
             flex: 1,

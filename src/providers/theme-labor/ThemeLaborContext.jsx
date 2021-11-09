@@ -1,8 +1,7 @@
 import * as React from 'react';
-import {defaultTheme, themes} from './theme';
-import {EThemes} from '../../constants';
-
-const ThemeLaborContext = React.createContext({
+import { defaultTheme, themes } from './theme';
+import { EThemes } from '../../constants';
+export const ThemeLaborContext = React.createContext({
     theme: defaultTheme,
     currentThemeName: EThemes.light,
     themes: themes,
@@ -11,4 +10,3 @@ const ThemeLaborContext = React.createContext({
     sysColorSchemeName: 'light'
 });
 ThemeLaborContext.displayName = 'ThemeContext';
-export {ThemeLaborContext};

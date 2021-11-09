@@ -1,6 +1,6 @@
-import {Stack} from '../../data-structures/stack';
-import {DeepProxy} from '@qiwi/deep-proxy';
-import {wait} from '../../utils';
+import { Stack } from '../../data-structures/stack';
+import { DeepProxy } from '@qiwi/deep-proxy';
+import { wait } from '../../utils';
 // Matching Parenthesis problem
 // 20. Valid Parentheses
 export const isValidParenthesis = async function (input, proxyHandler) {
@@ -21,7 +21,8 @@ export const isValidParenthesis = async function (input, proxyHandler) {
         await wait(500);
         if (char in hash) {
             variablesProxy.stack.push(char);
-        } else {
+        }
+        else {
             const top = variablesProxy.stack.pop();
             if (top === null || hash[top] !== char) {
                 return false;

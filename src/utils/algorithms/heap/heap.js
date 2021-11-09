@@ -1,19 +1,9 @@
 /* --- start heap --- */
 // 215. Kth Largest Element in an Array ★★★★
 // O(nLog(k))
-import {HeapNode, MaxHeap, MinHeap} from '../../data-structures/heap';
-import {runAlgorithm} from '../helpers';
-import {
-    findKthLargestCase1,
-    findKthLargestCase2,
-    findKthLargestCase3,
-    findKthLargestCase9,
-    mergeKListsCase1,
-    mergeKListsCase2,
-    reorganizeStringCase1,
-    topKFrequentCase1
-} from './cases';
-
+import { HeapNode, MaxHeap, MinHeap } from '../../data-structures/heap';
+import { runAlgorithm } from '../helpers';
+import { findKthLargestCase1, findKthLargestCase2, findKthLargestCase3, findKthLargestCase9, mergeKListsCase1, mergeKListsCase2, reorganizeStringCase1, topKFrequentCase1 } from './cases';
 export function findKthLargestMinHeap(nums, k) {
     const heap = new MinHeap([]);
     for (let i of nums) {
@@ -26,7 +16,6 @@ export function findKthLargestMinHeap(nums, k) {
     }
     return heap.peek();
 }
-
 const runAllFindKthLargest = async () => {
     await runAlgorithm(findKthLargestMinHeap, false, ...findKthLargestCase1);
     await runAlgorithm(findKthLargestMinHeap, false, ...findKthLargestCase2);
@@ -63,7 +52,6 @@ function mergeKLists(lists) {
     }
     return ans;
 }
-
 const runAllMergeKLists = async () => {
     await runAlgorithm(mergeKLists, false, ...mergeKListsCase1);
     await runAlgorithm(mergeKLists, false, ...mergeKListsCase2);
@@ -78,7 +66,8 @@ function topKFrequent(nums, k) {
             if (val !== undefined) {
                 hash.set(num, val + 1);
             }
-        } else {
+        }
+        else {
             hash.set(num, 1);
         }
     }
@@ -87,7 +76,8 @@ function topKFrequent(nums, k) {
         const node = new HeapNode(entry[1], entry);
         if (heap.size() < k) {
             heap.insert(node);
-        } else if (heap.size() === k) {
+        }
+        else if (heap.size() === k) {
             const peek = heap.peek();
             if (peek.id < entry[1]) {
                 heap.poll();
@@ -97,7 +87,6 @@ function topKFrequent(nums, k) {
     }
     return heap.toArray().map(item => item.val[0]);
 }
-
 function topKFrequentByBucket(nums, k) {
     const hash = new Map();
     let maxFrequency = 1;
@@ -109,7 +98,8 @@ function topKFrequentByBucket(nums, k) {
                     maxFrequency = val + 1;
                 hash.set(num, val + 1);
             }
-        } else {
+        }
+        else {
             hash.set(num, 1);
         }
     }
@@ -129,7 +119,6 @@ function topKFrequentByBucket(nums, k) {
     }
     return ans;
 }
-
 const runAllTopKFrequent = async () => {
     await runAlgorithm(topKFrequent, false, ...topKFrequentCase1);
     await runAlgorithm(topKFrequentByBucket, false, ...topKFrequentCase1);
@@ -142,16 +131,17 @@ class MedianFinder {
         this._leftHeap = new MaxHeap();
         this._rightHeap = new MinHeap();
     }
-
     addNum(num) {
         if (this._leftHeap.size() === 0) {
             this._leftHeap.insert(num);
-        } else {
+        }
+        else {
             const leftPeek = this._leftHeap.peek();
             if (leftPeek !== null) {
                 if (num > leftPeek) {
                     this._rightHeap.insert(num);
-                } else {
+                }
+                else {
                     this._leftHeap.insert(num);
                 }
             }
@@ -160,22 +150,22 @@ class MedianFinder {
         const rightSize = this._rightHeap.size();
         if (leftSize - rightSize >= 2) {
             this._rightHeap.insert(this._leftHeap.poll());
-        } else if (rightSize > leftSize) {
+        }
+        else if (rightSize > leftSize) {
             this._leftHeap.insert(this._rightHeap.poll());
         }
     }
-
     findMedian() {
         const leftSize = this._leftHeap.size();
         const rightSize = this._rightHeap.size();
         if (leftSize > rightSize) {
             return this._leftHeap.peek();
-        } else {
+        }
+        else {
             return (this._leftHeap.peek() + this._rightHeap.peek()) / 2;
         }
     }
 }
-
 function medianFind() {
     const medianFinder = new MedianFinder();
     medianFinder.addNum(-1);
@@ -189,7 +179,6 @@ function medianFind() {
     medianFinder.addNum(-5);
     console.log(medianFinder.findMedian());
 }
-
 const runAllMedianFind = async () => {
     await runAlgorithm(medianFind, false);
 };
@@ -203,7 +192,8 @@ function reorganizeString(s) {
             if (count) {
                 hash.set(char, ++count);
             }
-        } else {
+        }
+        else {
             hash.set(char, 1);
         }
     }
@@ -213,7 +203,8 @@ function reorganizeString(s) {
     }
     let ans = '';
     if (heap.peek().val[1] > Math.ceil(s.length / 2)) {
-    } else {
+    }
+    else {
         const conveyor = [];
         const peek = heap.poll();
         for (let i = 0; i < peek.id; i++) {
@@ -238,7 +229,6 @@ function reorganizeString(s) {
     }
     return ans;
 }
-
 const runAllReorganizeString = async () => {
     await runAlgorithm(reorganizeString, false, ...reorganizeStringCase1);
 };
@@ -252,12 +242,12 @@ class KthLargest {
             this._heap.poll();
         }
     }
-
     add(val) {
         const size = this._heap.size();
         if (size < this._k) {
             this._heap.insert(val);
-        } else if (size === this._k) {
+        }
+        else if (size === this._k) {
             if (val > this._heap.peek()) {
                 this._heap.poll();
                 this._heap.insert(val);
@@ -266,7 +256,6 @@ class KthLargest {
         return this._heap.peek();
     }
 }
-
 const testKthLargest = () => {
     const kthLargest = new KthLargest(3, [4, 5, 8, 2]);
     console.log('kthLargest.add(3)', kthLargest.add(3));

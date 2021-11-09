@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Animated, I18nManager, StyleSheet, Text, TextInput, View } from 'react-native';
 import { PanGestureHandler, State } from 'react-native-gesture-handler';
-import { useBunnyKit } from "../../../src/hooks/bunny-kit";
+import { useBunnyKit } from '../../../src/hooks/bunny-kit';
 const SMALL_SIZE = 24;
 const MEDIUM_SIZE = 34;
 const LARGE_SIZE = 44;
@@ -210,13 +210,18 @@ export default (props) => {
     //     'medium': {width: `${100*40/40}%`, height: `${100*56/56}%`},
     //     'large': {width: `${100*50/40}%`, height: `${100*70/56}%`},
     // }
-    const bubbleSize = typeof styleSize === "number" ? { width: styleSize, height: styleSize } : bubbleSizeMap[styleSize];
-    const bubbleBottomValue = typeof styleSize === "number" ? styleSize : bubbleSizeMap[styleSize].height;
+    const bubbleSize = typeof styleSize === 'number' ? { width: styleSize, height: styleSize } : bubbleSizeMap[styleSize];
+    const bubbleBottomValue = typeof styleSize === 'number' ? styleSize : bubbleSizeMap[styleSize].height;
     const bubbleBottom = valueLabelsPosition === 'up' ? 0 : -bubbleBottomValue;
     const renderValueLabels = () => {
         return (showValueLabels &&
             <View style={{ width: '100%', height: 1, flexDirection }}>
-                <Animated.View style={{ position: 'absolute', bottom: 0, left: 0, transform: [{ translateX: translateXFromValue }, { scale: fromValueScale }] }}>
+                <Animated.View style={{
+                    position: 'absolute',
+                    bottom: 0,
+                    left: 0,
+                    transform: [{ translateX: translateXFromValue }, { scale: fromValueScale }]
+                }}>
                     {showBubbles
                     ?
                         // <Svg {...bubbleSize} style={[svgOffset, {justifyContent: 'center', alignItems: 'center',position:'absolute',bottom:bubbleBottom}]}>
@@ -288,11 +293,21 @@ export default (props) => {
         'large': 7
     };
     const styles = getStyle(knobSize);
-    return (<Animated.View style={[styles.container, { opacity, padding: typeof styleSize === "number" ? styleSize / 2 : paddingSizeMap[styleSize] }]}>
+    return (<Animated.View style={[styles.container, {
+                opacity,
+                padding: typeof styleSize === 'number' ? styleSize / 2 : paddingSizeMap[styleSize]
+            }]}>
             {valueLabelsPosition === 'up'
             ? renderValueLabels()
             : null}
-            <View style={{ width: '100%', height: knobSize, marginVertical: 4, position: 'relative', flexDirection, alignItems: 'center' }}>
+            <View style={{
+            width: '100%',
+            height: knobSize,
+            marginVertical: 4,
+            position: 'relative',
+            flexDirection,
+            alignItems: 'center'
+        }}>
                 <View style={{
             position: 'absolute',
             backgroundColor: inRangeBarColor,
@@ -372,8 +387,8 @@ export default (props) => {
             : null}
             {showRangeLabels
             ? <View style={{ width: '100%', flexDirection, justifyContent: 'space-between' }}>
-                        <Text style={{ color: rangeLabelsTextColor, fontWeight: "bold", fontSize }}>{min}</Text>
-                        <Text style={{ color: rangeLabelsTextColor, fontWeight: "bold", fontSize }}>{max}</Text>
+                        <Text style={{ color: rangeLabelsTextColor, fontWeight: 'bold', fontSize }}>{min}</Text>
+                        <Text style={{ color: rangeLabelsTextColor, fontWeight: 'bold', fontSize }}>{max}</Text>
                     </View>
             : null}
         </Animated.View>);

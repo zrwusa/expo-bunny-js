@@ -1,10 +1,9 @@
-import React, {Component} from 'react';
-import {Image, StyleSheet, Text, View,} from 'react-native';
+import React, { Component } from 'react';
+import { Image, StyleSheet, Text, View, } from 'react-native';
 import LightBox from '../../../packages/react-native-lightbox';
-import {withBunnyKit} from '../../hooks';
-
-const getStyles = (sizeLabor, themeLabor) => {
-    const {wp} = sizeLabor.designsBasedOn.iphoneX;
+import { withBunnyKit } from '../../hooks/bunny-kit';
+const makeStyles = (sizeLabor, themeLabor) => {
+    const { wp } = sizeLabor.designsBasedOn.iphoneX;
     return StyleSheet.create({
         container: {},
         image: {
@@ -20,28 +19,19 @@ const getStyles = (sizeLabor, themeLabor) => {
         },
     });
 };
-
 class MessageImage extends Component {
     render() {
-        const {
-            imageContainerStyle,
-            lightBoxProps,
-            imageProps,
-            imageStyle,
-            currentMessage,
-            isDebug,
-            messages,
-        } = this.props;
+        const { imageContainerStyle, lightBoxProps, imageProps, imageStyle, currentMessage, isDebug, messages, } = this.props;
         isDebug && console.log('%c[ chat ]', 'background: #555; color: #bada55', '[level4]MessageImage props', this.props);
-        const {bunnyKit: {sizeLabor, themeLabor}} = this.props;
-        const styles = getStyles(sizeLabor, themeLabor);
+        const { bunnyKit: { sizeLabor, themeLabor } } = this.props;
+        const styles = makeStyles(sizeLabor, themeLabor);
         return (<View style={[styles.container, imageContainerStyle]}>
-            <LightBox activeProps={{
+                <LightBox activeProps={{
                 style: styles.imageActive,
             }} {...lightBoxProps}>
-                {currentMessage
-                    ? currentMessage.image
-                        ? <Image style={[styles.image, imageStyle]} onLoad={() => {
+                    {currentMessage
+                ? currentMessage.image
+                    ? <Image style={[styles.image, imageStyle]} onLoad={() => {
                             isDebug && console.log('%c[ chat ]', 'background: #555; color: #bada55', 'MessageImage onLoad');
                             this.props.onMessageLoad?.(currentMessage);
                             isDebug && console.log('%c[ chat ]', 'background: #555; color: #bada55', 'MessageImage onMessageReadyForDisplay');
@@ -55,14 +45,13 @@ class MessageImage extends Component {
                         }} onError={(e) => {
                             isDebug && console.log('%c[ chat ]', 'background: #555; color: #bada55', 'MessageImage onError');
                             this.props.onMessageLoadError?.(e.nativeEvent.error, currentMessage);
-                        }} source={{uri: currentMessage.image}} {...imageProps}/>
-                        : <Text>{'currentMessage.image is undefined'}</Text>
-                    : <Text>{'currentMessage is undefined'}</Text>}
-            </LightBox>
-        </View>);
+                        }} source={{ uri: currentMessage.image }} {...imageProps}/>
+                    : <Text>{'currentMessage.image is undefined'}</Text>
+                : <Text>{'currentMessage is undefined'}</Text>}
+                </LightBox>
+            </View>);
     }
 }
-
 MessageImage.defaultProps = {
     messages: [],
     currentMessage: undefined,

@@ -1,15 +1,14 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {Animated, Keyboard, SafeAreaView} from 'react-native';
-import {getStyles} from './styles';
-import {IcoMoon, Text, TextInput, TouchableOpacity, View} from '../UI';
-import {useBunnyKit} from '../../hooks';
-
+import React, { useEffect, useRef, useState } from 'react';
+import { Animated, Keyboard, SafeAreaView } from 'react-native';
+import { makeStyles } from './styles';
+import { IcoMoon, Text, TextInput, TouchableOpacity, View } from '../UI';
+import { useBunnyKit } from '../../hooks/bunny-kit';
 export const FollowUpSearchBar = (props) => {
-    const {sizeLabor, themeLabor, wp} = useBunnyKit();
-    const {scrollYValue, defaultKeywords, onSearch} = props;
-    const styles = getStyles(sizeLabor, themeLabor);
-    const {colors} = themeLabor.theme;
-    const {zi} = sizeLabor.ms;
+    const { sizeLabor, themeLabor, wp } = useBunnyKit();
+    const { scrollYValue, defaultKeywords, onSearch } = props;
+    const styles = makeStyles(sizeLabor, themeLabor);
+    const { colors } = themeLabor.theme;
+    const { zi } = sizeLabor.ms;
     const clampedScroll = Animated.diffClamp(Animated.add(scrollYValue.interpolate({
         inputRange: [0, 10],
         outputRange: [0, 1],
@@ -45,7 +44,7 @@ export const FollowUpSearchBar = (props) => {
     const handleInputTextChange = (value) => {
         setSearchText(value);
     };
-    const handleKeyPress = ({nativeEvent}) => {
+    const handleKeyPress = ({ nativeEvent }) => {
         if (nativeEvent.key === 'Enter') {
             invokeSearch().then();
         }
@@ -77,34 +76,32 @@ export const FollowUpSearchBar = (props) => {
     useEffect(() => {
         if (isFocus) {
             setToWidth(focusWidth);
-        } else {
+        }
+        else {
             setToWidth(defaultWidth);
         }
     }, [isFocus]);
     return (
-        // hack absolute elements need SafeAreaView wrapped again
-        <SafeAreaView style={{zIndex: zi.s}}>
+    // hack absolute elements need SafeAreaView wrapped again
+    <SafeAreaView style={{ zIndex: zi.s }}>
             <Animated.View style={[
-                styles.container,
-                {
-                    transform: [
-                        {
-                            translateY: searchBarTranslate
-                        }
-                    ],
-                    opacity: searchBarOpacity,
-                }
-            ]}>
-                <Animated.View style={{width: widthAnim}}>
-                    <TextInput placeholder="Search" style={[styles.formField]} placeholderTextColor={colors.placeholder}
-                               value={searchText} onChangeText={handleInputTextChange} onFocus={handleFocus}
-                               onBlur={handleBlur} onKeyPress={handleKeyPress} onEndEditing={handleEndEditing}
-                               returnKeyType="done"/>
+            styles.container,
+            {
+                transform: [
+                    {
+                        translateY: searchBarTranslate
+                    }
+                ],
+                opacity: searchBarOpacity,
+            }
+        ]}>
+                <Animated.View style={{ width: widthAnim }}>
+                    <TextInput placeholder="Search" style={[styles.formField]} placeholderTextColor={colors.placeholder} value={searchText} onChangeText={handleInputTextChange} onFocus={handleFocus} onBlur={handleBlur} onKeyPress={handleKeyPress} onEndEditing={handleEndEditing} returnKeyType="done"/>
                 </Animated.View>
                 <View style={styles.barRight}>
                     {isFocus
-                        ? <TouchableOpacity onPress={handleCancel}><Text>Cancel</Text></TouchableOpacity>
-                        : <IcoMoon name="image" size={20} color={colors.text} onPress={handleCameraIconPress}/>}
+            ? <TouchableOpacity onPress={handleCancel}><Text>Cancel</Text></TouchableOpacity>
+            : <IcoMoon name="image" size={20} color={colors.text} onPress={handleCameraIconPress}/>}
 
                 </View>
             </Animated.View>

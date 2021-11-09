@@ -1,9 +1,8 @@
-import {StyleSheet} from 'react-native';
-
+import { StyleSheet } from 'react-native';
 export const getSharedStyles = (sizeLabor, themeLabor) => {
-    const {ms, designsBasedOn} = sizeLabor;
-    const {colors, borderRadius, roundness, fonts} = themeLabor.theme;
-    const {wp} = designsBasedOn.iphoneX;
+    const { ms, designsBasedOn } = sizeLabor;
+    const { colors, borderRadius, roundness, fonts } = themeLabor.theme;
+    const { wp } = designsBasedOn.iphoneX;
     const sharedStyles = StyleSheet.create({
         text: {
             color: colors.text,
@@ -140,7 +139,7 @@ export const getSharedStyles = (sizeLabor, themeLabor) => {
             elevation: 1,
             shadowOpacity: 0.05,
             shadowRadius: wp(10),
-            shadowOffset: {height: 0, width: 0},
+            shadowOffset: { height: 0, width: 0 },
         },
         centralized: {
             justifyContent: 'center',
@@ -177,5 +176,5 @@ export const getSharedStyles = (sizeLabor, themeLabor) => {
         ...newObject,
         [key]: StyleSheet.flatten(traversableSmartStyles[key])
     }), {});
-    return {sharedStyles, sharedStylesFlatten};
+    return { sharedStyles, sharedStylesFlatten };
 };

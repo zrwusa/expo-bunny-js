@@ -1,15 +1,13 @@
-import {BST, BSTNode} from '../../../data-structures/binary-tree';
-import {DeepProxy} from '@qiwi/deep-proxy';
-import {testBSTCase1} from './cases';
-import {runAlgorithm} from '../../helpers';
-import {wait, WaitManager} from '../../../utils';
-
+import { BST, BSTNode } from '../../../data-structures/binary-tree';
+import { DeepProxy } from '@qiwi/deep-proxy';
+import { testBSTCase1 } from './cases';
+import { runAlgorithm } from '../../helpers';
+import { wait, WaitManager } from '../../../utils';
 /** --- start BST --- **/
 //98	Validate Binary Search Tree	★★	530					DFS/inorder
 const isValidBST = (root) => {
     if (!root)
         return true;
-
     function dfs(cur, min, max) {
         if (!cur)
             return true;
@@ -17,10 +15,8 @@ const isValidBST = (root) => {
             return false;
         return dfs(cur.left, min, cur.id) && dfs(cur.right, cur.id, max);
     }
-
     return dfs(root, Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER);
 };
-
 // 700	Search in a Binary Search Tree	★★	701				binary search
 function searchBST(root, id) {
     let ans = null;
@@ -40,7 +36,6 @@ function searchBST(root, id) {
     dfs(root);
     return ans;
 }
-
 // 230	Kth Smallest Element in a BST	★★★					inorder
 function kthSmallest(root, k) {
     let rank = 0, target = 0;
@@ -57,7 +52,6 @@ function kthSmallest(root, k) {
     root && dfsInOrder(root);
     return target;
 }
-
 // 99	Recover Binary Search Tree	★★★						inorder
 function recoverTree(root) {
     const swap = (nodeA, nodeB) => {
@@ -80,7 +74,8 @@ function recoverTree(root) {
                 pred.right = cur;
                 cur = cur.left;
                 continue;
-            } else {
+            }
+            else {
                 pred.right = null;
             }
         }
@@ -88,7 +83,8 @@ function recoverTree(root) {
             if (!firstBad) {
                 firstBad = prev;
                 secondBad = cur;
-            } else {
+            }
+            else {
                 secondBad = cur;
             }
         }
@@ -97,7 +93,6 @@ function recoverTree(root) {
     }
     swap(firstBad, secondBad);
 }
-
 // 108  Convert Sorted Array to Binary Search Tree ★★★				build BST
 function sortedArrayToBST(nums) {
     const dfs = (left, right) => {
@@ -111,7 +106,6 @@ function sortedArrayToBST(nums) {
     };
     return dfs(0, nums.length - 1);
 }
-
 // 501	Find Mode in Binary Search Tree	★★★						inorder
 function findMode(root) {
     let max = 0;
@@ -126,7 +120,8 @@ function findMode(root) {
         if (count > max) {
             modes = [cur.id];
             max = count;
-        } else if (count === max) {
+        }
+        else if (count === max) {
             modes.push(cur.id);
         }
         prev = cur.id;
@@ -135,15 +130,13 @@ function findMode(root) {
     inorderDFS(root);
     return modes;
 }
-
 const waitManager = new WaitManager(10);
-const {time1, time2, time3} = waitManager;
-
+const { time1, time2, time3 } = waitManager;
 // 450	Delete Node in a BST	★★★★						binary search
 export async function testBST(arr, proxyHandler) {
     const arrCopy = [...arr];
     const rest = arrCopy.splice(1);
-    const proxyVariables = new DeepProxy({bst: new BST(true, arrCopy[0], arrCopy[0])}, proxyHandler);
+    const proxyVariables = new DeepProxy({ bst: new BST(true, arrCopy[0], arrCopy[0]) }, proxyHandler);
     for (let i of rest) {
         proxyVariables.bst.insert(i, i);
         await wait(time1);
@@ -247,7 +240,6 @@ export async function testBST(arr, proxyHandler) {
     console.log('BFS, node', proxyVariables.bst.BFS('node'));
     return proxyVariables.bst;
 }
-
 const runTestBST = async () => {
     await runAlgorithm(testBST, false, ...testBSTCase1);
 };

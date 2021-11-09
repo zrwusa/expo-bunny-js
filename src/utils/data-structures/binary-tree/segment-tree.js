@@ -11,56 +11,43 @@ export class SegmentTreeNode {
         this._sum = sum;
         this._val = val || null;
     }
-
     get start() {
         return this._start;
     }
-
     set start(v) {
         this._start = v;
     }
-
     get end() {
         return this._end;
     }
-
     set end(v) {
         this._end = v;
     }
-
     get val() {
         return this._val;
     }
-
     set val(v) {
         this._val = v;
     }
-
     get sum() {
         return this._sum;
     }
-
     set sum(v) {
         this._sum = v;
     }
-
     get left() {
         return this._left;
     }
-
     set left(v) {
         this._left = v;
     }
-
     get right() {
         return this._right;
     }
-
     set right(v) {
         this._right = v;
     }
 }
-
 export class SegmentTree {
     constructor(values, start, end) {
         this._values = [];
@@ -72,11 +59,9 @@ export class SegmentTree {
         this._end = end;
         this._root = this.build(start, end);
     }
-
     get root() {
         return this._root;
     }
-
     build(start, end) {
         if (start === end) {
             return new SegmentTreeNode(start, end, this._values[start]);
@@ -89,7 +74,6 @@ export class SegmentTree {
         cur.right = right;
         return cur;
     }
-
     updateNode(index, sum, val) {
         const root = this._root || null;
         if (!root) {
@@ -104,14 +88,14 @@ export class SegmentTree {
             const mid = cur.start + Math.floor((cur.end - cur.start) / 2);
             if (index <= mid) {
                 dfs(cur.left, index, sum, val);
-            } else {
+            }
+            else {
                 dfs(cur.right, index, sum, val);
             }
             cur.sum = cur.left.sum + cur.right.sum;
         };
         dfs(root, index, sum);
     }
-
     querySumByRange(indexA, indexB) {
         const root = this._root || null;
         if (!root) {
@@ -124,9 +108,11 @@ export class SegmentTree {
             const mid = cur.start + Math.floor((cur.end - cur.start) / 2);
             if (j <= mid) {
                 return dfs(cur.left, i, j);
-            } else if (i > mid) {
+            }
+            else if (i > mid) {
                 return dfs(cur.right, i, j);
-            } else {
+            }
+            else {
                 return dfs(cur.left, i, mid) + dfs(cur.right, mid + 1, j);
             }
         };

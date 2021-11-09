@@ -1,8 +1,7 @@
-import {StyleSheet} from 'react-native';
-
-export const getStyles = (sizeLabor, themeLabor) => {
-    const {ms, designsBasedOn} = sizeLabor;
-    const {wp, hp} = designsBasedOn.iphoneX;
+import { StyleSheet } from 'react-native';
+export const makeStyles = (sizeLabor, themeLabor) => {
+    const { ms, designsBasedOn } = sizeLabor;
+    const { wp, hp } = designsBasedOn.iphoneX;
     return StyleSheet.create({
         inner: {
             padding: 24,

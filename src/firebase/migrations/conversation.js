@@ -1,6 +1,5 @@
-import {firebase} from '../firebase';
-import {randomDate} from '../../utils';
-
+import { firebase } from '../firebase';
+import { randomDate } from '../../utils';
 const demoCreatedAt = randomDate(new Date('2020-1-1'), new Date());
 export const conversations = [
     {

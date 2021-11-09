@@ -1,13 +1,12 @@
 import * as React from 'react';
-import {Animated, StyleSheet} from 'react-native';
-import {TypingAnimation} from 'react-native-typing-animation';
-import {useUpdateLayoutEffect} from './hooks/useUpdateLayoutEffect';
+import { Animated, StyleSheet } from 'react-native';
+import { TypingAnimation } from 'react-native-typing-animation';
+import { useUpdateLayoutEffect } from './hooks/useUpdateLayoutEffect';
 import config from '../../config';
-import {useBunnyKit} from '../../hooks';
-
-const getStyles = (sizeLabor, themeLabor) => {
-    const {wp} = sizeLabor.designsBasedOn.iphoneX;
-    const {theme: {colors}} = themeLabor;
+import { useBunnyKit } from '../../hooks/bunny-kit';
+const makeStyles = (sizeLabor, themeLabor) => {
+    const { wp } = sizeLabor.designsBasedOn.iphoneX;
+    const { theme: { colors } } = themeLabor;
     return StyleSheet.create({
         container: {
             marginLeft: wp(8),
@@ -17,10 +16,10 @@ const getStyles = (sizeLabor, themeLabor) => {
         },
     });
 };
-const TypingIndicator = ({isTyping}) => {
-    const {sizeLabor, themeLabor, wp} = useBunnyKit();
-    const styles = getStyles(sizeLabor, themeLabor);
-    const {yCoords, heightScale, marginScale} = React.useMemo(() => ({
+const TypingIndicator = ({ isTyping }) => {
+    const { sizeLabor, themeLabor, wp } = useBunnyKit();
+    const styles = makeStyles(sizeLabor, themeLabor);
+    const { yCoords, heightScale, marginScale } = React.useMemo(() => ({
         yCoords: new Animated.Value(wp(200)),
         heightScale: new Animated.Value(0),
         marginScale: new Animated.Value(0),
@@ -29,7 +28,8 @@ const TypingIndicator = ({isTyping}) => {
     useUpdateLayoutEffect(() => {
         if (isTyping) {
             slideIn();
-        } else {
+        }
+        else {
             slideOut();
         }
     }, [isTyping]);
@@ -72,19 +72,18 @@ const TypingIndicator = ({isTyping}) => {
         ]).start();
     };
     return (<Animated.View style={[
-        styles.container,
-        {
-            transform: [
-                {
-                    translateY: yCoords,
-                },
-            ],
-            height: heightScale,
-            marginBottom: marginScale,
-        },
-    ]}>
-        {isTyping ? (<TypingAnimation style={{marginLeft: wp(6), marginTop: wp(7.2, false)}} dotRadius={wp(4)}
-                                      dotMargin={wp(5.5, false)} dotColor={'rgba(0, 0, 0, 0.38)'}/>) : null}
-    </Animated.View>);
+            styles.container,
+            {
+                transform: [
+                    {
+                        translateY: yCoords,
+                    },
+                ],
+                height: heightScale,
+                marginBottom: marginScale,
+            },
+        ]}>
+            {isTyping ? (<TypingAnimation style={{ marginLeft: wp(6), marginTop: wp(7.2, false) }} dotRadius={wp(4)} dotMargin={wp(5.5, false)} dotColor={'rgba(0, 0, 0, 0.38)'}/>) : null}
+        </Animated.View>);
 };
 export default TypingIndicator;

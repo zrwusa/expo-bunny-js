@@ -1,19 +1,17 @@
 import * as React from 'react';
-import {Text, View} from '../../../components/UI';
-import {shortenTFunctionKey} from '../../../providers';
-import {getContainerStyles} from '../../../containers';
-import {getSharedStyles} from '../../../helpers';
-import {useBunnyKit} from '../../../hooks';
-
-function TabSettingsScreen({route, navigation}) {
-    const {sizeLabor, themeLabor, t} = useBunnyKit();
+import { Text, View } from '../../../components/UI';
+import { shortenTFunctionKey } from '../../../providers/i18n-labor';
+import { makeContainerStyles } from '../../../containers';
+import { getSharedStyles } from '../../../helpers';
+import { useBunnyKit } from '../../../hooks/bunny-kit';
+function TabSettingsScreen({ route, navigation }) {
+    const { sizeLabor, themeLabor, t } = useBunnyKit();
     const st = shortenTFunctionKey(t, 'screens.TabSettings');
-    const containerStyles = getContainerStyles(sizeLabor, themeLabor);
-    const {sharedStyles} = getSharedStyles(sizeLabor, themeLabor);
+    const containerStyles = makeContainerStyles(sizeLabor, themeLabor);
+    const { sharedStyles } = getSharedStyles(sizeLabor, themeLabor);
     return (<View style={[containerStyles.Screen, sharedStyles.centralized]}>
-        <Text>{st(`title`)}</Text>
-        <Text>{route.params.item}</Text>
-    </View>);
+            <Text>{st(`title`)}</Text>
+            <Text>{route.params.item}</Text>
+        </View>);
 }
-
 export default TabSettingsScreen;

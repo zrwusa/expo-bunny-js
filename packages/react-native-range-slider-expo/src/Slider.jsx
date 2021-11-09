@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Animated, I18nManager, StyleSheet, Text, TextInput, View } from 'react-native';
 import { PanGestureHandler, State } from 'react-native-gesture-handler';
-import { useBunnyKit } from "../../../src/hooks/bunny-kit";
+import { useBunnyKit } from '../../../src/hooks/bunny-kit';
 const osRtl = I18nManager.isRTL;
 const SMALL_SIZE = 24;
 const MEDIUM_SIZE = 34;
@@ -121,14 +121,19 @@ export const Slider = (props) => {
         'medium': { width: 40, height: 56 },
         'large': { width: 50, height: 70 },
     };
-    const bubbleSize = typeof styleSize === "number" ? { width: styleSize, height: styleSize } : bubbleSizeMap[styleSize];
-    const bubbleBottomValue = typeof styleSize === "number" ? styleSize : bubbleSizeMap[styleSize].height;
+    const bubbleSize = typeof styleSize === 'number' ? { width: styleSize, height: styleSize } : bubbleSizeMap[styleSize];
+    const bubbleBottomValue = typeof styleSize === 'number' ? styleSize : bubbleSizeMap[styleSize].height;
     const bubbleBottom = valueLabelsPosition === 'up' ? 0 : -bubbleBottomValue;
     const styles = getStyles(knobSize);
     const renderValueLabels = () => {
         return showValueLabels &&
             <View style={{ width: '100%', height: 1, flexDirection }}>
-                <Animated.View style={{ position: 'absolute', bottom: 0, left: 0, transform: [{ translateX }, { scale: valueLabelScale }] }}>
+                <Animated.View style={{
+                    position: 'absolute',
+                    bottom: 0,
+                    left: 0,
+                    transform: [{ translateX }, { scale: valueLabelScale }]
+                }}>
                     {showBubbles
                     ?
                         // <Svg width={40} height={56} style={{...svgOffset, justifyContent: 'center', alignItems: 'center'}}>
@@ -164,11 +169,21 @@ export const Slider = (props) => {
         'medium': 14,
         'large': 7
     };
-    return (<Animated.View style={[styles.container, { opacity, paddingHorizontal: typeof styleSize === "number" ? styleSize / 2 : paddingSizeMap[styleSize] }]}>
+    return (<Animated.View style={[styles.container, {
+                opacity,
+                paddingHorizontal: typeof styleSize === 'number' ? styleSize / 2 : paddingSizeMap[styleSize]
+            }]}>
             {valueLabelsPosition === 'up'
             ? renderValueLabels()
             : null}
-            <View style={{ width: '100%', height: knobSize, marginVertical: 4, position: 'relative', flexDirection, alignItems: 'center' }}>
+            <View style={{
+            width: '100%',
+            height: knobSize,
+            marginVertical: 4,
+            position: 'relative',
+            flexDirection,
+            alignItems: 'center'
+        }}>
                 <View style={[styles.bar, {
                 backgroundColor: invert ? inRangeBarColor : outOfRangeBarColor,
             }]} onLayout={onLayout}/>
@@ -196,8 +211,8 @@ export const Slider = (props) => {
             : null}
             {showRangeLabels &&
             <View style={{ width: '100%', flexDirection, justifyContent: 'space-between' }}>
-                    <Text style={{ color: rangeLabelsTextColor, fontWeight: "bold", fontSize, marginLeft: -7 }}>{min}</Text>
-                    <Text style={{ color: rangeLabelsTextColor, fontWeight: "bold", fontSize }}>{max}</Text>
+                    <Text style={{ color: rangeLabelsTextColor, fontWeight: 'bold', fontSize, marginLeft: -7 }}>{min}</Text>
+                    <Text style={{ color: rangeLabelsTextColor, fontWeight: 'bold', fontSize }}>{max}</Text>
                 </View>}
         </Animated.View>);
 };

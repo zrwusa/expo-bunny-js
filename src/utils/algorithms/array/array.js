@@ -1,18 +1,17 @@
 export const array = {};
-
 // 55. Jump Game
 function canJump(nums) {
     let max = 0;
     for (let i = 0; i < nums.length; i++) {
         if (i > max) {
             return false;
-        } else {
+        }
+        else {
             max = Math.max(i + nums[i], max);
         }
     }
     return true;
 }
-
 function canJumpMy(nums) {
     const zeros = new Map();
     for (let i = 0; i < nums.length; i++) {
@@ -33,7 +32,6 @@ function canJumpMy(nums) {
     }
     return true;
 }
-
 function twoSum(nums, target) {
     const diffMap = new Map();
     for (let i = 0; i < nums.length; i++) {
@@ -45,7 +43,6 @@ function twoSum(nums, target) {
     }
     return [-1, -1];
 }
-
 function removeDuplicates(nums) {
     if (nums.length === 0)
         return 0;
@@ -57,7 +54,6 @@ function removeDuplicates(nums) {
     }
     return ans;
 }
-
 function moveZeroesPlagiarized(nums) {
     let id = 0;
     for (let i = 0; i < nums.length; i++) {
@@ -70,7 +66,6 @@ function moveZeroesPlagiarized(nums) {
         nums[i] = 0;
     }
 }
-
 function moveZeroes(nums) {
     let id = 0;
     for (let i = 0; i < nums.length; i++) {
@@ -82,7 +77,6 @@ function moveZeroes(nums) {
         }
     }
 }
-
 // 303. Range Sum Query - Immutable
 class NumArray {
     constructor(nums) {
@@ -91,16 +85,15 @@ class NumArray {
             this._cache.set(i, i === 0 ? nums[0] : this._cache.get(i - 1) + nums[i]);
         }
     }
-
     sumRange(left, right) {
         if (left > 0) {
             return this._cache.get(right) - this._cache.get(left - 1);
-        } else {
+        }
+        else {
             return this._cache.get(right);
         }
     }
 }
-
 // 304. Range Sum Query 2D - Immutable
 class NumMatrixMy {
     constructor(matrix) {
@@ -119,7 +112,8 @@ class NumMatrixMy {
                     rowSum += matrix[row][i];
                 }
                 return (this._cache[row - 1][col] || 0) + rowSum;
-            } else if (col > 0 && this._cache[row][col - 1] !== undefined) {
+            }
+            else if (col > 0 && this._cache[row][col - 1] !== undefined) {
                 let colSum = 0;
                 for (let i = 0; i <= row; i++) {
                     colSum += matrix[i][col];
@@ -131,13 +125,13 @@ class NumMatrixMy {
             for (let col = 0; col < matrix[row].length; col++) {
                 if (row === 0 && col === 0) {
                     this._cache[0][0] = matrix[0][0];
-                } else {
+                }
+                else {
                     this._cache[row][col] = subMatrixSum(row, col);
                 }
             }
         }
     }
-
     sumRegion(row1, col1, row2, col2) {
         let sum = 0;
         let t = this._cache[0][0] || 0;
@@ -160,7 +154,6 @@ class NumMatrixMy {
         return sum;
     }
 }
-
 class NumMatrix {
     constructor(matrix) {
         this._cache = [];
@@ -183,16 +176,14 @@ class NumMatrix {
         }
         this._cache = cache;
     }
-
     sumRegion(row1, col1, row2, col2) {
-        const {_cache: cache} = this;
+        const { _cache: cache } = this;
         return cache[row2 + 1][col2 + 1]
             - cache[row2 + 1][col1]
             - cache[row1][col2 + 1]
             + cache[row1][col1];
     }
 }
-
 // 307. Range Sum Query - Mutable
 //2180 ms
 class NumArrayMyFirst {
@@ -206,7 +197,6 @@ class NumArrayMyFirst {
             i++;
         }
     }
-
     update(index, val) {
         this._diffs.push([index, val - this._nums[index]]);
         this._nums[index] = val;
@@ -214,7 +204,6 @@ class NumArrayMyFirst {
         // console.log(this._diffs)
         // console.log(this._sums)
     }
-
     sumRange(left, right) {
         let sum = 0;
         sum = this._sums[right + 1] - this._sums[left];
@@ -226,7 +215,6 @@ class NumArrayMyFirst {
         return sum;
     }
 }
-
 // 5600 ms
 class NumArrayMySecond {
     constructor(nums) {
@@ -239,17 +227,16 @@ class NumArrayMySecond {
             i++;
         }
     }
-
     update(index, val) {
         const d = this._diffs.get(index);
         if (d === undefined) {
             this._diffs.set(index, val - this._nums[index]);
-        } else {
+        }
+        else {
             this._diffs.set(index, val - this._nums[index] + d);
         }
         this._nums[index] = val;
     }
-
     sumRange(left, right) {
         let sum = 0;
         sum = this._sums[right + 1] - this._sums[left];

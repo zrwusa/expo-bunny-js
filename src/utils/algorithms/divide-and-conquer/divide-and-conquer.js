@@ -1,18 +1,10 @@
 /* --- start Divide and conquer ---*/
 // Binary Search
 // 33 Search in Rotated Sorted Array
-import {runAlgorithm} from '../helpers';
-import {
-    countSmallerCase1,
-    countSmallerCase2,
-    countSmallerCase3,
-    countSmallerCase4,
-    countSmallerCase5,
-    countSmallerCase7
-} from './cases';
-import {BinaryIndexedTree, BST} from '../../data-structures/binary-tree';
-import {DeepProxy} from '@qiwi/deep-proxy';
-
+import { runAlgorithm } from '../helpers';
+import { countSmallerCase1, countSmallerCase2, countSmallerCase3, countSmallerCase4, countSmallerCase5, countSmallerCase7 } from './cases';
+import { BinaryIndexedTree, BST } from '../../data-structures/binary-tree';
+import { DeepProxy } from '@qiwi/deep-proxy';
 export const searchInRotatedSortedArray = function (nums, target) {
     if (nums.length === 0)
         return -1; // check empty
@@ -28,15 +20,18 @@ export const searchInRotatedSortedArray = function (nums, target) {
             // check if is in the left sorted part
             if (leftEle <= target && target < midEle) {
                 right = mid - 1;
-            } else {
+            }
+            else {
                 left = mid + 1;
             }
             // right sorted
-        } else {
+        }
+        else {
             // check if is in the right sorted part
             if (midEle < target && target <= rightEle) {
                 left = mid + 1;
-            } else {
+            }
+            else {
                 right = mid - 1;
             }
         }
@@ -50,7 +45,8 @@ let majorityElement = function (nums) {
     for (let num of nums) {
         if (num === majority) {
             count++;
-        } else if (--count === 0) {
+        }
+        else if (--count === 0) {
             count = 1;
             majority = num;
         }
@@ -71,7 +67,8 @@ const findMin = function (nums) {
     const left = nums.splice(0, Math.floor(nums.length / 2));
     if (left[0] > left[left.length - 1]) {
         return findMin(left);
-    } else {
+    }
+    else {
         return findMin(nums);
     }
 };
@@ -85,17 +82,14 @@ class NumArray {
             this._tree.update(i + 1, nums[i]);
         }
     }
-
     update(index, val) {
         this._tree.update(index + 1, val - this._nums[index]);
         this._nums[index] = val;
     }
-
     sumRange(left, right) {
         return this._tree.getPrefixSum(right + 1) - this._tree.getPrefixSum(left);
     }
 }
-
 // 315	Count of Smaller Numbers After Self	★★★★						merge sort / BIT
 const countSmallerNoReverse = function (nums) {
     let uniqueSorted = [...new Set(nums)].sort((a, b) => b - a);
@@ -154,7 +148,7 @@ const countSmallerBIT = function (nums) {
 //  sorted case BST will give a time complexity O(n^2)
 export const countSmallerBST = async (nums, proxyHandler) => {
     const rootIndex = nums.length - 1;
-    let proxyVariables = new DeepProxy({bst: new BST(true, nums[rootIndex], undefined)}, proxyHandler);
+    let proxyVariables = new DeepProxy({ bst: new BST(true, nums[rootIndex], undefined) }, proxyHandler);
     let outputArr = new Array(nums.length).fill(0);
     for (let j = nums.length - 1; j > -1; j--) {
         if (j !== rootIndex) {
@@ -194,10 +188,12 @@ const solution = function (isBadVersion) {
             const firstInRight = mid + 1;
             if (!badInLeft && isBadVersion(firstInRight)) {
                 return firstInRight;
-            } else {
+            }
+            else {
                 if (badInLeft) {
                     r = mid;
-                } else {
+                }
+                else {
                     l = firstInRight;
                 }
             }
@@ -224,18 +220,18 @@ function mySqrt(x) {
         }
         if (midSquare < x) {
             l = mid;
-        } else if (midSquare > x) {
+        }
+        else if (midSquare > x) {
             r = mid;
-        } else {
+        }
+        else {
             ans = mid;
             break;
         }
     }
     return ans;
 }
-
 /* --- start Binary Search --- */
-
 // 875	Koko Eating Bananas	★★★	1011   guess ans and check
 function minEatingSpeed(piles, h) {
     const pilesCount = piles.length;
@@ -260,13 +256,13 @@ function minEatingSpeed(piles, h) {
         if (canFinish(mid)) {
             minK = mid;
             r = mid;
-        } else {
+        }
+        else {
             l = mid + 1;
         }
     }
     return minK;
 }
-
 // 378
 // 35	Search Insert Position	★★	34	704	981					upper_bound
 function searchInsert(nums, target) {
@@ -276,15 +272,16 @@ function searchInsert(nums, target) {
         const midNum = nums[mid];
         if (midNum === target) {
             return mid;
-        } else if (midNum > target) {
+        }
+        else if (midNum > target) {
             r = mid;
-        } else {
+        }
+        else {
             l = mid + 1;
         }
     }
     return l;
 }
-
 // 33	Search in Rotated Sorted Array	★★★	81	153	154	162	852			rotated / peak
 // 74	Search a 2D Matrix	★★★								treat 2d as 1d
 function searchMatrix(matrix, target) {
@@ -298,15 +295,16 @@ function searchMatrix(matrix, target) {
         const midVal = arr[mid];
         if (midVal === target) {
             return true;
-        } else if (midVal > target) {
+        }
+        else if (midVal > target) {
             r = mid - 1;
-        } else {
+        }
+        else {
             l = mid + 1;
         }
     }
     return false;
 }
-
 // 4	Median of Two Sorted Arrays	★★★★
 // 378 Kth Smallest Element in a Sorted Matrix ★★★★	668							kth + matrix
 // TODO use heap,it's more complicate
@@ -317,7 +315,6 @@ function kthSmallest(matrix, k) {
     }
     return arr.sort((a, b) => a - b)[k - 1];
 }
-
 // 719	Find K-th Smallest Pair Distance	★★★★	786							kth + two pointers
 // TODO use DP
 function smallestDistancePair(nums, k) {
@@ -326,7 +323,6 @@ function smallestDistancePair(nums, k) {
     for (let i = 0; i < nums.length - 1; i++) {
         min = Math.min(min, nums[i + 1] - nums[i]);
     }
-
     function countLessThan(nums, target) {
         let right = 0, count = 0;
         for (let i = 0; i < nums.length; i++) {
@@ -336,7 +332,6 @@ function smallestDistancePair(nums, k) {
         }
         return count;
     }
-
     while (min < max - 1) {
         let mid = Math.floor((min + max) / 2);
         let count = countLessThan(nums, mid);
@@ -344,7 +339,8 @@ function smallestDistancePair(nums, k) {
             return mid;
         if (count < k) {
             min = mid;
-        } else {
+        }
+        else {
             max = mid;
         }
     }
@@ -352,6 +348,5 @@ function smallestDistancePair(nums, k) {
         return min;
     return max;
 }
-
 /* --- end Binary Search --- */
 /* --- end Divide and conquer ---*/

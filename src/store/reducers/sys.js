@@ -1,6 +1,5 @@
-import {ELanguage, ESys, EThemes} from '../../constants';
+import { ELanguage, ESys, EThemes } from '../../constants';
 import _ from 'lodash';
-
 const initialState = {
     isReady: false,
     errors: [],
@@ -10,8 +9,7 @@ const initialState = {
     navInitialState: undefined,
     requestStatuses: []
 };
-
-export function sysStateReducer(prevState = initialState, {type, payload}) {
+export function sysStateReducer(prevState = initialState, { type, payload }) {
     switch (type) {
         case ESys.RESTORE_IS_READY:
             return {
@@ -24,16 +22,20 @@ export function sysStateReducer(prevState = initialState, {type, payload}) {
                 ...prevState,
             };
         case ESys.CLEAR_ERRORS:
-            if (payload.all) {
+            const sysClearErrorPayload = payload;
+            if (sysClearErrorPayload.all) {
                 prevState.errors = [];
-            } else if (payload.top) {
-                prevState.errors.splice(0, payload.top);
-            } else if (payload.last) {
-                prevState.errors.splice(prevState.errors.length - payload.last, payload.last);
             }
-            return {...prevState};
+            else if (sysClearErrorPayload.top) {
+                prevState.errors.splice(0, sysClearErrorPayload.top);
+            }
+            else if (sysClearErrorPayload.last) {
+                prevState.errors.splice(prevState.errors.length - sysClearErrorPayload.last, sysClearErrorPayload.last);
+            }
+            return { ...prevState };
         case ESys.WARN:
-            prevState.warns.push(payload.warn);
+            const sysWarnPayload = payload;
+            prevState.warns.push(sysWarnPayload.warn);
             return {
                 ...prevState,
             };
@@ -43,17 +45,19 @@ export function sysStateReducer(prevState = initialState, {type, payload}) {
                 ...payload
             };
         case ESys.REQUESTING:
-            prevState.requestStatuses.push({...payload, status: 'LOADING'});
+            prevState.requestStatuses.push({ ...payload, status: 'LOADING' });
             return {
                 ...prevState,
             };
-        case ESys.REQUEST_RECEIVED:
-            _.remove(prevState.requestStatuses, item => (item.url === payload.url && item.method === payload.method && item.params === payload.params));
+        case ESys.REQUEST_SUCCESS:
+            const receivedPayload = payload;
+            _.remove(prevState.requestStatuses, item => (item.url === receivedPayload.url && item.method === receivedPayload.method && item.params === receivedPayload.params));
             return {
                 ...prevState,
             };
         case ESys.REQUEST_FAILED:
-            _.remove(prevState.requestStatuses, item => (item.url === payload.url && item.method === payload.method && item.params === payload.params));
+            const requestFailedPayload = payload;
+            _.remove(prevState.requestStatuses, item => (item.url === requestFailedPayload.url && item.method === requestFailedPayload.method && item.params === requestFailedPayload.params));
             return {
                 ...prevState,
             };

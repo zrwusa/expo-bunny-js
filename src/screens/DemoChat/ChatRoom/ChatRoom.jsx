@@ -1,23 +1,21 @@
-import React, {useCallback, useEffect, useMemo, useState} from 'react';
-import {BunnyChat} from '../../../components/BunnyChat';
-import {useDispatch, useSelector} from 'react-redux';
-import {isLoaded, useFirestore, useFirestoreConnect} from 'react-redux-firebase';
-import {firestoreTimestampToDate, uuidV4} from '../../../utils';
-import {Keyboard, SafeAreaView, TouchableOpacity} from 'react-native';
-import {AudioRecorder, ImageUploader, Preparing, StickerPicker} from '../../../components';
-import {IcoMoon} from '../../../components/UI';
-import {getStyles} from './styles';
-import {useBunnyKit} from '../../../hooks';
-import {sysError} from '../../../store/actions';
-
-export function ChatRoomScreen({route, navigation}) {
-    const {conversationId} = route.params;
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { AudioRecorder, BunnyChat, ImageUploader, Preparing, StickerPicker } from '../../../components';
+import { useDispatch, useSelector } from 'react-redux';
+import { isLoaded, useFirestore, useFirestoreConnect } from 'react-redux-firebase';
+import { firestoreTimestampToDate, uuidV4 } from '../../../utils';
+import { Keyboard, SafeAreaView, TouchableOpacity } from 'react-native';
+import { IcoMoon } from '../../../components/UI';
+import { makeStyles } from './styles';
+import { useBunnyKit } from '../../../hooks/bunny-kit';
+import { collectSysError } from '../../../store/actions';
+export function ChatRoomScreen({ route, navigation }) {
+    const { conversationId } = route.params;
     const firestore = useFirestore();
-    const {sizeLabor, themeLabor, authLabor, wp} = useBunnyKit();
-    const {authResult} = authLabor;
-    const {user} = authResult;
+    const { sizeLabor, themeLabor, authLabor, wp } = useBunnyKit();
+    const { authResult } = authLabor;
+    const { user } = authResult;
     const dispatch = useDispatch();
-    const styles = getStyles(sizeLabor, themeLabor);
+    const styles = makeStyles(sizeLabor, themeLabor);
     useFirestoreConnect([
         {
             collection: 'chatMessages',
@@ -46,13 +44,13 @@ export function ChatRoomScreen({route, navigation}) {
         };
     }, []);
     let chatMessagesAdapted = chatMessages?.map((serverItem) => {
-        return {...serverItem, createdAt: firestoreTimestampToDate(serverItem.createdAt)};
+        return { ...serverItem, createdAt: firestoreTimestampToDate(serverItem.createdAt) };
     });
     const memoizedUser = useMemo(() => {
         if (!user) {
-            return {_id: 'defaultId', avatar: '', name: 'defaultName'};
+            return { _id: 'defaultId', avatar: '', name: 'defaultName' };
         }
-        const {firebaseUser, storedUser} = user;
+        const { firebaseUser, storedUser } = user;
         if (firebaseUser) {
             return {
                 _id: firebaseUser.uid || 'defaultId',
@@ -111,33 +109,33 @@ export function ChatRoomScreen({route, navigation}) {
         await setSent(msg);
     };
     const setSent = async (msg) => {
-        await firestore.update(`chatMessages/${msg._id}`, {sent: true, pending: false});
+        await firestore.update(`chatMessages/${msg._id}`, { sent: true, pending: false });
     };
     const setReceived = async (msg) => {
         if ((memoizedUser && memoizedUser._id) !== msg?.user._id) {
-            await firestore.update(`chatMessages/${msg._id}`, {received: true});
+            await firestore.update(`chatMessages/${msg._id}`, { received: true });
         }
     };
-    return (<SafeAreaView style={{flex: 1}}>
-        {isLoaded(chatMessages)
+    return (<SafeAreaView style={{ flex: 1 }}>
+            {isLoaded(chatMessages)
             ? <>
-                <BunnyChat
-                    // actionsConfig={{
-                    //     'PickImage': function () {
-                    //         console.log(arguments)
-                    //     },
-                    //     'Cancel': function () {
-                    //         console.log(arguments)
-                    //     }
-                    // }}
-                    // minComposerHeight={100}
-                    // keyboardShouldPersistTaps
-                    isDebug={false} alwaysShowSend
-                    // TODO Suspected to be a react-native-gifted-chat bug,default value is true.
-                    inverted={true}
-                    // showUserAvatar
-                    // showAvatarForEveryMessage
-                    messages={chatMessagesAdapted} onSend={async (messages) => {
+                    <BunnyChat 
+            // actionsConfig={{
+            //     'PickImage': function () {
+            //         console.log(arguments)
+            //     },
+            //     'Cancel': function () {
+            //         console.log(arguments)
+            //     }
+            // }}
+            // minComposerHeight={100}
+            // keyboardShouldPersistTaps
+            isDebug={false} alwaysShowSend 
+            // TODO Suspected to be a react-native-gifted-chat bug,default value is true.
+            inverted={true} 
+            // showUserAvatar
+            // showAvatarForEveryMessage
+            messages={chatMessagesAdapted} onSend={async (messages) => {
                     console.log('onSend', messages);
                     await handleSend(messages);
                 }} user={memoizedUser} textInputProps={{
@@ -149,72 +147,70 @@ export function ChatRoomScreen({route, navigation}) {
                 }} onMessageReadyForDisplay={async (currentMessage) => {
                     await setReceived(currentMessage);
                 }} onMessageLoadError={(e, currentMessage) => {
-                    dispatch(sysError(e));
-                }}
-                    // actionSheet={() => {
-                    //     return {
-                    //         showActionSheetWithOptions: (options, callback) => {
-                    //             console.log(options, callback)
-                    //             callback(0)
-                    //         }
-                    //     }
-                    // }}
-                    renderActions={() => {
-                        return <>
-                            <TouchableOpacity onPress={() => {
-                                Keyboard.dismiss();
-                                // TODO issue when this triggered firebase writes channel and rerenders all
-                                setIsShowStickerPicker(!isShowStickerPicker);
-                            }}>
-                                <IcoMoon name="chat4" style={styles.stickerPickerIcon}/>
-                            </TouchableOpacity>
-                            <ImageUploader isDeleteFromServerWhenUpload={false} path={chatAssetsPath}
-                                           renderPreview={({toggleModal}) => {
-                                               return <TouchableOpacity onPress={() => {
-                                                   toggleModal();
-                                               }}>
-                                                   <IcoMoon name="paperclip" size={wp(16)}
-                                                            style={styles.mediaLibraryPickerIcon}/>
-                                               </TouchableOpacity>;
-                                           }} onUploaded={async (imageSource, type) => {
-                                let mediaType = '';
-                                switch (type) {
-                                    case 'image':
-                                        mediaType = 'IMAGE';
-                                        break;
-                                    case 'video':
-                                        mediaType = 'VIDEO';
-                                        break;
-                                }
-                                const msg = generateMessage(mediaType, imageSource.uri);
-                                await storeMessage(msg);
-                            }}/>
-                        </>;
-                    }} renderSend={(props) => {
-                    const {text, onSend} = props;
+                    dispatch(collectSysError(e));
+                }} 
+            // actionSheet={() => {
+            //     return {
+            //         showActionSheetWithOptions: (options, callback) => {
+            //             console.log(options, callback)
+            //             callback(0)
+            //         }
+            //     }
+            // }}
+            renderActions={() => {
+                    return <>
+                                <TouchableOpacity onPress={() => {
+                            Keyboard.dismiss();
+                            // TODO issue when this triggered firebase writes channel and rerenders all
+                            setIsShowStickerPicker(!isShowStickerPicker);
+                        }}>
+                                    <IcoMoon name="chat4" style={styles.stickerPickerIcon}/>
+                                </TouchableOpacity>
+                                <ImageUploader isDeleteFromServerWhenUpload={false} path={chatAssetsPath} renderPreview={({ toggleModal }) => {
+                            return <TouchableOpacity onPress={() => {
+                                    toggleModal();
+                                }}>
+                                            <IcoMoon name="paperclip" size={wp(16)} style={styles.mediaLibraryPickerIcon}/>
+                                        </TouchableOpacity>;
+                        }} onUploaded={async (imageSource, type) => {
+                            let mediaType = '';
+                            switch (type) {
+                                case 'image':
+                                    mediaType = 'IMAGE';
+                                    break;
+                                case 'video':
+                                    mediaType = 'VIDEO';
+                                    break;
+                            }
+                            const msg = generateMessage(mediaType, imageSource.uri);
+                            await storeMessage(msg);
+                        }}/>
+                            </>;
+                }} renderSend={(props) => {
+                    const { text, onSend } = props;
                     return (<>
-                        {isShowAudioButton
+                                    {isShowAudioButton
                             ? <AudioRecorder isUpload uploadPath={chatAssetsPath} onValueChanged={async (uri) => {
-                                const messageNeedSent = generateMessage('AUDIO', uri);
-                                await storeMessage(messageNeedSent);
-                            }}/>
+                                    const messageNeedSent = generateMessage('AUDIO', uri);
+                                    await storeMessage(messageNeedSent);
+                                }}/>
                             : <TouchableOpacity onPress={() => {
-                                if (text && onSend && memoizedUser) {
-                                    onSend(generateMessage('MESSAGE', text), true);
-                                }
-                            }}>
-                                <IcoMoon name="paperplane1" style={styles.sendIcon}/>
-                            </TouchableOpacity>}
+                                    if (text && onSend && memoizedUser) {
+                                        onSend(generateMessage('MESSAGE', text), true);
+                                    }
+                                }}>
+                                            <IcoMoon name="paperplane1" style={styles.sendIcon}/>
+                                        </TouchableOpacity>}
 
-                    </>);
+                                </>);
                 }}/>
-                <StickerPicker isShow={isShowStickerPicker} onValueChanged={async (uri) => {
+                    <StickerPicker isShow={isShowStickerPicker} onValueChanged={async (uri) => {
                     const msg = generateMessage('STICKER_GIF', uri);
                     await storeMessage(msg);
                     // setIsShowStickerPicker(false);
                 }}/>
-            </>
-            : <Preparing/>}
+                </>
+            : <Preparing />}
 
-    </SafeAreaView>);
+        </SafeAreaView>);
 }

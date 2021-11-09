@@ -1,7 +1,6 @@
-import {useSizeLabor} from './useSizeLabor';
+import { useSizeLabor } from './useSizeLabor';
 import React from 'react';
-
-export function withSizeLabor(WrappedComponent) {
+export const withSizeLabor = (WrappedComponent) => {
     // Try to create a nice displayName for React Dev Tools.
     const displayName = WrappedComponent.displayName || WrappedComponent.name || 'Component';
     // Creating the inner component. The calculated Props type here is the where the magic happens.
@@ -13,4 +12,4 @@ export function withSizeLabor(WrappedComponent) {
     };
     ComponentWithSizeLabor.displayName = `withSizeLabor(${displayName})`;
     return ComponentWithSizeLabor;
-}
+};

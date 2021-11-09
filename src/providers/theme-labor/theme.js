@@ -1,12 +1,11 @@
-import {fontsWarehouse} from './fonts';
+import { fontsWarehouse } from './fonts';
 import color from 'color';
-import {EThemes} from '../../constants';
-import {isLeafParent, isSameStructure, pl} from '../../utils';
-import getSizeLabor from '../size-labor/sizeLabor';
-import {getVictoryTheme} from './victoryTheme';
-
+import { EThemes } from '../../constants';
+import { isLeafParent, isSameStructure, pl } from '../../utils';
+import { getSizeLabor } from '../size-labor/sizeLabor';
+import { getVictoryTheme } from './victoryTheme';
 export const getThemeWareHouse = () => {
-    const {wp} = getSizeLabor().designsBasedOn.iphoneX;
+    const { wp } = getSizeLabor().designsBasedOn.iphoneX;
     const commonFontFamily = {
         light: fontsWarehouse.regular.fontFamily.light,
         dark: fontsWarehouse.regular.fontFamily.dark,
@@ -441,9 +440,11 @@ const extractThemesFromWarehouse = (arg, themeName) => {
     nodeKeys.forEach(k => {
         if (!isSameStructure(themeWarehouseNode[k], EThemes)) {
             themeNode[k] = extractThemesFromWarehouse(themeWarehouseNode[k], themeName);
-        } else if (isLeafParent(themeWarehouseNode[k])) {
+        }
+        else if (isLeafParent(themeWarehouseNode[k])) {
             themeNode[k] = themeWarehouseNode[k][themeName];
-        } else {
+        }
+        else {
             themeNode[k] = {};
         }
     });

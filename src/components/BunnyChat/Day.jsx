@@ -1,13 +1,12 @@
-import React, {PureComponent} from 'react';
-import {StyleSheet, Text, View,} from 'react-native';
+import React, { PureComponent } from 'react';
+import { StyleSheet, Text, View, } from 'react-native';
 import dayjs from 'dayjs';
-import {isSameDay} from './utils';
-import {DATE_FORMAT} from './Constant';
-import {withBunnyKit} from '../../hooks';
-
-const getStyles = (sizeLabor, themeLabor) => {
-    const {wp} = sizeLabor.designsBasedOn.iphoneX;
-    const {theme: {colors}} = themeLabor;
+import { isSameDay } from './utils';
+import { DATE_FORMAT } from './Constant';
+import { withBunnyKit } from '../../hooks/bunny-kit';
+const makeStyles = (sizeLabor, themeLabor) => {
+    const { wp } = sizeLabor.designsBasedOn.iphoneX;
+    const { theme: { colors } } = themeLabor;
     return StyleSheet.create({
         container: {
             alignItems: 'center',
@@ -23,38 +22,27 @@ const getStyles = (sizeLabor, themeLabor) => {
         },
     });
 };
-
 class Day extends PureComponent {
     render() {
-        const {
-            dateFormat,
-            currentMessage,
-            previousMessage,
-            dayContainerStyle,
-            dayWrapperStyle,
-            dayTextStyle,
-            dayTextProps,
-            bunnyKit,
-        } = this.props;
-        const {language} = bunnyKit;
+        const { dateFormat, currentMessage, previousMessage, dayContainerStyle, dayWrapperStyle, dayTextStyle, dayTextProps, bunnyKit, } = this.props;
+        const { language } = bunnyKit;
         if (currentMessage && !isSameDay(currentMessage, previousMessage)) {
-            const {createdAt} = currentMessage;
-            const {sizeLabor, themeLabor} = bunnyKit;
-            const styles = getStyles(sizeLabor, themeLabor);
+            const { createdAt } = currentMessage;
+            const { sizeLabor, themeLabor } = bunnyKit;
+            const styles = makeStyles(sizeLabor, themeLabor);
             return (<View style={[styles.container, dayContainerStyle]}>
-                <View style={dayWrapperStyle}>
-                    <Text style={[styles.text, dayTextStyle]} {...dayTextProps}>
-                        {dayjs(createdAt)
-                            .locale(language)
-                            .format(dateFormat)}
-                    </Text>
-                </View>
-            </View>);
+                    <View style={dayWrapperStyle}>
+                        <Text style={[styles.text, dayTextStyle]} {...dayTextProps}>
+                            {dayjs(createdAt)
+                    .locale(language)
+                    .format(dateFormat)}
+                        </Text>
+                    </View>
+                </View>);
         }
         return null;
     }
 }
-
 Day.defaultProps = {
     currentMessage: undefined,
     previousMessage: undefined,

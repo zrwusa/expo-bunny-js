@@ -1,16 +1,14 @@
 import React from 'react';
-import {Keyboard, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, View,} from 'react-native';
-import {Button, Text, TextInput} from '../../../components/UI';
-import {getStyles} from './styles';
-import {getContainerStyles} from '../../../containers';
-import {useBunnyKit} from '../../../hooks';
-
+import { Keyboard, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, View, } from 'react-native';
+import { Button, Text, TextInput } from '../../../components/UI';
+import { makeStyles } from './styles';
+import { makeContainerStyles } from '../../../containers';
+import { useBunnyKit } from '../../../hooks/bunny-kit';
 function RNKeyboardAvoidingScreen() {
-    const {sizeLabor, themeLabor} = useBunnyKit();
-    const containerStyles = getContainerStyles(sizeLabor, themeLabor);
-    const styles = getStyles(sizeLabor, themeLabor);
-    return (
-        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={containerStyles.Screen}>
+    const { sizeLabor, themeLabor } = useBunnyKit();
+    const containerStyles = makeContainerStyles(sizeLabor, themeLabor);
+    const styles = makeStyles(sizeLabor, themeLabor);
+    return (<KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={containerStyles.Screen}>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.inner}>
                     <Text style={styles.header}>Header</Text>
@@ -23,5 +21,4 @@ function RNKeyboardAvoidingScreen() {
             </TouchableWithoutFeedback>
         </KeyboardAvoidingView>);
 }
-
 export default RNKeyboardAvoidingScreen;

@@ -1,10 +1,9 @@
-import {conversations, datingConversations} from './conversation';
-import {datingUsers} from './user';
-import {randomDate} from '../../utils';
+import { conversations, datingConversations } from './conversation';
+import { datingUsers } from './user';
+import { randomDate } from '../../utils';
 import dayJS from 'dayjs';
 import weekday from 'dayjs/plugin/weekday';
-import {firebase} from '../firebase';
-
+import { firebase } from '../firebase';
 dayJS.extend(weekday);
 const demoVideo = 'https://raw.githubusercontent.com/zrwusa/assets/master/videos/big-buck-bunny.mp4';
 const demoAudio = 'https://www.kozco.com/tech/LRMonoPhase4.wav';

@@ -1,20 +1,20 @@
-import {InButtonText, LinearGradientButton, Text, TextButton, TextInputIcon, View} from '../UI';
+import { InButtonText, LinearGradientButton, Text, TextButton, TextInputIcon, View } from '../UI';
 import * as React from 'react';
-import {useState} from 'react';
-import {Col, InputCard, Row} from '../../containers';
-import {collectBLResult, sysError} from '../../store/actions';
-import {shortenTFunctionKey, useAuthLabor} from '../../providers';
-import {getStyles} from './styles';
-import {useDispatch} from 'react-redux';
-import {LinearGradientIcon} from '../LinearGradientIcon';
-import {blError} from '../../helpers';
-import {useBunnyKit} from '../../hooks';
-
-export const ForgotPassword = ({route, navigation, onSent, onCancel, email}) => {
-    const {sizeLabor, themeLabor, t, wp} = useBunnyKit();
+import { useState } from 'react';
+import { Col, InputCard, Row } from '../../containers';
+import { collectBizLogicResult, collectSysError } from '../../store/actions';
+import { shortenTFunctionKey } from '../../providers/i18n-labor';
+import { makeStyles } from './styles';
+import { useAuthLabor } from '../../providers/auth-labor';
+import { useDispatch } from 'react-redux';
+import { LinearGradientIcon } from '../LinearGradientIcon';
+import { bizLogicError } from '../../helpers';
+import { useBunnyKit } from '../../hooks/bunny-kit';
+export const ForgotPassword = ({ route, navigation, onSent, onCancel, email }) => {
+    const { sizeLabor, themeLabor, t, wp } = useBunnyKit();
     const st = shortenTFunctionKey(t, 'screens.Auth');
-    const styles = getStyles(sizeLabor, themeLabor);
-    const {authFunctions} = useAuthLabor();
+    const styles = makeStyles(sizeLabor, themeLabor);
+    const { authFunctions } = useAuthLabor();
     const dispatch = useDispatch();
     const [username, setUsername] = useState(email);
     const [isSent, setIsSent] = useState(false);
@@ -23,7 +23,8 @@ export const ForgotPassword = ({route, navigation, onSent, onCancel, email}) => 
         if (route.params && route.params.reference) {
             referenceRoute = JSON.parse(route.params.reference);
             navigation.navigate(referenceRoute);
-        } else {
+        }
+        else {
             navigation.navigate('Home');
         }
     };
@@ -32,7 +33,8 @@ export const ForgotPassword = ({route, navigation, onSent, onCancel, email}) => 
         if (route.params && route.params.reference) {
             referenceRoute = JSON.parse(route.params.reference);
             navigation.navigate(referenceRoute);
-        } else {
+        }
+        else {
             navigation.navigate('Home');
         }
     };
@@ -42,24 +44,26 @@ export const ForgotPassword = ({route, navigation, onSent, onCancel, email}) => 
                 const result = await authFunctions.firebaseResetPassword(username);
                 if (result.success) {
                     setIsSent(true);
-                } else {
-                    dispatch(collectBLResult(result));
                 }
-            } else {
-                dispatch(collectBLResult(blError('Please enter email')));
+                else {
+                    dispatch(collectBizLogicResult(result));
+                }
             }
-        } catch (e) {
-            dispatch(sysError(e));
+            else {
+                dispatch(collectBizLogicResult(bizLogicError('Please enter email')));
+            }
+        }
+        catch (e) {
+            dispatch(collectSysError(e));
         }
     };
     return <View style={styles.container}>
         <InputCard title={st(`email`)}>
-            <TextInputIcon placeholder={t(`placeholders.email`)} textContentType="emailAddress" value={username}
-                           onChangeText={(value) => {
-                               setUsername(value);
-                           }} autoCapitalize="none" renderIcon={() => {
-                return <LinearGradientIcon name="mail" size={wp(20)}/>;
-            }}/>
+            <TextInputIcon placeholder={t(`placeholders.email`)} textContentType="emailAddress" value={username} onChangeText={(value) => {
+            setUsername(value);
+        }} autoCapitalize="none" renderIcon={() => {
+            return <LinearGradientIcon name="mail" size={wp(20)}/>;
+        }}/>
         </InputCard>
         <Row style={styles.row}>
             <Col size={6}>
@@ -70,25 +74,25 @@ export const ForgotPassword = ({route, navigation, onSent, onCancel, email}) => 
             <Col size={1}/>
             <Col size={6}>
                 <TextButton onPress={() => {
-                    if (onCancel)
-                        onCancel();
-                }}>
+            if (onCancel)
+                onCancel();
+        }}>
                     <Text>{st(`goToLogin`)}</Text></TextButton>
             </Col>
         </Row>
         {isSent
             ? <>
-                <Row style={styles.row}>
-                    <Text>{st(`checkYourEmail`)}</Text>
-                </Row>
-                <Row style={styles.row}>
-                    <LinearGradientButton onPress={() => {
-                        if (onSent)
-                            onSent();
-                    }}><InButtonText>{st(`goToLogin`)}</InButtonText></LinearGradientButton>
-                </Row>
+                    <Row style={styles.row}>
+                        <Text>{st(`checkYourEmail`)}</Text>
+                    </Row>
+                    <Row style={styles.row}>
+                        <LinearGradientButton onPress={() => {
+                    if (onSent)
+                        onSent();
+                }}><InButtonText>{st(`goToLogin`)}</InButtonText></LinearGradientButton>
+                    </Row>
 
-            </>
+                </>
             : null}
     </View>;
 };

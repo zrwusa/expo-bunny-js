@@ -1,5 +1,4 @@
-import {EDemoHello} from '../../constants';
-
+import { EDemoHello } from '../../constants';
 export const demoHello = (payload) => {
     return {
         type: EDemoHello.DEMO_HELLO,

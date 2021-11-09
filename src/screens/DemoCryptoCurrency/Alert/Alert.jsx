@@ -1,27 +1,26 @@
 import * as React from 'react';
-import {useEffect, useState} from 'react';
-import {Platform, View} from 'react-native';
-import {ButtonTO, InButtonText, PickerSelectChevronRight, Text} from '../../../components/UI';
-import {shortenTFunctionKey} from '../../../providers';
-import {Col, getContainerStyles, Row} from '../../../containers';
+import { useEffect, useState } from 'react';
+import { Platform, View } from 'react-native';
+import { ButtonTO, InButtonText, PickerSelectChevronRight, Text } from '../../../components/UI';
+import { shortenTFunctionKey } from '../../../providers/i18n-labor';
+import { Col, makeContainerStyles, Row } from '../../../containers';
 import * as Notifications from 'expo-notifications';
-import {defaultNotification, registerForPushNotificationsAsync} from '../../../utils/expo-notification';
-import {cancelAlertSettings, getCurrentPrice, saveQuickAlertSettings, sysError} from '../../../store/actions';
-import {useDispatch, useSelector} from 'react-redux';
-import {getStyles} from './styles';
-import {getSharedStyles} from '../../../helpers';
-import {useBunnyKit} from '../../../hooks';
-
-export default function CryptoCurrencyAlertScreen({route, navigation}) {
-    const {sizeLabor, themeLabor, t} = useBunnyKit();
+import { defaultNotification, registerForPushNotificationsAsync } from '../../../utils/expo-notification';
+import { cancelAlertSettings, collectSysError, getCurrentPrice, saveQuickAlertSettings } from '../../../store/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { makeStyles } from './styles';
+import { getSharedStyles } from '../../../helpers';
+import { useBunnyKit } from '../../../hooks/bunny-kit';
+export default function CryptoCurrencyAlertScreen({ route, navigation }) {
+    const { sizeLabor, themeLabor, t } = useBunnyKit();
     const st = shortenTFunctionKey(t, 'screens.CryptoCurrencyAlert');
     const i18nSysPrefix = 'sys';
     const stSys = shortenTFunctionKey(t, i18nSysPrefix);
-    const containerStyles = getContainerStyles(sizeLabor, themeLabor);
-    const {sharedStyles} = getSharedStyles(sizeLabor, themeLabor);
-    const styles = getStyles(sizeLabor, themeLabor);
+    const containerStyles = makeContainerStyles(sizeLabor, themeLabor);
+    const { sharedStyles } = getSharedStyles(sizeLabor, themeLabor);
+    const styles = makeStyles(sizeLabor, themeLabor);
     const dispatch = useDispatch();
-    const {currentPrice, dictionaries} = useSelector((rootState) => rootState.demoCryptoCurrencyState);
+    const { currentPrice, dictionaries } = useSelector((rootState) => rootState.demoCryptoCurrencyState);
     const dicGranularity = dictionaries.granularity;
     const dicReminderTimes = dictionaries.times;
     const dicReminderInterval = dictionaries.interval;
@@ -36,12 +35,12 @@ export default function CryptoCurrencyAlertScreen({route, navigation}) {
     const [expoPushToken, setExpoPushToken] = useState('');
     const [notification, setNotification] = useState(defaultNotification);
     const [granularity, setGranularity] = useState(0.05);
-    const [reminder, setReminder] = useState({times: 3, interval: '1m'});
+    const [reminder, setReminder] = useState({ times: 3, interval: '1m' });
     const handleSaveQuickAlertSettings = async function () {
-        dispatch(saveQuickAlertSettings({token: expoPushToken, granularity, reminder}));
+        dispatch(saveQuickAlertSettings({ token: expoPushToken, granularity, reminder }));
     };
     const handleCancelAllAlertSettings = async function () {
-        dispatch(cancelAlertSettings({token: expoPushToken, cancelAll: true}));
+        dispatch(cancelAlertSettings({ token: expoPushToken, cancelAll: true }));
     };
     useEffect(() => {
         Notifications.setNotificationHandler({
@@ -61,16 +60,17 @@ export default function CryptoCurrencyAlertScreen({route, navigation}) {
             }
             try {
                 dispatch(getCurrentPrice());
-            } catch (e) {
-                dispatch(sysError(e));
+            }
+            catch (e) {
+                dispatch(collectSysError(e));
             }
             notificationReceivedListener = Notifications
                 .addNotificationReceivedListener((notification) => {
-                    setNotification(notification);
-                });
+                setNotification(notification);
+            });
             notificationRespondedListener = Notifications
                 .addNotificationResponseReceivedListener(response => {
-                });
+            });
         };
         initPushNotification().then();
         return () => {
@@ -95,62 +95,51 @@ export default function CryptoCurrencyAlertScreen({route, navigation}) {
     });
     const currentPriceLabelPrefix = st(`currentPriceLabel`).padEnd(30, '\u2004');
     return Platform.OS !== 'web' ? (<View style={containerStyles.Screen}>
-        <View style={styles.container}>
-            <View>
-                {/*<Text>Your expo push token: {expoPushToken}</Text>*/}
-                {notification
-                    ? <View>
-                        <Row>
-                            <Col size={1}>
-                                <Text>Title:</Text>
-                            </Col>
-                            <Col size={4}>
-                                <Text>{notification.request.content.title} </Text>
-                            </Col>
-                            {/*<Text>Data: {JSON.stringify(notification.request.content.data)}</Text>*/}
-                        </Row>
-                        <Row>
-                            <Col size={1}>
-                                <Text>Body:</Text>
-                            </Col>
-                            <Col size={4}>
-                                <Text>{notification.request.content.body} </Text>
-                            </Col>
-                        </Row>
-                    </View>
-                    : null}
-            </View>
-            <View>
-                <View style={styles.box}>
-                    <Text style={styles.text}>{currentPriceLabelPrefix + currentPrice}</Text>
+            <View style={styles.container}>
+                <View>
+                    {/*<Text>Your expo push token: {expoPushToken}</Text>*/}
+                    {notification
+            ? <View>
+                                <Row>
+                                    <Col size={1}>
+                                        <Text>Title:</Text>
+                                    </Col>
+                                    <Col size={4}>
+                                        <Text>{notification.request.content.title} </Text>
+                                    </Col>
+                                    {/*<Text>Data: {JSON.stringify(notification.request.content.data)}</Text>*/}
+                                </Row>
+                                <Row>
+                                    <Col size={1}>
+                                        <Text>Body:</Text>
+                                    </Col>
+                                    <Col size={4}>
+                                        <Text>{notification.request.content.body} </Text>
+                                    </Col>
+                                </Row>
+                            </View>
+            : null}
                 </View>
-                <PickerSelectChevronRight value={granularity}
-                                          placeholder={{label: 'Select ' + granularityLabelPrefix, value: 0}}
-                                          items={mappedDicGranularity}
-                                          onValueChange={(itemValue) => setGranularity(itemValue)}/>
-                <PickerSelectChevronRight value={reminder.times}
-                                          placeholder={{label: 'Select ' + remindTimesLabelPrefix, value: 0}}
-                                          items={mappedDicReminderTimes}
-                                          onValueChange={(itemValue) => setReminder({...reminder, times: itemValue})}/>
-                <PickerSelectChevronRight value={reminder.interval}
-                                          placeholder={{label: 'Select ' + remindIntervalLabelPrefix, value: ''}}
-                                          items={mappedDicReminderInterval} onValueChange={(itemValue) => setReminder({
-                    ...reminder,
-                    interval: itemValue
-                })}/>
+                <View>
+                    <View style={styles.box}>
+                        <Text style={styles.text}>{currentPriceLabelPrefix + currentPrice}</Text>
+                    </View>
+                    <PickerSelectChevronRight value={granularity} placeholder={{ label: 'Select ' + granularityLabelPrefix, value: 0 }} items={mappedDicGranularity} onValueChange={(itemValue) => setGranularity(itemValue)}/>
+                    <PickerSelectChevronRight value={reminder.times} placeholder={{ label: 'Select ' + remindTimesLabelPrefix, value: 0 }} items={mappedDicReminderTimes} onValueChange={(itemValue) => setReminder({ ...reminder, times: itemValue })}/>
+                    <PickerSelectChevronRight value={reminder.interval} placeholder={{ label: 'Select ' + remindIntervalLabelPrefix, value: '' }} items={mappedDicReminderInterval} onValueChange={(itemValue) => setReminder({ ...reminder, interval: itemValue })}/>
+                </View>
+                <Row style={styles.bottomBar}>
+                    <Col size={1}>
+                        <ButtonTO onPress={handleSaveQuickAlertSettings}>
+                            <InButtonText>{st(`saveQuickSettings`)}</InButtonText>
+                        </ButtonTO>
+                    </Col>
+                    <Col size={1} style={{ marginLeft: 6 }}>
+                        <ButtonTO onPress={handleCancelAllAlertSettings}>
+                            <InButtonText>{st(`cancelAlertSettings`)}</InButtonText>
+                        </ButtonTO>
+                    </Col>
+                </Row>
             </View>
-            <Row style={styles.bottomBar}>
-                <Col size={1}>
-                    <ButtonTO onPress={handleSaveQuickAlertSettings}>
-                        <InButtonText>{st(`saveQuickSettings`)}</InButtonText>
-                    </ButtonTO>
-                </Col>
-                <Col size={1} style={{marginLeft: 6}}>
-                    <ButtonTO onPress={handleCancelAllAlertSettings}>
-                        <InButtonText>{st(`cancelAlertSettings`)}</InButtonText>
-                    </ButtonTO>
-                </Col>
-            </Row>
-        </View>
-    </View>) : (<Text>Dummy CryptoCurrencyAlert</Text>);
+        </View>) : (<Text>Dummy CryptoCurrencyAlert</Text>);
 }

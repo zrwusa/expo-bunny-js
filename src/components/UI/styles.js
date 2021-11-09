@@ -1,11 +1,10 @@
-import {StyleSheet} from 'react-native';
-import {getSharedStyles} from '../../helpers';
-
-export const getStyles = (sizeLabor, themeLabor) => {
-    const {ms, designsBasedOn} = sizeLabor;
-    const {wp, hp} = designsBasedOn.iphoneX;
-    const {colors, borderRadius, roundness, fonts} = themeLabor.theme;
-    const {sharedStyles, sharedStylesFlatten} = getSharedStyles(sizeLabor, themeLabor);
+import { StyleSheet } from 'react-native';
+import { getSharedStyles } from '../../helpers';
+export const makeStyles = (sizeLabor, themeLabor) => {
+    const { ms, designsBasedOn } = sizeLabor;
+    const { wp, hp } = designsBasedOn.iphoneX;
+    const { colors, borderRadius, roundness, fonts } = themeLabor.theme;
+    const { sharedStyles, sharedStylesFlatten } = getSharedStyles(sizeLabor, themeLabor);
     const ImageProgressive = StyleSheet.create({
         imageOverlay: {
             position: 'absolute',
@@ -19,7 +18,7 @@ export const getStyles = (sizeLabor, themeLabor) => {
         },
     });
     const PickerSelect = StyleSheet.create({
-        viewContainer: {width: '100%'},
+        viewContainer: { width: '100%' },
         inputContainer: {
             flexDirection: 'row',
             alignItems: 'center',
@@ -58,9 +57,9 @@ export const getStyles = (sizeLabor, themeLabor) => {
     });
     const TextButton = StyleSheet.create({
         TextButton: {
-            // flexDirection: 'row',
-            // justifyContent: 'center',
-            // alignItems: 'center',
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
             // fontSize: ms.fs.m,
             paddingVertical: ms.sp.m,
             paddingHorizontal: ms.sp.m,

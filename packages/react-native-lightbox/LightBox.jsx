@@ -1,6 +1,6 @@
 import React, { Children, cloneElement, Component, createRef } from 'react';
 import { Animated, TouchableHighlight, View } from 'react-native';
-import { LightBoxOverlay } from "./LightBoxOverlay";
+import { LightBoxOverlay } from './LightBoxOverlay';
 export default class LightBox extends Component {
     constructor() {
         super(...arguments);

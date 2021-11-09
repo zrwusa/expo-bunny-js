@@ -1,12 +1,11 @@
-import {StyleSheet} from 'react-native';
-import {getSharedStyles} from '../../helpers';
-
-export const getStyles = (sizeLabor, themeLabor) => {
-    const {ms, designsBasedOn} = sizeLabor;
-    const {wp, hp} = designsBasedOn.iphoneX;
-    const {colors} = themeLabor.theme;
-    const {sharedStylesFlatten} = getSharedStyles(sizeLabor, themeLabor);
-    const {shadowAround} = sharedStylesFlatten;
+import { StyleSheet } from 'react-native';
+import { getSharedStyles } from '../../helpers';
+export const makeStyles = (sizeLabor, themeLabor) => {
+    const { ms, designsBasedOn } = sizeLabor;
+    const { wp, hp } = designsBasedOn.iphoneX;
+    const { colors } = themeLabor.theme;
+    const { sharedStylesFlatten } = getSharedStyles(sizeLabor, themeLabor);
+    const { shadowAround } = sharedStylesFlatten;
     return StyleSheet.create({
         authContainer: {
             flex: 1,
@@ -41,5 +40,8 @@ export const getStyles = (sizeLabor, themeLabor) => {
             width: wp(100),
             ...shadowAround
         },
+        authService: {
+            justifyContent: 'flex-end'
+        }
     });
 };

@@ -1,14 +1,13 @@
 import React from 'react';
-import {Linking, StyleSheet, Text, View} from 'react-native';
+import { Linking, StyleSheet, Text, View } from 'react-native';
 import ParsedText from 'react-native-parsed-text';
 import Communications from 'react-native-communications';
-import {withBunnyKit} from '../../hooks';
-import {connectActionSheet} from '../../../packages/react-native-action-sheet/src';
-
+import { withBunnyKit } from '../../hooks/bunny-kit';
+import { connectActionSheet } from '../../../packages/react-native-action-sheet/src';
 const WWW_URL_PATTERN = /^www\./i;
-const getStyles = (sizeLabor, themeLabor) => {
-    const {wp} = sizeLabor.designsBasedOn.iphoneX;
-    const {theme: {colors}} = themeLabor;
+const makeStyles = (sizeLabor, themeLabor) => {
+    const { wp } = sizeLabor.designsBasedOn.iphoneX;
+    const { theme: { colors } } = themeLabor;
     // TODO not responsive
     const textStyle = {
         fontSize: wp(16),
@@ -44,7 +43,6 @@ const getStyles = (sizeLabor, themeLabor) => {
     };
 };
 const DEFAULT_OPTION_TITLES = ['Call', 'Text', 'Cancel'];
-
 class MessageText extends React.Component {
     constructor() {
         super(...arguments);
@@ -61,18 +59,20 @@ class MessageText extends React.Component {
             // react-native-parsed-text recognizes it as a valid url, but Linking fails to open due to the missing scheme.
             if (WWW_URL_PATTERN.test(url)) {
                 this.onUrlPress(`http://${url}`);
-            } else {
+            }
+            else {
                 Linking.canOpenURL(url).then(supported => {
                     if (!supported) {
                         console.error('No handler for URL:', url);
-                    } else {
+                    }
+                    else {
                         Linking.openURL(url);
                     }
                 });
             }
         };
         this.onPhonePress = (phone) => {
-            const {phoneNumberOptionTitles} = this.props;
+            const { phoneNumberOptionTitles } = this.props;
             // TODO confusing
             const options = phoneNumberOptionTitles && phoneNumberOptionTitles.length > 0
                 ? phoneNumberOptionTitles.slice(0, 3)
@@ -96,48 +96,46 @@ class MessageText extends React.Component {
         };
         this.onEmailPress = (email) => Communications.email([email], null, null, null, null);
     }
-
     render() {
-        const {bunnyKit: {sizeLabor, themeLabor}} = this.props;
-        const styles = getStyles(sizeLabor, themeLabor);
+        const { bunnyKit: { sizeLabor, themeLabor } } = this.props;
+        const styles = makeStyles(sizeLabor, themeLabor);
         const linkStyle = [
             styles[this.props.position].link,
             this.props.linkStyle && this.props.linkStyle[this.props.position],
         ];
-        const {currentMessage, isDebug} = this.props;
+        const { currentMessage, isDebug } = this.props;
         isDebug && console.log('%c[ chat ]', 'background: #555; color: #bada55', '[level4]MessageText props', this.props);
         return (<View style={[
-            styles[this.props.position].container,
-            this.props.textContainerStyle &&
-            this.props.textContainerStyle[this.props.position],
-        ]}>{currentMessage ?
-            currentMessage.text
-                ? <ParsedText style={[
-                    styles[this.props.position].text,
-                    this.props.textStyle && this.props.textStyle[this.props.position],
-                    this.props.customTextStyle,
-                ]} parse={[
-                    ...this.props.parsePatterns(linkStyle),
-                    {type: 'url', style: linkStyle, onPress: this.onUrlPress},
-                    {type: 'phone', style: linkStyle, onPress: this.onPhonePress},
-                    {type: 'email', style: linkStyle, onPress: this.onEmailPress},
-                ]} childrenProps={{...this.props.textProps}} onLayout={() => {
-                    isDebug && console.log('%c[ chat ]', 'background: #555; color: #bada55', 'MessageText onLayout');
-                    this.props.onMessageLoad?.(currentMessage);
-                    this.props.onMessageLoadStart?.(currentMessage);
-                    this.props.onMessageLoadEnd?.(currentMessage);
-                    isDebug && console.log('%c[ chat ]', 'background: #555; color: #bada55', 'MessageText onMessageReadyForDisplay');
-                    this.props.onMessageReadyForDisplay?.(currentMessage);
-                }}>
-                    {this.props.currentMessage.text}
-                </ParsedText>
-                : <Text>{'currentMessage.text is undefined'}</Text>
-            : <Text>{'currentMessage is undefined'}</Text>}
+                styles[this.props.position].container,
+                this.props.textContainerStyle &&
+                    this.props.textContainerStyle[this.props.position],
+            ]}>{currentMessage ?
+                currentMessage.text
+                    ? <ParsedText style={[
+                            styles[this.props.position].text,
+                            this.props.textStyle && this.props.textStyle[this.props.position],
+                            this.props.customTextStyle,
+                        ]} parse={[
+                            ...this.props.parsePatterns(linkStyle),
+                            { type: 'url', style: linkStyle, onPress: this.onUrlPress },
+                            { type: 'phone', style: linkStyle, onPress: this.onPhonePress },
+                            { type: 'email', style: linkStyle, onPress: this.onEmailPress },
+                        ]} childrenProps={{ ...this.props.textProps }} onLayout={() => {
+                            isDebug && console.log('%c[ chat ]', 'background: #555; color: #bada55', 'MessageText onLayout');
+                            this.props.onMessageLoad?.(currentMessage);
+                            this.props.onMessageLoadStart?.(currentMessage);
+                            this.props.onMessageLoadEnd?.(currentMessage);
+                            isDebug && console.log('%c[ chat ]', 'background: #555; color: #bada55', 'MessageText onMessageReadyForDisplay');
+                            this.props.onMessageReadyForDisplay?.(currentMessage);
+                        }}>
+                            {this.props.currentMessage.text}
+                        </ParsedText>
+                    : <Text>{'currentMessage.text is undefined'}</Text>
+                : <Text>{'currentMessage is undefined'}</Text>}
 
-        </View>);
+            </View>);
     }
 }
-
 MessageText.defaultProps = {
     position: 'left',
     phoneNumberOptionTitles: DEFAULT_OPTION_TITLES,

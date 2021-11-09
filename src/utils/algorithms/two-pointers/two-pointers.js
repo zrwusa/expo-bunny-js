@@ -1,8 +1,7 @@
 /* --- start Two Pointers --- */
 // 11	Container With Most Water	★★	42
-import {runAlgorithm} from '../helpers';
-import {subarraysWithKDistinctCase6} from './cases';
-
+import { runAlgorithm } from '../helpers';
+import { subarraysWithKDistinctCase6 } from './cases';
 function maxArea(height) {
     let l = 0, r = height.length - 1;
     let ans = 0;
@@ -11,14 +10,14 @@ function maxArea(height) {
         if (lh < rh) {
             ans = Math.max(ans, lh * (r - l));
             l++;
-        } else {
+        }
+        else {
             ans = Math.max(ans, rh * (r - l));
             r--;
         }
     }
     return ans;
 }
-
 // 125	Valid Palindrome	★★	455
 // 917	Reverse Only Letters	★★	925	986	855
 // 167 Two Sum II – Input array is sorted ★★★	15	16
@@ -32,13 +31,13 @@ function twoSum(numbers, target) {
         }
         if (sum > target) {
             r--;
-        } else {
+        }
+        else {
             l++;
         }
     }
     return [0, 0];
 }
-
 // 977	Squares of a Sorted Array	★★
 // merge sort
 // 992 Subarrays with K Different Integers ★★★★
@@ -64,7 +63,6 @@ function subarraysWithKDistinct(nums, k) {
     }
     return ans;
 }
-
 const runAllSubarraysWithKDistinct = async () => {
     await runAlgorithm(subarraysWithKDistinct, false, ...subarraysWithKDistinctCase6);
 };

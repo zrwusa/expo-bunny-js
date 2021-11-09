@@ -1,4 +1,4 @@
-import {bunnyConsole, timeStart} from '../utils';
+import { bunnyConsole, timeStart } from '../utils';
 // Use Map:
 //       When the stored key is not a string/number/or Symbol, select Map, because Object does not support
 //       When storing large amounts of data, choose Map because it occupies less memory
@@ -249,20 +249,19 @@ const searchInSortedArray = function (nums, target) {
             return mid;
         if (target < leftEle) {
             right = mid - 1;
-        } else {
+        }
+        else {
             left = mid + 1;
         }
     }
     return -1;
 };
-
 export class Coordinate {
     constructor(y, x) {
         this.y = y;
         this.x = x;
     }
 }
-
 export const fourthQuadrantMove = (departure, direction, matrix, judgeDeadOrDeadCells) => {
     let destinationX = departure.x, destinationY = departure.y;
     switch (direction) {
@@ -279,7 +278,7 @@ export const fourthQuadrantMove = (departure, direction, matrix, judgeDeadOrDead
             destinationX = departure.x - 1;
             break;
     }
-    const destination = {y: destinationY, x: destinationX};
+    const destination = { y: destinationY, x: destinationX };
     if (matrix) {
         if (destinationY < 0 || destinationY > matrix.length - 1 || destinationX < 0 || destinationX > matrix[destinationY].length - 1) {
             return undefined;
@@ -290,7 +289,8 @@ export const fourthQuadrantMove = (departure, direction, matrix, judgeDeadOrDead
             if (judgeDeadOrDeadCells(destination)) {
                 return undefined;
             }
-        } else {
+        }
+        else {
             for (let deadCell of judgeDeadOrDeadCells) {
                 if (destination.x === deadCell.x && destination.y === deadCell.y) {
                     return undefined;
@@ -320,7 +320,8 @@ export const fourthQuadrantMoveByIndex = (departure, direction, matrix, judgeDea
             if (judgeDeadOrDeadCells(destination)) {
                 return undefined;
             }
-        } else {
+        }
+        else {
             for (let deadCell of judgeDeadOrDeadCells) {
                 if (newRow === deadCell[0] && newCol === deadCell[1]) {
                     return undefined;
@@ -345,7 +346,7 @@ export const getRouteByParentsHash = (parents, leaf, hashFunction) => {
 };
 export const getDirectionVector = (from, to) => {
     if (!from || !to) {
-        return {x: 0, y: 0};
+        return { x: 0, y: 0 };
     }
     let horizontal;
     let vertical;
@@ -357,5 +358,5 @@ export const getDirectionVector = (from, to) => {
     if (to.y === from.y) {
         vertical = 0;
     }
-    return {x: horizontal, y: vertical};
+    return { x: horizontal, y: vertical };
 };

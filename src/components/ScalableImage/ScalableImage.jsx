@@ -1,18 +1,16 @@
 import * as React from 'react';
-import {Image} from 'react-native';
-
+import { Image } from 'react-native';
 export class ScaledImage extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            source: {uri: this.props.uri},
+            source: { uri: this.props.uri },
             width: 0,
             height: 0,
         };
     }
-
     componentDidMount() {
-        const {uri} = this.props;
+        const { uri } = this.props;
         const propWidth = this.props.width;
         const propHeight = this.props.height;
         // const ratio = 9 / 16
@@ -34,24 +32,24 @@ export class ScaledImage extends React.PureComponent {
         // }
         Image.getSize(uri, (width, height) => {
             if (propWidth && !propHeight) {
-                this.setState({width: propWidth, height: height * (propWidth / width)});
-            } else if (!propWidth && propHeight) {
-                this.setState({width: width * (propHeight / height), height: propHeight});
-            } else {
-                this.setState({width: width, height: height});
+                this.setState({ width: propWidth, height: height * (propWidth / width) });
+            }
+            else if (!propWidth && propHeight) {
+                this.setState({ width: width * (propHeight / height), height: propHeight });
+            }
+            else {
+                this.setState({ width: width, height: height });
             }
         }, (error) => {
             throw error;
         });
     }
-
     render() {
-        const {style} = this.props;
-        const {source, height, width} = this.state;
-        return <Image source={source} style={[style, {height: height, width: width}]}/>;
+        const { style } = this.props;
+        const { source, height, width } = this.state;
+        return <Image source={source} style={[style, { height: height, width: width }]}/>;
     }
 }
-
 // import {useEffect, useState} from "react";
 // export function ScaledImage(props: ScalableImageProps) {
 //     const [width, setWidth] = useState(0)

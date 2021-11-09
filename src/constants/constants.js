@@ -12,7 +12,7 @@ const BunnyConstants = {
     REFRESH_TOKEN_PERSISTENCE_KEY: 'REFRESH_TOKEN',
     REFRESH_TOKEN_EXP_PERSISTENCE_KEY: 'REFRESH_TOKEN_EXP',
     USER_PERSISTENCE_KEY: 'USER',
-    dummyUser: {email: 'dummy@dummy.com', nickname: 'dummy nickname'},
+    dummyUser: { email: 'dummy@dummy.com', nickname: 'dummy nickname' },
     dummyAccessToken: 'access_token_dummy',
     throttleWait: 200,
     fnNoop: () => undefined,
@@ -59,7 +59,7 @@ export const defaultValues = {
         phone_code: '',
         currency: ''
     },
-    state: {_id: '', phoneCode: '', id: 0, name: '', stateCode: '', countryId: 0},
+    state: { _id: '', phoneCode: '', id: 0, name: '', stateCode: '', countryId: 0 },
     city: {
         longitude: '',
         latitude: '',
@@ -71,8 +71,8 @@ export const defaultValues = {
         id: 0,
         stateId: 0
     },
-    occupationCategory: {code: '', displayLevel: 0, name: '', sort: 0, type: ''},
-    occupation: {category: '', name: '', code: '', displayLevel: 0, sort: 0, type: ''},
+    occupationCategory: { code: '', displayLevel: 0, name: '', sort: 0, type: '' },
+    occupation: { category: '', name: '', code: '', displayLevel: 0, sort: 0, type: '' },
     university: {
         alphaTwoCode: '',
         domains: [''],
@@ -90,144 +90,97 @@ export const defaultValues = {
 };
 export var ESys;
 (function (ESys) {
-    ESys['ERROR'] = 'ERROR';
-    ESys['CLEAR_ERRORS'] = 'CLEAR_ERRORS';
-    ESys['WARN'] = 'WARN';
-    ESys['RESTORE_IS_READY'] = 'RESTORE_IS_READY';
-    ESys['RESTORE_THEME'] = 'RESTORE_THEME';
-    ESys['RESTORE_LANGUAGE'] = 'RESTORE_LANGUAGE';
-    ESys['RESTORE_NAV_INITIAL_STATE'] = 'RESTORE_NAV_INITIAL_STATE';
-    ESys['REQUESTING'] = 'REQUEST';
-    ESys['REQUEST_RECEIVED'] = 'REQUEST_RECEIVED';
-    ESys['REQUEST_FAILED'] = 'REQUEST_FAILED';
+    ESys["ERROR"] = "ERROR";
+    ESys["CLEAR_ERRORS"] = "CLEAR_ERRORS";
+    ESys["WARN"] = "WARN";
+    ESys["RESTORE_IS_READY"] = "RESTORE_IS_READY";
+    ESys["REQUESTING"] = "REQUEST";
+    ESys["REQUEST_SUCCESS"] = "REQUEST_SUCCESS";
+    ESys["REQUEST_FAILED"] = "REQUEST_FAILED";
+    ESys["RESTORE_THEME"] = "RESTORE_THEME";
+    ESys["RESTORE_LANGUAGE"] = "RESTORE_LANGUAGE";
+    ESys["RESTORE_NAV_INITIAL_STATE"] = "RESTORE_NAV_INITIAL_STATE";
+    ESys["REQUEST_RECEIVED"] = "REQUEST_RECEIVED";
 })(ESys || (ESys = {}));
-export var EBL;
-(function (EBL) {
-    EBL['COLLECT_BL_RESULT'] = 'COLLECT_BL_RESULT';
-    EBL['CLEAR_BL_RESULT'] = 'CLEAR_BL_RESULT';
-    EBL['SET_BL_RESULT'] = 'SET_BL_RESULT';
-})(EBL || (EBL = {}));
+export var EBizLogic;
+(function (EBizLogic) {
+    EBizLogic["COLLECT_BL_RESULT"] = "COLLECT_BL_RESULT";
+    EBizLogic["CLEAR_BL_RESULT"] = "CLEAR_BL_RESULT";
+    EBizLogic["SET_BL_RESULT"] = "SET_BL_RESULT";
+})(EBizLogic || (EBizLogic = {}));
 export var EDemoHello;
 (function (EDemoHello) {
-    EDemoHello['DEMO_HELLO'] = 'DEMO_HELLO';
-    EDemoHello['DEMO_HELLO2'] = 'DEMO_HELLO2';
+    EDemoHello["DEMO_HELLO"] = "DEMO_HELLO";
+    EDemoHello["DEMO_HELLO2"] = "DEMO_HELLO2";
 })(EDemoHello || (EDemoHello = {}));
 export var EDemoThunk;
 (function (EDemoThunk) {
-    EDemoThunk['DEMO_THUNK_SUCCESS'] = 'DEMO_THUNK_SUCCESS';
-    EDemoThunk['DEMO_THUNK_FAILED'] = 'DEMO_THUNK_FAILED';
+    EDemoThunk["DEMO_THUNK_SUCCESS"] = "DEMO_THUNK_SUCCESS";
+    EDemoThunk["DEMO_THUNK_FAILED"] = "DEMO_THUNK_FAILED";
 })(EDemoThunk || (EDemoThunk = {}));
 export var EDemoMap;
 (function (EDemoMap) {
-    EDemoMap['RESTORE_NEARBY_FILMS'] = 'RESTORE_NEARBY_FILMS';
-    EDemoMap['RESTORE_REGION'] = 'RESTORE_REGION';
+    EDemoMap["RESTORE_NEARBY_FILMS"] = "RESTORE_NEARBY_FILMS";
+    EDemoMap["RESTORE_REGION"] = "RESTORE_REGION";
 })(EDemoMap || (EDemoMap = {}));
-export var EBLMsg;
-(function (EBLMsg) {
-    EBLMsg['NO_ACCESS_TOKEN_RESPONDED'] = 'No access_token responded';
-    EBLMsg['NO_AUTH_API_RESPONDED'] = 'No auth api responded';
-    EBLMsg['NO_USER_INFO_RESPONDED'] = 'No user info responded';
-    EBLMsg['NO_DATA_RESPONDED'] = 'No data responded';
-    EBLMsg['NO_ACCESS_TOKEN_OR_REFRESH_TOKEN_RESPONDED'] = 'No access token or refresh token responded';
-    EBLMsg['FIREBASE_EMAIL_LOGIN_NO_RESPONSE_OR_USER'] = 'Firebase email login no response or user';
-    EBLMsg['FIREBASE_EMAIL_SIGN_UP_NO_RESPONSE_OR_USER'] = 'Firebase email sign up no response or user';
-    EBLMsg['FIREBASE_INVALID_USER_CREDENTIAL'] = 'Firebase invalid user credential';
-    EBLMsg['FIREBASE_INVALID_CURRENT_USER'] = 'Firebase invalid current user';
-    EBLMsg['FIREBASE_EMAIL_LOGIN_NOT_EXIST_USER'] = 'User does not exist anymore';
-    EBLMsg['GOOGLE_LOGIN_CANCELED'] = 'Google login canceled';
-    EBLMsg['GOOGLE_ACCESS_TOKEN_OR_REFRESH_TOKEN_NOT_EXISTS'] = 'Google access token or refresh token not exists';
-    EBLMsg['GOOGLE_LOGIN_RESULT_TYPE_INVALID'] = 'Google loginResult has returned type neither success nor cancel';
-    EBLMsg['FACEBOOK_LOGIN_CANCELED'] = 'Facebook login canceled';
-    EBLMsg['FACEBOOK_LOGIN_RESULT_TYPE_INVALID'] = 'Facebook loginResult has returned type neither success nor cancel';
-    EBLMsg['NO_GOOGLE_LOGIN_RESULT'] = 'No google login result';
-    EBLMsg['NO_ACCESS_TOKEN_RETURNED'] = 'No access_token returned';
-    EBLMsg['NOT_CONFORM_TO_API_RESPONSE_ROOT_STRUCTURE'] = 'Not conform to response root structure';
-    EBLMsg['NOT_CONFORM_TO_API_RESPONSE_BL_STRUCTURE'] = 'Not conform to response businessLogic structure';
-    EBLMsg['NOT_CONFORM_TO_API_RESPONSE_EXTRA_STRUCTURE'] = 'Not conform to response httpExtra structure';
-    EBLMsg['NO_NEARBY_FILMS'] = 'No nearby films';
-    EBLMsg['NO_DEMO_THUNK_DATA'] = 'No demo thunks response data';
-    EBLMsg['SAVE_QUICK_ALERT_SETTINGS_SUCCESS'] = 'Save quick alert settings success';
-    EBLMsg['CANCEL_ALL_ALERT_SETTINGS_SUCCESS'] = 'Cancel all alert settings success';
-    EBLMsg['GET_CURRENT_PRICE_SUCCESS'] = 'Get current price success';
-    EBLMsg['GET_DEMO_SAGAS_SUCCESS'] = 'Get demo sagas success';
-    EBLMsg['CANCELED_REQUEST'] = 'Canceled request';
+export var EBizLogicMsg;
+(function (EBizLogicMsg) {
+    EBizLogicMsg["NO_ACCESS_TOKEN_RESPONDED"] = "No access_token responded";
+    EBizLogicMsg["NO_AUTH_API_RESPONDED"] = "No auth api responded";
+    EBizLogicMsg["NO_USER_INFO_RESPONDED"] = "No user info responded";
+    EBizLogicMsg["NO_DATA_RESPONDED"] = "No data responded";
+    EBizLogicMsg["EXAMPLE_SAGA_WRONG_DATA_STRUCTURE"] = "Example saga wrong data structure";
+    EBizLogicMsg["LOGIN_WRONG_DATA_STRUCTURE"] = "Login wrong data structure";
+    EBizLogicMsg["REGISTER_WRONG_DATA_STRUCTURE"] = "Register wrong data structure";
+    EBizLogicMsg["NO_ACCESS_TOKEN_OR_REFRESH_TOKEN_RESPONDED"] = "No access token or refresh token responded";
+    EBizLogicMsg["FIREBASE_EMAIL_LOGIN_NO_RESPONSE_OR_USER"] = "Firebase email login no response or user";
+    EBizLogicMsg["FIREBASE_EMAIL_SIGN_UP_NO_RESPONSE_OR_USER"] = "Firebase email sign up no response or user";
+    EBizLogicMsg["FIREBASE_INVALID_USER_CREDENTIAL"] = "Firebase invalid user credential";
+    EBizLogicMsg["FIREBASE_INVALID_CURRENT_USER"] = "Firebase invalid current user";
+    EBizLogicMsg["FIREBASE_EMAIL_LOGIN_NOT_EXIST_USER"] = "User does not exist anymore";
+    EBizLogicMsg["GOOGLE_LOGIN_CANCELED"] = "Google login canceled";
+    EBizLogicMsg["GOOGLE_ACCESS_TOKEN_OR_REFRESH_TOKEN_NOT_EXISTS"] = "Google access token or refresh token not exists";
+    EBizLogicMsg["GOOGLE_LOGIN_RESULT_TYPE_INVALID"] = "Google loginResult has returned type neither success nor cancel";
+    EBizLogicMsg["FACEBOOK_LOGIN_CANCELED"] = "Facebook login canceled";
+    EBizLogicMsg["FACEBOOK_LOGIN_RESULT_TYPE_INVALID"] = "Facebook loginResult has returned type neither success nor cancel";
+    EBizLogicMsg["NO_GOOGLE_LOGIN_RESULT"] = "No google login result";
+    EBizLogicMsg["NO_ACCESS_TOKEN_RETURNED"] = "No access_token returned";
+    EBizLogicMsg["NOT_CONFORM_TO_API_RESPONSE_ROOT_STRUCTURE"] = "Not conform to response root structure";
+    EBizLogicMsg["NOT_CONFORM_TO_API_RESPONSE_BL_STRUCTURE"] = "Not conform to response businessLogic structure";
+    EBizLogicMsg["NOT_CONFORM_TO_API_RESPONSE_EXTRA_STRUCTURE"] = "Not conform to response httpExtra structure";
+    EBizLogicMsg["NOT_CONFORM_TO_API_RESPONSE_SERVER_STRUCTURE"] = "Not conform to response server structure";
+    EBizLogicMsg["NO_NEARBY_FILMS"] = "No nearby films";
+    EBizLogicMsg["NO_DEMO_THUNK_DATA"] = "No demo thunks response data";
+    EBizLogicMsg["SAVE_QUICK_ALERT_SETTINGS_SUCCESS"] = "Save quick alert settings success";
+    EBizLogicMsg["CANCEL_ALL_ALERT_SETTINGS_SUCCESS"] = "Cancel all alert settings success";
+    EBizLogicMsg["GET_CURRENT_PRICE_SUCCESS"] = "Get current price success";
+    EBizLogicMsg["API_EXAMPLE_SAGA_SUCCESS"] = "Get example saga success";
+    EBizLogicMsg["API_LOGIN_SUCCESS"] = "Login success";
+    EBizLogicMsg["API_REGISTER_SUCCESS"] = "Register success";
+    EBizLogicMsg["API_ME_SUCCESS"] = "Get my user info success";
+    EBizLogicMsg["API_ME_WRONG_DATA_STRUCTURE"] = "Get my user info wrong data structure";
+    EBizLogicMsg["CANCELED_REQUEST"] = "Canceled request";
+    EBizLogicMsg["WRONG_DATA_STRUCTURE"] = "Wrong data structure";
+    EBizLogicMsg["PSEUDO_BACKEND_SUCCESS"] = "Pseudo backend success";
+    EBizLogicMsg["GET_DEMO_SAGAS_SUCCESS"] = "Get demo sagas success";
     // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-    // XXX = "Xxx",
-})(EBLMsg || (EBLMsg = {}));
+})(EBizLogicMsg || (EBizLogicMsg = {}));
 export var EDemoSaga;
 (function (EDemoSaga) {
-    EDemoSaga['GET_DEMO_SAGAS'] = 'GET_DEMO_SAGAS';
-    EDemoSaga['REQUEST_GET_DEMO_SAGAS'] = 'REQUEST_GET_DEMO_SAGAS';
-    EDemoSaga['RECEIVE_GET_DEMO_SAGAS'] = 'RECEIVE_GET_DEMO_SAGAS';
+    EDemoSaga["GET_DEMO_SAGAS"] = "GET_DEMO_SAGAS";
+    EDemoSaga["REQUEST_GET_DEMO_SAGAS"] = "REQUEST_GET_DEMO_SAGAS";
+    EDemoSaga["RECEIVE_GET_DEMO_SAGAS"] = "RECEIVE_GET_DEMO_SAGAS";
 })(EDemoSaga || (EDemoSaga = {}));
 export var EDemoCryptoCurrency;
 (function (EDemoCryptoCurrency) {
-    EDemoCryptoCurrency['SAVE_QUICK_ALERT_SETTINGS'] = 'SAVE_QUICK_ALERT_SETTINGS';
-    EDemoCryptoCurrency['CANCEL_ALL_ALERT_SETTINGS'] = 'CANCEL_ALL_ALERT_SETTINGS';
-    EDemoCryptoCurrency['GET_CURRENT_PRICE'] = 'GET_CURRENT_PRICE';
-    EDemoCryptoCurrency['RECEIVE_CURRENT_PRICE'] = 'RECEIVE_CURRENT_PRICE';
+    EDemoCryptoCurrency["SAVE_QUICK_ALERT_SETTINGS"] = "SAVE_QUICK_ALERT_SETTINGS";
+    EDemoCryptoCurrency["CANCEL_ALL_ALERT_SETTINGS"] = "CANCEL_ALL_ALERT_SETTINGS";
+    EDemoCryptoCurrency["GET_CURRENT_PRICE"] = "GET_CURRENT_PRICE";
+    EDemoCryptoCurrency["RECEIVE_CURRENT_PRICE"] = "RECEIVE_CURRENT_PRICE";
 })(EDemoCryptoCurrency || (EDemoCryptoCurrency = {}));
 export var EDemoSagaFirebase;
 (function (EDemoSagaFirebase) {
-    EDemoSagaFirebase['SAVE_DEMO_SAGA_FIREBASE_TODO'] = 'SAVE_DEMO_SAGA_FIREBASE_TODO';
+    EDemoSagaFirebase["SAVE_DEMO_SAGA_FIREBASE_TODO"] = "SAVE_DEMO_SAGA_FIREBASE_TODO";
 })(EDemoSagaFirebase || (EDemoSagaFirebase = {}));
 export const EThemes = {
     light: 'light',

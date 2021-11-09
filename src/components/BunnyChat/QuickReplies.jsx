@@ -1,11 +1,10 @@
-import React, {Component} from 'react';
-import {StyleSheet, Text, TouchableOpacity, View,} from 'react-native';
-import {warning} from './utils';
-import {withBunnyKit} from '../../hooks';
-
-const getStyles = (sizeLabor, themeLabor) => {
-    const {wp} = sizeLabor.designsBasedOn.iphoneX;
-    const {theme: {colors}} = themeLabor;
+import React, { Component } from 'react';
+import { StyleSheet, Text, TouchableOpacity, View, } from 'react-native';
+import { warning } from './utils';
+import { withBunnyKit } from '../../hooks/bunny-kit';
+const makeStyles = (sizeLabor, themeLabor) => {
+    const { wp } = sizeLabor.designsBasedOn.iphoneX;
+    const { theme: { colors } } = themeLabor;
     return StyleSheet.create({
         container: {
             flexDirection: 'row',
@@ -38,7 +37,6 @@ const getStyles = (sizeLabor, themeLabor) => {
 };
 const sameReply = (currentReply) => (reply) => currentReply.value === reply.value;
 const diffReply = (currentReply) => (reply) => currentReply.value !== reply.value;
-
 class QuickReplies extends Component {
     constructor() {
         super(...arguments);
@@ -46,10 +44,10 @@ class QuickReplies extends Component {
             replies: [],
         };
         this.handlePress = (reply) => () => {
-            const {currentMessage} = this.props;
-            const {replies} = this.state;
+            const { currentMessage } = this.props;
+            const { replies } = this.state;
             if (currentMessage) {
-                const {type} = currentMessage.quickReplies;
+                const { type } = currentMessage.quickReplies;
                 switch (type) {
                     case 'radio': {
                         this.handleSend([reply])();
@@ -60,8 +58,9 @@ class QuickReplies extends Component {
                             this.setState({
                                 replies: this.state.replies.filter(diffReply(reply)),
                             });
-                        } else {
-                            this.setState({replies: [...this.state.replies, reply]});
+                        }
+                        else {
+                            this.setState({ replies: [...this.state.replies, reply] });
                         }
                         return;
                     }
@@ -73,7 +72,7 @@ class QuickReplies extends Component {
             }
         };
         this.handleSend = (replies) => () => {
-            const {currentMessage} = this.props;
+            const { currentMessage } = this.props;
             if (this.props.onQuickReply) {
                 this.props.onQuickReply(replies.map((reply) => ({
                     ...reply,
@@ -82,7 +81,7 @@ class QuickReplies extends Component {
             }
         };
         this.shouldComponentDisplay = () => {
-            const {currentMessage, nextMessage} = this.props;
+            const { currentMessage, nextMessage } = this.props;
             const hasReplies = !!currentMessage && !!currentMessage.quickReplies;
             const hasNext = !!nextMessage && !!nextMessage._id;
             const keepIt = currentMessage.quickReplies.keepIt;
@@ -95,47 +94,45 @@ class QuickReplies extends Component {
             return false;
         };
         this.renderQuickReplySend = () => {
-            const {replies} = this.state;
-            const {sendText, renderQuickReplySend: customSend} = this.props;
-            const {bunnyKit: {sizeLabor, themeLabor}} = this.props;
-            const styles = getStyles(sizeLabor, themeLabor);
+            const { replies } = this.state;
+            const { sendText, renderQuickReplySend: customSend } = this.props;
+            const { bunnyKit: { sizeLabor, themeLabor } } = this.props;
+            const styles = makeStyles(sizeLabor, themeLabor);
             return (<TouchableOpacity style={[styles.quickReply, styles.sendLink]} onPress={this.handleSend(replies)}>
                 {customSend ? (customSend()) : (<Text style={styles.sendLinkText}>{sendText}</Text>)}
             </TouchableOpacity>);
         };
     }
-
     render() {
-        const {currentMessage, quickRepliesColor, quickReplyStyle} = this.props;
-        const {replies} = this.state;
+        const { currentMessage, quickRepliesColor, quickReplyStyle } = this.props;
+        const { replies } = this.state;
         if (!this.shouldComponentDisplay()) {
             return null;
         }
-        const {type} = currentMessage.quickReplies;
-        const {bunnyKit: {sizeLabor, themeLabor, colors}} = this.props;
-        const styles = getStyles(sizeLabor, themeLabor);
+        const { type } = currentMessage.quickReplies;
+        const { bunnyKit: { sizeLabor, themeLabor, colors } } = this.props;
+        const styles = makeStyles(sizeLabor, themeLabor);
         return (<View style={styles.container}>
-            {currentMessage.quickReplies.values.map((reply, index) => {
+                {currentMessage.quickReplies.values.map((reply, index) => {
                 const selected = type === 'checkbox' && replies.find(sameReply(reply));
                 return (<TouchableOpacity onPress={this.handlePress(reply)} style={[
-                    styles.quickReply,
-                    quickReplyStyle,
-                    {borderColor: quickRepliesColor},
-                    selected && {backgroundColor: quickRepliesColor},
-                ]} key={`${reply.value}-${index}`}>
-                    <Text numberOfLines={10} ellipsizeMode={'tail'} style={[
+                        styles.quickReply,
+                        quickReplyStyle,
+                        { borderColor: quickRepliesColor },
+                        selected && { backgroundColor: quickRepliesColor },
+                    ]} key={`${reply.value}-${index}`}>
+                                <Text numberOfLines={10} ellipsizeMode={'tail'} style={[
                         styles.quickReplyText,
-                        {color: selected ? colors.text : quickRepliesColor},
+                        { color: selected ? colors.text : quickRepliesColor },
                     ]}>
-                        {reply.title}
-                    </Text>
-                </TouchableOpacity>);
+                                    {reply.title}
+                                </Text>
+                            </TouchableOpacity>);
             })}
-            {replies.length > 0 && this.renderQuickReplySend()}
-        </View>);
+                {replies.length > 0 && this.renderQuickReplySend()}
+            </View>);
     }
 }
-
 QuickReplies.defaultProps = {
     currentMessage: undefined,
     nextMessage: undefined,

@@ -1,7 +1,6 @@
 import React from 'react';
-import {useAuthLabor} from './useAuthLabor';
-
-export function withAuthLabor(WrappedComponent) {
+import { useAuthLabor } from './useAuthLabor';
+export const withAuthLabor = (WrappedComponent) => {
     // Try to create a nice displayName for React Dev Tools.
     const displayName = WrappedComponent.displayName || WrappedComponent.name || 'Component';
     // Creating the inner component. The calculated Props type here is the where the magic happens.
@@ -13,4 +12,4 @@ export function withAuthLabor(WrappedComponent) {
     };
     ComponentWithAuthLabor.displayName = `withAuthLabor(${displayName})`;
     return ComponentWithAuthLabor;
-}
+};

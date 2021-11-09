@@ -1,5 +1,4 @@
-import {HeapNode} from '../heap';
-
+import { HeapNode } from '../heap';
 /**
  * @copyright 2020 Eyas Ranjous <eyas.ranjous@gmail.com>
  * @license MIT
@@ -15,16 +14,16 @@ export class PriorityQueue {
      */
     constructor(options) {
         if (options) {
-            const {priority} = options;
+            const { priority } = options;
             if (priority !== undefined && typeof priority !== 'function') {
                 throw new Error('.constructor expects a valid priority function');
             }
             this._priorityCb = priority || ((el) => +el);
-        } else {
+        }
+        else {
             this._priorityCb = (el) => +el;
         }
     }
-
     /**
      * @private
      * @returns {object}
@@ -35,7 +34,6 @@ export class PriorityQueue {
             element: node.val
         };
     }
-
     /**
      * @public
      * @returns {number}
@@ -43,7 +41,6 @@ export class PriorityQueue {
     size() {
         return this._heap.size();
     }
-
     /**
      * @public
      * @returns {boolean}
@@ -51,7 +48,6 @@ export class PriorityQueue {
     isEmpty() {
         return this._heap.isEmpty();
     }
-
     /**
      * Returns an element with highest priority in the queue
      * @public
@@ -64,7 +60,6 @@ export class PriorityQueue {
         }
         return this._getElementWithPriority(peek);
     }
-
     /**
      * Returns an element with lowest priority in the queue
      * @public
@@ -77,7 +72,6 @@ export class PriorityQueue {
         }
         return this._getElementWithPriority(leaf);
     }
-
     /**
      * Adds an element to the queue
      * @public
@@ -103,7 +97,6 @@ export class PriorityQueue {
         this._heap.insert(new HeapNode(_priority, element));
         return this;
     }
-
     /**
      * Removes and returns an element with highest priority in the queue
      * @public
@@ -116,7 +109,6 @@ export class PriorityQueue {
         }
         return this._getElementWithPriority(top);
     }
-
     /**
      * Returns a sorted list of elements from highest to lowest priority
      * @public
@@ -129,7 +121,6 @@ export class PriorityQueue {
             .map((n) => this._getElementWithPriority(n))
             .reverse();
     }
-
     /**
      * Clears the queue
      * @public

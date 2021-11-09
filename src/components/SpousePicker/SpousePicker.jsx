@@ -1,39 +1,21 @@
-import {ButtonTO, IcoMoon, InButtonText, Text, TextButton, View} from '../UI';
-import {Col, Row} from '../../containers';
-import {Slider} from '../../../packages/react-native-range-slider-expo/src';
-import {Divider} from '../Divider';
-import {RadioButton} from 'react-native-paper';
+import { ButtonTO, IcoMoon, InButtonText, Text, TextButton, View } from '../UI';
+import { Col, Row } from '../../containers';
+import { Slider } from '../../../packages/react-native-range-slider-expo/src';
+import { Divider } from '../Divider';
+import { RadioButton } from 'react-native-paper';
 import RangeSlider from '../../../packages/react-native-range-slider-expo/src/RangeSlider';
 import * as React from 'react';
-import {useState} from 'react';
+import { useState } from 'react';
 import _ from 'lodash';
 import BunnyConstants from '../../constants/constants';
-import {useBunnyKit} from '../../hooks';
-import {getSharedStyles} from '../../helpers';
-import {getStyles} from './styles';
-
+import { useBunnyKit } from '../../hooks/bunny-kit';
+import { getSharedStyles } from '../../helpers';
+import { makeStyles } from './styles';
 export const SpousePicker = (props) => {
-    const {sizeLabor, themeLabor, wp, colors} = useBunnyKit();
-    const {
-        onDone,
-        onCancel,
-        minDistance = 0,
-        maxDistance = 100,
-        initialDistance = 10,
-        minHeight = 140,
-        maxHeight = 220,
-        initialFromHeight = 163,
-        initialToHeight = 180,
-        minAge = 18,
-        maxAge = 60,
-        initialAge = 24,
-        heightUnit = 'cm',
-        distanceUnit = 'mi',
-        initialInterestedIn = 'swimming',
-        title = 'title'
-    } = props;
-    const {sharedStyles} = getSharedStyles(sizeLabor, themeLabor);
-    const styles = getStyles(sizeLabor, themeLabor);
+    const { sizeLabor, themeLabor, wp, colors } = useBunnyKit();
+    const { onDone, onCancel, minDistance = 0, maxDistance = 100, initialDistance = 10, minHeight = 140, maxHeight = 220, initialFromHeight = 163, initialToHeight = 180, minAge = 18, maxAge = 60, initialAge = 24, heightUnit = 'cm', distanceUnit = 'mi', initialInterestedIn = 'swimming', title = 'title' } = props;
+    const { sharedStyles } = getSharedStyles(sizeLabor, themeLabor);
+    const styles = makeStyles(sizeLabor, themeLabor);
     const [fromHeight, setFromHeight] = useState(initialFromHeight);
     const [toHeight, setToHeight] = useState(initialToHeight);
     const [age, setAge] = useState(initialAge);
@@ -56,74 +38,64 @@ export const SpousePicker = (props) => {
         <View style={styles.header}>
             <Row>
                 <Col><TextButton onPress={() => {
-                    onCancel?.();
-                }}><IcoMoon name="x"/></TextButton></Col>
+            onCancel?.();
+        }}><IcoMoon name="x"/></TextButton></Col>
                 <Col align="center"><Text>{title}</Text></Col>
-                <Col align="flex-end"><TextButton onPress={_reset}><Text
-                    style={sharedStyles.text2}>Reset</Text></TextButton></Col>
+                <Col align="flex-end"><TextButton onPress={_reset}><Text style={sharedStyles.text2}>Reset</Text></TextButton></Col>
             </Row>
         </View>
         <View style={styles.content}>
-            <View style={{paddingVertical: wp(10)}}>
+            <View style={{ paddingVertical: wp(10) }}>
                 <Row>
                     <Col><Text style={sharedStyles.title2}>Distance</Text></Col>
-                    <Col align="flex-end"><Text
-                        style={sharedStyles.text2}>{`${minDistance}-` + distance.toString() + 'mi'}</Text></Col>
+                    <Col align="flex-end"><Text style={sharedStyles.text2}>{`${minDistance}-` + distance.toString() + 'mi'}</Text></Col>
                 </Row>
-                <Slider min={minDistance} max={maxDistance} step={1} valueOnChange={value => setDistance(value)}
-                        valueOnIndicated={distanceIndicated} initialValue={initialDistance} invert={false}
-                        styleSize={24} showRangeLabels={false} showValueLabels={false} valueLabelsUnit={distanceUnit}/>
+                <Slider min={minDistance} max={maxDistance} step={1} valueOnChange={value => setDistance(value)} valueOnIndicated={distanceIndicated} initialValue={initialDistance} invert={false} styleSize={24} showRangeLabels={false} showValueLabels={false} valueLabelsUnit={distanceUnit}/>
             </View>
-            <Divider/>
-            <View style={{paddingVertical: wp(10)}}>
+            <Divider />
+            <View style={{ paddingVertical: wp(10) }}>
                 <Text style={sharedStyles.title2}>Interested in</Text>
                 <RadioButton.Group onValueChange={value => setInterestedIn(value)} value={interestedIn}>
                     <Row>
                         <Col size={1.3}>
-                            <RadioButton.Item color={colors.primary} labelStyle={{color: colors.text2}} label="Swimming"
-                                              value="swimming"/>
+                            <RadioButton.Item color={colors.primary} labelStyle={{ color: colors.text2 }} label="Swimming" value="swimming"/>
                         </Col>
                         <Col>
-                            <RadioButton.Item color={colors.primary} labelStyle={{color: colors.text2}} label="Hiking"
-                                              value="hiking"/>
+                            <RadioButton.Item color={colors.primary} labelStyle={{ color: colors.text2 }} label="Hiking" value="hiking"/>
                         </Col>
                         <Col>
-                            <RadioButton.Item color={colors.primary} labelStyle={{color: colors.text2}} label="Yoga"
-                                              value="yoga"/>
+                            <RadioButton.Item color={colors.primary} labelStyle={{ color: colors.text2 }} label="Yoga" value="yoga"/>
                         </Col>
                     </Row>
                 </RadioButton.Group>
             </View>
-            <Divider/>
-            <View style={{paddingVertical: wp(10)}}>
+            <Divider />
+            <View style={{ paddingVertical: wp(10) }}>
                 <Row>
                     <Col><Text style={sharedStyles.title2}>Age</Text></Col>
                     <Col align="flex-end"><Text style={sharedStyles.text2}>{`${minAge}-` + age.toString()}</Text></Col>
                 </Row>
-                <Slider min={minAge} max={maxAge} step={1} valueOnChange={value => setAge(value)}
-                        valueOnIndicated={ageIndicated} initialValue={initialAge} styleSize={24} showRangeLabels={false}
-                        showValueLabels={false}/>
+                <Slider min={minAge} max={maxAge} step={1} valueOnChange={value => setAge(value)} valueOnIndicated={ageIndicated} initialValue={initialAge} styleSize={24} showRangeLabels={false} showValueLabels={false}/>
             </View>
-            <Divider/>
-            <View style={{paddingVertical: wp(10)}}>
+            <Divider />
+            <View style={{ paddingVertical: wp(10) }}>
                 <Text style={sharedStyles.title2}>Height</Text>
                 <RangeSlider min={minHeight} max={maxHeight} step={1} fromValueOnChange={value => {
-                    setFromHeight(value);
-                }} fromValueOnIndicated={value => {
-                    // console.log('---fromValueOnIndicated',value)
-                }} toValueOnChange={value => {
-                    setToHeight(value);
-                }} toValueOnIndicated={value => {
-                    // console.log('---toValueOnIndicated',value)
-                }} initialFromValue={initialFromHeight} initialToValue={initialToHeight} styleSize={24}
-                             showRangeLabels={false} valueLabelsUnit={heightUnit}/>
+            setFromHeight(value);
+        }} fromValueOnIndicated={value => {
+            // console.log('---fromValueOnIndicated',value)
+        }} toValueOnChange={value => {
+            setToHeight(value);
+        }} toValueOnIndicated={value => {
+            // console.log('---toValueOnIndicated',value)
+        }} initialFromValue={initialFromHeight} initialToValue={initialToHeight} styleSize={24} showRangeLabels={false} valueLabelsUnit={heightUnit}/>
             </View>
         </View>
 
         <View style={[styles.footer]}>
             <ButtonTO onPress={() => {
-                onDone?.({distance, age, fromHeight, toHeight});
-            }}><InButtonText>Done</InButtonText></ButtonTO>
+            onDone?.({ distance, age, fromHeight, toHeight });
+        }}><InButtonText>Done</InButtonText></ButtonTO>
         </View>
     </View>;
 };
