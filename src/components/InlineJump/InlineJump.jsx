@@ -1,6 +1,6 @@
 import {useLinkTo} from '@react-navigation/native';
 import {Col, getContainerStyles, Row} from '../../containers';
-import {useAuthLabor} from '../../providers/auth-labor';
+import {useAuthLabor} from '../../providers';
 import {IcoMoon, Link, Text} from '../UI';
 import {LinearGradientIcon} from '../LinearGradientIcon';
 import {TouchableOpacity} from 'react-native';

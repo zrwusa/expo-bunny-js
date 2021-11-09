@@ -1,6 +1,5 @@
 import {ButtonTO, IcoMoon, InButtonText, Text, TextButton, View} from '../UI';
-import {Row} from '../../containers/Row';
-import {Col} from '../../containers';
+import {Col, Row} from '../../containers';
 import * as React from 'react';
 import {useState} from 'react';
 import {useBunnyKit} from '../../hooks';

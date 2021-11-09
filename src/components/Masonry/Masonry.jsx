@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {View} from '../UI';
 import {ScaledImage} from '../ScalableImage/ScalableImage';
-import {uuid4} from '@sentry/utils';
 import {getStyles} from './styles';
 import {withBunnyKit} from '../../hooks';
 
@@ -19,17 +18,17 @@ class MasonryInner extends React.PureComponent {
         return (<View style={styles.masonry}>
             <View style={styles.column}>
                 {column1.map(image => {
-                    return <ScaledImage style={styles.item} key={uuid4()} uri={image.uri} width={wp(375 / 3 - 1)}/>;
+                    return <ScaledImage style={styles.item} key={uuidV4()} uri={image.uri} width={wp(375 / 3 - 1)}/>;
                 })}
             </View>
             <View style={styles.column}>
                 {column2.map(image => {
-                    return <ScaledImage style={styles.item} key={uuid4()} uri={image.uri} width={wp(375 / 3 - 1)}/>;
+                    return <ScaledImage style={styles.item} key={uuidV4()} uri={image.uri} width={wp(375 / 3 - 1)}/>;
                 })}
             </View>
             <View style={styles.columnLast}>
                 {column3.map(image => {
-                    return <ScaledImage style={styles.item} key={uuid4()} uri={image.uri} width={wp(375 / 3 - 1)}/>;
+                    return <ScaledImage style={styles.item} key={uuidV4()} uri={image.uri} width={wp(375 / 3 - 1)}/>;
                 })}
             </View>
         </View>);

@@ -941,7 +941,6 @@ const getStyles = (sizeLabor, themeLabor) => {
         },
     });
 };
-export * from './types';
 const BunnyChat = withBunnyKit(BunnyChatInner);
 export {
     BunnyChat,

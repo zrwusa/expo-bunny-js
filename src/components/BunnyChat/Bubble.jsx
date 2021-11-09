@@ -227,7 +227,6 @@ class Bubble extends React.Component {
                 return this.props.renderMessageText(messageTextProps);
             }
             return <MessageText {...messageTextProps}/>;
-            // return <MessageText {...messageTextProps} />
         }
         return null;
     }
@@ -266,7 +265,6 @@ class Bubble extends React.Component {
                 return this.props.renderMessageImage(messageImageProps);
             }
             return <MessageImage {...messageImageProps}/>;
-            // return <MessageImage {...messageImageProps} />
         }
         return null;
     }
@@ -301,7 +299,6 @@ class Bubble extends React.Component {
                 return this.props.renderMessageSticker(messageStickerProps);
             }
             return <MessageSticker {...messageStickerProps}/>;
-            // return <MessageSticker {...messageStickerProps} />
         }
         return null;
     }
@@ -337,7 +334,6 @@ class Bubble extends React.Component {
                 return this.props.renderMessageVideo(messageVideoProps);
             }
             return <MessageVideo {...messageVideoProps}/>;
-            // return <MessageVideo {...messageVideoProps} />
         }
         return null;
     }
@@ -384,7 +380,6 @@ class Bubble extends React.Component {
                 return this.props.renderMessageAudio(messageAudioProps);
             }
             return <MessageAudio {...messageAudioProps}/>;
-            // return <MessageAudio {...messageAudioProps} />
         }
         return null;
     }

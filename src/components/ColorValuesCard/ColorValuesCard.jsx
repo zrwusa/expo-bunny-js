@@ -2,8 +2,7 @@ import {Text, View} from '../UI';
 import {CopyableText} from '../CopyableText';
 import React from 'react';
 import {getStyles} from './styles';
-import {Row} from '../../containers/Row';
-import {Col} from '../../containers';
+import {Col, Row} from '../../containers';
 import {useBunnyKit} from '../../hooks';
 
 export const ColorValuesCard = (props) => {

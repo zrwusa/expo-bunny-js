@@ -1,4 +1,4 @@
-import {Row} from '../../containers/Row';
+import {Row} from '../../containers';
 import {Text, View} from '../UI';
 import * as React from 'react';
 import {shortenTFunctionKey} from '../../providers';

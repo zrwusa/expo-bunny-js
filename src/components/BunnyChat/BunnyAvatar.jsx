@@ -97,34 +97,37 @@ class BunnyAvatar extends React.Component {
         const styles = getStyles(sizeLabor, themeLabor);
         if (!this.props.user ||
             (!this.props.user.name && !this.props.user.avatar)) {
-            // render placeholder
-            return (<View style={[
-                styles.avatarStyle,
-                styles.avatarTransparent,
-                this.props.avatarStyle,
-            ]}
-                // @ts-ignore
-                          accessibilityTraits="image"/>);
+            return (
+                <View style={[
+                    styles.avatarStyle,
+                    styles.avatarTransparent,
+                    this.props.avatarStyle,
+                ]}
+                      accessibilityTraits="image"/>
+            );
         }
         if (this.props.user.avatar) {
-            return (<TouchableOpacity disabled={!this.props.onPress} onPress={this.props.onPress}
-                                      onLongPress={this.props.onLongPress}
-                // @ts-ignore
-                                      accessibilityTraits="image">
-                {this.renderAvatar()}
-            </TouchableOpacity>);
+            return (
+                <TouchableOpacity disabled={!this.props.onPress}
+                                  onPress={this.props.onPress}
+                                  onLongPress={this.props.onLongPress}
+                                  accessibilityTraits="image">
+                    {this.renderAvatar()}
+                </TouchableOpacity>
+            );
         }
         this.setAvatarColor();
-        return (<TouchableOpacity disabled={!this.props.onPress} onPress={this.props.onPress}
-                                  onLongPress={this.props.onLongPress} style={[
-            styles.avatarStyle,
-            {backgroundColor: this.avatarColor},
-            this.props.avatarStyle,
-        ]}
-            // @ts-ignore
-                                  accessibilityTraits="image">
-            {this.renderInitials()}
-        </TouchableOpacity>);
+        return (
+            <TouchableOpacity disabled={!this.props.onPress} onPress={this.props.onPress}
+                              onLongPress={this.props.onLongPress} style={[
+                styles.avatarStyle,
+                {backgroundColor: this.avatarColor},
+                this.props.avatarStyle,
+            ]}
+                              accessibilityTraits="image">
+                {this.renderInitials()}
+            </TouchableOpacity>
+        );
     }
 }
 

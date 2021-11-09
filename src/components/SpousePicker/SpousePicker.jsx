@@ -1,6 +1,5 @@
 import {ButtonTO, IcoMoon, InButtonText, Text, TextButton, View} from '../UI';
-import {Row} from '../../containers/Row';
-import {Col} from '../../containers';
+import {Col, Row} from '../../containers';
 import {Slider} from '../../../packages/react-native-range-slider-expo/src';
 import {Divider} from '../Divider';
 import {RadioButton} from 'react-native-paper';

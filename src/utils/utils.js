@@ -315,8 +315,7 @@ export function firestoreTimestampToDate(timeStamp) {
                     // just update data immediately,the timestamp will be null
                     date = new Date();
                 } else {
-                    const dateStamp = timeStamp;
-                    date = dateStamp.toDate();
+                    date = timeStamp.toDate();
                 }
             }
             break;
@@ -340,7 +339,7 @@ export const comparerArray = (otherArray, limitKeys) => {
             } else {
                 // TODO
             }
-        }).length == 0;
+        }).length === 0;
     };
 };
 export const onlyInA = (a, b) => {

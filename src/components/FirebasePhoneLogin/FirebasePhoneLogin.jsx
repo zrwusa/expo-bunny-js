@@ -1,14 +1,12 @@
 import {ActivityIndicator, View} from 'react-native';
 import * as React from 'react';
-import {InputCard} from '../../containers/InputCard';
+import {InputCard, Row} from '../../containers';
 import {InButtonText, LinearGradientButton, Text, TextInputIcon} from '../UI';
 import {LinearGradientIcon} from '../LinearGradientIcon';
-import {Row} from '../../containers/Row';
 import * as FirebaseRecaptcha from 'expo-firebase-recaptcha';
 import {FIREBASE_CONFIG} from '../../firebase';
-import {shortenTFunctionKey} from '../../providers';
+import {shortenTFunctionKey, useAuthLabor} from '../../providers';
 import {getStyles} from './styles';
-import {useAuthLabor} from '../../providers/auth-labor';
 import {useDispatch} from 'react-redux';
 import {collectBLResult} from '../../store/actions';
 import {navToReference} from '../../helpers';
