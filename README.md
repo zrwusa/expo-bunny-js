@@ -14,7 +14,6 @@ We don't want a complicated project, what we want is a collection of samples bas
 
 
 
-
 # Tech Stack
 
 - React Native,
